@@ -26,6 +26,18 @@ public class Node {
         this.neighbours = new HashSet<>();
     }
 
+    public Node(int x, int y, int id, int communicationRadius){
+        this.x = x;
+        this.y = y;
+        this.id = id;
+
+        this.speedX = random.nextInt(Constants.NODE_SPEED_BOUND) + Constants.NODE_SPEED_MIN_VAL;
+        this.speedY = random.nextInt(Constants.NODE_SPEED_BOUND) + Constants.NODE_SPEED_MIN_VAL;
+        this.messageDelay = random.nextInt(Constants.NODE_MESSAGE_DELAY_BOUND) + Constants.NODE_MESSAGE_DELAY_MIN_VAL;
+        this.communicationRadius = communicationRadius;
+        this.neighbours = new HashSet<>();
+    }
+
     public void turnOn(int runtTime){         //runtTime is in millis
 
         long startTime = System.currentTimeMillis();

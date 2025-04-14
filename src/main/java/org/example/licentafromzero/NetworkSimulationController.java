@@ -10,7 +10,7 @@ import javafx.scene.shape.Polygon;
 import javafx.scene.text.Text;
 import org.example.licentafromzero.Domain.*;
 
-public class HelloController {
+public class NetworkSimulationController {
     @FXML
     private Pane canvas;
 
@@ -24,7 +24,11 @@ public class HelloController {
             canvasX = (int) canvas.getWidth();
             canvasY = (int) canvas.getHeight();
 
-            ground.setupRandom(Constants.SIMULATION_NR_NODES);
+//            ground.setupRandom(Constants.SIMULATION_NR_NODES);
+//            ground.setupRandomExtraNodes(Constants.SIMULATION_NR_NODES);
+//            ground.setupStandardFromFile("src/main/java/org/example/licentafromzero/Config/configuration.txt");
+            ground.setupExtraNodeFromFile("src/main/java/org/example/licentafromzero/Config/configuration.txt");
+
 
             // Start async simulation and update UI on each tick
             ground.turnOnSimulationAsync(Constants.SIMULATION_TIME, () -> {

@@ -2,7 +2,11 @@ package org.example.licentafromzero.Domain;
 
 import javafx.application.Platform;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class Ground {
@@ -19,11 +23,72 @@ public class Ground {
         messageRouter = new MessageRouter();
     }
 
-    public void setupRandom(int numberNodes){
+    public void setupStandardRandom(int numberNodes){
         Random random = new Random();
         this.numberNodes = numberNodes;
         for(int i=0;i<numberNodes;i++){
             Node node = new Node(random.nextInt(sizeX), random.nextInt(sizeY), i);
+            node.setMessageRouter(messageRouter);
+            messageRouter.addNode(node);
+            nodes.add(node);
+        }
+    }
+
+    public void setupStandardFromFile(String filePath) {
+        try {
+            List<String> lines = Files.readAllLines(Paths.get(filePath));
+            numberNodes = lines.size();
+
+            for (int i = 0; i < lines.size(); i++) {
+                String[] parts = lines.get(i).trim().split("\\s+"); // split by space(s)
+                if (parts.length < 3) continue; // skip if not enough data
+
+                int x = Integer.parseInt(parts[0]);
+                int y = Integer.parseInt(parts[1]);
+                int commRadius = Integer.parseInt(parts[2]);
+
+                Node node = new Node(x, y, i, commRadius);
+                node.setMessageRouter(messageRouter);
+                messageRouter.addNode(node);
+                nodes.add(node);
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace(); // Or handle more gracefully
+        }
+    }
+
+    public void setupExtraNodeFromFile(String filePath) {
+        try {
+            List<String> lines = Files.readAllLines(Paths.get(filePath));
+            numberNodes = lines.size();
+
+            for (int i = 0; i < lines.size(); i++) {
+                String[] parts = lines.get(i).trim().split("\\s+"); // split by space(s)
+                if (parts.length < 3) continue; // skip if not enough data
+
+                int x = Integer.parseInt(parts[0]);
+                int y = Integer.parseInt(parts[1]);
+                int commRadius = Integer.parseInt(parts[2]);
+
+                //Node node = new Node(x, y, i, commRadius);
+                Node node = new NodeExtra(x, y, i, commRadius, "I am special " + i);
+                node.setMessageRouter(messageRouter);
+                messageRouter.addNode(node);
+                nodes.add(node);
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace(); // Or handle more gracefully
+        }
+    }
+
+
+    public void setupRandomExtraNodes(int numberNodes){
+        Random random = new Random();
+        this.numberNodes = numberNodes;
+        for(int i=0;i<numberNodes;i++){
+            Node node = new NodeExtra(random.nextInt(sizeX), random.nextInt(sizeY), i, "I am special " + i);
             node.setMessageRouter(messageRouter);
             messageRouter.addNode(node);
             nodes.add(node);
@@ -53,10 +118,10 @@ public class Ground {
             Platform.runLater(uiCallback);
             System.out.println("Simulation finished");
             System.out.println("Messages sent: " + messageRouter.getMessages().size());
-            System.out.println("Neighbours: ");
             for(Node node: nodes){
-                System.out.println("Node " + node.getId());
-                System.out.println("\t" + node.getNeighbours());
+                if (node instanceof NodeExtra nodeExtra) {
+                    System.out.println("Extra: " + nodeExtra.getExtrafield());
+                }
             }
         }).start();
     }

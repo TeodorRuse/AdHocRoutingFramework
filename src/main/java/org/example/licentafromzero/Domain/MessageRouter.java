@@ -20,11 +20,13 @@ public class MessageRouter {
 
         if(message.isMulticast()) {
             for(Node node: nodes){
+                if(node.getId() != message.getSource()) {
 //                sendMessage(new Message(message.getSource(), node.getId(), MessageType.TEXT, false));
-                Message message1 = new Message(message);
-                message1.setDestination(node.getId());
-                message1.setMulticast(false);
-                sendMessage(message1);
+                    Message message1 = new Message(message);
+                    message1.setDestination(node.getId());
+                    message1.setMulticast(false);
+                    sendMessage(message1);
+                }
             }
         }
         else {

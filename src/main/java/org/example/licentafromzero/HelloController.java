@@ -10,8 +10,6 @@ import javafx.scene.shape.Polygon;
 import javafx.scene.text.Text;
 import org.example.licentafromzero.Domain.*;
 
-import java.util.ArrayList;
-
 public class HelloController {
     @FXML
     private Pane canvas;
@@ -53,8 +51,6 @@ public class HelloController {
             );
             triangle.setFill(Color.ORANGE);
 
-
-
             if(ground.getFocusedNodeIndex()!= -1) {
                 Node focusNode;
                 focusNode = ground.getNodes().get(ground.getFocusedNodeIndex());
@@ -72,14 +68,28 @@ public class HelloController {
 
             canvas.getChildren().addAll(triangle, idLabel);
         }
+        drawNeighbours();
     }
 
-    private void drawLineWithFade(Line line, Color color) {
-        line.setStroke(color);
-        line.setStrokeWidth(3);
+private void drawConnectionWithLabel(Line line, Color color, String label) {
+    line.setStroke(color);
+    line.setStrokeWidth(3);
 
-        canvas.getChildren().add(line);
-    }
+    canvas.getChildren().add(line);
+
+    double midX = (line.getStartX() + line.getEndX()) / 2;
+    double midY = (line.getStartY() + line.getEndY()) / 2;
+
+    Text labelText = new Text(midX, midY, label);
+    labelText.setFill(color);
+    labelText.setStyle("-fx-font-size: 12px; -fx-font-weight: bold;");
+
+    double angle = Math.toDegrees(Math.atan2(line.getEndY() - line.getStartY(), line.getEndX() - line.getStartX()));
+    labelText.setRotate(angle);
+
+    canvas.getChildren().add(labelText);
+}
+
 
     private void drawConnections() {
         for (Message message : ground.getMessageRouter().getMessages()) {
@@ -97,11 +107,31 @@ public class HelloController {
 
                 if (message.getNumberFramesShown() != 0) {
                     if (message.isSuccessful())
-                        drawLineWithFade(line, Color.GREEN);
+                        drawConnectionWithLabel(line, Color.GREEN, message.getMessageType().toString());
                     else
-                        drawLineWithFade(line, Color.RED);
+                        drawConnectionWithLabel(line, Color.RED, message.getMessageType().toString());
                     message.decreaseNumberFramesShown();
                 }
+            }
+        }
+    }
+
+    private void drawNeighbours() {
+        for (Node node: ground.getNodes()) {
+            Node source = node;
+
+            for(Integer neighbour : source.getNeighbours()) {
+                Node destination = ground.getNodeFromId(neighbour);
+
+                double x1 = source.getX() * (canvasX / (double) ground.getSizeX());
+                double y1 = canvasY - (source.getY() * (canvasY / (double) ground.getSizeY()));
+
+                double x2 = destination.getX() * (canvasX / (double) ground.getSizeX());
+                double y2 = canvasY - (destination.getY() * (canvasY / (double) ground.getSizeY()));
+
+                Line line = new Line(x1, y1, x2, y2);
+
+                drawConnectionWithLabel(line, Color.DARKGRAY, "");
             }
         }
     }

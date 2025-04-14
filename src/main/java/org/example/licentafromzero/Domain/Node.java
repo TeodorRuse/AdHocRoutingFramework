@@ -1,18 +1,13 @@
 package org.example.licentafromzero.Domain;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Random;
-
-import static java.lang.Math.random;
+import java.util.*;
 
 public class Node {
     private int x, y;
     private int speedX = 0,speedY = 0;
     private int communicationRadius;
     private int id;
-    private ArrayList<Node> neighbours;
+    private HashSet<Integer> neighbours;
     private List<Message> messages = new LinkedList<>();
     private MessageRouter messageRouter;
     private long totalRunTime = -1;
@@ -28,10 +23,10 @@ public class Node {
         this.speedY = random.nextInt(Constants.NODE_SPEED_BOUND) + Constants.NODE_SPEED_MIN_VAL;
         this.messageDelay = random.nextInt(Constants.NODE_MESSAGE_DELAY_BOUND) + Constants.NODE_MESSAGE_DELAY_MIN_VAL;
         this.communicationRadius = random.nextInt(Constants.NODE_COMM_RANGE_BOUND) + Constants.NODE_COMM_RANGE_MIN_VAL;
-        this.neighbours = new ArrayList<>();
+        this.neighbours = new HashSet<>();
     }
 
-    public void turnOn(int runtTime, int numNodes){         //runtTime is in millis
+    public void turnOn(int runtTime){         //runtTime is in millis
 
         long startTime = System.currentTimeMillis();
 
@@ -40,18 +35,24 @@ public class Node {
                 handleMessage(messages.remove(0));
             }
 
-            if(totalRunTime >= messageDelay || totalRunTime == -1){
-//                sendMessage(new Message(id, (int) System.currentTimeMillis()%numNodes, "Hello from " + id)); //unicast random
-                sendMessage(new Message(id, -1, MessageType.TEXT, true));
-                totalRunTime = 0;
+            if(totalRunTime == -1){
+                discoverNeighbours();
             }
 
-//            move();
+
+            if(totalRunTime >= messageDelay){
+//                sendMessage(new Message(id, (int) System.currentTimeMillis()%numNodes, "Hello from " + id)); //unicast random
+                sendMessage(new Message(id, -1, "Random Hello!" , MessageType.TEXT, true));
+                totalRunTime = 0;
+
+            }
 
 //            //roundrobin
 //            if(id == 0 && totalRunTime == 0){
 //                sendMessage(new Message(id, 1, "Pass it forward"));
 //            }
+
+//            move();
 
             try {
                 Thread.sleep(Constants.NODE_DELAY);
@@ -62,26 +63,33 @@ public class Node {
         }
     }
 
-//    public void discoverNeighbours(){
-//        Message message = new Message(id, -1, MessageType.NEIGHBOUR_DISCOVERY, true);
-//    }
+    public void discoverNeighbours(){
+        Message message = new Message(id, -1, MessageType.NEIGHBOUR_SYN, true);
+        sendMessage(message);
+    }
 
     public void handleMessage(Message message){
-        //TODO: Temporary, just for testing
-        System.out.println("Node " + id + " received message: " + message.getText());
-//        if(id < 19)
-//            message.setDestination(id+1);
-//        else {
-//            message.setDestination(0);
-//        }
-//        message.setSource(id);;
-//
+
+        switch (message.getMessageType()){
+            case TEXT:
+                System.out.println("Node " + id + " received message TEXT: " + message.getText());
+                break;
+            case NEIGHBOUR_SYN:
+                System.out.println("Node " + id + " received NEIGHBOUR_SYN from: " + message.getSource());
+                sendMessage(new Message(id, message.getSource(), MessageType.NEIGHBOUR_ACK, false));
+                break;
+            case NEIGHBOUR_ACK:
+                System.out.println("Node " + id + " received NEIGHBOUR_ACK from: " + message.getSource());
+                neighbours.add(message.getSource());
+                break;
+        }
+
+
 //        try {
 //            Thread.sleep(100);
 //        } catch (InterruptedException e) {
 //            throw new RuntimeException(e);
 //        }
-//        sendMessage(message);
     }
 
     public void move(){
@@ -169,5 +177,9 @@ public class Node {
 
     public void removeMessage(Message message){
         this.messages.remove(message);
+    }
+
+    public HashSet<Integer> getNeighbours() {
+        return neighbours;
     }
 }

@@ -38,7 +38,7 @@ public class Ground {
             while (System.currentTimeMillis() < startTime + simDuration) {
                 for(int i=0;i<numberNodes; i++){
                     focusedNodeIndex = i;
-                    nodes.get(i).turnOn(Constants.SIMULATION_EXEC_TIME_NODE, numberNodes);
+                    nodes.get(i).turnOn(Constants.SIMULATION_EXEC_TIME_NODE);
 
                     try {
                         Thread.sleep(Constants.SIMULATION_DELAY_BETWEEN_FRAMES);
@@ -51,7 +51,13 @@ public class Ground {
 
             // Final update
             Platform.runLater(uiCallback);
-            System.out.println("Simulation finished. Messages sent: " + messageRouter.getMessages().size());
+            System.out.println("Simulation finished");
+            System.out.println("Messages sent: " + messageRouter.getMessages().size());
+            System.out.println("Neighbours: ");
+            for(Node node: nodes){
+                System.out.println("Node " + node.getId());
+                System.out.println("\t" + node.getNeighbours());
+            }
         }).start();
     }
 

@@ -27,7 +27,8 @@ public class NetworkSimulationController {
 //            ground.setupRandom(Constants.SIMULATION_NR_NODES);
 //            ground.setupRandomExtraNodes(Constants.SIMULATION_NR_NODES);
 //            ground.setupStandardFromFile("src/main/java/org/example/licentafromzero/Config/configuration.txt");
-            ground.setupExtraNodeFromFile("src/main/java/org/example/licentafromzero/Config/configuration.txt");
+//            ground.setupExtraNodeFromFile("src/main/java/org/example/licentafromzero/Config/configuration.txt");
+            ground.setupFromFile_DSRNode("src/main/java/org/example/licentafromzero/Config/configuration.txt");
 
 
             // Start async simulation and update UI on each tick

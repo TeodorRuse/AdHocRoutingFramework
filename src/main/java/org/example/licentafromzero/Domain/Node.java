@@ -3,16 +3,16 @@ package org.example.licentafromzero.Domain;
 import java.util.*;
 
 public class Node {
-    private int x, y;
-    private int speedX = 0,speedY = 0;
-    private int communicationRadius;
-    private int id;
-    private HashSet<Integer> neighbours;
-    private List<Message> messages = new LinkedList<>();
-    private MessageRouter messageRouter;
-    private long totalRunTime = -1;
-    private Random random = new Random();
-    private int messageDelay;
+    protected int x, y;
+    protected int speedX = 0,speedY = 0;
+    protected int communicationRadius;
+    protected int id;
+    protected HashSet<Integer> neighbours;
+    protected List<Message> messages = new LinkedList<>();
+    protected MessageRouter messageRouter;
+    protected long totalRunTime = -1;
+    protected Random random = new Random();
+    protected int messageDelay;
 
     public Node(int x, int y, int id){
         this.x = x;

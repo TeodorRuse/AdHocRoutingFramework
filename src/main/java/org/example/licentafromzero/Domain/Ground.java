@@ -1,6 +1,7 @@
 package org.example.licentafromzero.Domain;
 
 import javafx.application.Platform;
+import org.example.licentafromzero.DSR.DSR_Node;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -73,6 +74,31 @@ public class Ground {
 
                 //Node node = new Node(x, y, i, commRadius);
                 Node node = new NodeExtra(x, y, i, commRadius, "I am special " + i);
+                node.setMessageRouter(messageRouter);
+                messageRouter.addNode(node);
+                nodes.add(node);
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace(); // Or handle more gracefully
+        }
+    }
+
+    public void setupFromFile_DSRNode(String filePath) {
+        try {
+            List<String> lines = Files.readAllLines(Paths.get(filePath));
+            numberNodes = lines.size();
+
+            for (int i = 0; i < lines.size(); i++) {
+                String[] parts = lines.get(i).trim().split("\\s+"); // split by space(s)
+                if (parts.length < 3) continue; // skip if not enough data
+
+                int x = Integer.parseInt(parts[0]);
+                int y = Integer.parseInt(parts[1]);
+                int commRadius = Integer.parseInt(parts[2]);
+
+                //Node node = new Node(x, y, i, commRadius);
+                Node node = new DSR_Node(x, y, i, commRadius);
                 node.setMessageRouter(messageRouter);
                 messageRouter.addNode(node);
                 nodes.add(node);

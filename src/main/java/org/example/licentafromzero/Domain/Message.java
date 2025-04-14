@@ -5,7 +5,6 @@ import java.util.ArrayList;
 public class Message {
     private int source, destination;
     private String text;
-    private Object payload;
     private boolean isSuccessful = false;
     private int numberFramesShown = Constants.MESSAGE_NUMBER_FRAMES_SHOWN;
     private MessageType messageType;
@@ -39,12 +38,16 @@ public class Message {
         this.source = message.source;
         this.destination = message.destination;
         this.text = message.text;
-        this.payload = message.payload;
         this.isSuccessful = message.isSuccessful;
         this.numberFramesShown = message.numberFramesShown;
         this.messageType = message.messageType;
         this.isMulticast = message.isMulticast;
     }
+
+    public Message copy() {
+        return new Message(this); // base version
+    }
+
 
     public int getSource() {
         return source;
@@ -68,14 +71,6 @@ public class Message {
 
     public void setText(String text) {
         this.text = text;
-    }
-
-    public Object getPayload() {
-        return payload;
-    }
-
-    public void setPayload(Object payload) {
-        this.payload = payload;
     }
 
     public boolean isSuccessful() {
@@ -116,7 +111,6 @@ public class Message {
                 "source=" + source +
                 ", destination=" + destination +
                 ", text='" + text + '\'' +
-                ", payload=" + payload +
                 ", isSuccessful=" + isSuccessful +
                 ", numberFramesShown=" + numberFramesShown +
                 ", messageType=" + messageType +

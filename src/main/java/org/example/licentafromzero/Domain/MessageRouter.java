@@ -1,6 +1,9 @@
 package org.example.licentafromzero.Domain;
 
+import org.example.licentafromzero.DSR.DSR_Message;
+
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public class MessageRouter {
     private ArrayList<Node> nodes;
@@ -22,7 +25,8 @@ public class MessageRouter {
             for(Node node: nodes){
                 if(node.getId() != message.getSource()) {
 //                sendMessage(new Message(message.getSource(), node.getId(), MessageType.TEXT, false));
-                    Message message1 = new Message(message);
+
+                    Message message1 = message.copy();
                     message1.setDestination(node.getId());
                     message1.setMulticast(false);
                     sendMessage(message1);
@@ -44,13 +48,23 @@ public class MessageRouter {
                     message.setSuccessful(true);
                     messages.add(message);
                 } else {
-                    System.out.println("Failed to send - out of range: " + source.getId() + " " + destination.getId());
+                    System.out.println("Failed to send "+ message.getMessageType() + " - out of range: " + source.getId() + " " + destination.getId());
                     message.setSuccessful(false);
                     messages.add(message);
                 }
             }
         }
+    }
 
+    public void sendMessage(Message message, HashSet<Integer> destinations) {
+        for(Node node: nodes){
+            if(node.getId() != message.getSource() && destinations.contains(node.getId())) {
+                Message message1 = message.copy();
+                message1.setDestination(node.getId());
+                message1.setMulticast(false);
+                sendMessage(message1);
+            }
+        }
     }
 
 

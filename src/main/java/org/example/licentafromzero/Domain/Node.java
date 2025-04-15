@@ -59,11 +59,6 @@ public class Node {
 
             }
 
-//            //roundrobin
-//            if(id == 0 && totalRunTime == 0){
-//                sendMessage(new Message(id, 1, "Pass it forward"));
-//            }
-
 //            move();
 
             try {

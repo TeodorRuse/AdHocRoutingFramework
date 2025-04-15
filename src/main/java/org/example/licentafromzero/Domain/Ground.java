@@ -24,7 +24,7 @@ public class Ground {
         messageRouter = new MessageRouter();
     }
 
-    public void setupStandardRandom(int numberNodes){
+    public void setupRandom_Standard(int numberNodes){
         Random random = new Random();
         this.numberNodes = numberNodes;
         for(int i=0;i<numberNodes;i++){

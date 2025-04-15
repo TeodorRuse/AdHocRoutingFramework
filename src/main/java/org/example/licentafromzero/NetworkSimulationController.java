@@ -24,7 +24,7 @@ public class NetworkSimulationController {
             canvasX = (int) canvas.getWidth();
             canvasY = (int) canvas.getHeight();
 
-//            ground.setupRandom(Constants.SIMULATION_NR_NODES);
+//            ground.setupRandom_Standard(Constants.SIMULATION_NR_NODES);
 //            ground.setupRandomExtraNodes(Constants.SIMULATION_NR_NODES);
 //            ground.setupStandardFromFile("src/main/java/org/example/licentafromzero/Config/configuration.txt");
 //            ground.setupExtraNodeFromFile("src/main/java/org/example/licentafromzero/Config/configuration.txt");

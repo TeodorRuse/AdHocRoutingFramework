@@ -58,7 +58,7 @@ public class DSR_Node extends Node {
 //                tempsend2 = true;
 //            }
 
-//            move();
+            move();
 
             try {
                 Thread.sleep(Constants.NODE_DELAY);

@@ -15,6 +15,7 @@ public class Node {
     protected int messageDelay;
     protected long lastMessageSent;
     protected long lastNeighbourDiscovery;
+    protected boolean active = true;
 
 
     public Node(int x, int y, int id){
@@ -58,8 +59,13 @@ public class Node {
             }
 
             if(totalRunTime - lastMessageSent >= messageDelay){
-//                sendMessage(new Message(id, (int) System.currentTimeMillis()%numNodes, "Hello from " + id)); //unicast random
-                sendMessage(new Message(id, -1, "Random Hello!" , MessageType.TEXT, true));
+                //Not efficient but should work for now
+                List<Integer> neighbourList = new ArrayList<>(neighbours);
+                if(!neighbourList.isEmpty()) {
+                    Integer randomNeighbour = neighbourList.get(random.nextInt(neighbourList.size()));
+                    sendMessage(new Message(id, randomNeighbour, "Hello from " + id)); //unicast random
+                }
+//                sendMessage(new Message(id, -1, "Random Hello!" , MessageType.TEXT, true));
                 lastMessageSent = totalRunTime;
 
             }
@@ -194,5 +200,17 @@ public class Node {
 
     public HashSet<Integer> getNeighbours() {
         return neighbours;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
+
+        if(!active){
+            this.neighbours.clear();
+        }
     }
 }

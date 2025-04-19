@@ -68,9 +68,9 @@ public class DSR_Node extends Node {
                 updatedPaths = true;
             }
 
-            if(id == 0) {
-                move();
-            }
+//            if(id == 0) {
+//                move();
+//            }
 
             try {
                 Thread.sleep(Constants.NODE_DELAY);

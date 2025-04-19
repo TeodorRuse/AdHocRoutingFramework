@@ -7,25 +7,28 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
 
 public class Ground {
     private int sizeX, sizeY;
     private ArrayList<Node> nodes;
+    private HashSet<Integer> offNodes;
     private MessageRouter messageRouter;
     private int numberNodes;
     private int focusedNodeIndex = -1;
+    private Random random = new Random();
 
     public Ground(int sizeX, int sizeY) {
         this.sizeX = sizeX;
         this.sizeY = sizeY;
         nodes = new ArrayList<>();
+        offNodes = new HashSet<>();
         messageRouter = new MessageRouter();
     }
 
     public void setupRandom_Standard(int numberNodes){
-        Random random = new Random();
         this.numberNodes = numberNodes;
         for(int i=0;i<numberNodes;i++){
             Node node = new Node(random.nextInt(sizeX), random.nextInt(sizeY), i);
@@ -84,7 +87,6 @@ public class Ground {
         }
     }
     public void setupRandom_DSRNode(int numberNodes){
-        Random random = new Random();
         this.numberNodes = numberNodes;
         for(int i=0;i<numberNodes;i++){
 //            Node node = new NodeExtra(random.nextInt(sizeX), random.nextInt(sizeY), i, "I am special " + i);
@@ -99,18 +101,35 @@ public class Ground {
         new Thread(() -> {
             long startTime = System.currentTimeMillis();
             long simDuration = simTimeInSeconds * 1000;
+            int chance;
 
             while (System.currentTimeMillis() < startTime + simDuration) {
                 for(int i=0;i<numberNodes; i++){
-                    focusedNodeIndex = i;
-                    nodes.get(i).turnOn(Constants.SIMULATION_EXEC_TIME_NODE);
 
-                    try {
-                        Thread.sleep(Constants.SIMULATION_DELAY_BETWEEN_FRAMES);
-                    } catch (InterruptedException e) {
-                        throw new RuntimeException(e);
+                    chance = random.nextInt(1000);
+
+                    if(nodes.get(i).isActive() && chance < Constants.SIMULATION_PROBABILITY_NODE_TURN_OFF){
+                        if(Constants.LOG_DETAILS == 0)
+                            System.out.println("Node " + nodes.get(i).getId() + " turning off");
+                        deactivateNode(i);
                     }
-                    Platform.runLater(uiCallback);
+                    else if(!nodes.get(i).isActive() && chance < Constants.SIMULATION_PROBABILITY_NODE_TURN_ON){
+                        if(Constants.LOG_DETAILS == 0)
+                            System.out.println("Node " + nodes.get(i).getId() + " turning on");
+                        activateNode(i);
+                    }
+
+                    if(!offNodes.contains(i)) {
+                        focusedNodeIndex = i;
+                        nodes.get(i).turnOn(Constants.SIMULATION_EXEC_TIME_NODE);
+
+                        try {
+                            Thread.sleep(Constants.SIMULATION_DELAY_BETWEEN_FRAMES);
+                        } catch (InterruptedException e) {
+                            throw new RuntimeException(e);
+                        }
+                        Platform.runLater(uiCallback);
+                    }
                 }
             }
 
@@ -119,9 +138,6 @@ public class Ground {
             System.out.println("Simulation finished");
             System.out.println("Messages sent: " + messageRouter.getMessages().size());
             for(Node node: nodes){
-                if (node instanceof NodeExtra nodeExtra) {
-                    System.out.println("Extra: " + nodeExtra.getExtrafield());
-                }
                 if(node instanceof DSR_Node dsrNode){
                     System.out.println(dsrNode.getId() + ": " + dsrNode.getKnownRoutes());
                 }
@@ -184,5 +200,19 @@ public class Ground {
 
     public int getNumberNodes() {
         return numberNodes;
+    }
+
+    public HashSet<Integer> getOffNodes() {
+        return offNodes;
+    }
+
+    public void deactivateNode(int id){
+        this.offNodes.add(id);
+        getNodeFromId(id).setActive(false);
+    }
+
+    public void activateNode(int id){
+        this.offNodes.remove(id);
+        getNodeFromId(id).setActive(true);
     }
 }

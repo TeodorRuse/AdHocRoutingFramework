@@ -27,9 +27,10 @@ public class NetworkSimulationController {
             canvasY = (int) canvas.getHeight();
 
 //            ground.setupRandom_Standard(Constants.SIMULATION_NR_NODES);
-            ground.setupFromFile_Standard("src/main/java/org/example/licentafromzero/Config/configuration.txt");
-//            ground.setupFromFile_DSRNode("src/main/java/org/example/licentafromzero/Config/configuration.txt");
+//            ground.setupFromFile_Standard("src/main/java/org/example/licentafromzero/Config/configuration.txt");
 //            ground.setupRandom_DSRNode(Constants.SIMULATION_NR_NODES);
+            ground.setupFromFile_DSRNode("src/main/java/org/example/licentafromzero/Config/configuration.txt");
+
 
 
             // Start async simulation and update UI on each tick
@@ -42,7 +43,7 @@ public class NetworkSimulationController {
 
 
     private void drawGround() {
-        canvas.getChildren().clear(); // Optional: Clear if redrawing
+        canvas.getChildren().clear();
 
         for (Node node : ground.getNodes()) {
             double x = node.getX() * (canvasX / (double) ground.getSizeX());
@@ -55,7 +56,13 @@ public class NetworkSimulationController {
                     x - size, y + size,
                     x + size, y + size
             );
-            triangle.setFill(Color.ORANGE);
+//            triangle.setFill(Color.ORANGE);
+            if (ground.getOffNodes().contains(node.getId())) {
+                triangle.setFill(Color.rgb(100, 80, 0)); // Darker, grayish orange
+            } else {
+                triangle.setFill(Color.ORANGE);
+            }
+
 
             if(ground.getFocusedNodeIndex()!= -1) {
                 Node focusNode;

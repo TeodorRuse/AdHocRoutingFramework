@@ -35,7 +35,7 @@ public class Ground {
         }
     }
 
-    public void setupStandardFromFile(String filePath) {
+    public void setupFromFile_Standard(String filePath) {
         try {
             List<String> lines = Files.readAllLines(Paths.get(filePath));
             numberNodes = lines.size();
@@ -49,31 +49,6 @@ public class Ground {
                 int commRadius = Integer.parseInt(parts[2]);
 
                 Node node = new Node(x, y, i, commRadius);
-                node.setMessageRouter(messageRouter);
-                messageRouter.addNode(node);
-                nodes.add(node);
-            }
-
-        } catch (IOException e) {
-            e.printStackTrace(); // Or handle more gracefully
-        }
-    }
-
-    public void setupExtraNodeFromFile(String filePath) {
-        try {
-            List<String> lines = Files.readAllLines(Paths.get(filePath));
-            numberNodes = lines.size();
-
-            for (int i = 0; i < lines.size(); i++) {
-                String[] parts = lines.get(i).trim().split("\\s+"); // split by space(s)
-                if (parts.length < 3) continue; // skip if not enough data
-
-                int x = Integer.parseInt(parts[0]);
-                int y = Integer.parseInt(parts[1]);
-                int commRadius = Integer.parseInt(parts[2]);
-
-                //Node node = new Node(x, y, i, commRadius);
-                Node node = new NodeExtra(x, y, i, commRadius, "I am special " + i);
                 node.setMessageRouter(messageRouter);
                 messageRouter.addNode(node);
                 nodes.add(node);
@@ -108,13 +83,12 @@ public class Ground {
             e.printStackTrace(); // Or handle more gracefully
         }
     }
-
-
-    public void setupRandomExtraNodes(int numberNodes){
+    public void setupRandom_DSRNode(int numberNodes){
         Random random = new Random();
         this.numberNodes = numberNodes;
         for(int i=0;i<numberNodes;i++){
-            Node node = new NodeExtra(random.nextInt(sizeX), random.nextInt(sizeY), i, "I am special " + i);
+//            Node node = new NodeExtra(random.nextInt(sizeX), random.nextInt(sizeY), i, "I am special " + i);
+            Node node = new DSR_Node(random.nextInt(sizeX), random.nextInt(sizeY), i);
             node.setMessageRouter(messageRouter);
             messageRouter.addNode(node);
             nodes.add(node);
@@ -147,6 +121,9 @@ public class Ground {
             for(Node node: nodes){
                 if (node instanceof NodeExtra nodeExtra) {
                     System.out.println("Extra: " + nodeExtra.getExtrafield());
+                }
+                if(node instanceof DSR_Node dsrNode){
+                    System.out.println(dsrNode.getId() + ": " + dsrNode.getKnownRoutes());
                 }
             }
         }).start();

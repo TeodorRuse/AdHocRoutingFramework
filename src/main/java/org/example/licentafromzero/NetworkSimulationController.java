@@ -25,10 +25,9 @@ public class NetworkSimulationController {
             canvasY = (int) canvas.getHeight();
 
 //            ground.setupRandom_Standard(Constants.SIMULATION_NR_NODES);
-//            ground.setupRandomExtraNodes(Constants.SIMULATION_NR_NODES);
 //            ground.setupStandardFromFile("src/main/java/org/example/licentafromzero/Config/configuration.txt");
-//            ground.setupExtraNodeFromFile("src/main/java/org/example/licentafromzero/Config/configuration.txt");
-            ground.setupFromFile_DSRNode("src/main/java/org/example/licentafromzero/Config/configuration.txt");
+//            ground.setupFromFile_DSRNode("src/main/java/org/example/licentafromzero/Config/configuration.txt");
+            ground.setupRandom_DSRNode(Constants.SIMULATION_NR_NODES);
 
 
             // Start async simulation and update UI on each tick

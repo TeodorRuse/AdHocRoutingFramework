@@ -13,6 +13,9 @@ public class Node {
     protected long totalRunTime = -1;
     protected Random random = new Random();
     protected int messageDelay;
+    protected long lastMessageSent;
+    protected long lastNeighbourDiscovery;
+
 
     public Node(int x, int y, int id){
         this.x = x;
@@ -47,19 +50,22 @@ public class Node {
                 handleMessage(messages.remove(0));
             }
 
-            if(totalRunTime == -1){
+            if(totalRunTime == -1 || totalRunTime - lastNeighbourDiscovery >= Constants.NODE_NEIGHBOUR_DISCOVERY_PERIOD){
                 discoverNeighbours();
+                lastNeighbourDiscovery = totalRunTime;
+                if(Constants.LOG_DETAILS < 2)
+                    System.out.println("Node " + id + " discovering neighbours");
             }
 
 
-            if(totalRunTime >= messageDelay){
+            if(totalRunTime - lastMessageSent >= messageDelay){
 //                sendMessage(new Message(id, (int) System.currentTimeMillis()%numNodes, "Hello from " + id)); //unicast random
                 sendMessage(new Message(id, -1, "Random Hello!" , MessageType.TEXT, true));
-                totalRunTime = 0;
+                lastMessageSent = totalRunTime;
 
             }
 
-//            move();
+            move();
 
             try {
                 Thread.sleep(Constants.NODE_DELAY);
@@ -71,22 +77,23 @@ public class Node {
     }
 
     public void discoverNeighbours(){
+        this.neighbours.clear();
         Message message = new Message(id, -1, MessageType.NEIGHBOUR_SYN, true);
         sendMessage(message);
     }
 
     public void handleMessage(Message message){
 
+        if(Constants.LOG_DETAILS < 2)
+            System.out.println("Node " + id + " received " + message.getMessageType() + " from: " + message.getSource());
         switch (message.getMessageType()){
             case TEXT:
-                System.out.println("Node " + id + " received message TEXT: " + message.getText());
+                System.out.println("Node " + id + " received: " + message.getText());
                 break;
             case NEIGHBOUR_SYN:
-                System.out.println("Node " + id + " received NEIGHBOUR_SYN from: " + message.getSource());
                 sendMessage(new Message(id, message.getSource(), MessageType.NEIGHBOUR_ACK, false));
                 break;
             case NEIGHBOUR_ACK:
-                System.out.println("Node " + id + " received NEIGHBOUR_ACK from: " + message.getSource());
                 neighbours.add(message.getSource());
                 break;
         }

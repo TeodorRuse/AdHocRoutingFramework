@@ -7,16 +7,15 @@ import java.util.ArrayList;
 
 public class DSR_Message extends Message {
     private long requestId;
-    private ArrayList<Integer> routeRecord;
-    private ArrayList<Integer> finalRoute;
-    private int ttl;
+    private ArrayList<Integer> routeRecord = new ArrayList<>();
+    private ArrayList<Integer> finalRoute = new ArrayList<>();
+    private int ttl=100;
     private Integer finalDestination;
 
     //for DSR_RREQ
     public DSR_Message(int source, int destination, int finalDestination ,MessageType messageType, boolean isMulticast, long requestId) {
         super(source, destination, messageType, isMulticast);
         this.requestId = requestId;
-        this.ttl = 10;
         this.routeRecord = new ArrayList<>();
         this.finalRoute = new ArrayList<>();
         this.finalDestination = finalDestination;
@@ -25,7 +24,6 @@ public class DSR_Message extends Message {
     //for DSR_TEXT
     public DSR_Message(int source, int destination, MessageType messageType, ArrayList<Integer> routeRecord, String text) {
         super(source, destination, messageType, false);
-        this.ttl = 10;
         this.routeRecord = routeRecord;
         setText(text);
         this.finalDestination = source; //finalDestination stores the initial source. Because lazy
@@ -37,6 +35,16 @@ public class DSR_Message extends Message {
         this.ttl = 10;
         this.routeRecord = routeRecord;
         this.finalRoute = finalRoute;
+    }
+
+    // for DSR_RERR
+    public DSR_Message(int source, int destination, MessageType messageType, Integer node1, Integer node2,  long requestId) {
+        super(source, destination, messageType, true);
+        this.requestId = requestId;
+        ArrayList<Integer> brokenLink = new ArrayList<>();
+        brokenLink.add(node1);
+        brokenLink.add(node2);
+        this.finalRoute = brokenLink;
     }
 
     //for Clone

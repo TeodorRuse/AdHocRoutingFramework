@@ -57,7 +57,6 @@ public class Node {
                     System.out.println("Node " + id + " discovering neighbours");
             }
 
-
             if(totalRunTime - lastMessageSent >= messageDelay){
 //                sendMessage(new Message(id, (int) System.currentTimeMillis()%numNodes, "Hello from " + id)); //unicast random
                 sendMessage(new Message(id, -1, "Random Hello!" , MessageType.TEXT, true));
@@ -65,7 +64,7 @@ public class Node {
 
             }
 
-            move();
+//            move();
 
             try {
                 Thread.sleep(Constants.NODE_DELAY);

@@ -5,7 +5,6 @@ import org.example.licentafromzero.Domain.Message;
 import org.example.licentafromzero.Domain.MessageType;
 import org.example.licentafromzero.Domain.Node;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -16,6 +15,7 @@ public class DSR_Node extends Node {
     private ArrayList<Long> knownMessageIds;
     private Map<Integer, ArrayList<Integer>> knownRoutes;
     private Message waitingMessage;
+    private boolean updatedPaths = true;
 
     public DSR_Node(int x, int y, int id) {
         super(x, y, id);
@@ -44,12 +44,16 @@ public class DSR_Node extends Node {
                 handleMessage(messages.remove(0));
             }
 
-            //TODO: There is periodic version in basic node
-            if(totalRunTime == -1){
+            if(totalRunTime == -1 || totalRunTime - lastNeighbourDiscovery >= Constants.NODE_NEIGHBOUR_DISCOVERY_PERIOD){
                 discoverNeighbours();
-                if(Constants.LOG_DETAILS < 3)
+                updatedPaths = false;
+                lastNeighbourDiscovery = totalRunTime;
+                if(Constants.LOG_DETAILS < 2)
                     System.out.println("Node " + id + " discovering neighbours");
             }
+
+//            if(totalRunTime >= Constants.NODE_STARTUP_TIME)
+//                Constants.SIMULATION_DELAY_BETWEEN_FRAMES = 100;
 
             if(totalRunTime > Constants.NODE_STARTUP_TIME && totalRunTime - lastMessageSent >= messageDelay){
                 int destination = random.nextInt(Constants.SIMULATION_NR_NODES);
@@ -59,7 +63,14 @@ public class DSR_Node extends Node {
                 lastMessageSent = totalRunTime;
             }
 
-//            move();
+            if(totalRunTime > Constants.NODE_NEIGHBOUR_DISCOVERY_DURATION + lastNeighbourDiscovery && !updatedPaths){
+                updateRoutes();
+                updatedPaths = true;
+            }
+
+            if(id == 0) {
+                move();
+            }
 
             try {
                 Thread.sleep(Constants.NODE_DELAY);
@@ -77,13 +88,17 @@ public class DSR_Node extends Node {
 
     @Override
     public void sendMessage(Message message){
+        message.setSource(id);
         if(message instanceof DSR_Message dsrMessage){
             if(dsrMessage.getMessageType() == MessageType.DSR_RREQ ) {
                 if(Constants.LOG_DETAILS < 3)
                     System.out.println("Node " + id + " sending RREQ(" + dsrMessage.getRequestId() + ") all neighbours for " + dsrMessage.getFinalDestination());
                 this.messageRouter.sendMessage(dsrMessage, neighbours);
-            }
-            else {
+            } else if(dsrMessage.getMessageType() == MessageType.DSR_RERR){
+                if(Constants.LOG_DETAILS < 3)
+                    System.out.println("Node " + id + " sending RERR(" + dsrMessage.getRequestId() + ") all neighbours for " + dsrMessage.getFinalRoute());
+                this.messageRouter.sendMessage(dsrMessage, neighbours);
+            } else {
                 this.messageRouter.sendMessage(dsrMessage);
             }
         }else {
@@ -142,7 +157,6 @@ public class DSR_Node extends Node {
                             sendMessage(rrep);
                         } else {
                             dsrMessage.addToRouteRecord(id);
-                            dsrMessage.setSource(id);
                             knownMessageIds.add(dsrMessage.getRequestId());
                             sendMessage(dsrMessage);
                         }
@@ -157,7 +171,6 @@ public class DSR_Node extends Node {
                     }else {
                         int nextHop = dsrMessage.getRouteRecord().remove(0);
                         dsrMessage.setDestination(nextHop);
-                        dsrMessage.setSource(id);
                         sendMessage(dsrMessage);
                     }
                 }
@@ -165,23 +178,27 @@ public class DSR_Node extends Node {
             case DSR_RREP:
                 if(message instanceof DSR_Message dsrMessage) {
                     if(dsrMessage.getRouteRecord().isEmpty()){
-//                        Integer finalHop = dsrMessage.getFinalRoute().get(dsrMessage.getFinalRoute().size()-1);
-//                        knownRoutes.put(finalHop , dsrMessage.getFinalRoute());
                         addRoute(dsrMessage.getFinalRoute());
 
                         sendMessage(waitingMessage);
                     }else{
                         int nextHop = dsrMessage.getRouteRecord().remove(0);
                         dsrMessage.setDestination(nextHop);
-                        dsrMessage.setSource(id);
                         sendMessage(dsrMessage);
                     }
-                }
-                break;
+                }break;
+            case DSR_RERR:
+                if(message instanceof DSR_Message dsrMessage &&
+                    !knownMessageIds.contains(dsrMessage.getRequestId())) {
+
+                    updateRoute(dsrMessage.getFinalRoute());
+                    knownMessageIds.add(dsrMessage.getRequestId());
+                    sendMessage(dsrMessage);
+                }break;
         }
     }
 
-    void addRoute(ArrayList<Integer> route) {
+    private void addRoute(ArrayList<Integer> route) {
         for (int i = 0; i < route.size(); i++) {
             Integer targetNode = route.get(i);
 
@@ -190,6 +207,61 @@ public class DSR_Node extends Node {
             if (!knownRoutes.containsKey(targetNode) || subRoute.size() < knownRoutes.get(targetNode).size()) {
                 knownRoutes.put(targetNode, subRoute);
             }
+        }
+    }
+    //for updating broken routes received from RERR
+    private void updateRoute(ArrayList<Integer> brokenRoute) {
+        Integer nodeA = brokenRoute.get(0);
+        Integer nodeB = brokenRoute.get(1);
+
+        // Create a list of keys to remove (can't modify map while iterating)
+        ArrayList<Integer> routesToRemove = new ArrayList<>();
+
+        for (Map.Entry<Integer, ArrayList<Integer>> entry : knownRoutes.entrySet()) {
+            ArrayList<Integer> route = entry.getValue();
+            boolean isBroken = false;
+
+            for (int i = 0; i < route.size() - 1; i++) {
+                if (route.get(i).equals(nodeA) && route.get(i+1).equals(nodeB)) {
+                    isBroken = true;
+                    break;
+                }
+            }
+
+            if (isBroken) {
+                if(Constants.LOG_DETAILS < 3)
+                    System.out.println("Node " + id + " removing broken route " + entry.getKey() + ": " + route);
+                routesToRemove.add(entry.getKey());
+            }
+        }
+
+        for (Integer key : routesToRemove) {
+            knownRoutes.remove(key);
+        }
+    }
+
+    private void updateRoutes(){
+        ArrayList<Integer> routesToRemove = new ArrayList<>();
+        for (Map.Entry<Integer, ArrayList<Integer>> entry : knownRoutes.entrySet()) {
+            ArrayList<Integer> route = entry.getValue();
+
+            if (route.size() >= 2) {
+                Integer secondElement = route.get(1);
+
+                if (!neighbours.contains(secondElement)) {
+                    if(Constants.LOG_DETAILS < 3)
+                        System.out.println("Node " + id + " route broken: " + route);
+                    DSR_Message dsrMessage = new DSR_Message(id, -1, MessageType.DSR_RERR, id, secondElement, System.currentTimeMillis());
+
+                    sendMessage(dsrMessage);
+
+                    routesToRemove.add(entry.getKey());
+                }
+            }
+        }
+
+        for (Integer key : routesToRemove) {
+            knownRoutes.remove(key);
         }
     }
 

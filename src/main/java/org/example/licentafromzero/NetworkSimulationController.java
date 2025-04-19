@@ -10,6 +10,8 @@ import javafx.scene.shape.Polygon;
 import javafx.scene.text.Text;
 import org.example.licentafromzero.Domain.*;
 
+import java.util.ArrayList;
+
 public class NetworkSimulationController {
     @FXML
     private Pane canvas;
@@ -25,9 +27,9 @@ public class NetworkSimulationController {
             canvasY = (int) canvas.getHeight();
 
 //            ground.setupRandom_Standard(Constants.SIMULATION_NR_NODES);
-//            ground.setupStandardFromFile("src/main/java/org/example/licentafromzero/Config/configuration.txt");
+            ground.setupFromFile_Standard("src/main/java/org/example/licentafromzero/Config/configuration.txt");
 //            ground.setupFromFile_DSRNode("src/main/java/org/example/licentafromzero/Config/configuration.txt");
-            ground.setupRandom_DSRNode(Constants.SIMULATION_NR_NODES);
+//            ground.setupRandom_DSRNode(Constants.SIMULATION_NR_NODES);
 
 
             // Start async simulation and update UI on each tick
@@ -124,7 +126,8 @@ private void drawConnectionWithLabel(Line line, Color color, String label) {
         for (Node node: ground.getNodes()) {
             Node source = node;
 
-            for(Integer neighbour : source.getNeighbours()) {
+//            for(Integer neighbour : source.getNeighbours()) {
+            for (Integer neighbour : new ArrayList<>(source.getNeighbours())) {
                 Node destination = ground.getNodeFromId(neighbour);
 
                 double x1 = source.getX() * (canvasX / (double) ground.getSizeX());

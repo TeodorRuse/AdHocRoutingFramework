@@ -28,8 +28,12 @@ public class NetworkSimulationController {
 
 //            ground.setupRandom_Standard(Constants.SIMULATION_NR_NODES);
 //            ground.setupFromFile_Standard("src/main/java/org/example/licentafromzero/Config/configuration.txt");
+
 //            ground.setupRandom_DSRNode(Constants.SIMULATION_NR_NODES);
-            ground.setupFromFile_DSRNode("src/main/java/org/example/licentafromzero/Config/configuration.txt");
+//            ground.setupFromFile_DSRNode("src/main/java/org/example/licentafromzero/Config/configuration.txt");
+
+//            ground.setupRandom_AODVNode(Constants.SIMULATION_NR_NODES);
+            ground.setupFromFile_AODVNODE("src/main/java/org/example/licentafromzero/Config/configuration.txt");
 
 
 

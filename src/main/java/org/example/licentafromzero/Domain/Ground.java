@@ -1,6 +1,8 @@
 package org.example.licentafromzero.Domain;
 
 import javafx.application.Platform;
+import org.example.licentafromzero.AODV.AODV_Node;
+import org.example.licentafromzero.AODV.AODV_RoutingTableEntry;
 import org.example.licentafromzero.DSR.DSR_Node;
 
 import java.io.IOException;
@@ -97,6 +99,41 @@ public class Ground {
         }
     }
 
+    public void setupFromFile_AODVNODE(String filePath){
+        try {
+            List<String> lines = Files.readAllLines(Paths.get(filePath));
+            numberNodes = lines.size();
+
+            for (int i = 0; i < lines.size(); i++) {
+                String[] parts = lines.get(i).trim().split("\\s+"); // split by space(s)
+                if (parts.length < 3) continue; // skip if not enough data
+
+                int x = Integer.parseInt(parts[0]);
+                int y = Integer.parseInt(parts[1]);
+                int commRadius = Integer.parseInt(parts[2]);
+
+                //Node node = new Node(x, y, i, commRadius);
+                Node node = new AODV_Node(x, y, i, commRadius);
+                node.setMessageRouter(messageRouter);
+                messageRouter.addNode(node);
+                nodes.add(node);
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace(); // Or handle more gracefully
+        }
+    }
+
+    public void setupRandom_AODVNode(int numberNodes){
+        this.numberNodes = numberNodes;
+        for(int i=0;i<numberNodes;i++){
+            Node node = new AODV_Node(random.nextInt(sizeX), random.nextInt(sizeY), i);
+            node.setMessageRouter(messageRouter);
+            messageRouter.addNode(node);
+            nodes.add(node);
+        }
+    }
+
     public void turnOnSimulationAsync(int simTimeInSeconds, Runnable uiCallback) {
         new Thread(() -> {
             long startTime = System.currentTimeMillis();
@@ -137,9 +174,15 @@ public class Ground {
             Platform.runLater(uiCallback);
             System.out.println("Simulation finished");
             System.out.println("Messages sent: " + messageRouter.getMessages().size());
+            System.out.println("Text message success rate: " + messageRouter.getProcentSuccessfulTexts() + "%");
             for(Node node: nodes){
                 if(node instanceof DSR_Node dsrNode){
                     System.out.println(dsrNode.getId() + ": " + dsrNode.getKnownRoutes());
+                }
+                if(node instanceof AODV_Node aodvNode){
+//                    System.out.println(aodvNode.getId() + ": " + aodvNode.getRoutingTable());
+                    prettyPrintRoutingTable(aodvNode);
+                    System.out.println("Undelivered messages (" + aodvNode.getWaitingMessages().size() + ") :" + aodvNode.getWaitingMessages());
                 }
             }
         }).start();
@@ -160,6 +203,24 @@ public class Ground {
                 return node;
         }
         return null;
+    }
+
+    public static void prettyPrintRoutingTable(AODV_Node aodvNode) {
+        System.out.println("\nRouting Table for Node " + aodvNode.getId());
+        System.out.println("+------------+----------+---------------+----------+---------------------+");
+        System.out.println("| Dest Addr  | Next Hop | Dest Seq Num  | Hop Count| Last Received Time  |");
+        System.out.println("+------------+----------+---------------+----------+---------------------+");
+
+        for (AODV_RoutingTableEntry entry : aodvNode.getRoutingTable().values()) {
+            System.out.printf("| %-10d | %-8d | %-13d | %-8d | %-19s |%n",
+                    entry.getDestAddr(),
+                    entry.getNextHop(),
+                    entry.getDestSeqNum(),
+                    entry.getHopCount(),
+                    entry.getReceivedTime());
+        }
+
+        System.out.println("+------------+----------+---------------+----------+---------------------+");
     }
 
     public int getSizeX() {

@@ -95,4 +95,24 @@ public class MessageRouter {
     public void setMessages(ArrayList<Message> messages) {
         this.messages = messages;
     }
+
+    public double getProcentSuccessfulTexts(){
+        double suc = 0;
+        double unsuc = 0;
+
+        for(Message message : messages){
+            if(message.getMessageType() == MessageType.TEXT ||
+                message.getMessageType() == MessageType.DSR_TEXT ||
+                message.getMessageType() == MessageType.AODV_TEXT) {
+
+                if (message.isSuccessful())
+                    suc++;
+                else
+                    unsuc++;
+            }
+        }
+        if(suc+unsuc == 0)
+            return -1;
+        return suc/(suc + unsuc)*100;
+    }
 }

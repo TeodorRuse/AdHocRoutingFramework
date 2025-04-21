@@ -134,6 +134,11 @@ public class Node {
         this.messageRouter.sendMessage(message);
     }
 
+    protected void log(int logLevel, String text){
+        if(Constants.LOG_DETAILS <= logLevel)
+            System.out.println("Node " + id + " " + text);
+    }
+
     public int getX() {
         return x;
     }

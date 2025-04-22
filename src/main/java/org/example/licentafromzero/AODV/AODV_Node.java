@@ -9,7 +9,6 @@ import org.example.licentafromzero.Domain.Node;
 import java.util.*;
 
 public class AODV_Node extends Node {
-    //TODO: also, after routing table period passed, invalidate route or info, maybe when it checks in handleMEssage for RREQ
     private int sequenceNumber = 0;
     private int broadcastId = 0;
     private boolean updatedPaths = true;

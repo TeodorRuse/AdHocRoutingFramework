@@ -21,13 +21,13 @@ public class AODV_Node extends Node {
 
     public AODV_Node(int x, int y, int id) {
         super(x, y, id);
-        AODV_RoutingTableEntry routeToSelf = new AODV_RoutingTableEntry(id,id,0,0);
+        AODV_RoutingTableEntry routeToSelf = new AODV_RoutingTableEntry(id,id,0,0, totalRunTime);
         routingTable.put(id, routeToSelf);
     }
 
     public AODV_Node(int x, int y, int id, int communicationRadius) {
         super(x, y, id, communicationRadius);
-        AODV_RoutingTableEntry routeToSelf = new AODV_RoutingTableEntry(id,id,0,0);
+        AODV_RoutingTableEntry routeToSelf = new AODV_RoutingTableEntry(id,id,0,0, totalRunTime);
         routingTable.put(id, routeToSelf);
     }
 
@@ -66,6 +66,9 @@ public class AODV_Node extends Node {
                 updateRoutes();
                 updatedPaths = true;
             }
+
+            if(id == 0)
+                move();
 
             try {
                 Thread.sleep(Constants.NODE_DELAY);
@@ -149,7 +152,7 @@ public class AODV_Node extends Node {
                                 routingTable.get(aodvMessage.getOriginalSource()).getHopCount() > aodvMessage.getHopCount()){
 
                             AODV_RoutingTableEntry tableEntry = new AODV_RoutingTableEntry(aodvMessage.getOriginalSource(),
-                                    aodvMessage.getSource(), aodvMessage.getSourceSeqNum(), aodvMessage.getHopCount());
+                                    aodvMessage.getSource(), aodvMessage.getSourceSeqNum(), aodvMessage.getHopCount(), totalRunTime);
                             routingTable.put(aodvMessage.getOriginalSource(), tableEntry);
                         }
 
@@ -196,7 +199,7 @@ public class AODV_Node extends Node {
                             routingTable.get(aodvMessage.getOriginalSource()).getHopCount() > aodvMessage.getHopCount()){
 
                         AODV_RoutingTableEntry tableEntry = new AODV_RoutingTableEntry(aodvMessage.getOriginalSource(),
-                                aodvMessage.getSource(), aodvMessage.getSourceSeqNum(), aodvMessage.getHopCount());
+                                aodvMessage.getSource(), aodvMessage.getSourceSeqNum(), aodvMessage.getHopCount(), totalRunTime);
                         routingTable.put(aodvMessage.getOriginalSource(), tableEntry);
                     }
                     if(aodvMessage.getFinalDestination() != id){
@@ -270,9 +273,6 @@ public class AODV_Node extends Node {
         return routingTable;
     }
 
-    public ArrayList<Message> getWaitingMessages() {
-        return waitingMessages;
-    }
 
     private void updateRoutes(){
         ArrayList<Integer> routesToRemove = new ArrayList<>();
@@ -281,6 +281,10 @@ public class AODV_Node extends Node {
 
             if (!neighbours.contains(rte.nextHop)) {
                 log(2, "route to " + rte.destAddr + " via " + rte.nextHop + " is broken.");
+                routesToRemove.add(entry.getKey());
+            }
+            if(rte.getReceivedTime() + Constants.NODE_AODV_STALE_ROUTE_PERIOD < totalRunTime){
+                log(2, "route to " + rte.destAddr + " via " + rte.nextHop + " is stale.");
                 routesToRemove.add(entry.getKey());
             }
         }
@@ -313,5 +317,35 @@ public class AODV_Node extends Node {
             routingTable.remove(dest);
         }
     }
+
+    public ArrayList<Message> getWaitingMessages() {
+        return filterMessages(waitingMessages);
+    }
+
+    public ArrayList<Message> getWaitingControlMessages() {
+        ArrayList<Message> controlMessages = new ArrayList<>();
+        for (Message message : waitingMessages) {
+            if (message.getMessageType() != MessageType.TEXT &&
+                    message.getMessageType() != MessageType.AODV_TEXT) {
+                controlMessages.add(message);
+            }
+        }
+        return filterMessages(controlMessages);
+    }
+
+    public ArrayList<Message> filterMessages(ArrayList<Message> waitingMessages) {
+        ArrayList<Integer> unreachable = new ArrayList<>();
+//        unreachable.addAll(Arrays.asList(5,7,8));
+        ArrayList<Message> filteredMessages = new ArrayList<>();
+
+        for (Message message : waitingMessages) {
+            if (!unreachable.contains(message.getSource()) &&
+                    !unreachable.contains(message.getDestination())) {
+                filteredMessages.add(message);
+            }
+        }
+        return filteredMessages;
+    }
+
 
 }

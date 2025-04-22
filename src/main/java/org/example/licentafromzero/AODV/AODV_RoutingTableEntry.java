@@ -7,12 +7,12 @@ public class AODV_RoutingTableEntry {
     int hopCount;
     long receivedTime;
 
-    public AODV_RoutingTableEntry(int destAddr, int nextHop, int destSeqNum, int hopCount) {
+    public AODV_RoutingTableEntry(int destAddr, int nextHop, int destSeqNum, int hopCount, long receivedTime) {
         this.destAddr = destAddr;
         this.nextHop = nextHop;
         this.destSeqNum = destSeqNum;
         this.hopCount = hopCount;
-        this.receivedTime = System.currentTimeMillis();
+        this.receivedTime = receivedTime;
     }
 
     public int getDestAddr() {

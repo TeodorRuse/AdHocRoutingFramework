@@ -182,7 +182,8 @@ public class Ground {
                 if(node instanceof AODV_Node aodvNode){
 //                    System.out.println(aodvNode.getId() + ": " + aodvNode.getRoutingTable());
                     prettyPrintRoutingTable(aodvNode);
-                    System.out.println("Undelivered messages (" + aodvNode.getWaitingMessages().size() + ") :" + aodvNode.getWaitingMessages());
+                    System.out.println("Undelivered text messages (" + aodvNode.getWaitingMessages().size() + ") :" + aodvNode.getWaitingMessages());
+                    System.out.println("Undelivered control messages (" + aodvNode.getWaitingControlMessages().size() + ") :" + aodvNode.getWaitingControlMessages());
                 }
             }
         }).start();

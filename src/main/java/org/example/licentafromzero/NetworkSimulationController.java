@@ -33,7 +33,7 @@ public class NetworkSimulationController {
 //            ground.setupFromFile_DSRNode("src/main/java/org/example/licentafromzero/Config/configuration.txt");
 
 //            ground.setupRandom_AODVNode(Constants.SIMULATION_NR_NODES);
-            ground.setupFromFile_AODVNODE("src/main/java/org/example/licentafromzero/Config/configuration.txt");
+            ground.setupFromFile_AODVNODE("src/main/java/org/example/licentafromzero/Config/configuration2.txt");
 
 
 

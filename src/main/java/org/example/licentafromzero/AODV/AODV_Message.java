@@ -82,10 +82,6 @@ public class AODV_Message extends Message {
         this.finalDestination = finalDestination;
     }
 
-
-    //TODO implement for RMEN
-
-
     public int getOriginalSource() {
         return originalSource;
     }

@@ -1,5 +1,7 @@
 package org.example.licentafromzero.SAODV;
 
+import javafx.util.Pair;
+
 import java.security.PublicKey;
 
 public class SAODV_RoutingTableEntry {
@@ -9,17 +11,11 @@ public class SAODV_RoutingTableEntry {
     int hopCount;
     long receivedTime;
 //    PublicKey destPublicKey;
-    byte[] doubleSignature;
+    Pair<String, byte[]> doubleSignature;
 
-    public SAODV_RoutingTableEntry(int destAddr, int nextHop, int destSeqNum, int hopCount, long receivedTime) {
-        this.destAddr = destAddr;
-        this.nextHop = nextHop;
-        this.destSeqNum = destSeqNum;
-        this.hopCount = hopCount;
-        this.receivedTime = receivedTime;
-    }
 
-    public SAODV_RoutingTableEntry(int destAddr, int nextHop, int destSeqNum, int hopCount, long receivedTime, byte[] doubleSignature) {
+    public SAODV_RoutingTableEntry(int destAddr, int nextHop, int destSeqNum, int hopCount, long receivedTime,
+                                   Pair<String, byte[]> doubleSignature) {
         this.destAddr = destAddr;
         this.nextHop = nextHop;
         this.destSeqNum = destSeqNum;
@@ -68,11 +64,11 @@ public class SAODV_RoutingTableEntry {
         this.receivedTime = receivedTime;
     }
 
-    public byte[] getDoubleSignature() {
+    public Pair<String, byte[]> getDoubleSignature() {
         return doubleSignature;
     }
 
-    public void setDoubleSignature(byte[] doubleSignature) {
+    public void setDoubleSignature(Pair<String, byte[]> doubleSignature) {
         this.doubleSignature = doubleSignature;
     }
 

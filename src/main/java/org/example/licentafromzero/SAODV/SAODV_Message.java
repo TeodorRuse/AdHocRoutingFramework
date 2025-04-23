@@ -1,5 +1,6 @@
 package org.example.licentafromzero.SAODV;
 
+import javafx.util.Pair;
 import org.example.licentafromzero.AODV.AODV_Message;
 import org.example.licentafromzero.Domain.Message;
 import org.example.licentafromzero.Domain.MessageType;
@@ -17,11 +18,12 @@ public class SAODV_Message extends Message {
     private long timeSent; //timeSent is used to identify out of date info
     private int hopCount;
     private int originalSource; //first node that sends it;
-    private int actualSource; //if the node that sends the RREP is not the target node, and uses cached;
+    private int actualSource = -1; //if the node that sends the RREP is not the target node, and uses cached;
     private int finalDestination; //searched for address
     private ArrayList<Integer> unreachableAddresses = new ArrayList<>();
     private byte[] signature;
-    private byte[] doubleSignature;
+//    private byte[] doubleSignature = null;
+    private Pair<String, byte[]> doubleSignature;
     private int signedBy;
 
     //for CLONE
@@ -48,7 +50,8 @@ public class SAODV_Message extends Message {
 
 
     //for RREQ
-    public SAODV_Message(int source, MessageType messageType , int finalDestination, int sourceSeqNum, int destSeqNum, int broadcastId){
+    public SAODV_Message(int source, MessageType messageType , int finalDestination, int sourceSeqNum,
+                         int destSeqNum, int broadcastId, Pair<String, byte[]> doubleSignature){
         super(source, -1, messageType, true);
         this.originalSource = source;
         this.finalDestination = finalDestination;
@@ -56,6 +59,7 @@ public class SAODV_Message extends Message {
         this.destSeqNum = destSeqNum;
         this.broadcastId = broadcastId;
         this.hopCount = 0;
+        this.doubleSignature = doubleSignature;
     }
 
     //for RREP
@@ -67,6 +71,19 @@ public class SAODV_Message extends Message {
         this.hopCount = 0;
         this.timeSent = System.currentTimeMillis();
         this.actualSource = source;
+    }
+
+    //for RREP intermediate
+    public SAODV_Message(int source, int destination, MessageType messageType, int originalSource ,int finalDestination,
+                         int destSeqNum, Pair<String, byte[]> doubleSignature){
+        super(source, destination, messageType, false);
+        this.originalSource = originalSource;
+        this.finalDestination = finalDestination;
+        this.destSeqNum = destSeqNum;
+        this.hopCount = 0;
+        this.timeSent = System.currentTimeMillis();
+        this.actualSource = source;
+        this.doubleSignature = doubleSignature;
     }
 
     //for RERR
@@ -92,19 +109,35 @@ public class SAODV_Message extends Message {
     public SAODV_Message(int source, int destination, MessageType messageType, int finalDestination, String text){
         super(source, destination, text, messageType, false);
         this.finalDestination = finalDestination;
+        this.originalSource = source;
     }
 
     private String getSignedData() {
-        return this.toString();
+        return "SAODV_Message | " +
+                "origSrc=" + originalSource + " | " +
+                "actualSrc=" + actualSource + " | " +
+                "finalDst=" + finalDestination + " | " +
+                "srcSeq=" + sourceSeqNum + " | " +
+                "dstSeq=" + destSeqNum + " | " +
+                "bcastID=" + broadcastId + " | " +
+                "sent=" + timeSent + " | " +
+                "unreach=" + unreachableAddresses + " | " +
+                "text='" + text + "' | " +
+                "signedBy=" + signedBy;
     }
+
+//    private String getDataForDoubleSignature() {
+//        return getSignedData() + " | signature=" + Base64.getEncoder().encodeToString(this.signature);
+//    }
+
 
     public void signMessage(int id, PrivateKey privateKey){
         try {
+            this.signedBy = id;
             Signature signer = Signature.getInstance("SHA256withRSA");
             signer.initSign(privateKey);
             signer.update(getSignedData().getBytes());
             this.signature = signer.sign();
-            this.signedBy = id;
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -117,6 +150,18 @@ public class SAODV_Message extends Message {
             verifier.initVerify(publicKey);
             verifier.update(getSignedData().getBytes());
             return verifier.verify(this.signature);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    public boolean verifyDoubleSignature(PublicKey publicKey){
+        try {
+            Signature verifier = Signature.getInstance("SHA256withRSA");
+            verifier.initVerify(publicKey);
+            verifier.update(this.doubleSignature.getKey().getBytes());
+            return verifier.verify(this.doubleSignature.getValue());
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -211,14 +256,13 @@ public class SAODV_Message extends Message {
         this.signature = signature;
     }
 
-    public byte[] getDoubleSignature() {
+    public Pair<String, byte[]> getDoubleSignature() {
         return doubleSignature;
     }
 
-    public void setDoubleSignature(byte[] doubleSignature) {
+    public void setDoubleSignature(Pair<String, byte[]> doubleSignature) {
         this.doubleSignature = doubleSignature;
     }
-
 
 
     @Override
@@ -233,6 +277,8 @@ public class SAODV_Message extends Message {
                 "sent=" + timeSent + " | " +
                 "unreach=" + unreachableAddresses + " | " +
                 "text='" + text + "' | " +
+                "doubleSignature=" + doubleSignature + " | " +
                 "signedBy=" + signedBy;
+
     }
 }

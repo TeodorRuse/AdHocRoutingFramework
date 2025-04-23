@@ -24,20 +24,17 @@ public class SAODV_Node extends Node {
     private KeyPair keyPair;
     private Map<Integer, PublicKey> keyChain = new HashMap<>();
 
-    //TODO: copy the doubleSign and add it to the routint table, and use it
-    //TODO: Some messages RREQ are falsly marked as fake, even though source and signedBy seem corect
-    //TODO: some text messagees are actually signed by random nodes and detected as fake.
-    //TODO: test logic for when to send RREP and when to forward it if too busy
+    //TODO add back neighbour rediscoery
 
     public SAODV_Node(int x, int y, int id, KeyPair keyPair) {
         super(x, y, id);
-        SAODV_RoutingTableEntry routeToSelf = new SAODV_RoutingTableEntry(id,id,0,0, totalRunTime);
+        SAODV_RoutingTableEntry routeToSelf = new SAODV_RoutingTableEntry(id,id,0,0, totalRunTime, null);
         this.keyPair = keyPair;
     }
 
     public SAODV_Node(int x, int y, int id, int communicationRadius, KeyPair keyPair) {
         super(x, y, id, communicationRadius);
-        SAODV_RoutingTableEntry routeToSelf = new SAODV_RoutingTableEntry(id,id,0,0, totalRunTime);
+        SAODV_RoutingTableEntry routeToSelf = new SAODV_RoutingTableEntry(id,id,0,0, totalRunTime, null);
         routingTable.put(id, routeToSelf);
         this.keyPair = keyPair;
     }
@@ -51,17 +48,17 @@ public class SAODV_Node extends Node {
                 handleMessage(messages.remove(0));
             }
 
-            if(totalRunTime == -1 ){
-                discoverNeighbours();
-            }
-
-//            if(totalRunTime == -1 || totalRunTime - lastNeighbourDiscovery >= Constants.NODE_NEIGHBOUR_DISCOVERY_PERIOD){
+//            if(totalRunTime == -1 ){
 //                discoverNeighbours();
-//                updatedPaths = false;
-//                lastNeighbourDiscovery = totalRunTime;
-//                if(Constants.LOG_DETAILS < 2)
-//                    System.out.println("Node " + id + " discovering neighbours");
 //            }
+
+            if(totalRunTime == -1 || totalRunTime - lastNeighbourDiscovery >= Constants.NODE_NEIGHBOUR_DISCOVERY_PERIOD){
+                discoverNeighbours();
+                updatedPaths = false;
+                lastNeighbourDiscovery = totalRunTime;
+                if(Constants.LOG_DETAILS < 2)
+                    System.out.println("Node " + id + " discovering neighbours");
+            }
 
             if(totalRunTime > Constants.NODE_STARTUP_TIME && totalRunTime - lastMessageSent >= messageDelay){
                 int destination = random.nextInt(Constants.SIMULATION_NR_NODES);
@@ -101,17 +98,24 @@ public class SAODV_Node extends Node {
                 saodvMessage.signMessage(id, keyPair.getPrivate());
 
             if(saodvMessage.getMessageType() == MessageType.SAODV_RREQ){
-                saodvMessage.setDoubleSignature(generateDoubleSignature());
-                log(2, "sending RREQ" + stringifyId(saodvMessage) + " to all");
+                if(saodvMessage.getOriginalSource() == id) {
+                    sequenceNumber++;
+                }
+
+                log(2, "sending RREQ " + stringifyId(saodvMessage) + " to all");
                 broadcastId++;
-                sequenceNumber++;
+
                 messageRouter.sendMessage(saodvMessage, neighbours);
             }else if(saodvMessage.getMessageType() == MessageType.SAODV_RERR){
+
+                if(saodvMessage.getOriginalSource() == id) {
+                    sequenceNumber++;
+                }
                 log(2, "sending RERR(" + stringifyId(saodvMessage) + ") all neighbours for " + saodvMessage.getUnreachableAddresses());
                 broadcastId++;
-                sequenceNumber++;
                 messageRouter.sendMessage(saodvMessage, neighbours);
             }else{
+                log(2, "sending " + saodvMessage.getMessageType() + " " + stringifyId(saodvMessage));
                 messageRouter.sendMessage(saodvMessage);
             }
         }else{
@@ -123,27 +127,22 @@ public class SAODV_Node extends Node {
                     SAODV_Message saodv_message = new SAODV_Message(id, tableEntry.nextHop, MessageType.SAODV_TEXT,
                             message.getDestination(), message.getText());
 
-                    saodv_message.signMessage(id, keyPair.getPrivate());
-                    saodv_message.setDoubleSignature(generateDoubleSignature());
-
-                    messageRouter.sendMessage(saodv_message);
+                    sendMessage(saodv_message);
                 }else{
                     waitingMessages.add(message);
 
                     log(2, " beginning route discovery to " + message.getDestination());
-                    SAODV_Message rreq = new SAODV_Message(id, MessageType.SAODV_RREQ, message.getDestination(), sequenceNumber, -1, broadcastId);
+                    SAODV_Message rreq = new SAODV_Message(id, MessageType.SAODV_RREQ, message.getDestination(), sequenceNumber, -1, broadcastId, generateDoubleSignature());
                     this.knownMessageIDs.add(new Pair<>(id, broadcastId));
 
-                    rreq.signMessage(id, keyPair.getPrivate());
-                    rreq.setDoubleSignature(generateDoubleSignature());
-
-                    messageRouter.sendMessage(rreq, neighbours);
+                    sendMessage(rreq);
                 }
             }else{
                 super.sendMessage(message);
             }
         }
     }
+
 
     @Override
     public void handleMessage(Message message) {
@@ -161,10 +160,10 @@ public class SAODV_Node extends Node {
 
             case SAODV_RREQ:
                 if(message instanceof SAODV_Message saodvMessage){
-                    //drops it is it knows it
+                    //drops it is it knows it or if sign is not correct
                     //incerase it's hopCount
                     //check if the node is the destination!
-                    //check if node knows about finalDestination, if yes, send RREP.
+                    //check if node knows about finalDestination, if yes, send RREP with doubleSignature.
                     //else, forward it to all neighbours
                     //Add info about sourceSeqNum to routing table - increase it
                     Pair<Integer, Integer> msgId = new Pair<>(saodvMessage.getOriginalSource(), saodvMessage.getBroadcastId());
@@ -175,6 +174,7 @@ public class SAODV_Node extends Node {
                             log(2, "message RREQ " + stringifyId(saodvMessage) + " is fake, ignoring " + saodvMessage);
                             break;
                         }
+
                         saodvMessage.increaseHopCount();
                         //add route to source of RREQ
                         if(!routingTable.containsKey(saodvMessage.getOriginalSource()) ||
@@ -182,7 +182,8 @@ public class SAODV_Node extends Node {
                                 routingTable.get(saodvMessage.getOriginalSource()).getHopCount() > saodvMessage.getHopCount()){
 
                             SAODV_RoutingTableEntry tableEntry = new SAODV_RoutingTableEntry(saodvMessage.getOriginalSource(),
-                                    saodvMessage.getSource(), saodvMessage.getSourceSeqNum(), saodvMessage.getHopCount(), totalRunTime);
+                                    saodvMessage.getSource(), saodvMessage.getSourceSeqNum(), saodvMessage.getHopCount(),
+                                    totalRunTime, saodvMessage.getDoubleSignature());
                             routingTable.put(saodvMessage.getOriginalSource(), tableEntry);
                         }
 
@@ -197,10 +198,21 @@ public class SAODV_Node extends Node {
                         }else if(routingTable.containsKey(saodvMessage.getFinalDestination())){
                             //if node is not the finalDestination, but it knows a fresher route
                             SAODV_RoutingTableEntry routingTableEntry = routingTable.get(saodvMessage.getFinalDestination());
-                            if(routingTableEntry.destSeqNum > saodvMessage.getDestSeqNum() && messages.size() < Constants.NODE_SAODV_FORWARD_BUFFER_SIZE){
+
+                            //kind of reduntatn, onyl for the SA-AODV adaptive part
+                            if( routingTableEntry.destSeqNum > saodvMessage.getDestSeqNum() &&
+                                    messages.size() >= Constants.NODE_SAODV_FORWARD_BUFFER_SIZE){
+                                log(1, "knows route but buffer is full, so simply forwarding it");
+                            }
+
+                            if(routingTableEntry.destSeqNum > saodvMessage.getDestSeqNum() &&
+                                messages.size() < Constants.NODE_SAODV_FORWARD_BUFFER_SIZE &&
+                                routingTableEntry.doubleSignature != null){
+
                                 log(2, "knows route, and has fresher info, sending RREP");
                                 SAODV_Message rrep = new SAODV_Message(id, saodvMessage.getSource(), MessageType.SAODV_RREP,
-                                        routingTableEntry.destAddr, saodvMessage.getOriginalSource(), routingTableEntry.destSeqNum);
+                                        routingTableEntry.destAddr, saodvMessage.getOriginalSource(),
+                                        routingTableEntry.destSeqNum, routingTableEntry.doubleSignature);
                                 sendMessage(rrep);
                             }
                         }
@@ -208,21 +220,35 @@ public class SAODV_Node extends Node {
                             sendMessage(saodvMessage);
                         }
                     }else{
-                        log(1, "RREQ( " +stringifyId(saodvMessage) + " -> " + saodvMessage.getFinalDestination() +" )is known, discarding");
+                        log(1, "RREQ( " +stringifyId(saodvMessage) + " -> " + saodvMessage.getFinalDestination() +" ) is known, discarding");
                     }
                 }
-                break;
-            case SAODV_RREP:
+                break;case SAODV_RREP:
                 if(message instanceof SAODV_Message saodvMessage){
                     //check if  node is the final destinaition
                     //add it to the routing table
                     //if it is final destiation stop, else, dorward it
                     //add route to source of RREQ
 
-                    if(!saodvMessage.verifySignature( keyChain.get(saodvMessage.getOriginalSource()))) {
-                        log(2, "message RREP " + stringifyId(saodvMessage) + " is fake, ignoring " + saodvMessage);
-                        break;
+                    //if it has wrong credentials
+                    if(!saodvMessage.verifySignature(keyChain.get(saodvMessage.getOriginalSource()))) {
+
+                        //it might still be from an intermediate node, and signed correctly
+                        if(saodvMessage.getActualSource() != -1 && saodvMessage.getDoubleSignature() != null) {
+                            boolean validSignature = saodvMessage.verifySignature(keyChain.get(saodvMessage.getActualSource()));
+                            boolean validDoubleSignature = saodvMessage.verifyDoubleSignature(keyChain.get(saodvMessage.getOriginalSource()));
+
+                            if(!validSignature || !validDoubleSignature) {
+                                log(2, "message RREP " + stringifyId(saodvMessage) + " is from intermediate node, but fake, ignoring " + saodvMessage);
+                                break;
+                            }
+                        }
+                        else{
+                            log(2, "message RREP " + stringifyId(saodvMessage) + " is fake, ignoring " + saodvMessage);
+                            break;
+                        }
                     }
+
 
                     saodvMessage.increaseHopCount();
                     if(saodvMessage.getActualSource() != saodvMessage.getOriginalSource()){
@@ -234,7 +260,8 @@ public class SAODV_Node extends Node {
                             routingTable.get(saodvMessage.getOriginalSource()).getHopCount() > saodvMessage.getHopCount()){
 
                         SAODV_RoutingTableEntry tableEntry = new SAODV_RoutingTableEntry(saodvMessage.getOriginalSource(),
-                                saodvMessage.getSource(), saodvMessage.getSourceSeqNum(), saodvMessage.getHopCount(), totalRunTime);
+                                saodvMessage.getSource(), saodvMessage.getSourceSeqNum(), saodvMessage.getHopCount(),
+                                totalRunTime, saodvMessage.getDoubleSignature());
                         routingTable.put(saodvMessage.getOriginalSource(), tableEntry);
                     }
                     if(saodvMessage.getFinalDestination() != id){
@@ -259,7 +286,6 @@ public class SAODV_Node extends Node {
                                 }else {
                                     SAODV_Message message1 = new SAODV_Message(id, nextHop, MessageType.SAODV_TEXT,
                                             waitingMessage.getDestination(), waitingMessage.getText());
-//                                    message1.signMessage(id, keyPair.getPrivate());
                                     sendMessage(message1);
                                 }
                                 waitingMessages.remove(waitingMessage);
@@ -272,6 +298,7 @@ public class SAODV_Node extends Node {
                 break;
             case SAODV_TEXT:
                 if(message instanceof SAODV_Message saodvMessage){
+
                     if(!saodvMessage.verifySignature( keyChain.get(saodvMessage.getOriginalSource()))) {
                         log(2, "message TEXT " + stringifyId(saodvMessage) + " is fake, ignoring " + saodvMessage);
                         break;
@@ -295,6 +322,7 @@ public class SAODV_Node extends Node {
                 break;
             case SAODV_RERR:
                 if(message instanceof SAODV_Message saodvMessage){
+
                     if(!saodvMessage.verifySignature( keyChain.get(saodvMessage.getOriginalSource()))) {
                         log(2, "message RRER " + stringifyId(saodvMessage) + " is fake, ignoring " + saodvMessage);
                         break;
@@ -312,7 +340,9 @@ public class SAODV_Node extends Node {
     }
 
     public String stringifyId(SAODV_Message saodvMessage){
-        return "[" + saodvMessage.getOriginalSource() + "|" + saodvMessage.getSourceSeqNum() + "]";
+//        if(saodvMessage.getMessageType() == MessageType.SAODV_TEXT)
+//            return "[" + saodvMessage.getOriginalSource() + "|" + saodvMessage.getSourceSeqNum() + "]";
+        return "[" + saodvMessage.getOriginalSource() + " -> " + saodvMessage.getFinalDestination() + "|" + saodvMessage.getSourceSeqNum() + "]";
     }
 
     public Map<Integer, SAODV_RoutingTableEntry> getRoutingTable() {
@@ -364,13 +394,16 @@ public class SAODV_Node extends Node {
         }
     }
 
-    private byte[] generateDoubleSignature(){
+    private Pair<String, byte[]> generateDoubleSignature(){
         try {
+
             String fakeRREP = new AODV_Message(id, -1, MessageType.SAODV_RREP, id, -1, sequenceNumber).toString();
+
             Signature signer = Signature.getInstance("SHA256withRSA");
             signer.initSign(keyPair.getPrivate());
             signer.update(fakeRREP.getBytes());
-            return signer.sign();
+            Pair<String, byte[]> doubleSIgnature = new Pair<>(fakeRREP, signer.sign());
+            return doubleSIgnature;
         } catch (NoSuchAlgorithmException | SignatureException | InvalidKeyException e) {
             throw new RuntimeException(e);
         }

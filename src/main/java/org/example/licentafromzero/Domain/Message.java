@@ -3,12 +3,12 @@ package org.example.licentafromzero.Domain;
 import java.util.ArrayList;
 
 public class Message {
-    private int source, destination;
-    private String text;
-    private boolean isSuccessful = false;
-    private int numberFramesShown = Constants.MESSAGE_NUMBER_FRAMES_SHOWN;
-    private MessageType messageType;
-    private boolean isMulticast;
+    protected int source, destination;
+    protected String text;
+    protected boolean isSuccessful = false;
+    protected int numberFramesShown = Constants.MESSAGE_NUMBER_FRAMES_SHOWN;
+    protected MessageType messageType;
+    protected boolean isMulticast;
 
     public Message(int source, int destination, String text) {
         this.source = source;
@@ -117,4 +117,6 @@ public class Message {
                 ", isMulticast=" + isMulticast +
                 '}';
     }
+
+
 }

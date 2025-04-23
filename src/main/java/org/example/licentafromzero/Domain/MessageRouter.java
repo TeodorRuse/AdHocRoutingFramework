@@ -103,7 +103,8 @@ public class MessageRouter {
         for(Message message : messages){
             if(message.getMessageType() == MessageType.TEXT ||
                 message.getMessageType() == MessageType.DSR_TEXT ||
-                message.getMessageType() == MessageType.AODV_TEXT) {
+                message.getMessageType() == MessageType.AODV_TEXT ||
+                message.getMessageType() == MessageType.SAODV_TEXT) {
 
                 if (message.isSuccessful())
                     suc++;

@@ -11,6 +11,7 @@ import javafx.scene.text.Text;
 import org.example.licentafromzero.Domain.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class NetworkSimulationController {
     @FXML
@@ -27,15 +28,16 @@ public class NetworkSimulationController {
             canvasY = (int) canvas.getHeight();
 
 //            ground.setupRandom_Standard(Constants.SIMULATION_NR_NODES);
-//            ground.setupFromFile_Standard("src/main/java/org/example/licentafromzero/Config/configuration.txt");
+//            ground.setupFromFile_Standard("src/main/java/org/example/licentafromzero/Config/configuration1.txt");
 
 //            ground.setupRandom_DSRNode(Constants.SIMULATION_NR_NODES);
-//            ground.setupFromFile_DSRNode("src/main/java/org/example/licentafromzero/Config/configuration.txt");
+//            ground.setupFromFile_DSRNode("src/main/java/org/example/licentafromzero/Config/configuration1.txt");
 
 //            ground.setupRandom_AODVNode(Constants.SIMULATION_NR_NODES);
-            ground.setupFromFile_AODVNODE("src/main/java/org/example/licentafromzero/Config/configuration2.txt");
+//            ground.setupFromFile_AODVNode("src/main/java/org/example/licentafromzero/Config/configuration2.txt");
 
-
+//            ground.setupRandom_SAODVNode(Constants.SIMULATION_NR_NODES);
+            ground.setupFromFile_SAODVNode("src/main/java/org/example/licentafromzero/Config/configuration1.txt");
 
             // Start async simulation and update UI on each tick
             ground.turnOnSimulationAsync(Constants.SIMULATION_TIME, () -> {
@@ -109,7 +111,9 @@ private void drawConnectionWithLabel(Line line, Color color, String label) {
 
 
     private void drawConnections() {
-        for (Message message : ground.getMessageRouter().getMessages()) {
+        List<Message> messages = new ArrayList<>(ground.getMessageRouter().getMessages());
+
+        for (Message message : messages) {
             Node source = ground.getNodes().get(message.getSource());
             if (source == ground.getNodes().get(ground.getFocusedNodeIndex())) {
                 Node destination = ground.getNodeFromId(message.getDestination());

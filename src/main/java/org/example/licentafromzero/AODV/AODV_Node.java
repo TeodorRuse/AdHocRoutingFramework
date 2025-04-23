@@ -12,7 +12,6 @@ public class AODV_Node extends Node {
     private int sequenceNumber = 0;
     private int broadcastId = 0;
     private boolean updatedPaths = true;
-    private boolean temp = false;
 
     private ArrayList<Message> waitingMessages = new ArrayList<>();
     private Map<Integer, AODV_RoutingTableEntry> routingTable = new HashMap<>();
@@ -46,12 +45,6 @@ public class AODV_Node extends Node {
                 if(Constants.LOG_DETAILS < 2)
                     System.out.println("Node " + id + " discovering neighbours");
             }
-
-//            if(id == 0 && totalRunTime >= Constants.NODE_STARTUP_TIME && !temp){
-//                System.out.println("Sending MESSAGE!");
-//                sendMessage(new Message(0, 9, "Hello from " + id));
-//                temp = true;
-//            }
 
             if(totalRunTime > Constants.NODE_STARTUP_TIME && totalRunTime - lastMessageSent >= messageDelay){
                 int destination = random.nextInt(Constants.SIMULATION_NR_NODES);

@@ -4,14 +4,18 @@ import javafx.application.Platform;
 import org.example.licentafromzero.AODV.AODV_Node;
 import org.example.licentafromzero.AODV.AODV_RoutingTableEntry;
 import org.example.licentafromzero.DSR.DSR_Node;
+import org.example.licentafromzero.SAODV.SAODV_Message;
+import org.example.licentafromzero.SAODV.SAODV_Node;
+import org.example.licentafromzero.SAODV.SAODV_RoutingTableEntry;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Random;
+import java.security.KeyPair;
+import java.security.KeyPairGenerator;
+import java.security.NoSuchAlgorithmException;
+import java.security.PublicKey;
+import java.util.*;
 
 public class Ground {
     private int sizeX, sizeY;
@@ -99,7 +103,7 @@ public class Ground {
         }
     }
 
-    public void setupFromFile_AODVNODE(String filePath){
+    public void setupFromFile_AODVNode(String filePath){
         try {
             List<String> lines = Files.readAllLines(Paths.get(filePath));
             numberNodes = lines.size();
@@ -131,6 +135,59 @@ public class Ground {
             node.setMessageRouter(messageRouter);
             messageRouter.addNode(node);
             nodes.add(node);
+        }
+    }
+
+    public void setupFromFile_SAODVNode(String filePath){
+        try {
+            List<String> lines = Files.readAllLines(Paths.get(filePath));
+            Map<Integer, PublicKey> keyChain = new HashMap<>();
+            numberNodes = lines.size();
+
+            for (int i = 0; i < lines.size(); i++) {
+                String[] parts = lines.get(i).trim().split("\\s+"); // split by space(s)
+                if (parts.length < 3) continue; // skip if not enough data
+
+                int x = Integer.parseInt(parts[0]);
+                int y = Integer.parseInt(parts[1]);
+                int commRadius = Integer.parseInt(parts[2]);
+
+                KeyPair keyPair = generateKeyPair();
+                keyChain.put(i,keyPair.getPublic());
+
+                //Node node = new Node(x, y, i, commRadius);
+                Node node = new SAODV_Node(x, y, i, commRadius, keyPair);
+                node.setMessageRouter(messageRouter);
+                messageRouter.addNode(node);
+                nodes.add(node);
+            }
+
+            for(Node node: nodes){
+                if(node instanceof SAODV_Node saodvNode)
+                    saodvNode.setKeyChain(keyChain);
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace(); // Or handle more gracefully
+        }
+    }
+
+    public void setupRandom_SAODVNode(int numberNodes){
+        this.numberNodes = numberNodes;
+        Map<Integer, PublicKey> keyChain = new HashMap<>();
+        for(int i=0;i<numberNodes;i++){
+            KeyPair keyPair = generateKeyPair();
+            keyChain.put(i,keyPair.getPublic());
+
+            Node node = new SAODV_Node(random.nextInt(sizeX), random.nextInt(sizeY), i, keyPair);
+            node.setMessageRouter(messageRouter);
+            messageRouter.addNode(node);
+            nodes.add(node);
+        }
+
+        for(Node node: nodes){
+            if(node instanceof SAODV_Node saodvNode)
+                saodvNode.setKeyChain(keyChain);
         }
     }
 
@@ -185,6 +242,12 @@ public class Ground {
                     System.out.println("Undelivered text messages (" + aodvNode.getWaitingMessages().size() + ") :" + aodvNode.getWaitingMessages());
                     System.out.println("Undelivered control messages (" + aodvNode.getWaitingControlMessages().size() + ") :" + aodvNode.getWaitingControlMessages());
                 }
+                if(node instanceof SAODV_Node aodvNode){
+//                    System.out.println(aodvNode.getId() + ": " + aodvNode.getRoutingTable());
+                    prettyPrintRoutingTable(aodvNode);
+                    System.out.println("Undelivered text messages (" + aodvNode.getWaitingMessages().size() + ") :" + aodvNode.getWaitingMessages());
+                    System.out.println("Undelivered control messages (" + aodvNode.getWaitingControlMessages().size() + ") :" + aodvNode.getWaitingControlMessages());
+                }
             }
         }).start();
     }
@@ -206,6 +269,17 @@ public class Ground {
         return null;
     }
 
+    public static KeyPair generateKeyPair() {
+        try {
+            KeyPairGenerator keyGen = null;
+            keyGen = KeyPairGenerator.getInstance("RSA");
+            keyGen.initialize(Constants.SIMULATION_RSA_KEY_SIZE);
+            return keyGen.generateKeyPair();
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public static void prettyPrintRoutingTable(AODV_Node aodvNode) {
         System.out.println("\nRouting Table for Node " + aodvNode.getId());
         System.out.println("+------------+----------+---------------+----------+---------------------+");
@@ -213,6 +287,24 @@ public class Ground {
         System.out.println("+------------+----------+---------------+----------+---------------------+");
 
         for (AODV_RoutingTableEntry entry : aodvNode.getRoutingTable().values()) {
+            System.out.printf("| %-10d | %-8d | %-13d | %-8d | %-19s |%n",
+                    entry.getDestAddr(),
+                    entry.getNextHop(),
+                    entry.getDestSeqNum(),
+                    entry.getHopCount(),
+                    entry.getReceivedTime());
+        }
+
+        System.out.println("+------------+----------+---------------+----------+---------------------+");
+    }
+
+    public static void prettyPrintRoutingTable(SAODV_Node aodvNode) {
+        System.out.println("\nRouting Table for Node " + aodvNode.getId());
+        System.out.println("+------------+----------+---------------+----------+---------------------+");
+        System.out.println("| Dest Addr  | Next Hop | Dest Seq Num  | Hop Count| Last Received Time  |");
+        System.out.println("+------------+----------+---------------+----------+---------------------+");
+
+        for (SAODV_RoutingTableEntry entry : aodvNode.getRoutingTable().values()) {
             System.out.printf("| %-10d | %-8d | %-13d | %-8d | %-19s |%n",
                     entry.getDestAddr(),
                     entry.getNextHop(),

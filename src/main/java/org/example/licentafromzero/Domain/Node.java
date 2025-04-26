@@ -16,6 +16,9 @@ public class Node {
     protected long lastMessageSent;
     protected long lastNeighbourDiscovery;
     protected boolean active = true;
+    protected HashSet<Integer> newNeighbours;
+    protected boolean updatingNeighbours = false;
+    protected boolean updatedPaths = true; //not for this one, but children have it
 
 
     public Node(int x, int y, int id){
@@ -28,6 +31,7 @@ public class Node {
         this.messageDelay = random.nextInt(Constants.NODE_MESSAGE_DELAY_BOUND) + Constants.NODE_MESSAGE_DELAY_MIN_VAL;
         this.communicationRadius = random.nextInt(Constants.NODE_COMM_RANGE_BOUND) + Constants.NODE_COMM_RANGE_MIN_VAL;
         this.neighbours = new HashSet<>();
+        this.newNeighbours = new HashSet<>();
     }
 
     public Node(int x, int y, int id, int communicationRadius){
@@ -40,37 +44,32 @@ public class Node {
         this.messageDelay = random.nextInt(Constants.NODE_MESSAGE_DELAY_BOUND) + Constants.NODE_MESSAGE_DELAY_MIN_VAL;
         this.communicationRadius = communicationRadius;
         this.neighbours = new HashSet<>();
+        this.newNeighbours = new HashSet<>();
     }
 
-    public void turnOn(int runtTime){         //runtTime is in millis
+    public void turnOn(int runtTime) {         //runtTime is in millis
 
         long startTime = System.currentTimeMillis();
 
-        while(System.currentTimeMillis() < startTime + runtTime){
+        while (System.currentTimeMillis() < startTime + runtTime) {
             while (!messages.isEmpty()) {
                 handleMessage(messages.remove(0));
             }
 
-            if(totalRunTime == -1 || totalRunTime - lastNeighbourDiscovery >= Constants.NODE_NEIGHBOUR_DISCOVERY_PERIOD){
-                discoverNeighbours();
-                lastNeighbourDiscovery = totalRunTime;
-                if(Constants.LOG_DETAILS < 2)
-                    System.out.println("Node " + id + " discovering neighbours");
-            }
+            discoverNeighbours();
 
-            if(totalRunTime - lastMessageSent >= messageDelay){
+            if (totalRunTime - lastMessageSent >= messageDelay) {
                 //Not efficient but should work for now
                 List<Integer> neighbourList = new ArrayList<>(neighbours);
-                if(!neighbourList.isEmpty()) {
+                if (!neighbourList.isEmpty()) {
                     Integer randomNeighbour = neighbourList.get(random.nextInt(neighbourList.size()));
                     sendMessage(new Message(id, randomNeighbour, "Hello from " + id)); //unicast random
                 }
 //                sendMessage(new Message(id, -1, "Random Hello!" , MessageType.TEXT, true));
                 lastMessageSent = totalRunTime;
-
             }
 
-//            move();
+            move();
 
             try {
                 Thread.sleep(Constants.NODE_DELAY);
@@ -79,12 +78,6 @@ public class Node {
             }
             totalRunTime += System.currentTimeMillis() - startTime;
         }
-    }
-
-    public void discoverNeighbours(){
-        this.neighbours.clear();
-        Message message = new Message(id, -1, MessageType.NEIGHBOUR_SYN, true);
-        sendMessage(message);
     }
 
     public void handleMessage(Message message){
@@ -99,7 +92,7 @@ public class Node {
                 sendMessage(new Message(id, message.getSource(), MessageType.NEIGHBOUR_ACK, false));
                 break;
             case NEIGHBOUR_ACK:
-                neighbours.add(message.getSource());
+                newNeighbours.add(message.getSource());
                 break;
         }
 
@@ -109,6 +102,26 @@ public class Node {
 //        } catch (InterruptedException e) {
 //            throw new RuntimeException(e);
 //        }
+    }
+
+    public void discoverNeighbours(){
+
+        if(totalRunTime == -1 || totalRunTime - lastNeighbourDiscovery >= Constants.NODE_NEIGHBOUR_DISCOVERY_PERIOD){
+            Message message = new Message(id, -1, MessageType.NEIGHBOUR_SYN, true);
+            sendMessage(message);
+            lastNeighbourDiscovery = totalRunTime;
+            updatingNeighbours = true;
+            if(Constants.LOG_DETAILS < 2)
+                System.out.println("Node " + id + " discovering neighbours");
+        }
+
+        if(totalRunTime - lastNeighbourDiscovery >= Constants.NODE_NEIGHBOUR_DISCOVERY_DURATION && updatingNeighbours){
+            neighbours = new HashSet<>(newNeighbours);
+            neighbours.add(id);
+            updatedPaths = false;
+            newNeighbours.clear();
+            updatingNeighbours = false;
+        }
     }
 
     public void move(){

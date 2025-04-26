@@ -14,8 +14,6 @@ import java.util.*;
 public class SAODV_Node extends Node {
     private int sequenceNumber = 0;
     private int broadcastId = 0;
-    private boolean updatedPaths = true;
-    boolean tempula = false;
 
     private ArrayList<Message> waitingMessages = new ArrayList<>();
     private Map<Integer, SAODV_RoutingTableEntry> routingTable = new HashMap<>();
@@ -23,8 +21,6 @@ public class SAODV_Node extends Node {
 
     private KeyPair keyPair;
     private Map<Integer, PublicKey> keyChain = new HashMap<>();
-
-    //TODO add back neighbour rediscoery
 
     public SAODV_Node(int x, int y, int id, KeyPair keyPair) {
         super(x, y, id);
@@ -48,17 +44,7 @@ public class SAODV_Node extends Node {
                 handleMessage(messages.remove(0));
             }
 
-//            if(totalRunTime == -1 ){
-//                discoverNeighbours();
-//            }
-
-            if(totalRunTime == -1 || totalRunTime - lastNeighbourDiscovery >= Constants.NODE_NEIGHBOUR_DISCOVERY_PERIOD){
-                discoverNeighbours();
-                updatedPaths = false;
-                lastNeighbourDiscovery = totalRunTime;
-                if(Constants.LOG_DETAILS < 2)
-                    System.out.println("Node " + id + " discovering neighbours");
-            }
+            discoverNeighbours();
 
             if(totalRunTime > Constants.NODE_STARTUP_TIME && totalRunTime - lastMessageSent >= messageDelay){
                 int destination = random.nextInt(Constants.SIMULATION_NR_NODES);
@@ -67,11 +53,6 @@ public class SAODV_Node extends Node {
                 sendMessage(new Message(id, destination, "Hello from " + id));
                 lastMessageSent = totalRunTime;
             }
-
-//            if(id == 0 && totalRunTime > Constants.NODE_STARTUP_TIME && !tempula){
-//                sendMessage(new Message(id, 9, "Helloo from " + id));
-//                tempula = true;
-//            }
 
             if(totalRunTime > Constants.NODE_NEIGHBOUR_DISCOVERY_DURATION + lastNeighbourDiscovery && !updatedPaths){
                 updateRoutes();
@@ -131,10 +112,11 @@ public class SAODV_Node extends Node {
                 }else{
                     waitingMessages.add(message);
 
+//                    beginRouteDiscovery(message.getDestination());
+
                     log(2, " beginning route discovery to " + message.getDestination());
                     SAODV_Message rreq = new SAODV_Message(id, MessageType.SAODV_RREQ, message.getDestination(), sequenceNumber, -1, broadcastId, generateDoubleSignature());
                     this.knownMessageIDs.add(new Pair<>(id, broadcastId));
-
                     sendMessage(rreq);
                 }
             }else{
@@ -155,7 +137,7 @@ public class SAODV_Node extends Node {
                 sendMessage(new Message(id, message.getSource(), MessageType.NEIGHBOUR_ACK, false));
                 break;
             case NEIGHBOUR_ACK:
-                neighbours.add(message.getSource());
+                newNeighbours.add(message.getSource());
                 break;
 
             case SAODV_RREQ:
@@ -223,7 +205,8 @@ public class SAODV_Node extends Node {
                         log(1, "RREQ( " +stringifyId(saodvMessage) + " -> " + saodvMessage.getFinalDestination() +" ) is known, discarding");
                     }
                 }
-                break;case SAODV_RREP:
+                break;
+                case SAODV_RREP:
                 if(message instanceof SAODV_Message saodvMessage){
                     //check if  node is the final destinaition
                     //add it to the routing table
@@ -339,6 +322,13 @@ public class SAODV_Node extends Node {
         }
     }
 
+    public void beginRouteDiscovery(int finalDestination){
+        log(2, " beginning route discovery to " + finalDestination);
+        AODV_Message rreq = new AODV_Message(id, MessageType.AODV_RREQ, finalDestination, sequenceNumber, -1, broadcastId);
+        this.knownMessageIDs.add(new Pair<>(id, broadcastId));
+        messageRouter.sendMessage(rreq, neighbours);
+    }
+
     public String stringifyId(SAODV_Message saodvMessage){
 //        if(saodvMessage.getMessageType() == MessageType.SAODV_TEXT)
 //            return "[" + saodvMessage.getOriginalSource() + "|" + saodvMessage.getSourceSeqNum() + "]";
@@ -347,6 +337,24 @@ public class SAODV_Node extends Node {
 
     public Map<Integer, SAODV_RoutingTableEntry> getRoutingTable() {
         return routingTable;
+    }
+
+    public void sendWaitingMessages(){
+        ArrayList<Message> copyWaitingMessages = new ArrayList<>(waitingMessages);
+        for(Message waitingMessage : copyWaitingMessages) {
+            if (routingTable.containsKey(waitingMessage.getDestination())) {
+                int nextHop = routingTable.get(waitingMessage.getDestination()).getNextHop();
+                if(waitingMessage instanceof AODV_Message aodv_message){
+                    aodv_message.setDestination(nextHop);
+                    sendMessage(aodv_message);
+                }else {
+                    AODV_Message message1 = new AODV_Message(id, nextHop, MessageType.AODV_TEXT,
+                            waitingMessage.getDestination(), waitingMessage.getText());
+                    sendMessage(message1);
+                }
+                waitingMessages.remove(waitingMessage);
+            }
+        }
     }
 
 
@@ -410,7 +418,7 @@ public class SAODV_Node extends Node {
     }
 
     public ArrayList<Message> getWaitingMessages() {
-        return filterMessages(waitingMessages);
+        return waitingMessages;
     }
 
     public ArrayList<Message> getWaitingControlMessages() {
@@ -421,21 +429,7 @@ public class SAODV_Node extends Node {
                 controlMessages.add(message);
             }
         }
-        return filterMessages(controlMessages);
-    }
-
-    public ArrayList<Message> filterMessages(ArrayList<Message> waitingMessages) {
-        ArrayList<Integer> unreachable = new ArrayList<>();
-//        unreachable.addAll(Arrays.asList(5,7,8));
-        ArrayList<Message> filteredMessages = new ArrayList<>();
-
-        for (Message message : waitingMessages) {
-            if (!unreachable.contains(message.getSource()) &&
-                    !unreachable.contains(message.getDestination())) {
-                filteredMessages.add(message);
-            }
-        }
-        return filteredMessages;
+        return controlMessages;
     }
 
     public PublicKey getPublicKey() {

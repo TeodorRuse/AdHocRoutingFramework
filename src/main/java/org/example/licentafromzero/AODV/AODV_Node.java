@@ -11,7 +11,6 @@ import java.util.*;
 public class AODV_Node extends Node {
     private int sequenceNumber = 0;
     private int broadcastId = 0;
-    private boolean updatedPaths = true;
 
     private ArrayList<Message> waitingMessages = new ArrayList<>();
     private Map<Integer, AODV_RoutingTableEntry> routingTable = new HashMap<>();
@@ -38,13 +37,7 @@ public class AODV_Node extends Node {
                 handleMessage(messages.remove(0));
             }
 
-            if(totalRunTime == -1 || totalRunTime - lastNeighbourDiscovery >= Constants.NODE_NEIGHBOUR_DISCOVERY_PERIOD){
-                discoverNeighbours();
-                updatedPaths = false;
-                lastNeighbourDiscovery = totalRunTime;
-                if(Constants.LOG_DETAILS < 2)
-                    System.out.println("Node " + id + " discovering neighbours");
-            }
+            discoverNeighbours();
 
             if(totalRunTime > Constants.NODE_STARTUP_TIME && totalRunTime - lastMessageSent >= messageDelay){
                 int destination = random.nextInt(Constants.SIMULATION_NR_NODES);
@@ -59,8 +52,8 @@ public class AODV_Node extends Node {
                 updatedPaths = true;
             }
 
-            if(id == 0)
-                move();
+//            if(id == 0)
+//                move();
 
             try {
                 Thread.sleep(Constants.NODE_DELAY);
@@ -123,7 +116,7 @@ public class AODV_Node extends Node {
                 sendMessage(new Message(id, message.getSource(), MessageType.NEIGHBOUR_ACK, false));
                 break;
             case NEIGHBOUR_ACK:
-                neighbours.add(message.getSource());
+                newNeighbours.add(message.getSource());
                 break;
 
             case AODV_RREQ:
@@ -257,6 +250,31 @@ public class AODV_Node extends Node {
         }
     }
 
+    public void beginRouteDiscovery(int finalDestination){
+        log(2, " beginning route discovery to " + finalDestination);
+        AODV_Message rreq = new AODV_Message(id, MessageType.AODV_RREQ, finalDestination, sequenceNumber, -1, broadcastId);
+        this.knownMessageIDs.add(new Pair<>(id, broadcastId));
+        messageRouter.sendMessage(rreq, neighbours);
+    }
+
+    public void sendWaitingMessages(){
+        ArrayList<Message> copyWaitingMessages = new ArrayList<>(waitingMessages);
+        for(Message waitingMessage : copyWaitingMessages) {
+            if (routingTable.containsKey(waitingMessage.getDestination())) {
+                int nextHop = routingTable.get(waitingMessage.getDestination()).getNextHop();
+                if(waitingMessage instanceof AODV_Message aodv_message){
+                    aodv_message.setDestination(nextHop);
+                    sendMessage(aodv_message);
+                }else {
+                    AODV_Message message1 = new AODV_Message(id, nextHop, MessageType.AODV_TEXT,
+                            waitingMessage.getDestination(), waitingMessage.getText());
+                    sendMessage(message1);
+                }
+                waitingMessages.remove(waitingMessage);
+            }
+        }
+    }
+
     public String stringifyId(AODV_Message aodvMessage){
         return "[" + aodvMessage.getOriginalSource() + "|" + aodvMessage.getSourceSeqNum() + "]";
     }
@@ -311,7 +329,7 @@ public class AODV_Node extends Node {
     }
 
     public ArrayList<Message> getWaitingMessages() {
-        return filterMessages(waitingMessages);
+        return waitingMessages;
     }
 
     public ArrayList<Message> getWaitingControlMessages() {
@@ -322,21 +340,7 @@ public class AODV_Node extends Node {
                 controlMessages.add(message);
             }
         }
-        return filterMessages(controlMessages);
-    }
-
-    public ArrayList<Message> filterMessages(ArrayList<Message> waitingMessages) {
-        ArrayList<Integer> unreachable = new ArrayList<>();
-//        unreachable.addAll(Arrays.asList(5,7,8));
-        ArrayList<Message> filteredMessages = new ArrayList<>();
-
-        for (Message message : waitingMessages) {
-            if (!unreachable.contains(message.getSource()) &&
-                    !unreachable.contains(message.getDestination())) {
-                filteredMessages.add(message);
-            }
-        }
-        return filteredMessages;
+        return controlMessages;
     }
 
 

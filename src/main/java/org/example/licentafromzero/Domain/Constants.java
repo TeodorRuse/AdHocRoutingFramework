@@ -23,18 +23,18 @@ public final class Constants {
 
     //Node values
     public static final int NODE_DELAY = 10; // NO modify
-    public static final int NODE_SPEED_BOUND = 5;
+    public static final int NODE_SPEED_BOUND = 2;
     public static final int NODE_SPEED_MIN_VAL = -NODE_SPEED_BOUND;
     public static final int NODE_MESSAGE_DELAY_BOUND = 1000;
-    public static final int NODE_MESSAGE_DELAY_MIN_VAL = 1000; // is 3000 for SAODV - slower
+    public static final int NODE_MESSAGE_DELAY_MIN_VAL = 1000;
     public static final int NODE_COMM_RANGE_BOUND = 500;
     public static final int NODE_COMM_RANGE_MIN_VAL = 300;
     public static final int NODE_STARTUP_TIME = 1500;
-    public static final int NODE_NEIGHBOUR_DISCOVERY_PERIOD = 3000;
-    public static final int NODE_NEIGHBOUR_DISCOVERY_DURATION = 100;
+    public static final int NODE_NEIGHBOUR_DISCOVERY_PERIOD = 2000;
+    public static final int NODE_NEIGHBOUR_DISCOVERY_DURATION = 500;
 
-    public static final int NODE_AODV_STALE_ROUTE_PERIOD = 1500000;
-    public static final int NODE_SAODV_FORWARD_BUFFER_SIZE = 5;
+    public static final int NODE_AODV_STALE_ROUTE_PERIOD = 300000000;
+    public static final int NODE_SAODV_FORWARD_BUFFER_SIZE = 10;
 
     //Message values
     public static final int MESSAGE_NUMBER_FRAMES_SHOWN = 1;

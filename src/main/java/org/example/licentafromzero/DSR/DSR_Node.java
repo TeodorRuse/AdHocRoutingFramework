@@ -15,8 +15,6 @@ public class DSR_Node extends Node {
     private ArrayList<Long> knownMessageIds;
     private Map<Integer, ArrayList<Integer>> knownRoutes;
     private Message waitingMessage;
-    private boolean updatedPaths = true;
-
     public DSR_Node(int x, int y, int id) {
         super(x, y, id);
         this.knownMessageIds = new ArrayList<>();
@@ -44,13 +42,7 @@ public class DSR_Node extends Node {
                 handleMessage(messages.remove(0));
             }
 
-            if(totalRunTime == -1 || totalRunTime - lastNeighbourDiscovery >= Constants.NODE_NEIGHBOUR_DISCOVERY_PERIOD){
-                discoverNeighbours();
-                updatedPaths = false;
-                lastNeighbourDiscovery = totalRunTime;
-                if(Constants.LOG_DETAILS < 2)
-                    System.out.println("Node " + id + " discovering neighbours");
-            }
+            discoverNeighbours();
 
 //            if(totalRunTime >= Constants.NODE_STARTUP_TIME)
 //                Constants.SIMULATION_DELAY_BETWEEN_FRAMES = 100;
@@ -79,11 +71,6 @@ public class DSR_Node extends Node {
             }
             totalRunTime += System.currentTimeMillis() - startTime;
         }
-    }
-
-    @Override
-    public void discoverNeighbours() {
-        super.discoverNeighbours();
     }
 
     @Override
@@ -139,7 +126,7 @@ public class DSR_Node extends Node {
                 sendMessage(new Message(id, message.getSource(), MessageType.NEIGHBOUR_ACK, false));
                 break;
             case NEIGHBOUR_ACK:
-                neighbours.add(message.getSource());
+                newNeighbours.add(message.getSource());
                 break;
 
             case DSR_RREQ:

@@ -34,10 +34,10 @@ public class NetworkSimulationController {
 //            ground.setupFromFile_DSRNode("src/main/java/org/example/licentafromzero/Config/configuration1.txt");
 
 //            ground.setupRandom_AODVNode(Constants.SIMULATION_NR_NODES);
-            ground.setupFromFile_AODVNode("src/main/java/org/example/licentafromzero/Config/configuration2.txt");
+//            ground.setupFromFile_AODVNode("src/main/java/org/example/licentafromzero/Config/configuration2.txt");
 
 //            ground.setupRandom_SAODVNode(Constants.SIMULATION_NR_NODES);
-//            ground.setupFromFile_SAODVNode("src/main/java/org/example/licentafromzero/Config/configuration2.txt");
+            ground.setupFromFile_SAODVNode("src/main/java/org/example/licentafromzero/Config/configuration2.txt");
 
             // Start async simulation and update UI on each tick
             ground.turnOnSimulationAsync(Constants.SIMULATION_TIME, () -> {

@@ -231,6 +231,7 @@ public class Ground {
             Platform.runLater(uiCallback);
             System.out.println("Simulation finished");
             System.out.println("Messages sent: " + messageRouter.getMessages().size());
+            System.out.println("Text messages sent: " + messageRouter.getNumberTextsSent());
             System.out.println("Text message success rate: " + messageRouter.getProcentSuccessfulTexts() + "%");
             for(Node node: nodes){
                 if(node instanceof DSR_Node dsrNode){

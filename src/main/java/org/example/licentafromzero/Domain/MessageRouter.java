@@ -96,6 +96,22 @@ public class MessageRouter {
         this.messages = messages;
     }
 
+    public int getNumberTextsSent(){
+        int ret = 0;
+
+        for(Message message : messages){
+            if(message.getMessageType() == MessageType.TEXT ||
+                    message.getMessageType() == MessageType.DSR_TEXT ||
+                    message.getMessageType() == MessageType.AODV_TEXT ||
+                    message.getMessageType() == MessageType.SAODV_TEXT) {
+
+                if (message.isSuccessful())
+                    ret++;
+            }
+        }
+        return ret;
+    }
+
     public double getProcentSuccessfulTexts(){
         double suc = 0;
         double unsuc = 0;

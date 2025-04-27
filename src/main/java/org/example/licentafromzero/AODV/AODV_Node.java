@@ -94,10 +94,8 @@ public class AODV_Node extends Node {
                 }else{
                     waitingMessages.add(message);
 
-                    log(2, " beginning route discovery to " + message.getDestination());
-                    AODV_Message rreq = new AODV_Message(id, MessageType.AODV_RREQ, message.getDestination(), sequenceNumber, -1, broadcastId);
-                    this.knownMessageIDs.add(new Pair<>(id, broadcastId));
-                    messageRouter.sendMessage(rreq, neighbours);
+                    beginRouteDiscovery(message.getDestination());
+
                 }
             }else{
                 super.sendMessage(message);
@@ -139,6 +137,8 @@ public class AODV_Node extends Node {
                             AODV_RoutingTableEntry tableEntry = new AODV_RoutingTableEntry(aodvMessage.getOriginalSource(),
                                     aodvMessage.getSource(), aodvMessage.getSourceSeqNum(), aodvMessage.getHopCount(), totalRunTime);
                             routingTable.put(aodvMessage.getOriginalSource(), tableEntry);
+
+                            sendWaitingMessages();
                         }
 
 
@@ -186,6 +186,8 @@ public class AODV_Node extends Node {
                         AODV_RoutingTableEntry tableEntry = new AODV_RoutingTableEntry(aodvMessage.getOriginalSource(),
                                 aodvMessage.getSource(), aodvMessage.getSourceSeqNum(), aodvMessage.getHopCount(), totalRunTime);
                         routingTable.put(aodvMessage.getOriginalSource(), tableEntry);
+
+                        sendWaitingMessages();
                     }
                     if(aodvMessage.getFinalDestination() != id){
                         if(routingTable.containsKey(aodvMessage.getFinalDestination())) {
@@ -199,22 +201,22 @@ public class AODV_Node extends Node {
                         log(2, "received requested route to " + aodvMessage.getOriginalSource());
                         //loop over all messages in waitingMessages and send them if  there is a destination:
 
-                        ArrayList<Message> copyWaitingMessages = new ArrayList<>(waitingMessages);
-                        for(Message waitingMessage : copyWaitingMessages) {
-                            if (routingTable.containsKey(waitingMessage.getDestination())) {
-                                int nextHop = routingTable.get(waitingMessage.getDestination()).getNextHop();
-                                if(waitingMessage instanceof AODV_Message aodv_message){
-                                    aodv_message.setDestination(nextHop);
-                                    sendMessage(aodvMessage);
-                                }else {
-                                    AODV_Message message1 = new AODV_Message(id, nextHop, MessageType.AODV_TEXT,
-                                            waitingMessage.getDestination(), waitingMessage.getText());
-                                    sendMessage(message1);
-                                }
-                                waitingMessages.remove(waitingMessage);
-
-                            }
-                        }
+//                        ArrayList<Message> copyWaitingMessages = new ArrayList<>(waitingMessages);
+//                        for(Message waitingMessage : copyWaitingMessages) {
+//                            if (routingTable.containsKey(waitingMessage.getDestination())) {
+//                                int nextHop = routingTable.get(waitingMessage.getDestination()).getNextHop();
+//                                if(waitingMessage instanceof AODV_Message aodv_message){
+//                                    aodv_message.setDestination(nextHop);
+//                                    sendMessage(aodvMessage);
+//                                }else {
+//                                    AODV_Message message1 = new AODV_Message(id, nextHop, MessageType.AODV_TEXT,
+//                                            waitingMessage.getDestination(), waitingMessage.getText());
+//                                    sendMessage(message1);
+//                                }
+//                                waitingMessages.remove(waitingMessage);
+//
+//                            }
+//                        }
 
                     }
                 }
@@ -265,10 +267,10 @@ public class AODV_Node extends Node {
                 if(waitingMessage instanceof AODV_Message aodv_message){
                     aodv_message.setDestination(nextHop);
                     sendMessage(aodv_message);
-                }else {
-                    AODV_Message message1 = new AODV_Message(id, nextHop, MessageType.AODV_TEXT,
-                            waitingMessage.getDestination(), waitingMessage.getText());
-                    sendMessage(message1);
+//                }else {
+//                    AODV_Message message1 = new AODV_Message(id, nextHop, MessageType.AODV_TEXT,
+//                            waitingMessage.getDestination(), waitingMessage.getText());
+//                    sendMessage(message1);
                 }
                 waitingMessages.remove(waitingMessage);
             }
@@ -293,7 +295,7 @@ public class AODV_Node extends Node {
                 log(2, "route to " + rte.destAddr + " via " + rte.nextHop + " is broken.");
                 routesToRemove.add(entry.getKey());
             }
-            if(rte.getReceivedTime() + Constants.NODE_AODV_STALE_ROUTE_PERIOD < totalRunTime){
+            if(rte.getReceivedTime() + Constants.NODE_AODV_STALE_ROUTE_PERIOD < totalRunTime  && rte.getDestAddr() != id){
                 log(2, "route to " + rte.destAddr + " via " + rte.nextHop + " is stale.");
                 routesToRemove.add(entry.getKey());
             }

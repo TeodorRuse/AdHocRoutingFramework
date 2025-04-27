@@ -59,6 +59,8 @@ public class SAODV_Node extends Node {
                 updatedPaths = true;
             }
 
+
+
 //            if(id == 0)
 //                move();
 
@@ -112,12 +114,12 @@ public class SAODV_Node extends Node {
                 }else{
                     waitingMessages.add(message);
 
-//                    beginRouteDiscovery(message.getDestination());
+                    beginRouteDiscovery(message.getDestination());
 
-                    log(2, " beginning route discovery to " + message.getDestination());
-                    SAODV_Message rreq = new SAODV_Message(id, MessageType.SAODV_RREQ, message.getDestination(), sequenceNumber, -1, broadcastId, generateDoubleSignature());
-                    this.knownMessageIDs.add(new Pair<>(id, broadcastId));
-                    sendMessage(rreq);
+//                    log(2, " beginning route discovery to " + message.getDestination());
+//                    SAODV_Message rreq = new SAODV_Message(id, MessageType.SAODV_RREQ, message.getDestination(), sequenceNumber, -1, broadcastId, generateDoubleSignature());
+//                    this.knownMessageIDs.add(new Pair<>(id, broadcastId));
+//                    sendMessage(rreq);
                 }
             }else{
                 super.sendMessage(message);
@@ -167,6 +169,8 @@ public class SAODV_Node extends Node {
                                     saodvMessage.getSource(), saodvMessage.getSourceSeqNum(), saodvMessage.getHopCount(),
                                     totalRunTime, saodvMessage.getDoubleSignature());
                             routingTable.put(saodvMessage.getOriginalSource(), tableEntry);
+
+                            sendWaitingMessages();
                         }
 
 
@@ -246,6 +250,7 @@ public class SAODV_Node extends Node {
                                 saodvMessage.getSource(), saodvMessage.getSourceSeqNum(), saodvMessage.getHopCount(),
                                 totalRunTime, saodvMessage.getDoubleSignature());
                         routingTable.put(saodvMessage.getOriginalSource(), tableEntry);
+                        sendWaitingMessages();
                     }
                     if(saodvMessage.getFinalDestination() != id){
                         if(routingTable.containsKey(saodvMessage.getFinalDestination())) {
@@ -254,27 +259,29 @@ public class SAODV_Node extends Node {
                         }else{
                             log(2, "cannot forward message to " + saodvMessage.getFinalDestination() + " because route is broken, adding to waiting messages");
                             waitingMessages.add(saodvMessage);
+//                            beginRouteDiscovery(saodvMessage.getFinalDestination());
                         }
                     }else{
                         log(2, "received requested route to " + saodvMessage.getOriginalSource());
                         //loop over all messages in waitingMessages and send them if  there is a destination:
+//                        sendWaitingMessages();
 
-                        ArrayList<Message> copyWaitingMessages = new ArrayList<>(waitingMessages);
-                        for(Message waitingMessage : copyWaitingMessages) {
-                            if (routingTable.containsKey(waitingMessage.getDestination())) {
-                                int nextHop = routingTable.get(waitingMessage.getDestination()).getNextHop();
-                                if(waitingMessage instanceof SAODV_Message aodv_message){
-                                    aodv_message.setDestination(nextHop);
-                                    sendMessage(saodvMessage);
-                                }else {
-                                    SAODV_Message message1 = new SAODV_Message(id, nextHop, MessageType.SAODV_TEXT,
-                                            waitingMessage.getDestination(), waitingMessage.getText());
-                                    sendMessage(message1);
-                                }
-                                waitingMessages.remove(waitingMessage);
-
-                            }
-                        }
+//                        ArrayList<Message> copyWaitingMessages = new ArrayList<>(waitingMessages);
+//                        for(Message waitingMessage : copyWaitingMessages) {
+//                            if (routingTable.containsKey(waitingMessage.getDestination())) {
+//                                int nextHop = routingTable.get(waitingMessage.getDestination()).getNextHop();
+//                                if(waitingMessage instanceof SAODV_Message aodv_message){
+//                                    aodv_message.setDestination(nextHop);
+//                                    sendMessage(saodvMessage);
+//                                }else {
+//                                    SAODV_Message message1 = new SAODV_Message(id, nextHop, MessageType.SAODV_TEXT,
+//                                            waitingMessage.getDestination(), waitingMessage.getText());
+//                                    sendMessage(message1);
+//                                }
+//                                waitingMessages.remove(waitingMessage);
+//
+//                            }
+//                        }
 
                     }
                 }
@@ -324,9 +331,9 @@ public class SAODV_Node extends Node {
 
     public void beginRouteDiscovery(int finalDestination){
         log(2, " beginning route discovery to " + finalDestination);
-        AODV_Message rreq = new AODV_Message(id, MessageType.AODV_RREQ, finalDestination, sequenceNumber, -1, broadcastId);
+        SAODV_Message rreq = new SAODV_Message(id, MessageType.SAODV_RREQ, finalDestination, sequenceNumber, -1, broadcastId, generateDoubleSignature());
         this.knownMessageIDs.add(new Pair<>(id, broadcastId));
-        messageRouter.sendMessage(rreq, neighbours);
+        sendMessage(rreq);
     }
 
     public String stringifyId(SAODV_Message saodvMessage){
@@ -347,10 +354,10 @@ public class SAODV_Node extends Node {
                 if(waitingMessage instanceof AODV_Message aodv_message){
                     aodv_message.setDestination(nextHop);
                     sendMessage(aodv_message);
-                }else {
-                    AODV_Message message1 = new AODV_Message(id, nextHop, MessageType.AODV_TEXT,
-                            waitingMessage.getDestination(), waitingMessage.getText());
-                    sendMessage(message1);
+//                }else {
+//                    AODV_Message message1 = new AODV_Message(id, nextHop, MessageType.AODV_TEXT,
+//                            waitingMessage.getDestination(), waitingMessage.getText());
+//                    sendMessage(message1);
                 }
                 waitingMessages.remove(waitingMessage);
             }
@@ -367,7 +374,7 @@ public class SAODV_Node extends Node {
                 log(2, "route to " + rte.destAddr + " via " + rte.nextHop + " is broken.");
                 routesToRemove.add(entry.getKey());
             }
-            if(rte.getReceivedTime() + Constants.NODE_AODV_STALE_ROUTE_PERIOD < totalRunTime){
+            if(rte.getReceivedTime() + Constants.NODE_AODV_STALE_ROUTE_PERIOD < totalRunTime && rte.getDestAddr() != id){
                 log(2, "route to " + rte.destAddr + " via " + rte.nextHop + " is stale.");
                 routesToRemove.add(entry.getKey());
             }

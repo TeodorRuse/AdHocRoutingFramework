@@ -31,9 +31,9 @@ public final class Constants {
     public static final int NODE_COMM_RANGE_MIN_VAL = 300;
     public static final int NODE_STARTUP_TIME = 1500;
     public static final int NODE_NEIGHBOUR_DISCOVERY_PERIOD = 2000;
-    public static final int NODE_NEIGHBOUR_DISCOVERY_DURATION = 500;
+    public static final int NODE_NEIGHBOUR_DISCOVERY_DURATION = 700;
 
-    public static final int NODE_AODV_STALE_ROUTE_PERIOD = 300000000;
+    public static final int NODE_AODV_STALE_ROUTE_PERIOD = 3000;
     public static final int NODE_SAODV_FORWARD_BUFFER_SIZE = 10;
 
     //Message values

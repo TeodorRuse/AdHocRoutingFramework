@@ -231,4 +231,8 @@ public class Node {
             this.neighbours.clear();
         }
     }
+
+    public long getTotalRunTime() {
+        return totalRunTime;
+    }
 }

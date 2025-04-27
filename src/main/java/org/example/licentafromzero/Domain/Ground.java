@@ -192,7 +192,7 @@ public class Ground {
     }
 
     public void turnOnSimulationAsync(int simTimeInSeconds, Runnable uiCallback) {
-        new Thread(() -> {
+//        new Thread(() -> {
             long startTime = System.currentTimeMillis();
             long simDuration = simTimeInSeconds * 1000;
             int chance;
@@ -220,7 +220,8 @@ public class Ground {
                         try {
                             Thread.sleep(Constants.SIMULATION_DELAY_BETWEEN_FRAMES);
                         } catch (InterruptedException e) {
-                            throw new RuntimeException(e);
+//                            throw new RuntimeException(e);
+                            System.err.println("Woke up");;
                         }
                         Platform.runLater(uiCallback);
                     }
@@ -250,7 +251,7 @@ public class Ground {
                     System.out.println("Undelivered control messages (" + aodvNode.getWaitingControlMessages().size() + ") :" + aodvNode.getWaitingControlMessages());
                 }
             }
-        }).start();
+//        }).start();
     }
 
     public ArrayList<Node> getNodesFromIds(ArrayList<Integer> nodeIds){

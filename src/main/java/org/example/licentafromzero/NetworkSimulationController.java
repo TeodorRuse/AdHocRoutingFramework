@@ -16,7 +16,9 @@ import org.example.licentafromzero.CBRP_Paper.CBRP_Node;
 import org.example.licentafromzero.Domain.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class NetworkSimulationController {
 
@@ -102,6 +104,8 @@ public class NetworkSimulationController {
     private void drawGround() {
         canvas.getChildren().clear();
 
+        drawClusters();
+
         for (Node node : ground.getNodes()) {
             double x = node.getX() * (canvasX / (double) ground.getSizeX());
             double y = canvasY - (node.getY() * (canvasY / (double) ground.getSizeY())); // Flip Y-axis
@@ -170,6 +174,122 @@ public class NetworkSimulationController {
         canvas.getChildren().add(labelText);
     }
 
+    private void drawClusters() {
+        // Map to store cluster heads and their members
+        Map<Integer, List<Integer>> clusters = new HashMap<>();
+
+        // First pass: identify all cluster heads and initialize their member lists
+        for (Node node : ground.getNodes()) {
+            if (node instanceof CBRP_Node) {
+                CBRP_Node cbrpNode = (CBRP_Node) node;
+                if (cbrpNode.getNodeStatus() == 1) { // C_HEAD
+                    clusters.put(node.getId(), new ArrayList<>());
+                }
+            }
+        }
+
+        // Second pass: assign members to their cluster heads
+        for (Node node : ground.getNodes()) {
+            if (node instanceof CBRP_Node) {
+                CBRP_Node cbrpNode = (CBRP_Node) node;
+                if (cbrpNode.getNodeStatus() == 2) { // C_MEMBER
+                    // Get the cluster head(s) this node belongs to
+                    List<Integer> hostClusters = cbrpNode.getHostClusters();
+                    for (Integer headId : hostClusters) {
+                        if (clusters.containsKey(headId)) {
+                            clusters.get(headId).add(node.getId());
+                        }
+                    }
+                }
+            }
+        }
+
+        // Now draw the clusters
+        int colorIndex = 0;
+        Color[] clusterColors = {
+                Color.rgb(255, 200, 200, 0.3), // Light red
+                Color.rgb(200, 255, 200, 0.3), // Light green
+                Color.rgb(200, 200, 255, 0.3), // Light blue
+                Color.rgb(255, 255, 200, 0.3), // Light yellow
+                Color.rgb(255, 200, 255, 0.3), // Light purple
+                Color.rgb(200, 255, 255, 0.3), // Light cyan
+                Color.rgb(255, 220, 180, 0.3), // Light orange
+                Color.rgb(220, 180, 255, 0.3)  // Light lavender
+        };
+
+        for (Map.Entry<Integer, List<Integer>> cluster : clusters.entrySet()) {
+            int headId = cluster.getKey();
+            List<Integer> members = cluster.getValue();
+
+            // Get the cluster head node
+            Node headNode = ground.getNodeFromId(headId);
+            double headX = headNode.getX() * (canvasX / (double) ground.getSizeX());
+            double headY = canvasY - (headNode.getY() * (canvasY / (double) ground.getSizeY()));
+
+            // Calculate the center and radius of the cluster
+            double centerX = headX;
+            double centerY = headY;
+            double maxDistance = 0;
+
+            // Include all members in calculation
+            for (Integer memberId : members) {
+                Node memberNode = ground.getNodeFromId(memberId);
+                double memberX = memberNode.getX() * (canvasX / (double) ground.getSizeX());
+                double memberY = canvasY - (memberNode.getY() * (canvasY / (double) ground.getSizeY()));
+
+                // Update center (simple average)
+                centerX += memberX;
+                centerY += memberY;
+
+                // Calculate distance from head to member
+                double distance = Math.sqrt(Math.pow(memberX - headX, 2) + Math.pow(memberY - headY, 2));
+                if (distance > maxDistance) {
+                    maxDistance = distance;
+                }
+            }
+
+            // Finalize center calculation
+            if (!members.isEmpty()) {
+                centerX /= (members.size() + 1);
+                centerY /= (members.size() + 1);
+            }
+
+            // Add some padding to the radius
+            maxDistance = Math.max(maxDistance, 50) + 20;
+
+            // Draw the cluster circle
+            Circle clusterCircle = new Circle(centerX, centerY, maxDistance);
+            clusterCircle.setFill(clusterColors[colorIndex % clusterColors.length]);
+            clusterCircle.setStroke(Color.rgb(100, 100, 100, 0.5));
+            clusterCircle.setStrokeWidth(2);
+
+            // Draw the cluster head indicator
+            Circle headIndicator = new Circle(headX, headY, 15);
+            headIndicator.setFill(Color.TRANSPARENT);
+            headIndicator.setStroke(Color.BLACK);
+            headIndicator.setStrokeWidth(3);
+
+            // Add to canvas
+            canvas.getChildren().addAll(clusterCircle, headIndicator);
+
+            // Draw connections from head to members
+            for (Integer memberId : members) {
+                Node memberNode = ground.getNodeFromId(memberId);
+                double memberX = memberNode.getX() * (canvasX / (double) ground.getSizeX());
+                double memberY = canvasY - (memberNode.getY() * (canvasY / (double) ground.getSizeY()));
+
+                Line line = new Line(headX, headY, memberX, memberY);
+                line.setStroke(Color.rgb(100, 100, 100, 0.5));
+                line.setStrokeWidth(1.5);
+                line.getStrokeDashArray().addAll(5d, 5d);
+
+                canvas.getChildren().add(line);
+            }
+
+            colorIndex++;
+        }
+    }
+
     public int classifyMessageType(Message message) {
         MessageType type = message.getMessageType();
 
@@ -217,101 +337,12 @@ public class NetworkSimulationController {
         }
     }
 
-//    private void drawConnectionWithLabel(Line line, Color color, String label, double labelOffsetY) {
-//        line.setStroke(color);
-//        line.setStrokeWidth(2);
-//        line.getStrokeDashArray().addAll(5d, 5d); // Dotted line
-//
-//        canvas.getChildren().add(line);
-//
-//        // Position the label in the middle of the line with an additional vertical offset for each label
-//        double midX = (line.getStartX() + line.getEndX()) / 2 - 30;
-//        double midY = (line.getStartY() + line.getEndY()) / 2 + labelOffsetY; // Apply the vertical offset
-//
-//        Text labelText = new Text(midX, midY, label);
-//        labelText.setFill(color);
-//        labelText.setStyle("-fx-font-size: 12px; -fx-font-weight: bold;");
-//        labelText.setTextAlignment(TextAlignment.LEFT);
-//
-//        // Rotate the label to match the line angle
-//        double angle = Math.toDegrees(Math.atan2(line.getEndY() - line.getStartY(), line.getEndX() - line.getStartX()));
-//
-//        if (angle > 90) {
-//            angle -= 180;  // Rotate the label by 180 degrees to avoid upside-down text
-//        } else if (angle < -90) {
-//            angle += 180;  // Rotate the label by 180 degrees to avoid upside-down text
-//        }
-//
-//        labelText.setRotate(angle);
-//
-//        canvas.getChildren().add(labelText);
-//    }
-//
-//    private void drawConnections() {
-//        List<Message> messages = new ArrayList<>(ground.getMessageRouter().getMessages());
-//
-//        // Track how many labels have been drawn for each (source, destination) pair
-//        Map<String, Integer> labelOffsets = new HashMap<>();
-//
-//        for (Message message : messages) {
-//            Node source = ground.getNodes().get(message.getSource());
-//            if (source == ground.getNodes().get(ground.getFocusedNodeIndex())) {
-//                Node destination = ground.getNodeFromId(message.getDestination());
-//
-//                double x1 = source.getX() * (canvasX / (double) ground.getSizeX());
-//                double y1 = canvasY - (source.getY() * (canvasY / (double) ground.getSizeY()));
-//
-//                double x2 = destination.getX() * (canvasX / (double) ground.getSizeX());
-//                double y2 = canvasY - (destination.getY() * (canvasY / (double) ground.getSizeY()));
-//
-//                // Create the line (only once for each source-destination pair)
-//                Line line = new Line(x1, y1, x2, y2);
-//
-//                // Create a unique key for the source and destination pair
-//                String key = source.getId() + "-" + destination.getId();
-//
-//                // Get the number of labels already drawn for this pair (default to 0 if not yet drawn)
-//                int labelCount = labelOffsets.getOrDefault(key, 0);
-//
-//                // Draw the line only once for this pair
-//                if (labelCount == 0) {
-//                    if (message.getNumberFramesShown() != 0) {
-//                        if (message.isSuccessful()) {
-//                            drawConnectionWithLabel(line, Color.GREEN, message.getMessageType().toString(), 0);
-//                        } else {
-//                            drawConnectionWithLabel(line, Color.RED, message.getMessageType().toString(), 0);
-//                        }
-//                        message.decreaseNumberFramesShown();
-//                    }
-//                }
-//
-//                // Draw the label with an offset if it's not the first one
-//                if (message.getNumberFramesShown() != 0) {
-//                    double labelOffsetY = labelCount * 15; // Increment label position by 15px for each additional label
-//                    if (message.isSuccessful()) {
-//                        drawConnectionWithLabel(line, Color.GREEN, message.getMessageType().toString(), labelOffsetY);
-//                    } else {
-//                        drawConnectionWithLabel(line, Color.RED, message.getMessageType().toString(), labelOffsetY);
-//                    }
-//                    message.decreaseNumberFramesShown();
-//                }
-//
-//                // Increment the label offset for this (source, destination) pair
-//                labelOffsets.put(key, labelCount + 1);
-//            }
-//        }
-//    }
-
 
     private void drawNeighbours() {
         for (Node node: ground.getNodes()) {
             Node source = node;
-            CBRP_Node cbrp = (CBRP_Node)node;
 
-            //TODO: NORMAL USE!!!!
             for (Integer neighbour : new ArrayList<>(source.getNeighbours())) {
-//            List<Integer> clusters = cbrp.getHostClusters();
-//            for (Integer neighbour : clusters) {
                 Node destination = ground.getNodeFromId(neighbour);
 
                 double x1 = source.getX() * (canvasX / (double) ground.getSizeX());

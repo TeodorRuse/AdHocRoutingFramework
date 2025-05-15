@@ -139,7 +139,7 @@ public class NetworkSimulationController {
 //            ground.setupFromFile_SAODVNode("src/main/java/org/example/licentafromzero/Config/configuration2.txt");
 
 //            ground.setupRandom_CBRPNode(Constants.SIMULATION_NR_NODES +5);
-//            ground.setupFromFile_CBRPNode("src/main/java/org/example/licentafromzero/Config/configuration2.txt");
+            ground.setupFromFile_CBRPNode("src/main/java/org/example/licentafromzero/Config/configuration2.txt");
 
             // Start async simulation and update UI on each tick
             groundThread = new Thread((() -> {

@@ -88,6 +88,9 @@ public class CBRP_Node extends Node {
             // Process waiting messages if routes are available
             processWaitingMessages();
 
+            if(id == 0)
+                move();
+
             try {
                 Thread.sleep(Constants.NODE_DELAY);
             } catch (InterruptedException e) {

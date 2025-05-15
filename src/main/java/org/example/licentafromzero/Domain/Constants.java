@@ -4,7 +4,7 @@ public final class Constants {
     private Constants(){};
 
     //General values
-    public static final int SIMULATION_TIME = 30; //seconds
+    public static final int SIMULATION_TIME = 90; //seconds
     public static final int SIMULATION_NR_NODES = 10;
     public static int SIMULATION_DELAY_BETWEEN_FRAMES = 10;
     public static final int SIMULATION_EXEC_TIME_NODE = 100; // NO modify
@@ -12,7 +12,7 @@ public final class Constants {
     public static final int SIMULATION_PROBABILITY_NODE_TURN_ON = 0;
     public static final int SIMULATION_RSA_KEY_SIZE = 1024;
 
-    public static final int DISPLAY_DETAILS = 2;
+    public static final int DISPLAY_DETAILS = 0;
     public static int LOG_DETAILS = 1;
     /*
        0 = everything
@@ -40,9 +40,9 @@ public final class Constants {
     public static final int NODE_SAODV_FORWARD_BUFFER_SIZE = 10;
 
     //CBRP
-    public static final long NODE_CBRP_HELLO_INTERVAL = 2000; // 2 seconds
+    public static final long NODE_CBRP_HELLO_INTERVAL = 1500; // 2 seconds
     public static final int NODE_CBRP_HELLO_LOSS = 1;
-    public static final long NODE_CBRP_CONTENTION_PERIOD = 1500; // 1.5 seconds
+    public static final long NODE_CBRP_CONTENTION_PERIOD = 1000; // 1.5 seconds
     public static final long NODE_CBRP_UNDECIDED_PD = 1000; // 1 second
 
     //Message values

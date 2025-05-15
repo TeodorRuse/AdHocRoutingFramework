@@ -107,7 +107,7 @@ public class CBRP_Node extends Node {
             sendHelloMessage();
             lastNeighbourDiscovery = totalRunTime;
             updatingNeighbours = true;
-            log(2, "discovering neighbours");
+            log(1, "discovering neighbours");
         }
 
         if (totalRunTime - lastNeighbourDiscovery >= Constants.NODE_NEIGHBOUR_DISCOVERY_DURATION && updatingNeighbours) {
@@ -127,7 +127,7 @@ public class CBRP_Node extends Node {
             updatedPaths = false;
             updatingNeighbours = false;
 
-            log(2, "updated neighbors: " + neighbours);
+            log(1, "updated neighbors: " + neighbours);
         }
     }
 
@@ -136,7 +136,7 @@ public class CBRP_Node extends Node {
 
         if (uTimerActive && currentTime >= uTimer) {
             uTimerActive = false;
-            log(2, "undecided timer expired");
+            log(0, "undecided timer expired");
 
             // Force cluster head election for debugging
             if (nodeStatus == C_UNDECIDED) {
@@ -150,7 +150,7 @@ public class CBRP_Node extends Node {
         // Check contention timer
         if (cTimerActive && currentTime >= cTimer) {
             cTimerActive = false;
-            log(2, "contention timer expired");
+            log(1, "contention timer expired");
 
             // Check if still in contention with other cluster head
             boolean stillInContention = false;
@@ -190,7 +190,7 @@ public class CBRP_Node extends Node {
         for (Integer neighborId : expiredNeighbors) {
             neighborTable.remove(neighborId);
             neighbours.remove(neighborId);
-            log(2, "neighbor " + neighborId + " expired");
+            log(1, "neighbor " + neighborId + " expired");
         }
 
         // If a member node lost all its cluster heads, check if it should become a cluster head
@@ -232,13 +232,13 @@ public class CBRP_Node extends Node {
     private void scheduleUTimer() {
         uTimer = totalRunTime + Constants.NODE_CBRP_UNDECIDED_PD;
         uTimerActive = true;
-        log(2, "scheduled undecided timer to expire at " + uTimer + " (current time: " + totalRunTime + ")");
+        log(0, "scheduled undecided timer to expire at " + uTimer + " (current: " + totalRunTime + ")");
     }
 
     private void scheduleCTimer() {
         cTimer = totalRunTime + Constants.NODE_CBRP_CONTENTION_PERIOD;
         cTimerActive = true;
-        log(2, "scheduled contention timer to expire at " + cTimer);
+        log(0, "scheduled contention timer to expire at " + cTimer);
     }
 
     private void sendHelloMessage() {
@@ -474,7 +474,7 @@ public class CBRP_Node extends Node {
         // Check if target is our neighbor
         for (CBRP_NeighborTableEntry entry : neighborTable.values()) {
             if (entry.getNeighborId() == rreqInfo.getTargetAddress()) {
-                log(1, "target is my neighbor, forwarding RREQ");
+                log(2, "target is my neighbor, forwarding RREQ");
                 // Forward RREQ directly to target
                 CBRP_Message forwardedRreq = new CBRP_Message(message);
                 forwardedRreq.setSource(id);

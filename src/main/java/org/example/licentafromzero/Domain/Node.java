@@ -1,8 +1,5 @@
 package org.example.licentafromzero.Domain;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.*;
 
 public class Node {
@@ -22,11 +19,6 @@ public class Node {
     protected HashSet<Integer> newNeighbours;
     protected boolean updatingNeighbours = false;
     protected boolean updatedPaths = true; //not for this one, but children have it
-
-    private static final String LOG_FILE = "log.txt";
-    private static BufferedWriter logWriter;
-    private static boolean logInitialized = false;
-
 
     public Node(int x, int y, int id){
         this.x = x;
@@ -89,11 +81,10 @@ public class Node {
 
     public void handleMessage(Message message){
 
-        if(Constants.LOG_DETAILS < 2)
-            System.out.println("Node " + id + " received " + message.getMessageType() + " from: " + message.getSource());
+        log(Constants.LOG_LEVEL_NODE, " received " + message.getMessageType() + " from: " + message.getSource());
         switch (message.getMessageType()){
             case TEXT:
-                System.out.println("Node " + id + " received: " + message.getText());
+                log(3, "received: " + message.getText());
                 break;
             case NEIGHBOUR_SYN:
                 sendMessage(new Message(id, message.getSource(), MessageType.NEIGHBOUR_ACK, false));
@@ -118,8 +109,7 @@ public class Node {
             sendMessage(message);
             lastNeighbourDiscovery = totalRunTime;
             updatingNeighbours = true;
-            if(Constants.LOG_DETAILS < 2)
-                System.out.println("Node " + id + " discovering neighbours");
+            log(1,  " discovering neighbours");
         }
 
         if(totalRunTime - lastNeighbourDiscovery >= Constants.NODE_NEIGHBOUR_DISCOVERY_DURATION && updatingNeighbours){
@@ -129,6 +119,10 @@ public class Node {
             newNeighbours.clear();
             updatingNeighbours = false;
         }
+    }
+
+    public void log(int level, String text){
+        Util.log(level, id, text);
     }
 
     public void move(){
@@ -152,32 +146,6 @@ public class Node {
 
     public void sendMessage(Message message){
         this.messageRouter.sendMessage(message);
-    }
-
-//    protected void log(int logLevel, String text){
-//        if(Constants.LOG_DETAILS <= logLevel)
-//            System.out.println("Node " + id + " " + text);
-//    }
-    protected void log(int logLevel, String text) {
-        try {
-            // Initialize log file only once and clear it at the start
-            if (!logInitialized) {
-                logWriter = new BufferedWriter(new FileWriter(LOG_FILE, false)); // overwrite mode
-                logInitialized = true;
-            } else if (logWriter == null) {
-                logWriter = new BufferedWriter(new FileWriter(LOG_FILE, true)); // append mode
-            }
-
-            if (Constants.LOG_DETAILS <= logLevel) {
-                String logEntry = "Node " + id + " " + text;
-                System.out.println(logEntry);
-                logWriter.write(logEntry);
-                logWriter.newLine();
-                logWriter.flush();
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     public int getX() {

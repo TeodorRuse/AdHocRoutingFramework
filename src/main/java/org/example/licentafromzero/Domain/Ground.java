@@ -3,10 +3,8 @@ package org.example.licentafromzero.Domain;
 import javafx.application.Platform;
 import org.example.licentafromzero.AODV.AODV_Node;
 import org.example.licentafromzero.AODV.AODV_RoutingTableEntry;
-import org.example.licentafromzero.CBRP_Paper.CBRP_Message;
 import org.example.licentafromzero.CBRP_Paper.CBRP_Node;
 import org.example.licentafromzero.DSR.DSR_Node;
-import org.example.licentafromzero.SAODV.SAODV_Message;
 import org.example.licentafromzero.SAODV.SAODV_Node;
 import org.example.licentafromzero.SAODV.SAODV_RoutingTableEntry;
 
@@ -18,6 +16,7 @@ import java.security.KeyPairGenerator;
 import java.security.NoSuchAlgorithmException;
 import java.security.PublicKey;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Ground {
     private int sizeX, sizeY;
@@ -27,6 +26,7 @@ public class Ground {
     private int numberNodes;
     private int focusedNodeIndex = -1;
     private Random random = new Random();
+    private String protocol;
 
     public Ground(int sizeX, int sizeY) {
         this.sizeX = sizeX;
@@ -38,6 +38,7 @@ public class Ground {
 
     public void setupRandom_Standard(int numberNodes){
         this.numberNodes = numberNodes;
+        this.protocol = "STANDARD";
         for(int i=0;i<numberNodes;i++){
             Node node = new Node(random.nextInt(sizeX), random.nextInt(sizeY), i);
             node.setMessageRouter(messageRouter);
@@ -48,6 +49,7 @@ public class Ground {
 
     public void setupFromFile_Standard(String filePath) {
         try {
+            this.protocol = "STANDARD";
             List<String> lines = Files.readAllLines(Paths.get(filePath));
             numberNodes = lines.size();
 
@@ -71,6 +73,7 @@ public class Ground {
     }
 
     public void setupFromFile_DSRNode(String filePath) {
+        this.protocol = "DSR";
         try {
             List<String> lines = Files.readAllLines(Paths.get(filePath));
             numberNodes = lines.size();
@@ -95,6 +98,7 @@ public class Ground {
         }
     }
     public void setupRandom_DSRNode(int numberNodes){
+        this.protocol = "DSR";
         this.numberNodes = numberNodes;
         for(int i=0;i<numberNodes;i++){
 //            Node node = new NodeExtra(random.nextInt(sizeX), random.nextInt(sizeY), i, "I am special " + i);
@@ -106,6 +110,7 @@ public class Ground {
     }
 
     public void setupFromFile_AODVNode(String filePath){
+        this.protocol = "AODV";
         try {
             List<String> lines = Files.readAllLines(Paths.get(filePath));
             numberNodes = lines.size();
@@ -131,6 +136,7 @@ public class Ground {
     }
 
     public void setupRandom_AODVNode(int numberNodes){
+        this.protocol = "AODV";
         this.numberNodes = numberNodes;
         for(int i=0;i<numberNodes;i++){
             Node node = new AODV_Node(random.nextInt(sizeX), random.nextInt(sizeY), i);
@@ -141,6 +147,7 @@ public class Ground {
     }
 
     public void setupFromFile_SAODVNode(String filePath){
+        this.protocol = "SAODV";
         try {
             List<String> lines = Files.readAllLines(Paths.get(filePath));
             Map<Integer, PublicKey> keyChain = new HashMap<>();
@@ -175,6 +182,7 @@ public class Ground {
     }
 
     public void setupRandom_SAODVNode(int numberNodes){
+        this.protocol = "SAODV";
         this.numberNodes = numberNodes;
         Map<Integer, PublicKey> keyChain = new HashMap<>();
         for(int i=0;i<numberNodes;i++){
@@ -194,6 +202,7 @@ public class Ground {
     }
 
     public void setupRandom_CBRPNode(int numberNodes){
+        this.protocol = "CBRP";
         this.numberNodes = numberNodes;
         for(int i=0;i<numberNodes;i++){
             Node node = new CBRP_Node(random.nextInt(sizeX), random.nextInt(sizeY), i);
@@ -204,6 +213,7 @@ public class Ground {
     }
 
     public void setupFromFile_CBRPNode(String filePath){
+        this.protocol = "CBRP";
         try {
             List<String> lines = Files.readAllLines(Paths.get(filePath));
             Map<Integer, PublicKey> keyChain = new HashMap<>();
@@ -245,13 +255,11 @@ public class Ground {
                 chance = random.nextInt(1000);
 
                 if(nodes.get(i).isActive() && chance < Constants.SIMULATION_PROBABILITY_NODE_TURN_OFF){
-                    if(Constants.LOG_DETAILS == 0)
-                        System.out.println("Node " + nodes.get(i).getId() + " turning off");
+                    Util.log(0, nodes.get(i).getId() ,  " turning off");
                     deactivateNode(i);
                 }
                 else if(!nodes.get(i).isActive() && chance < Constants.SIMULATION_PROBABILITY_NODE_TURN_ON){
-                    if(Constants.LOG_DETAILS == 0)
-                        System.out.println("Node " + nodes.get(i).getId() + " turning on");
+                    Util.log(0, nodes.get(i).getId() ,  " turning on");
                     activateNode(i);
                 }
 
@@ -263,40 +271,48 @@ public class Ground {
                         Thread.sleep(Constants.SIMULATION_DELAY_BETWEEN_FRAMES);
                     } catch (InterruptedException e) {
 //                            throw new RuntimeException(e);
-                        System.err.println("Woke up");;
+                        System.err.println("Simulation thread woke up unexpectedly");;
                     }
                     Platform.runLater(uiCallback);
                 }
             }
         }
 
+        //
         // Final update
         Platform.runLater(uiCallback);
-        System.out.println("Simulation finished");
-        System.out.println("Messages sent: " + messageRouter.getMessages().size());
-        System.out.println("Text messages sent: " + messageRouter.getNumberTextsSent());
-        System.out.println("Text message success rate: " + messageRouter.getProcentSuccessfulTexts() + "%");
+        Util.log("=============================================================");
+        Util.log("Simulation finished");
+        Util.log("Messages sent: " + messageRouter.getMessages().size());
+        Util.log("Text messages sent: " + messageRouter.getNumberTextsSent());
+        Util.log("Text message success rate: " + messageRouter.getProcentSuccessfulTexts() + "%");
+        Util.log("More information can be found in log.txt");
+
         for(Node node: nodes){
             if(node instanceof DSR_Node dsrNode){
                 System.out.println(dsrNode.getId() + ": " + dsrNode.getKnownRoutes());
             }
             if(node instanceof AODV_Node aodvNode){
-//                    System.out.println(aodvNode.getId() + ": " + aodvNode.getRoutingTable());
                 prettyPrintRoutingTable(aodvNode);
-                System.out.println("Undelivered text messages (" + aodvNode.getWaitingMessages().size() + ") :" + aodvNode.getWaitingMessages());
-                System.out.println("Undelivered control messages (" + aodvNode.getWaitingControlMessages().size() + ") :" + aodvNode.getWaitingControlMessages());
+                Util.log("[" + node.getId() +"] Undelivered text messages (" + aodvNode.getWaitingMessages().size() + ")");
+                Util.log(aodvNode.getWaitingMessages().stream()
+                        .map(Message::prettyPrint)
+                        .collect(Collectors.joining("\n ")), true);
             }
-            if(node instanceof SAODV_Node aodvNode){
-//                    System.out.println(aodvNode.getId() + ": " + aodvNode.getRoutingTable());
-                prettyPrintRoutingTable(aodvNode);
-                System.out.println("Undelivered text messages (" + aodvNode.getWaitingMessages().size() + ") :" + aodvNode.getWaitingMessages());
-                System.out.println("Undelivered control messages (" + aodvNode.getWaitingControlMessages().size() + ") :" + aodvNode.getWaitingControlMessages());
+            if(node instanceof SAODV_Node saodvNode){
+                prettyPrintRoutingTable(saodvNode);
+                Util.log("[" + node.getId() +"] Undelivered text messages (" + saodvNode.getWaitingMessages().size() + ")");
+                Util.log(saodvNode.getWaitingMessages().stream()
+                        .map(Message::prettyPrint)
+                        .collect(Collectors.joining("\n ")), true);
             }
             if(node instanceof CBRP_Node cbrpNode){
-                System.out.println("Undelivered text messages (" + cbrpNode.getWaitingMessages().size() + ") :" + cbrpNode.getWaitingMessages());
+                Util.log("[" + node.getId() +"] Undelivered text messages (" + cbrpNode.getWaitingMessages().size() + ")");
+                Util.log(cbrpNode.getWaitingMessages().stream()
+                                .map(Message::prettyPrint)
+                                .collect(Collectors.joining("\n ")), true);
             }
         }
-//        }).start();
     }
 
     public ArrayList<Node> getNodesFromIds(ArrayList<Integer> nodeIds){
@@ -328,39 +344,49 @@ public class Ground {
     }
 
     public static void prettyPrintRoutingTable(AODV_Node aodvNode) {
-        System.out.println("\nRouting Table for Node " + aodvNode.getId());
-        System.out.println("+------------+----------+---------------+----------+---------------------+");
-        System.out.println("| Dest Addr  | Next Hop | Dest Seq Num  | Hop Count| Last Received Time  |");
-        System.out.println("+------------+----------+---------------+----------+---------------------+");
+        Util.log(" \n Routing Table for Node " + aodvNode.getId());
+        Util.log(" +------------+----------+---------------+----------+---------------------+");
+        Util.log(" | Dest Addr  | Next Hop | Dest Seq Num  | Hop Count| Last Received Time  |");
+        Util.log(" +------------+----------+---------------+----------+---------------------+");
 
-        for (AODV_RoutingTableEntry entry : aodvNode.getRoutingTable().values()) {
-            System.out.printf("| %-10d | %-8d | %-13d | %-8d | %-19s |%n",
-                    entry.getDestAddr(),
-                    entry.getNextHop(),
-                    entry.getDestSeqNum(),
-                    entry.getHopCount(),
-                    entry.getReceivedTime());
-        }
+        String table = " +------------+----------+---------------+----------+---------------------+\n" +
+                String.format(" | %-10s | %-8s | %-13s | %-8s | %-19s |%n",
+                        "DestAddr", "NextHop", "DestSeqNum", "HopCount", "ReceivedTime") +
+                " +------------+----------+---------------+----------+---------------------+\n" +
+                aodvNode.getRoutingTable().values().stream()
+                        .map(entry -> String.format(" | %-10d | %-8d | %-13d | %-8d | %-19s |%n",
+                                entry.getDestAddr(),
+                                entry.getNextHop(),
+                                entry.getDestSeqNum(),
+                                entry.getHopCount(),
+                                entry.getReceivedTime()))
+                        .collect(Collectors.joining()) +
+                " +------------+----------+---------------+----------+---------------------+";
 
-        System.out.println("+------------+----------+---------------+----------+---------------------+");
+        Util.log(table);
     }
 
     public static void prettyPrintRoutingTable(SAODV_Node aodvNode) {
-        System.out.println("\nRouting Table for Node " + aodvNode.getId());
-        System.out.println("+------------+----------+---------------+----------+---------------------+");
-        System.out.println("| Dest Addr  | Next Hop | Dest Seq Num  | Hop Count| Last Received Time  |");
-        System.out.println("+------------+----------+---------------+----------+---------------------+");
+        Util.log(" \n Routing Table for Node " + aodvNode.getId());
+        Util.log(" +------------+----------+---------------+----------+---------------------+");
+        Util.log(" | Dest Addr  | Next Hop | Dest Seq Num  | Hop Count| Last Received Time  |");
+        Util.log(" +------------+----------+---------------+----------+---------------------+");
 
-        for (SAODV_RoutingTableEntry entry : aodvNode.getRoutingTable().values()) {
-            System.out.printf("| %-10d | %-8d | %-13d | %-8d | %-19s |%n",
-                    entry.getDestAddr(),
-                    entry.getNextHop(),
-                    entry.getDestSeqNum(),
-                    entry.getHopCount(),
-                    entry.getReceivedTime());
-        }
+        String table = " +------------+----------+---------------+----------+---------------------+\n" +
+                String.format(" | %-10s | %-8s | %-13s | %-8s | %-19s |%n",
+                        "DestAddr", "NextHop", "DestSeqNum", "HopCount", "ReceivedTime") +
+                " +------------+----------+---------------+----------+---------------------+\n" +
+                aodvNode.getRoutingTable().values().stream()
+                        .map(entry -> String.format(" | %-10d | %-8d | %-13d | %-8d | %-19s |%n",
+                                entry.getDestAddr(),
+                                entry.getNextHop(),
+                                entry.getDestSeqNum(),
+                                entry.getHopCount(),
+                                entry.getReceivedTime()))
+                        .collect(Collectors.joining()) +
+                " +------------+----------+---------------+----------+---------------------+";
 
-        System.out.println("+------------+----------+---------------+----------+---------------------+");
+        Util.log(table);
     }
 
     public int getSizeX() {
@@ -405,6 +431,10 @@ public class Ground {
 
     public HashSet<Integer> getOffNodes() {
         return offNodes;
+    }
+
+    public String getProtocol() {
+        return protocol;
     }
 
     public void deactivateNode(int id){

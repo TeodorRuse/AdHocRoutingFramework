@@ -1,7 +1,5 @@
 package org.example.licentafromzero.Domain;
 
-import org.example.licentafromzero.DSR.DSR_Message;
-
 import java.util.ArrayList;
 import java.util.HashSet;
 
@@ -44,13 +42,13 @@ public class MessageRouter {
             }
             if (source != null && destination != null){
                 if (canSend(source, destination)) {
-                    if(Constants.LOG_DETAILS == 0)
+                    if(Constants.LOG_LEVEL == 0)
                         System.out.println("Successfully sent "+ message.getMessageType() + " : " + source.getId() + " -> " + destination.getId());
                     destination.addMessage(message);
                     message.setSuccessful(true);
                     messages.add(message);
                 } else {
-                    if(Constants.LOG_DETAILS == 0)
+                    if(Constants.LOG_LEVEL == 0)
                         System.out.println("Failed to send "+ message.getMessageType() + " - out of range: " + source.getId() + " -> " + destination.getId());
                     message.setSuccessful(false);
                     messages.add(message);

@@ -78,11 +78,11 @@ public class DSR_Node extends Node {
         message.setSource(id);
         if(message instanceof DSR_Message dsrMessage){
             if(dsrMessage.getMessageType() == MessageType.DSR_RREQ ) {
-                if(Constants.LOG_DETAILS < 3)
+                if(Constants.LOG_LEVEL < 3)
                     System.out.println("Node " + id + " sending RREQ(" + dsrMessage.getRequestId() + ") all neighbours for " + dsrMessage.getFinalDestination());
                 this.messageRouter.sendMessage(dsrMessage, neighbours);
             } else if(dsrMessage.getMessageType() == MessageType.DSR_RERR){
-                if(Constants.LOG_DETAILS < 3)
+                if(Constants.LOG_LEVEL < 3)
                     System.out.println("Node " + id + " sending RERR(" + dsrMessage.getRequestId() + ") all neighbours for " + dsrMessage.getFinalRoute());
                 this.messageRouter.sendMessage(dsrMessage, neighbours);
             } else {
@@ -91,7 +91,7 @@ public class DSR_Node extends Node {
         }else {
             if(message.getMessageType() == MessageType.TEXT) {
                 if (knownRoutes.containsKey(message.getDestination())) {
-                    if(Constants.LOG_DETAILS < 3)
+                    if(Constants.LOG_LEVEL < 3)
                         System.out.println("Node: " + id + " using known route!");
                     ArrayList<Integer> route = new ArrayList<>(knownRoutes.get(message.getDestination()));
                     route.remove(0);
@@ -117,7 +117,7 @@ public class DSR_Node extends Node {
 
     @Override
     public void handleMessage(Message message) {
-        if(Constants.LOG_DETAILS < 2)
+        if(Constants.LOG_LEVEL < 2)
             System.out.println("Node " + id + " received " + message.getMessageType() + " from: " + message.getSource());
         switch (message.getMessageType()) {
             case TEXT:
@@ -134,7 +134,7 @@ public class DSR_Node extends Node {
                     if(dsrMessage.getTtl() > 0 && !knownMessageIds.contains(dsrMessage.getRequestId())) {
                         if (dsrMessage.getFinalDestination() == id) {
                             dsrMessage.addToRouteRecord(id);
-                            if(Constants.LOG_DETAILS < 3)
+                            if(Constants.LOG_LEVEL < 3)
                                 System.out.println("RREQ " + dsrMessage.getRouteRecord() + " reached destination, sending routeReply");
                             ArrayList<Integer> route = dsrMessage.getRouteRecord();
                             ArrayList<Integer> finalRoute = new ArrayList<>(route);
@@ -153,7 +153,7 @@ public class DSR_Node extends Node {
             case DSR_TEXT:
                 if(message instanceof DSR_Message dsrMessage) {
                     if(dsrMessage.getRouteRecord().isEmpty()){
-                        if(Constants.LOG_DETAILS < 4)
+                        if(Constants.LOG_LEVEL < 4)
                             System.out.println("Node " + id + " is destination for " + dsrMessage.getText() + " from: " + dsrMessage.getFinalDestination());
                     }else {
                         int nextHop = dsrMessage.getRouteRecord().remove(0);
@@ -216,7 +216,7 @@ public class DSR_Node extends Node {
             }
 
             if (isBroken) {
-                if(Constants.LOG_DETAILS < 3)
+                if(Constants.LOG_LEVEL < 3)
                     System.out.println("Node " + id + " removing broken route " + entry.getKey() + ": " + route);
                 routesToRemove.add(entry.getKey());
             }
@@ -236,7 +236,7 @@ public class DSR_Node extends Node {
                 Integer secondElement = route.get(1);
 
                 if (!neighbours.contains(secondElement)) {
-                    if(Constants.LOG_DETAILS < 3)
+                    if(Constants.LOG_LEVEL < 3)
                         System.out.println("Node " + id + " route broken: " + route);
                     DSR_Message dsrMessage = new DSR_Message(id, -1, MessageType.DSR_RERR, id, secondElement, System.currentTimeMillis());
 

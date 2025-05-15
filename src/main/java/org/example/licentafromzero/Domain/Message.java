@@ -105,6 +105,12 @@ public class Message {
         isMulticast = multicast;
     }
 
+    public String prettyPrint() {
+        return String.format("""
+        Message { source=%s, destination=%s, text='%s', messageType=%s }""",
+        source, destination, text, messageType);
+    }
+
     @Override
     public String toString() {
         return "Message{" +

@@ -12,7 +12,7 @@
                   <Pane fx:id="controlPanel" prefHeight="100.0" prefWidth="900.0">
                      <children>
                         <Slider fx:id="speedSlider" layoutX="315.0" layoutY="-3.0" prefHeight="107.0" prefWidth="270.0" />
-                        <Button fx:id="stopButton" layoutX="24.0" layoutY="20.0" mnemonicParsing="false" onMousePressed="#handleStopButtonPressed" prefHeight="60.0" prefWidth="60.0" text="STOP" />
+                        <Button fx:id="stopButton" layoutX="23.0" layoutY="11.0" mnemonicParsing="false" onMousePressed="#handleStopButtonPressed" prefHeight="80.0" prefWidth="80.0" text="STOP" />
                      </children>
                   </Pane>
                   <Pane fx:id="canvas" prefHeight="900.0" prefWidth="900.0" />

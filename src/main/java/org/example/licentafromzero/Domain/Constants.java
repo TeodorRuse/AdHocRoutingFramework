@@ -12,15 +12,12 @@ public final class Constants {
     public static final int SIMULATION_PROBABILITY_NODE_TURN_ON = 0;
     public static final int SIMULATION_RSA_KEY_SIZE = 1024;
 
-    public static final int DISPLAY_DETAILS = 0;
-    public static int LOG_DETAILS = 1;
-    /*
-       0 = everything
-       1 = only node messages
-       2 = only relevant node receiving messages
-       3 = only texts
-     */
+    public static final int LOG_LEVEL_ALL             = 0; // Log everything
+    public static final int LOG_LEVEL_NODE            = 1; // Display all nodes actions/messages
+    public static final int LOG_LEVEL_MESSAGE         = 2; // Only relevant messages
+    public static final int LOG_LEVEL_TEXT            = 3; // Only text messages
 
+    public static int LOG_LEVEL = LOG_LEVEL_NODE;
 
 
     //Node values

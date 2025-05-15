@@ -30,9 +30,6 @@ import java.util.*;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 //TODO: Add design for unrelated to cluster node (AODV, SAOVD etc)
-//TODO: add normal log filter
-//TODO: replace prints with logs in the final
-//TODO: print final message for CBRP - show nodes internals
 //TODO: Add moving around the ground
 //TODO: add home screen with display protoclol, and modify constnst
 
@@ -58,7 +55,7 @@ public class NetworkSimulationController {
 
     // Log handling
     private ConcurrentLinkedQueue<String> logQueue = new ConcurrentLinkedQueue<>();
-    private static final int MAX_LOG_ENTRIES = 1000;
+    private static final int MAX_LOG_ENTRIES = 10000;
     private LogReader logReader;
     private Thread logReaderThread;
 
@@ -210,7 +207,7 @@ public class NetworkSimulationController {
         filterBox.setAlignment(Pos.CENTER_LEFT);
 
         logFilterComboBox = new ComboBox<>();
-        logFilterComboBox.getItems().addAll("All Logs", "Node Status", "Messages", "Errors", "Clusters");
+        logFilterComboBox.getItems().addAll("All Logs", "Node Status", "Messages", "Text");
         logFilterComboBox.setValue("All Logs");
         logFilterComboBox.setPrefWidth(150);
 
@@ -238,9 +235,8 @@ public class NetworkSimulationController {
 
         // Set up filter listener
         logFilterComboBox.valueProperty().addListener((obs, oldVal, newVal) -> {
-            // This would filter the displayed logs based on selection
-            // For now, we'll just add a note about the filter change
-            appendToLog("Log filter changed to: " + newVal);
+            Util.log("Log filter changed to: " + newVal);
+            Constants.LOG_LEVEL = getFilterKeyword(newVal);
         });
     }
 
@@ -260,23 +256,18 @@ public class NetworkSimulationController {
 
         // Update UI on JavaFX thread
         Platform.runLater(() -> {
-            // Apply filter if needed
-            String filter = logFilterComboBox.getValue();
-            if (filter.equals("All Logs") || logEntry.contains(getFilterKeyword(filter))) {
-                logTextArea.appendText(logEntry + "\n");
-                // Auto-scroll to bottom
-                logTextArea.setScrollTop(Double.MAX_VALUE);
-            }
+            logTextArea.appendText(logEntry + "\n");
+            logTextArea.setScrollTop(Double.MAX_VALUE);
         });
     }
 
-    private String getFilterKeyword(String filter) {
+    private int getFilterKeyword(String filter) {
         switch (filter) {
-            case "Node Status": return "status";
-            case "Messages": return "message";
-            case "Errors": return "error";
-            case "Clusters": return "cluster";
-            default: return "";
+            case "All Logs": return 0;
+            case "Node Status": return 1;
+            case "Messages": return 2;
+            case "Text": return 3;
+            default: return 0;
         }
     }
 
@@ -376,24 +367,31 @@ public class NetworkSimulationController {
         String statusText = "";
 
         // Determine node appearance based on status
-        switch (status) {
-            case 1: // C_HEAD
-                nodeColor = Color.DARKRED;
-                statusText = "CH";
-                break;
-            case 2: // C_MEMBER
-                nodeColor = Color.FORESTGREEN;
-                statusText = "M";
-                break;
-            case 3: // C_GATEWAY
-                nodeColor = Color.DARKBLUE;
-                statusText = "GW";
-                break;
-            default: // C_UNDECIDED or other
-                nodeColor = Color.ORANGE;
-                statusText = "U";
+        nodeColor = Color.ORANGE;
+        statusText = "";
+        switch(ground.getProtocol()){
+            case "STANDARD": break;
+            case "DSR": break;
+            case "AODV": break;
+            case "SAODV": break;
+            case "CBRP":
+                switch (status) {
+                    case 1: // C_HEAD
+                        nodeColor = Color.DARKRED;
+                        statusText = "CH";
+                        break;
+                    case 2: // C_MEMBER
+                        nodeColor = Color.FORESTGREEN;
+                        statusText = "M";
+                        break;
+                    default: // C_UNDECIDED or other
+                        nodeColor = Color.CORAL;
+                        statusText = "U";
+                        break;
+                }
                 break;
         }
+
 
         // Apply "off" state if needed
         if (isOff) {
@@ -420,7 +418,7 @@ public class NetworkSimulationController {
         hexagon.setEffect(dropShadow);
 
         // Create node ID label
-        Text idLabel = new Text(x - 7, y + 5, nodeLabel);
+        Text idLabel = new Text(x - 3, y + 5, nodeLabel);
         idLabel.setFill(Color.WHITE);
         idLabel.setFont(Font.font("Arial", FontWeight.BOLD, 12));
 
@@ -449,7 +447,9 @@ public class NetworkSimulationController {
             }
         }
 
-        canvas.getChildren().addAll(hexagon, idLabel, statusIndicator, statusLabel);
+        canvas.getChildren().addAll(hexagon, idLabel);
+        if(ground.getProtocol().equals("CBRP"))
+            canvas.getChildren().addAll(statusIndicator, statusLabel);
     }
 
     private Polygon createHexagon(double centerX, double centerY, double size) {
@@ -472,13 +472,13 @@ public class NetworkSimulationController {
         radiusCircle.getStrokeDashArray().addAll(5d, 5d);
 
         // Create a background for the runtime text
-        Text runtimeLabel = new Text(x - 30, y + 45, "Runtime: " + node.getTotalRunTime() + " ms");
+        Text runtimeLabel = new Text(x - 50, y + 45, "Runtime: " + node.getTotalRunTime() + " ms");
         runtimeLabel.setFill(Color.WHITE);
         runtimeLabel.setFont(Font.font("Arial", FontWeight.BOLD, 12));
 
         // Add a background rectangle for better readability
         Rectangle textBg = new Rectangle(
-                x - 35, y + 32,
+                x - 60, y + 32,
                 runtimeLabel.getBoundsInLocal().getWidth() + 10,
                 runtimeLabel.getBoundsInLocal().getHeight() + 2
         );
@@ -568,8 +568,8 @@ public class NetworkSimulationController {
 
             // Create background for better readability
             Text labelText = new Text(midX, midY, label);
-            labelText.setFill(Color.DARKGRAY);
-            labelText.setFont(Font.font("Arial", FontWeight.BOLD, 10));
+            labelText.setFill(Color.DARKGOLDENROD);
+            labelText.setFont(Font.font("Arial", FontWeight.BOLD, 12));
             labelText.setTextAlignment(TextAlignment.CENTER);
 
             // Calculate the bounds of the text for the background
@@ -580,6 +580,7 @@ public class NetworkSimulationController {
                     midX - textWidth/2 - 3, midY - textHeight/2 - 3,
                     textWidth + 6, textHeight + 6
             );
+
             textBg.setFill(color.deriveColor(0, 1, 1, 0.7));
             textBg.setArcWidth(5);
             textBg.setArcHeight(5);
@@ -771,19 +772,18 @@ private void drawClusters() {
 
         if (type == MessageType.TEXT || type == MessageType.DSR_TEXT ||
                 type == MessageType.AODV_TEXT || type == MessageType.SAODV_TEXT || type == MessageType.CBRP_TEXT)
-            return 2;
+            return 3;
 
-        if (type == MessageType.NEIGHBOUR_SYN || type == MessageType.NEIGHBOUR_ACK)
+        if (type == MessageType.NEIGHBOUR_SYN || type == MessageType.NEIGHBOUR_ACK || type == MessageType.CBRP_NEIGHBOUR_HELLO)
             return 0;
         if (type == MessageType.DSR_RREQ || type == MessageType.DSR_RREP || type == MessageType.DSR_RERR)
-            return 1;
+            return 2;
         if (type == MessageType.AODV_RREQ || type == MessageType.AODV_RREP || type == MessageType.AODV_RERR)
-            return 1;
+            return 2;
         if (type == MessageType.SAODV_RREQ || type == MessageType.SAODV_RREP || type == MessageType.SAODV_RERR)
-            return 1;
-        if (type == MessageType.CBRP_RERR || type == MessageType.CBRP_RREP || type == MessageType.CBRP_RREQ
-                || type == MessageType.CBRP_NEIGHBOUR_HELLO)
-            return 1;
+            return 2;
+        if (type == MessageType.CBRP_RERR || type == MessageType.CBRP_RREP || type == MessageType.CBRP_RREQ)
+            return 2;
 
         return 10;
     }
@@ -806,7 +806,7 @@ private void drawClusters() {
 
                 Line line = new Line(x1, y1, x2, y2);
 
-                if (classifyMessageType(message) >= Constants.DISPLAY_DETAILS && message.getNumberFramesShown() != 0) {
+                if (classifyMessageType(message) >= Constants.LOG_LEVEL && message.getNumberFramesShown() != 0) {
                     if (message.isSuccessful()) {
                         drawConnectionWithLabel(line, MESSAGE_COLORS[0], message.getMessageType().toString());
 
@@ -919,7 +919,9 @@ private void drawClusters() {
                             raf.seek(lastPosition);
                             String line;
                             while ((line = raf.readLine()) != null) {
-                                logConsumer.accept(line);
+                                if (!line.startsWith(" ")) {
+                                    logConsumer.accept(line);
+                                }
                             }
                             lastPosition = raf.getFilePointer();
                         }

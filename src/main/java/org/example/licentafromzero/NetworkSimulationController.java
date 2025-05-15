@@ -12,6 +12,7 @@ import javafx.scene.shape.Line;
 import javafx.scene.shape.Polygon;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
+import org.example.licentafromzero.CBRP_Paper.CBRP_Node;
 import org.example.licentafromzero.Domain.*;
 
 import java.util.ArrayList;
@@ -51,7 +52,9 @@ public class NetworkSimulationController {
 //            ground.setupFromFile_AODVNode("src/main/java/org/example/licentafromzero/Config/configuration2.txt");
 
 //            ground.setupRandom_SAODVNode(Constants.SIMULATION_NR_NODES);
-            ground.setupFromFile_SAODVNode("src/main/java/org/example/licentafromzero/Config/configuration2.txt");
+//            ground.setupFromFile_SAODVNode("src/main/java/org/example/licentafromzero/Config/configuration2.txt");
+
+            ground.setupRandom_CBRPNode(Constants.SIMULATION_NR_NODES +5);
 
 
 
@@ -303,9 +306,12 @@ public class NetworkSimulationController {
     private void drawNeighbours() {
         for (Node node: ground.getNodes()) {
             Node source = node;
+            CBRP_Node cbrp = (CBRP_Node)node;
 
-//            for(Integer neighbour : source.getNeighbours()) {
+            //TODO: NORMAL USE!!!!
             for (Integer neighbour : new ArrayList<>(source.getNeighbours())) {
+//            List<Integer> clusters = cbrp.getHostClusters();
+//            for (Integer neighbour : clusters) {
                 Node destination = ground.getNodeFromId(neighbour);
 
                 double x1 = source.getX() * (canvasX / (double) ground.getSizeX());

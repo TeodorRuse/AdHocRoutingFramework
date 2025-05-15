@@ -3,6 +3,8 @@ package org.example.licentafromzero.Domain;
 import javafx.application.Platform;
 import org.example.licentafromzero.AODV.AODV_Node;
 import org.example.licentafromzero.AODV.AODV_RoutingTableEntry;
+import org.example.licentafromzero.CBRP_Paper.CBRP_Message;
+import org.example.licentafromzero.CBRP_Paper.CBRP_Node;
 import org.example.licentafromzero.DSR.DSR_Node;
 import org.example.licentafromzero.SAODV.SAODV_Message;
 import org.example.licentafromzero.SAODV.SAODV_Node;
@@ -191,6 +193,16 @@ public class Ground {
         }
     }
 
+    public void setupRandom_CBRPNode(int numberNodes){
+        this.numberNodes = numberNodes;
+        for(int i=0;i<numberNodes;i++){
+            Node node = new CBRP_Node(random.nextInt(sizeX), random.nextInt(sizeY), i);
+            node.setMessageRouter(messageRouter);
+            messageRouter.addNode(node);
+            nodes.add(node);
+        }
+    }
+
     public void turnOnSimulationAsync(int simTimeInSeconds, Runnable uiCallback) {
 //        new Thread(() -> {
             long startTime = System.currentTimeMillis();
@@ -249,6 +261,9 @@ public class Ground {
                     prettyPrintRoutingTable(aodvNode);
                     System.out.println("Undelivered text messages (" + aodvNode.getWaitingMessages().size() + ") :" + aodvNode.getWaitingMessages());
                     System.out.println("Undelivered control messages (" + aodvNode.getWaitingControlMessages().size() + ") :" + aodvNode.getWaitingControlMessages());
+                }
+                if(node instanceof CBRP_Node cbrpNode){
+                    System.out.println(cbrpNode);
                 }
             }
 //        }).start();

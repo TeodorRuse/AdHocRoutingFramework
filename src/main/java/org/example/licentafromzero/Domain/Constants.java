@@ -4,7 +4,7 @@ public final class Constants {
     private Constants(){};
 
     //General values
-    public static final int SIMULATION_TIME = 90; //seconds
+    public static final int SIMULATION_TIME = 30; //seconds
     public static final int SIMULATION_NR_NODES = 10;
     public static int SIMULATION_DELAY_BETWEEN_FRAMES = 10;
     public static final int SIMULATION_EXEC_TIME_NODE = 100; // NO modify

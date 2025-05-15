@@ -293,7 +293,7 @@ public class Ground {
                 System.out.println("Undelivered control messages (" + aodvNode.getWaitingControlMessages().size() + ") :" + aodvNode.getWaitingControlMessages());
             }
             if(node instanceof CBRP_Node cbrpNode){
-//                    System.out.println(cbrpNode);
+                System.out.println("Undelivered text messages (" + cbrpNode.getWaitingMessages().size() + ") :" + cbrpNode.getWaitingMessages());
             }
         }
 //        }).start();

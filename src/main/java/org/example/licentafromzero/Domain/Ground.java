@@ -235,67 +235,67 @@ public class Ground {
 
     public void turnOnSimulationAsync(int simTimeInSeconds, Runnable uiCallback) {
 //        new Thread(() -> {
-            long startTime = System.currentTimeMillis();
-            long simDuration = simTimeInSeconds * 1000;
-            int chance;
+        long startTime = System.currentTimeMillis();
+        long simDuration = simTimeInSeconds * 1000;
+        int chance;
 
-            while (System.currentTimeMillis() < startTime + simDuration) {
-                for(int i=0;i<numberNodes; i++){
+        while (System.currentTimeMillis() < startTime + simDuration) {
+            for(int i=0;i<numberNodes; i++){
 
-                    chance = random.nextInt(1000);
+                chance = random.nextInt(1000);
 
-                    if(nodes.get(i).isActive() && chance < Constants.SIMULATION_PROBABILITY_NODE_TURN_OFF){
-                        if(Constants.LOG_DETAILS == 0)
-                            System.out.println("Node " + nodes.get(i).getId() + " turning off");
-                        deactivateNode(i);
-                    }
-                    else if(!nodes.get(i).isActive() && chance < Constants.SIMULATION_PROBABILITY_NODE_TURN_ON){
-                        if(Constants.LOG_DETAILS == 0)
-                            System.out.println("Node " + nodes.get(i).getId() + " turning on");
-                        activateNode(i);
-                    }
+                if(nodes.get(i).isActive() && chance < Constants.SIMULATION_PROBABILITY_NODE_TURN_OFF){
+                    if(Constants.LOG_DETAILS == 0)
+                        System.out.println("Node " + nodes.get(i).getId() + " turning off");
+                    deactivateNode(i);
+                }
+                else if(!nodes.get(i).isActive() && chance < Constants.SIMULATION_PROBABILITY_NODE_TURN_ON){
+                    if(Constants.LOG_DETAILS == 0)
+                        System.out.println("Node " + nodes.get(i).getId() + " turning on");
+                    activateNode(i);
+                }
 
-                    if(!offNodes.contains(i)) {
-                        focusedNodeIndex = i;
-                        nodes.get(i).turnOn(Constants.SIMULATION_EXEC_TIME_NODE);
+                if(!offNodes.contains(i)) {
+                    focusedNodeIndex = i;
+                    nodes.get(i).turnOn(Constants.SIMULATION_EXEC_TIME_NODE);
 
-                        try {
-                            Thread.sleep(Constants.SIMULATION_DELAY_BETWEEN_FRAMES);
-                        } catch (InterruptedException e) {
+                    try {
+                        Thread.sleep(Constants.SIMULATION_DELAY_BETWEEN_FRAMES);
+                    } catch (InterruptedException e) {
 //                            throw new RuntimeException(e);
-                            System.err.println("Woke up");;
-                        }
-                        Platform.runLater(uiCallback);
+                        System.err.println("Woke up");;
                     }
+                    Platform.runLater(uiCallback);
                 }
             }
+        }
 
-            // Final update
-            Platform.runLater(uiCallback);
-            System.out.println("Simulation finished");
-            System.out.println("Messages sent: " + messageRouter.getMessages().size());
-            System.out.println("Text messages sent: " + messageRouter.getNumberTextsSent());
-            System.out.println("Text message success rate: " + messageRouter.getProcentSuccessfulTexts() + "%");
-            for(Node node: nodes){
-                if(node instanceof DSR_Node dsrNode){
-                    System.out.println(dsrNode.getId() + ": " + dsrNode.getKnownRoutes());
-                }
-                if(node instanceof AODV_Node aodvNode){
-//                    System.out.println(aodvNode.getId() + ": " + aodvNode.getRoutingTable());
-                    prettyPrintRoutingTable(aodvNode);
-                    System.out.println("Undelivered text messages (" + aodvNode.getWaitingMessages().size() + ") :" + aodvNode.getWaitingMessages());
-                    System.out.println("Undelivered control messages (" + aodvNode.getWaitingControlMessages().size() + ") :" + aodvNode.getWaitingControlMessages());
-                }
-                if(node instanceof SAODV_Node aodvNode){
-//                    System.out.println(aodvNode.getId() + ": " + aodvNode.getRoutingTable());
-                    prettyPrintRoutingTable(aodvNode);
-                    System.out.println("Undelivered text messages (" + aodvNode.getWaitingMessages().size() + ") :" + aodvNode.getWaitingMessages());
-                    System.out.println("Undelivered control messages (" + aodvNode.getWaitingControlMessages().size() + ") :" + aodvNode.getWaitingControlMessages());
-                }
-                if(node instanceof CBRP_Node cbrpNode){
-//                    System.out.println(cbrpNode);
-                }
+        // Final update
+        Platform.runLater(uiCallback);
+        System.out.println("Simulation finished");
+        System.out.println("Messages sent: " + messageRouter.getMessages().size());
+        System.out.println("Text messages sent: " + messageRouter.getNumberTextsSent());
+        System.out.println("Text message success rate: " + messageRouter.getProcentSuccessfulTexts() + "%");
+        for(Node node: nodes){
+            if(node instanceof DSR_Node dsrNode){
+                System.out.println(dsrNode.getId() + ": " + dsrNode.getKnownRoutes());
             }
+            if(node instanceof AODV_Node aodvNode){
+//                    System.out.println(aodvNode.getId() + ": " + aodvNode.getRoutingTable());
+                prettyPrintRoutingTable(aodvNode);
+                System.out.println("Undelivered text messages (" + aodvNode.getWaitingMessages().size() + ") :" + aodvNode.getWaitingMessages());
+                System.out.println("Undelivered control messages (" + aodvNode.getWaitingControlMessages().size() + ") :" + aodvNode.getWaitingControlMessages());
+            }
+            if(node instanceof SAODV_Node aodvNode){
+//                    System.out.println(aodvNode.getId() + ": " + aodvNode.getRoutingTable());
+                prettyPrintRoutingTable(aodvNode);
+                System.out.println("Undelivered text messages (" + aodvNode.getWaitingMessages().size() + ") :" + aodvNode.getWaitingMessages());
+                System.out.println("Undelivered control messages (" + aodvNode.getWaitingControlMessages().size() + ") :" + aodvNode.getWaitingControlMessages());
+            }
+            if(node instanceof CBRP_Node cbrpNode){
+//                    System.out.println(cbrpNode);
+            }
+        }
 //        }).start();
     }
 

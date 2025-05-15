@@ -103,7 +103,8 @@ public class MessageRouter {
             if(message.getMessageType() == MessageType.TEXT ||
                     message.getMessageType() == MessageType.DSR_TEXT ||
                     message.getMessageType() == MessageType.AODV_TEXT ||
-                    message.getMessageType() == MessageType.SAODV_TEXT) {
+                    message.getMessageType() == MessageType.SAODV_TEXT||
+                    message.getMessageType() == MessageType.CBRP_TEXT) {
 
                 if (message.isSuccessful())
                     ret++;
@@ -120,7 +121,8 @@ public class MessageRouter {
             if(message.getMessageType() == MessageType.TEXT ||
                 message.getMessageType() == MessageType.DSR_TEXT ||
                 message.getMessageType() == MessageType.AODV_TEXT ||
-                message.getMessageType() == MessageType.SAODV_TEXT) {
+                message.getMessageType() == MessageType.SAODV_TEXT ||
+                message.getMessageType() == MessageType.CBRP_TEXT) {
 
                 if (message.isSuccessful())
                     suc++;

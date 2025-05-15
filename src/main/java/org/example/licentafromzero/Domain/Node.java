@@ -1,5 +1,8 @@
 package org.example.licentafromzero.Domain;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.*;
 
 public class Node {
@@ -19,6 +22,10 @@ public class Node {
     protected HashSet<Integer> newNeighbours;
     protected boolean updatingNeighbours = false;
     protected boolean updatedPaths = true; //not for this one, but children have it
+
+    private static final String LOG_FILE = "log.txt";
+    private static BufferedWriter logWriter;
+    private static boolean logInitialized = false;
 
 
     public Node(int x, int y, int id){
@@ -147,9 +154,30 @@ public class Node {
         this.messageRouter.sendMessage(message);
     }
 
-    protected void log(int logLevel, String text){
-        if(Constants.LOG_DETAILS <= logLevel)
-            System.out.println("Node " + id + " " + text);
+//    protected void log(int logLevel, String text){
+//        if(Constants.LOG_DETAILS <= logLevel)
+//            System.out.println("Node " + id + " " + text);
+//    }
+    protected void log(int logLevel, String text) {
+        try {
+            // Initialize log file only once and clear it at the start
+            if (!logInitialized) {
+                logWriter = new BufferedWriter(new FileWriter(LOG_FILE, false)); // overwrite mode
+                logInitialized = true;
+            } else if (logWriter == null) {
+                logWriter = new BufferedWriter(new FileWriter(LOG_FILE, true)); // append mode
+            }
+
+            if (Constants.LOG_DETAILS <= logLevel) {
+                String logEntry = "Node " + id + " " + text;
+                System.out.println(logEntry);
+                logWriter.write(logEntry);
+                logWriter.newLine();
+                logWriter.flush();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public int getX() {

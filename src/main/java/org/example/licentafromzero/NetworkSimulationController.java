@@ -42,7 +42,7 @@ public class NetworkSimulationController {
         Platform.runLater(() -> {
             canvasX = (int) canvas.getWidth();
             canvasY = (int) canvas.getHeight();
-            initializeControlPanel();
+
 
 //            ground.setupRandom_Standard(Constants.SIMULATION_NR_NODES);
 //            ground.setupFromFile_Standard("src/main/java/org/example/licentafromzero/Config/configuration1.txt");
@@ -56,7 +56,8 @@ public class NetworkSimulationController {
 //            ground.setupRandom_SAODVNode(Constants.SIMULATION_NR_NODES);
 //            ground.setupFromFile_SAODVNode("src/main/java/org/example/licentafromzero/Config/configuration2.txt");
 
-            ground.setupRandom_CBRPNode(Constants.SIMULATION_NR_NODES +5);
+//            ground.setupRandom_CBRPNode(Constants.SIMULATION_NR_NODES +5);
+            ground.setupFromFile_CBRPNode("src/main/java/org/example/licentafromzero/Config/configuration2.txt");
 
 
 
@@ -69,6 +70,8 @@ public class NetworkSimulationController {
             }));
 
             groundThread.start();
+
+            initializeControlPanel();
         });
     }
 
@@ -294,7 +297,7 @@ public class NetworkSimulationController {
         MessageType type = message.getMessageType();
 
         if (type == MessageType.TEXT || type == MessageType.DSR_TEXT ||
-                type == MessageType.AODV_TEXT || type == MessageType.SAODV_TEXT)
+                type == MessageType.AODV_TEXT || type == MessageType.SAODV_TEXT || type == MessageType.CBRP_TEXT)
             return 2;
 
         if (type == MessageType.NEIGHBOUR_SYN || type == MessageType.NEIGHBOUR_ACK)
@@ -304,6 +307,9 @@ public class NetworkSimulationController {
         if (type == MessageType.AODV_RREQ || type == MessageType.AODV_RREP || type == MessageType.AODV_RERR)
             return 1;
         if (type == MessageType.SAODV_RREQ || type == MessageType.SAODV_RREP || type == MessageType.SAODV_RERR)
+            return 1;
+        if (type == MessageType.CBRP_RERR || type == MessageType.CBRP_RREP || type == MessageType.CBRP_RREQ
+                 || type == MessageType.CBRP_NEIGHBOUR_HELLO)
             return 1;
 
         return 10;

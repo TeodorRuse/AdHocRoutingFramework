@@ -203,6 +203,36 @@ public class Ground {
         }
     }
 
+    public void setupFromFile_CBRPNode(String filePath){
+        try {
+            List<String> lines = Files.readAllLines(Paths.get(filePath));
+            Map<Integer, PublicKey> keyChain = new HashMap<>();
+            numberNodes = lines.size();
+
+            for (int i = 0; i < lines.size(); i++) {
+                String[] parts = lines.get(i).trim().split("\\s+"); // split by space(s)
+                if (parts.length < 3) continue; // skip if not enough data
+
+                int x = Integer.parseInt(parts[0]);
+                int y = Integer.parseInt(parts[1]);
+                int commRadius = Integer.parseInt(parts[2]);
+
+                Node node = new CBRP_Node(x, y, i, commRadius);
+                node.setMessageRouter(messageRouter);
+                messageRouter.addNode(node);
+                nodes.add(node);
+            }
+
+            for(Node node: nodes){
+                if(node instanceof SAODV_Node saodvNode)
+                    saodvNode.setKeyChain(keyChain);
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace(); // Or handle more gracefully
+        }
+    }
+
     public void turnOnSimulationAsync(int simTimeInSeconds, Runnable uiCallback) {
 //        new Thread(() -> {
             long startTime = System.currentTimeMillis();
@@ -263,7 +293,7 @@ public class Ground {
                     System.out.println("Undelivered control messages (" + aodvNode.getWaitingControlMessages().size() + ") :" + aodvNode.getWaitingControlMessages());
                 }
                 if(node instanceof CBRP_Node cbrpNode){
-                    System.out.println(cbrpNode);
+//                    System.out.println(cbrpNode);
                 }
             }
 //        }).start();

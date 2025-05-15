@@ -11,8 +11,9 @@ public final class Constants {
     public static final int SIMULATION_PROBABILITY_NODE_TURN_OFF = 0; // %%1000
     public static final int SIMULATION_PROBABILITY_NODE_TURN_ON = 0;
     public static final int SIMULATION_RSA_KEY_SIZE = 1024;
+
     public static final int DISPLAY_DETAILS = 2;
-    public static int LOG_DETAILS = 0;
+    public static int LOG_DETAILS = 1;
     /*
        0 = everything
        1 = only node messages
@@ -34,8 +35,15 @@ public final class Constants {
     public static final int NODE_NEIGHBOUR_DISCOVERY_PERIOD = 2000;
     public static final int NODE_NEIGHBOUR_DISCOVERY_DURATION = 700;
 
+    //AODV / SAODV
     public static final int NODE_AODV_STALE_ROUTE_PERIOD = 3000;
     public static final int NODE_SAODV_FORWARD_BUFFER_SIZE = 10;
+
+    //CBRP
+    public static final long NODE_CBRP_HELLO_INTERVAL = 2000; // 2 seconds
+    public static final int NODE_CBRP_HELLO_LOSS = 1;
+    public static final long NODE_CBRP_CONTENTION_PERIOD = 1500; // 1.5 seconds
+    public static final long NODE_CBRP_UNDECIDED_PD = 1000; // 1 second
 
     //Message values
     public static final int MESSAGE_NUMBER_FRAMES_SHOWN = 1;

@@ -19,12 +19,6 @@ public class CBRP_Node extends Node {
     private static final int LINK_FROM = 1;
     private static final int LINK_TO = 2;
 
-    // Protocol constants
-    private static final long HELLO_INTERVAL = 2000; // 2 seconds
-    private static final int HELLO_LOSS = 1;
-    private static final long CONTENTION_PERIOD = 1500; // 1.5 seconds
-    private static final long UNDECIDED_PD = 1000; // 1 second
-
     // Node state
     private int nodeStatus = C_UNDECIDED;
     private int sequenceNumber = 0;
@@ -76,7 +70,7 @@ public class CBRP_Node extends Node {
             checkTimers();
 
             // Send periodic HELLO messages
-            if (totalRunTime - lastHelloSent >= HELLO_INTERVAL) {
+            if (totalRunTime - lastHelloSent >= Constants.NODE_CBRP_HELLO_INTERVAL) {
                 sendHelloMessage();
                 lastHelloSent = totalRunTime;
             }
@@ -139,67 +133,16 @@ public class CBRP_Node extends Node {
 
         if (uTimerActive && currentTime >= uTimer) {
             uTimerActive = false;
-            log(1, "*** UNDECIDED TIMER EXPIRED at " + currentTime);
+            log(2, "undecided timer expired");
 
             // Force cluster head election for debugging
             if (nodeStatus == C_UNDECIDED) {
                 // Elect self as cluster head
                 nodeStatus = C_HEAD;
-                log(1, "*** ELECTED SELF AS CLUSTER HEAD");
+                log(2, "elected self as cluster head");
                 sendHelloMessage(); // Triggered HELLO
             }
         }
-
-        // Check undecided timer
-//        if (uTimerActive && currentTime >= uTimer) {
-//            uTimerActive = false;
-//            log(2, "undecided timer expired");
-//
-//            // Get neighbors with bidirectional links
-//            List<Integer> bidirectionalNeighbors = new ArrayList<>(neighbours);
-//
-//            if (bidirectionalNeighbors.isEmpty()) {
-//                // No bidirectional neighbors, stay undecided
-//                nodeStatus = C_UNDECIDED;
-//                log(2, "no bidirectional neighbors, staying undecided");
-//            } else {
-//                // Check if any neighbor is a cluster head
-//                boolean hasClusterHeadNeighbor = false;
-//                for (Integer neighborId : bidirectionalNeighbors) {
-//                    CBRP_NeighborTableEntry entry = neighborTable.get(neighborId);
-//                    if (entry != null && entry.getRole() == C_HEAD) {
-//                        hasClusterHeadNeighbor = true;
-//                        nodeStatus = C_MEMBER;
-//                        log(2, "became member of cluster " + neighborId);
-//                        break;
-//                    }
-//                }
-//
-//                if (!hasClusterHeadNeighbor) {
-//                    // Check if we have the lowest ID among neighbors
-//                    boolean hasLowerIdNeighbor = false;
-//                    for (Integer neighborId : bidirectionalNeighbors) {
-//                        if (neighborId < id) {
-//                            hasLowerIdNeighbor = true;
-//                            break;
-//                        }
-//                    }
-//
-//                    if (!hasLowerIdNeighbor) {
-//                        // Elect self as cluster head
-//                        nodeStatus = C_HEAD;
-//                        log(2, "elected self as cluster head");
-//                    } else {
-//                        // Stay undecided for now
-//                        nodeStatus = C_UNDECIDED;
-//                        log(2, "not lowest ID, staying undecided");
-//                    }
-//                }
-//            }
-//
-//            // Send a triggered HELLO message to announce our new status
-//            sendHelloMessage();
-//        }
 
         // Check contention timer
         if (cTimerActive && currentTime >= cTimer) {
@@ -235,7 +178,7 @@ public class CBRP_Node extends Node {
         // Check for neighbor table entries timeout
         List<Integer> expiredNeighbors = new ArrayList<>();
         for (Map.Entry<Integer, CBRP_NeighborTableEntry> entry : neighborTable.entrySet()) {
-            if (entry.getKey() != id && entry.getValue().isExpired(currentTime, (HELLO_LOSS + 1) * HELLO_INTERVAL)) {
+            if (entry.getKey() != id && entry.getValue().isExpired(currentTime, (Constants.NODE_CBRP_HELLO_LOSS + 1) * Constants.NODE_CBRP_HELLO_INTERVAL)) {
                 expiredNeighbors.add(entry.getKey());
             }
         }
@@ -284,13 +227,13 @@ public class CBRP_Node extends Node {
     }
 
     private void scheduleUTimer() {
-        uTimer = totalRunTime + UNDECIDED_PD;
+        uTimer = totalRunTime + Constants.NODE_CBRP_UNDECIDED_PD;
         uTimerActive = true;
-        log(2, "*** SCHEDULED UNDECIDED TIMER to expire at " + uTimer + " (current time: " + totalRunTime + ")");
+        log(2, "scheduled undecided timer to expire at " + uTimer + " (current time: " + totalRunTime + ")");
     }
 
     private void scheduleCTimer() {
-        cTimer = totalRunTime + CONTENTION_PERIOD;
+        cTimer = totalRunTime + Constants.NODE_CBRP_CONTENTION_PERIOD;
         cTimerActive = true;
         log(2, "scheduled contention timer to expire at " + cTimer);
     }
@@ -450,12 +393,12 @@ public class CBRP_Node extends Node {
                 // Undecided node becomes a member of this cluster
                 nodeStatus = C_MEMBER;
                 uTimerActive = false; // Cancel undecided timer
-                log(1, "became member of cluster " + senderId);
+                log(2, "became member of cluster " + senderId);
                 sendHelloMessage(); // Triggered HELLO
             } else if (nodeStatus == C_HEAD && !cTimerActive) {
                 // Two cluster heads with bidirectional link - start contention
                 scheduleCTimer();
-                log(1, "started contention with cluster head " + senderId);
+                log(2, "started contention with cluster head " + senderId);
             }
         }
 
@@ -504,7 +447,7 @@ public class CBRP_Node extends Node {
         // Extract RREQ information
         CBRP_RouteRequestInfo rreqInfo = message.getRouteRequestInfo();
         if (rreqInfo == null) {
-            log(1, "received invalid RREQ");
+            log(2, "received invalid RREQ");
             return;
         }
 
@@ -520,7 +463,7 @@ public class CBRP_Node extends Node {
 
         // Check if we are the target
         if (rreqInfo.getTargetAddress() == id) {
-            log(1, "I am the target for RREQ from " + rreqInfo.getOriginalSource());
+            log(2, "I am the target for RREQ from " + rreqInfo.getOriginalSource());
             sendRouteReply(message);
             return;
         }
@@ -542,7 +485,7 @@ public class CBRP_Node extends Node {
         // Check if we know the target is 2 hops away
         for (Map.Entry<Integer, List<Integer>> entry : twoHopTopology.entrySet()) {
             if (entry.getValue().contains(rreqInfo.getTargetAddress())) {
-                log(1, "target is 2 hops away through " + entry.getKey());
+                log(2, "target is 2 hops away through " + entry.getKey());
                 // Forward RREQ to the intermediate node
                 CBRP_Message forwardedRreq = new CBRP_Message(message);
                 forwardedRreq.setSource(id);
@@ -636,13 +579,13 @@ public class CBRP_Node extends Node {
         // Extract RREP information
         CBRP_RouteReplyInfo rrepInfo = message.getRouteReplyInfo();
         if (rrepInfo == null) {
-            log(1, "received invalid RREP");
+            log(2, "received invalid RREP");
             return;
         }
         
         // Check if we are the final destination for this RREP
         if (rrepInfo.getFinalDestination() == id) {
-            log(1, "received RREP for route to " + message.getSource());
+            log(2, "received RREP for route to " + message.getSource());
             
             // Extract the calculated route
             List<Integer> route = rrepInfo.getCalculatedRoute();
@@ -661,7 +604,7 @@ public class CBRP_Node extends Node {
         if (nodeStatus == C_HEAD) {
             // We're a cluster head, calculate next hop in the cluster path
             if (rrepInfo.getClusterAddresses().isEmpty()) {
-                log(1, "RREP has empty cluster address list, cannot forward");
+                log(2, "RREP has empty cluster address list, cannot forward");
                 return;
             }
             
@@ -695,12 +638,12 @@ public class CBRP_Node extends Node {
                 messageRouter.sendMessage(forwardedRrep);
                 log(2, "forwarded RREP to gateway " + gatewayNode + " for cluster " + nextClusterHead);
             } else {
-                log(1, "no gateway found to next cluster head " + nextClusterHead);
+                log(2, "no gateway found to next cluster head " + nextClusterHead);
             }
         } else if (nodeStatus == C_MEMBER) {
             // We're a member node, check if next hop is our neighbor
             if (rrepInfo.getClusterAddresses().isEmpty()) {
-                log(1, "RREP has empty cluster address list, cannot forward");
+                log(2, "RREP has empty cluster address list, cannot forward");
                 return;
             }
             
@@ -721,7 +664,7 @@ public class CBRP_Node extends Node {
                 messageRouter.sendMessage(forwardedRrep);
                 log(2, "forwarded RREP directly to cluster head " + nextClusterHead);
             } else {
-                log(1, "next cluster head " + nextClusterHead + " is not my neighbor");
+                log(2, "next cluster head " + nextClusterHead + " is not my neighbor");
             }
         }
     }
@@ -730,7 +673,7 @@ public class CBRP_Node extends Node {
         // Extract RERR information
         CBRP_RouteErrorInfo rerrInfo = message.getRouteErrorInfo();
         if (rerrInfo == null) {
-            log(1, "received invalid RERR");
+            log(2, "received invalid RERR");
             return;
         }
         
@@ -738,7 +681,7 @@ public class CBRP_Node extends Node {
         int fromAddress = rerrInfo.getFromAddress();
         int toAddress = rerrInfo.getToAddress();
         
-        log(1, "received RERR for broken link " + fromAddress + " -> " + toAddress);
+        log(2, "received RERR for broken link " + fromAddress + " -> " + toAddress);
         
         // Remove routes from cache that use this broken link
         List<String> routesToRemove = new ArrayList<>();
@@ -793,7 +736,7 @@ public class CBRP_Node extends Node {
         List<Integer> sourceRoute = message.getSourceRoute();
         
         if (sourceRoute == null || sourceRoute.isEmpty()) {
-            log(1, "text message has no source route, cannot forward");
+            log(2, "text message has no source route, cannot forward");
             return;
         }
         
@@ -931,14 +874,14 @@ public class CBRP_Node extends Node {
         
         // Send the RREP
         messageRouter.sendMessage(rrepMessage);
-        log(1, "sent RREP to " + rreqMessage.getSource());
+        log(2, "sent RREP to " + rreqMessage.getSource());
     }
 
     private void sendRouteError(CBRP_Message message) {
         // Get the source route from the message
         List<Integer> sourceRoute = message.getSourceRoute();
         if (sourceRoute == null || sourceRoute.isEmpty()) {
-            log(1, "cannot send RERR, no source route in message");
+            log(2, "cannot send RERR, no source route in message");
             return;
         }
         
@@ -957,7 +900,7 @@ public class CBRP_Node extends Node {
         
         // Send the RERR
         messageRouter.sendMessage(rerrMessage);
-        log(1, "sent RERR for broken link " + id + " -> " + unreachableNode);
+        log(2, "sent RERR for broken link " + id + " -> " + unreachableNode);
     }
 
     private boolean tryLocalRepair(CBRP_Message message) {
@@ -993,7 +936,7 @@ public class CBRP_Node extends Node {
                     repairedMessage.setDestination(intermediateNode);
                     repairedMessage.setMulticast(false);
                     messageRouter.sendMessage(repairedMessage);
-                    log(1, "repaired route using intermediate node " + intermediateNode);
+                    log(2, "repaired route using intermediate node " + intermediateNode);
                     
                     return true;
                 }
@@ -1021,7 +964,7 @@ public class CBRP_Node extends Node {
                 repairedMessage.setDestination(nodeAfterUnreachable);
                 repairedMessage.setMulticast(false);
                 messageRouter.sendMessage(repairedMessage);
-                log(1, "repaired route by skipping unreachable node " + unreachableNode);
+                log(2, "repaired route by skipping unreachable node " + unreachableNode);
                 
                 return true;
             }
@@ -1051,7 +994,7 @@ public class CBRP_Node extends Node {
                         repairedMessage.setDestination(intermediateNode);
                         repairedMessage.setMulticast(false);
                         messageRouter.sendMessage(repairedMessage);
-                        log(1, "repaired route by finding alternative path to node after unreachable");
+                        log(2, "repaired route by finding alternative path to node after unreachable");
                         
                         return true;
                     }

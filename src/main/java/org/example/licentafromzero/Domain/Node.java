@@ -20,6 +20,8 @@ public class Node {
     protected boolean updatingNeighbours = false;
     protected boolean updatedPaths = true; //not for this one, but children have it
 
+    protected Timer randomMessageTimer;
+
     public Node(int x, int y, int id){
         this.x = x;
         this.y = y;
@@ -31,6 +33,8 @@ public class Node {
         this.communicationRadius = random.nextInt(Constants.NODE_COMM_RANGE_BOUND) + Constants.NODE_COMM_RANGE_MIN_VAL;
         this.neighbours = new HashSet<>();
         this.newNeighbours = new HashSet<>();
+
+        this.randomMessageTimer = new Timer(messageDelay);
     }
 
     public Node(int x, int y, int id, int communicationRadius){
@@ -44,6 +48,8 @@ public class Node {
         this.communicationRadius = communicationRadius;
         this.neighbours = new HashSet<>();
         this.newNeighbours = new HashSet<>();
+
+        this.randomMessageTimer = new Timer(messageDelay);
     }
 
     public void turnOn(int runtTime) {         //runtTime is in millis
@@ -57,7 +63,8 @@ public class Node {
 
             discoverNeighbours();
 
-            if (totalRunTime - lastMessageSent >= messageDelay) {
+//            if (totalRunTime - lastMessageSent >= messageDelay) {
+            if(randomMessageTimer.tick(totalRunTime)){
                 //Not efficient but should work for now
                 List<Integer> neighbourList = new ArrayList<>(neighbours);
                 if (!neighbourList.isEmpty()) {
@@ -68,7 +75,7 @@ public class Node {
                 lastMessageSent = totalRunTime;
             }
 
-            move();
+//            move();
 
             try {
                 Thread.sleep(Constants.NODE_DELAY);

@@ -29,9 +29,10 @@ import java.io.*;
 import java.util.*;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
-//TODO: Add design for unrelated to cluster node (AODV, SAOVD etc)
 //TODO: Add moving around the ground
-//TODO: add home screen with display protoclol, and modify constnst
+//TODO: add home screen with display protoclol, and modify constants
+//TODO: Add node details when clicked on node
+//TODO: ADD RANDOM WAYPOINT MOBILITY!!
 
 public class NetworkSimulationController {
 
@@ -136,7 +137,10 @@ public class NetworkSimulationController {
 //            ground.setupFromFile_SAODVNode("src/main/java/org/example/licentafromzero/Config/configuration2.txt");
 
 //            ground.setupRandom_CBRPNode(Constants.SIMULATION_NR_NODES +5);
-            ground.setupFromFile_CBRPNode("src/main/java/org/example/licentafromzero/Config/configuration2.txt");
+//            ground.setupFromFile_CBRPNode("src/main/java/org/example/licentafromzero/Config/configuration2.txt");
+
+//            ground.setupRandom_OLSRNode(Constants.SIMULATION_NR_NODES);
+            ground.setupFromFile_OLSRNode("src/main/java/org/example/licentafromzero/Config/configuration2.txt");
 
             // Start async simulation and update UI on each tick
             groundThread = new Thread((() -> {

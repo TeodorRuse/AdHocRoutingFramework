@@ -5,6 +5,7 @@ import org.example.licentafromzero.AODV.AODV_Node;
 import org.example.licentafromzero.AODV.AODV_RoutingTableEntry;
 import org.example.licentafromzero.CBRP_Paper.CBRP_Node;
 import org.example.licentafromzero.DSR.DSR_Node;
+import org.example.licentafromzero.OLSR.OLSR_Node;
 import org.example.licentafromzero.SAODV.SAODV_Node;
 import org.example.licentafromzero.SAODV.SAODV_RoutingTableEntry;
 
@@ -212,6 +213,17 @@ public class Ground {
         }
     }
 
+    public void setupRandom_OLSRNode(int numberNodes){
+        this.protocol = "OLSR";
+        this.numberNodes = numberNodes;
+        for(int i=0;i<numberNodes;i++){
+            Node node = new OLSR_Node(random.nextInt(sizeX), random.nextInt(sizeY), i);
+            node.setMessageRouter(messageRouter);
+            messageRouter.addNode(node);
+            nodes.add(node);
+        }
+    }
+
     public void setupFromFile_CBRPNode(String filePath){
         this.protocol = "CBRP";
         try {
@@ -233,11 +245,31 @@ public class Ground {
                 nodes.add(node);
             }
 
-            for(Node node: nodes){
-                if(node instanceof SAODV_Node saodvNode)
-                    saodvNode.setKeyChain(keyChain);
-            }
+        } catch (IOException e) {
+            e.printStackTrace(); // Or handle more gracefully
+        }
+    }
 
+    public void setupFromFile_OLSRNode(String filePath){
+        this.protocol = "OLSR";
+        try {
+            List<String> lines = Files.readAllLines(Paths.get(filePath));
+            Map<Integer, PublicKey> keyChain = new HashMap<>();
+            numberNodes = lines.size();
+
+            for (int i = 0; i < lines.size(); i++) {
+                String[] parts = lines.get(i).trim().split("\\s+"); // split by space(s)
+                if (parts.length < 3) continue; // skip if not enough data
+
+                int x = Integer.parseInt(parts[0]);
+                int y = Integer.parseInt(parts[1]);
+                int commRadius = Integer.parseInt(parts[2]);
+
+                Node node = new OLSR_Node(x, y, i, commRadius);
+                node.setMessageRouter(messageRouter);
+                messageRouter.addNode(node);
+                nodes.add(node);
+            }
         } catch (IOException e) {
             e.printStackTrace(); // Or handle more gracefully
         }
@@ -311,6 +343,10 @@ public class Ground {
                 Util.log(cbrpNode.getWaitingMessages().stream()
                                 .map(Message::prettyPrint)
                                 .collect(Collectors.joining("\n ")), true);
+            }
+            if(node instanceof OLSR_Node olsrNode){
+                Util.log("[" + node.getId() +"] Undelivered text messages (" + olsrNode.getWaitingMessages().size() + ")");
+                Util.log(olsrNode.prettyPrintNodeState(), true);
             }
         }
     }

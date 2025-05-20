@@ -4,7 +4,7 @@ public final class Constants {
     private Constants(){};
 
     //General values
-    public static final int SIMULATION_TIME = 30; //seconds
+    public static final int SIMULATION_TIME = 10; //seconds
     public static final int SIMULATION_NR_NODES = 10;
     public static int SIMULATION_DELAY_BETWEEN_FRAMES = 10;
     public static final int SIMULATION_EXEC_TIME_NODE = 100; // NO modify
@@ -17,7 +17,7 @@ public final class Constants {
     public static final int LOG_LEVEL_MESSAGE         = 2; // Only relevant messages
     public static final int LOG_LEVEL_TEXT            = 3; // Only text messages
 
-    public static int LOG_LEVEL = LOG_LEVEL_NODE;
+    public static int LOG_LEVEL = 2;
 
 
     //Node values
@@ -41,6 +41,14 @@ public final class Constants {
     public static final int NODE_CBRP_HELLO_LOSS = 1;
     public static final long NODE_CBRP_CONTENTION_PERIOD = 1000; // 1.5 seconds
     public static final long NODE_CBRP_UNDECIDED_PD = 1000; // 1 second
+
+    //OLSR
+    public static final int OLSR_HELLO_INTERVAL = 1000;
+    public static final int OLSR_TC_INTERVAL = 5000;
+    public static final int OLSR_NEIGHBOR_EXPIRATION_TIME = OLSR_HELLO_INTERVAL*100000;
+    public static final int OLSR_TOP_HOLD_INTERVAL = OLSR_TC_INTERVAL*300000;
+
+
 
     //Message values
     public static final int MESSAGE_NUMBER_FRAMES_SHOWN = 1;

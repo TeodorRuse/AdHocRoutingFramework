@@ -42,14 +42,12 @@ public class MessageRouter {
             }
             if (source != null && destination != null){
                 if (canSend(source, destination)) {
-                    if(Constants.LOG_LEVEL == 0)
-                        System.out.println("Successfully sent "+ message.getMessageType() + " : " + source.getId() + " -> " + destination.getId());
+                    Util.log(0, source.getId(), " successfully sent "+ message.getMessageType() + " : " + source.getId() + " -> " + destination.getId());
                     destination.addMessage(message);
                     message.setSuccessful(true);
                     messages.add(message);
                 } else {
-                    if(Constants.LOG_LEVEL == 0)
-                        System.out.println("Failed to send "+ message.getMessageType() + " - out of range: " + source.getId() + " -> " + destination.getId());
+                    Util.log(0, source.getId(), " failed to send "+ message.getMessageType() + " - out of range: " + source.getId() + " -> " + destination.getId());
                     message.setSuccessful(false);
                     messages.add(message);
                 }
@@ -102,7 +100,8 @@ public class MessageRouter {
                     message.getMessageType() == MessageType.DSR_TEXT ||
                     message.getMessageType() == MessageType.AODV_TEXT ||
                     message.getMessageType() == MessageType.SAODV_TEXT||
-                    message.getMessageType() == MessageType.CBRP_TEXT) {
+                    message.getMessageType() == MessageType.CBRP_TEXT ||
+                    message.getMessageType() == MessageType.OLSR_TEXT) {
 
                 if (message.isSuccessful())
                     ret++;
@@ -120,7 +119,8 @@ public class MessageRouter {
                 message.getMessageType() == MessageType.DSR_TEXT ||
                 message.getMessageType() == MessageType.AODV_TEXT ||
                 message.getMessageType() == MessageType.SAODV_TEXT ||
-                message.getMessageType() == MessageType.CBRP_TEXT) {
+                message.getMessageType() == MessageType.CBRP_TEXT ||
+                message.getMessageType() == MessageType.OLSR_TEXT) {
 
                 if (message.isSuccessful())
                     suc++;

@@ -132,7 +132,6 @@ public class OLSR_Node extends Node {
 
                 //update 2hopneighbours
                 for (OLSR_NeighbourTable_1hop entry: msgHello.getNeighbours()){
-
                     boolean isAlreadyOneHop = false;
                     for(var one: neighbourTable_oneHop){
                         if(one.getId() == entry.getId()) isAlreadyOneHop = true;
@@ -149,14 +148,22 @@ public class OLSR_Node extends Node {
                     }
                 }
 
+
                 updateRoutingTable();
 
                 // if mrps include this node, then build mrp hashmap
                 if(msgHello.getMrpsSender().contains(id)){
-                    mrpSelectors.add(msgHello.getSource());
+                    // Only add if not already in the list
+                    if(!mrpSelectors.contains(msgHello.getSource())) {
+                        mrpSelectors.add(msgHello.getSource());
+                    }
+                } else {
+                    // If this node was previously selected as MPR but is no longer, remove it
+                    mrpSelectors.remove(Integer.valueOf(msgHello.getSource()));
                 }
-
                 break;
+
+
             case OLSR_TC:
                 //check if message is known | add to known msgIds | update routing table | forward if mrp;
                 OLSR_Message_TC msgTC = (OLSR_Message_TC) message;
@@ -167,8 +174,10 @@ public class OLSR_Node extends Node {
                     updateRoutingTable(msgTC);
 
                     if(!mrpSelectors.isEmpty()){
-                        messageRouter.sendMessage(msgTC);
+                        sendMessage(msgTC);
                     }
+                }else{
+                    log(0, " TC message already received, ignoring");
                 }
                 break;
         }
@@ -183,18 +192,23 @@ public class OLSR_Node extends Node {
             sendMessage(new Message(id, destination, "Hello from " + id));
         }
 
-        //HELLO_MESSAGE
+        // HELLO_MESSAGE
         if(helloTimer.tick(totalRunTime)){
             electMRPs();
             OLSR_Message_HELLO msg = new OLSR_Message_HELLO(id, -1, neighbourTable_oneHop, multipleRelayPoints);
             sendMessage(msg);
         }
 
-        //TC_MESSAGE
-        if(!mrpSelectors.isEmpty() && tcTimer.tick(totalRunTime)){
-            seqNum++;
-            OLSR_Message_TC msg = new OLSR_Message_TC(id, -1, new Pair<>(id, seqNum), mrpSelectors);
-            sendMessage(msg);
+        // TC_MESSAGE
+        if(tcTimer.tick(totalRunTime)){
+            // Only send TC messages if we have MPR selectors
+            if(!mrpSelectors.isEmpty()) {
+                seqNum++;
+                // Create a new ArrayList to avoid duplicates
+                ArrayList<Integer> uniqueSelectors = new ArrayList<>(new HashSet<>(mrpSelectors));
+                OLSR_Message_TC msg = new OLSR_Message_TC(id, -1, new Pair<>(id, seqNum), uniqueSelectors);
+                sendMessage(msg);
+            }
         }
     }
 
@@ -241,43 +255,93 @@ public class OLSR_Node extends Node {
     }
 
     public void updateRoutingTable(OLSR_Message_TC msg) {
+        // Age routes and neighbors first
         ageRoutesAndNeighbours();
 
+        // Get the originator of the TC message
         int tcOriginatorAddr = msg.getOriginalSource();
 
+        // Skip processing if we don't have a route to the TC originator
+        if (!routingTable.containsKey(tcOriginatorAddr) &&
+                !neighbourTable_oneHop.stream().anyMatch(n -> n.getId() == tcOriginatorAddr)) {
+            return;
+        }
+
+        // Get the next hop to reach the TC originator
+        int nextHopToTcOriginator = getNextHopToNode(tcOriginatorAddr);
+
+        // Get the hop count to the TC originator
+        int hopCountToTcOriginator = getHopCountToNode(tcOriginatorAddr);
+
+        // For each advertised node in the TC message
         for (int advertisedNodeAddr : msg.getAdvertisedNodes()) {
+            // Skip if the advertised node is this node
             if (advertisedNodeAddr == id) {
                 continue;
             }
 
+            // Calculate the new hop count to this advertised node
+            int newHopCount = hopCountToTcOriginator + 1;
+
+            // Check if we already have a route to this node
             if (routingTable.containsKey(advertisedNodeAddr)) {
                 OLSR_RoutingTableEntry existingEntry = routingTable.get(advertisedNodeAddr);
 
-                // If the existing route is through the TC originator and it's a 2-hop route
-                // or if the existing route has a higher hop count than what we'd get through the TC originator
-                if ((existingEntry.getNextHop() == tcOriginatorAddr && existingEntry.getHopCount() == 2) ||
-                        (getHopCountToNode(tcOriginatorAddr) + 1 < existingEntry.getHopCount())) {
-
-                    // Update the existing entry
-                    existingEntry.setNextHop(tcOriginatorAddr);
-                    existingEntry.setHopCount(getHopCountToNode(tcOriginatorAddr) + 1);
+                // Only update if the new route is better (lower hop count)
+                if (newHopCount < existingEntry.getHopCount()) {
+                    existingEntry.setNextHop(nextHopToTcOriginator);
+                    existingEntry.setHopCount(newHopCount);
                     existingEntry.setTimeReceived(System.currentTimeMillis());
                 }
             } else {
                 // We don't have a route to this node yet, create a new entry
-                // Only create if we have a route to the TC originator
-                if (routingTable.containsKey(tcOriginatorAddr) || neighbourTable_oneHop.stream().anyMatch(n -> n.getId() == tcOriginatorAddr)) {
-                    int hopCount = getHopCountToNode(tcOriginatorAddr) + 1;
-                    OLSR_RoutingTableEntry newEntry = new OLSR_RoutingTableEntry(
-                            advertisedNodeAddr,
-                            getNextHopToNode(tcOriginatorAddr),
-                            hopCount
-                    );
-                    routingTable.put(advertisedNodeAddr, newEntry);
-                }
+                OLSR_RoutingTableEntry newEntry = new OLSR_RoutingTableEntry(
+                        advertisedNodeAddr,
+                        nextHopToTcOriginator,
+                        newHopCount
+                );
+                routingTable.put(advertisedNodeAddr, newEntry);
             }
         }
     }
+//    public void updateRoutingTable(OLSR_Message_TC msg) {
+//        ageRoutesAndNeighbours();
+//
+//        int tcOriginatorAddr = msg.getOriginalSource();
+//
+//        for (int advertisedNodeAddr : msg.getAdvertisedNodes()) {
+//            if (advertisedNodeAddr == id) {
+//                continue;
+//            }
+//
+//            if (routingTable.containsKey(advertisedNodeAddr)) {
+//                OLSR_RoutingTableEntry existingEntry = routingTable.get(advertisedNodeAddr);
+//
+//                // If the existing route is through the TC originator and it's a 2-hop route
+//                // or if the existing route has a higher hop count than what we'd get through the TC originator
+//                if ((existingEntry.getNextHop() == tcOriginatorAddr && existingEntry.getHopCount() == 2) ||
+//                        (getHopCountToNode(tcOriginatorAddr) + 1 < existingEntry.getHopCount())) {
+//
+//                    // Update the existing entry
+//                    existingEntry.setNextHop(tcOriginatorAddr);
+//                    existingEntry.setHopCount(getHopCountToNode(tcOriginatorAddr) + 1);
+//                    existingEntry.setTimeReceived(System.currentTimeMillis());
+//                }
+//            } else {
+//                // We don't have a route to this node yet, create a new entry
+//                // Only create if we have a route to the TC originator
+//                if (routingTable.containsKey(tcOriginatorAddr) || neighbourTable_oneHop.stream().anyMatch(n -> n.getId() == tcOriginatorAddr)) {
+//                    int hopCount = getHopCountToNode(tcOriginatorAddr) + 1;
+//                    OLSR_RoutingTableEntry newEntry = new OLSR_RoutingTableEntry(
+//                            advertisedNodeAddr,
+//                            getNextHopToNode(tcOriginatorAddr),
+//                            hopCount
+//                    );
+//                    routingTable.put(advertisedNodeAddr, newEntry);
+//                }
+//            }
+//        }
+//    }
 
     private int getHopCountToNode(int nodeAddr) {
         if (neighbourTable_oneHop.stream().anyMatch(n -> n.getId() == nodeAddr)) {
@@ -439,33 +503,35 @@ public class OLSR_Node extends Node {
         multipleRelayPoints.addAll(mprsToKeep);
     }
 
-    public void ageRoutesAndNeighbours(){
-        //clear old routes and neighbours
+    public void ageRoutesAndNeighbours() {
+        // Clear old routes and neighbours
+        ArrayList<OLSR_NeighbourTable_1hop> toRemove1Hop = new ArrayList<>();
+        for(OLSR_NeighbourTable_1hop neighbour: neighbourTable_oneHop){
+            if(neighbour.isExpired())
+                toRemove1Hop.add(neighbour);
+        }
+        neighbourTable_oneHop.removeAll(toRemove1Hop);
 
-        //TODO: put back
-//        ArrayList<OLSR_NeighbourTable_1hop> toRemove1Hop = new ArrayList<>();
-//        for(OLSR_NeighbourTable_1hop neighbour: neighbourTable_oneHop){
-//            if(neighbour.isExpired())
-//                toRemove1Hop.add(neighbour);
-//        }
-//        neighbourTable_oneHop.removeAll(toRemove1Hop);
-//
-//        ArrayList<OLSR_NeighbourTable_2hop> toRemove2Hop = new ArrayList<>();
-//        for(int key: neighbourTable_twoHop.keySet()) {
-//            OLSR_NeighbourTable_2hop neighbour = neighbourTable_twoHop.get(key);
-//            neighbour.updateNextHops();
-//            if(neighbour.isExpired())
-//                toRemove2Hop.add(neighbour);
-//        }
-//        toRemove2Hop.forEach(n -> neighbourTable_twoHop.remove(n.getId()));
-//
-//        ArrayList<OLSR_RoutingTableEntry> toRemoveRouting = new ArrayList<>();
-//        for(int key: routingTable.keySet()) {
-//            OLSR_RoutingTableEntry entry = routingTable.get(key);
-//            if(entry.isExpired())
-//                toRemoveRouting.add(entry);
-//        }
-//        toRemoveRouting.forEach(n -> routingTable.remove(n.getDestination()));
+        ArrayList<Integer> toRemove2Hop = new ArrayList<>();
+        for(int key: neighbourTable_twoHop.keySet()) {
+            OLSR_NeighbourTable_2hop neighbour = neighbourTable_twoHop.get(key);
+            neighbour.updateNextHops();
+            if(neighbour.isExpired())
+                toRemove2Hop.add(key);
+        }
+        for(int key: toRemove2Hop) {
+            neighbourTable_twoHop.remove(key);
+        }
+
+        ArrayList<Integer> toRemoveRouting = new ArrayList<>();
+        for(int key: routingTable.keySet()) {
+            OLSR_RoutingTableEntry entry = routingTable.get(key);
+            if(entry.isExpired())
+                toRemoveRouting.add(key);
+        }
+        for(int key: toRemoveRouting) {
+            routingTable.remove(key);
+        }
     }
 
     public ArrayList<OLSR_NeighbourTable_1hop> getNeighbourTable_oneHop() {

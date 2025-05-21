@@ -4,7 +4,7 @@ public final class Constants {
     private Constants(){};
 
     //General values
-    public static final int SIMULATION_TIME = 10; //seconds
+    public static final int SIMULATION_TIME = 30; //seconds
     public static final int SIMULATION_NR_NODES = 10;
     public static int SIMULATION_DELAY_BETWEEN_FRAMES = 10;
     public static final int SIMULATION_EXEC_TIME_NODE = 100; // NO modify
@@ -17,7 +17,7 @@ public final class Constants {
     public static final int LOG_LEVEL_MESSAGE         = 2; // Only relevant messages
     public static final int LOG_LEVEL_TEXT            = 3; // Only text messages
 
-    public static int LOG_LEVEL = 2;
+    public static int LOG_LEVEL = 1;
 
 
     //Node values

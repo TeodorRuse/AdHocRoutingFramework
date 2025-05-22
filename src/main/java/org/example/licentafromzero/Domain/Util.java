@@ -59,11 +59,14 @@ public class Util {
                 logWriter = new BufferedWriter(new FileWriter(LOG_FILE, true)); // append
             }
 
-            if(fileExclusive) {
-                String logEntry = " " + text;
-                System.out.println(logEntry);
-                logWriter.write(logEntry);
-                logWriter.newLine();
+            if (fileExclusive) {
+                String[] lines = text.split("\\R"); // handles all newline types (Unix, Windows, etc.)
+                for (String line : lines) {
+                    String logEntry = " " + line;
+                    System.out.println(logEntry);
+                    logWriter.write(logEntry);
+                    logWriter.newLine();
+                }
                 logWriter.flush();
             }
 

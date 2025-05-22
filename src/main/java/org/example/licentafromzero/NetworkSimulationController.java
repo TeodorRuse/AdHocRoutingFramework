@@ -378,6 +378,7 @@ public class NetworkSimulationController {
             case "DSR": break;
             case "AODV": break;
             case "SAODV": break;
+            case "OLSR": break;
             case "CBRP":
                 switch (status) {
                     case 1: // C_HEAD
@@ -774,8 +775,8 @@ private void drawClusters() {
     public int classifyMessageType(Message message) {
         MessageType type = message.getMessageType();
 
-        if (type == MessageType.TEXT || type == MessageType.DSR_TEXT ||
-                type == MessageType.AODV_TEXT || type == MessageType.SAODV_TEXT || type == MessageType.CBRP_TEXT)
+        if (type == MessageType.TEXT || type == MessageType.DSR_TEXT || type == MessageType.AODV_TEXT ||
+                type == MessageType.SAODV_TEXT || type == MessageType.CBRP_TEXT || type == MessageType.OLSR_TEXT )
             return 3;
 
         if (type == MessageType.NEIGHBOUR_SYN || type == MessageType.NEIGHBOUR_ACK || type == MessageType.CBRP_NEIGHBOUR_HELLO)

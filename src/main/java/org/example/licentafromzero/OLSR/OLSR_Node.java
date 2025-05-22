@@ -21,6 +21,7 @@ public class OLSR_Node extends Node {
 
     private Timer helloTimer = new Timer(Constants.OLSR_HELLO_INTERVAL);
     private Timer tcTimer = new Timer(Constants.OLSR_TC_INTERVAL);
+    private Timer resendTimer = new Timer(Constants.OLSR_RESEND_TIME);
     private Timer randomMessageTimer;
 
     private ArrayList<Message> waitingMessages = new ArrayList<>();
@@ -46,11 +47,11 @@ public class OLSR_Node extends Node {
                 handleMessage(messages.remove(0));
             }
 
-            discoverNeighbours(); //TODO: modify with proper OLSR way (from HELLO)
+            discoverNeighbours();
             updateTimers();
 
-//            if(id == 0)
-//                move();
+            if(id == 0)
+                move();
 
             try {
                 Thread.sleep(Constants.NODE_DELAY);
@@ -72,8 +73,7 @@ public class OLSR_Node extends Node {
                     msgTEXT.setDestination(routingTable.get(msgTEXT.getFinalDestination()).getNextHop());
                     messageRouter.sendMessage(msgTEXT);
                 }else{
-                    waitingMessages.add(message);
-                    //TODO: figure how to try to rensend it after
+                    waitingMessages.add(msgTEXT);
                 }
                 break;
             case OLSR_TC:
@@ -87,16 +87,13 @@ public class OLSR_Node extends Node {
             case OLSR_TEXT:
                 OLSR_Message_TEXT msgOLSRTEXT = (OLSR_Message_TEXT) message;
 
-                messageRouter.sendMessage(msgOLSRTEXT);
-
                 if(routingTable.containsKey(msgOLSRTEXT.getFinalDestination())) {
                     msgOLSRTEXT.setDestination(routingTable.get(msgOLSRTEXT.getFinalDestination()).getNextHop());
                     log(1, "sending message further to "+ routingTable.get(msgOLSRTEXT.getFinalDestination()).getNextHop() + " to reach " + msgOLSRTEXT.getFinalDestination());
                     messageRouter.sendMessage(msgOLSRTEXT);
                 }else{
-                    waitingMessages.add(message);
+                    waitingMessages.add(msgOLSRTEXT);
                     log(1, " no route known to reach " + msgOLSRTEXT.getFinalDestination());
-                    //TODO: figure how to try to rensend it after
                 }
                 break;
             default:
@@ -205,16 +202,27 @@ public class OLSR_Node extends Node {
             // Only send TC messages if we have MPR selectors
             if(!mrpSelectors.isEmpty()) {
                 seqNum++;
-                // Create a new ArrayList to avoid duplicates
                 ArrayList<Integer> uniqueSelectors = new ArrayList<>(new HashSet<>(mrpSelectors));
                 OLSR_Message_TC msg = new OLSR_Message_TC(id, -1, new Pair<>(id, seqNum), uniqueSelectors);
                 sendMessage(msg);
+            }
+        }
+
+        //resend messages
+        if(resendTimer.tick(totalRunTime)){
+            for(Message msg : waitingMessages){
+                OLSR_Message_TEXT msgTxt = (OLSR_Message_TEXT) msg;
+                if(routingTable.containsKey(msgTxt.getFinalDestination())){
+                    log(2, "sending waiting message to " + msgTxt.getFinalDestination());
+                    sendMessage(msgTxt);
+                }
             }
         }
     }
 
     @Override
     public void discoverNeighbours() {
+        //modify with proper OLSR way (from HELLO), this is improvised!
         super.discoverNeighbours();
 
         neighbourTable_oneHop.clear();
@@ -223,7 +231,6 @@ public class OLSR_Node extends Node {
             neighbourTable_oneHop.add(entry);
         }
 
-        //TODO: Very temporary but should fix the problem of 1hop being 2hop neighbours
         ArrayList<Integer> removeKeys = new ArrayList<>();
         for(var key: neighbourTable_twoHop.keySet()){
             for(var oneHop: neighbourTable_oneHop)

@@ -325,14 +325,14 @@ public class Ground {
                 System.out.println(dsrNode.getId() + ": " + dsrNode.getKnownRoutes());
             }
             if(node instanceof AODV_Node aodvNode){
-                prettyPrintRoutingTable(aodvNode);
+                aodvNode.prettyPrintRoutingTable();
                 Util.log("[" + node.getId() +"] Undelivered text messages (" + aodvNode.getWaitingMessages().size() + ")");
                 Util.log(aodvNode.getWaitingMessages().stream()
                         .map(Message::prettyPrint)
                         .collect(Collectors.joining("\n ")), true);
             }
             if(node instanceof SAODV_Node saodvNode){
-                prettyPrintRoutingTable(saodvNode);
+                saodvNode.prettyPrintRoutingTable();
                 Util.log("[" + node.getId() +"] Undelivered text messages (" + saodvNode.getWaitingMessages().size() + ")");
                 Util.log(saodvNode.getWaitingMessages().stream()
                         .map(Message::prettyPrint)
@@ -377,52 +377,6 @@ public class Ground {
         } catch (NoSuchAlgorithmException e) {
             throw new RuntimeException(e);
         }
-    }
-
-    public static void prettyPrintRoutingTable(AODV_Node aodvNode) {
-        Util.log(" \n Routing Table for Node " + aodvNode.getId());
-        Util.log(" +------------+----------+---------------+----------+---------------------+");
-        Util.log(" | Dest Addr  | Next Hop | Dest Seq Num  | Hop Count| Last Received Time  |");
-        Util.log(" +------------+----------+---------------+----------+---------------------+");
-
-        String table = " +------------+----------+---------------+----------+---------------------+\n" +
-                String.format(" | %-10s | %-8s | %-13s | %-8s | %-19s |%n",
-                        "DestAddr", "NextHop", "DestSeqNum", "HopCount", "ReceivedTime") +
-                " +------------+----------+---------------+----------+---------------------+\n" +
-                aodvNode.getRoutingTable().values().stream()
-                        .map(entry -> String.format(" | %-10d | %-8d | %-13d | %-8d | %-19s |%n",
-                                entry.getDestAddr(),
-                                entry.getNextHop(),
-                                entry.getDestSeqNum(),
-                                entry.getHopCount(),
-                                entry.getReceivedTime()))
-                        .collect(Collectors.joining()) +
-                " +------------+----------+---------------+----------+---------------------+";
-
-        Util.log(table);
-    }
-
-    public static void prettyPrintRoutingTable(SAODV_Node aodvNode) {
-        Util.log(" \n Routing Table for Node " + aodvNode.getId());
-        Util.log(" +------------+----------+---------------+----------+---------------------+");
-        Util.log(" | Dest Addr  | Next Hop | Dest Seq Num  | Hop Count| Last Received Time  |");
-        Util.log(" +------------+----------+---------------+----------+---------------------+");
-
-        String table = " +------------+----------+---------------+----------+---------------------+\n" +
-                String.format(" | %-10s | %-8s | %-13s | %-8s | %-19s |%n",
-                        "DestAddr", "NextHop", "DestSeqNum", "HopCount", "ReceivedTime") +
-                " +------------+----------+---------------+----------+---------------------+\n" +
-                aodvNode.getRoutingTable().values().stream()
-                        .map(entry -> String.format(" | %-10d | %-8d | %-13d | %-8d | %-19s |%n",
-                                entry.getDestAddr(),
-                                entry.getNextHop(),
-                                entry.getDestSeqNum(),
-                                entry.getHopCount(),
-                                entry.getReceivedTime()))
-                        .collect(Collectors.joining()) +
-                " +------------+----------+---------------+----------+---------------------+";
-
-        Util.log(table);
     }
 
     public int getSizeX() {

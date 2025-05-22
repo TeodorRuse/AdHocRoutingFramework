@@ -1,12 +1,10 @@
 package org.example.licentafromzero.AODV;
 
 import javafx.util.Pair;
-import org.example.licentafromzero.Domain.Constants;
-import org.example.licentafromzero.Domain.Message;
-import org.example.licentafromzero.Domain.MessageType;
-import org.example.licentafromzero.Domain.Node;
+import org.example.licentafromzero.Domain.*;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class AODV_Node extends Node {
     private int sequenceNumber = 0;
@@ -345,5 +343,27 @@ public class AODV_Node extends Node {
         return controlMessages;
     }
 
+    public void prettyPrintRoutingTable() {
+        Util.log("\n Routing Table for Node " + this.getId(), false);
+        Util.log("+------------+----------+---------------+----------+---------------------+", false);
+        Util.log("| Dest Addr  | Next Hop | Dest Seq Num  | Hop Count| Last Received Time  |", false);
+        Util.log("+------------+----------+---------------+----------+---------------------+", false);
+
+        String table = "+------------+----------+---------------+----------+---------------------+\n" +
+                String.format("| %-10s | %-8s | %-13s | %-8s | %-19s |%n",
+                        "DestAddr", "NextHop", "DestSeqNum", "HopCount", "ReceivedTime") +
+                "+------------+----------+---------------+----------+---------------------+\n" +
+                this.getRoutingTable().values().stream()
+                        .map(entry -> String.format("| %-10d | %-8d | %-13d | %-8d | %-19s |%n",
+                                entry.getDestAddr(),
+                                entry.getNextHop(),
+                                entry.getDestSeqNum(),
+                                entry.getHopCount(),
+                                entry.getReceivedTime()))
+                        .collect(Collectors.joining()) +
+                "+------------+----------+---------------+----------+---------------------+";
+
+        Util.log(table, false);
+    }
 
 }

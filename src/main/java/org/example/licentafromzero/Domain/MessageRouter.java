@@ -32,7 +32,7 @@ public class MessageRouter {
             }
         }
         else {
-            for (Node node : nodes) {
+             for (Node node : nodes) {
                 if (node.getId() == message.getDestination()) {
                     destination = node;
                 }

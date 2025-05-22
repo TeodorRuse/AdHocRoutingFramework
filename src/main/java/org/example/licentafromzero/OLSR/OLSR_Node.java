@@ -91,9 +91,11 @@ public class OLSR_Node extends Node {
 
                 if(routingTable.containsKey(msgOLSRTEXT.getFinalDestination())) {
                     msgOLSRTEXT.setDestination(routingTable.get(msgOLSRTEXT.getFinalDestination()).getNextHop());
+                    log(1, "sending message further to "+ routingTable.get(msgOLSRTEXT.getFinalDestination()).getNextHop() + " to reach " + msgOLSRTEXT.getFinalDestination());
                     messageRouter.sendMessage(msgOLSRTEXT);
                 }else{
                     waitingMessages.add(message);
+                    log(1, " no route known to reach " + msgOLSRTEXT.getFinalDestination());
                     //TODO: figure how to try to rensend it after
                 }
                 break;
@@ -122,7 +124,6 @@ public class OLSR_Node extends Node {
                 if(msgText.getFinalDestination() == id){
                     log(3, "received text: " + message.getText());
                 }else{
-                    log(1, "sending message further to "+ routingTable.get(msgText.getFinalDestination()).getNextHop() + "to reach" + msgText.getFinalDestination());
                     sendMessage(msgText);
                 }
                 break;
@@ -304,44 +305,6 @@ public class OLSR_Node extends Node {
             }
         }
     }
-//    public void updateRoutingTable(OLSR_Message_TC msg) {
-//        ageRoutesAndNeighbours();
-//
-//        int tcOriginatorAddr = msg.getOriginalSource();
-//
-//        for (int advertisedNodeAddr : msg.getAdvertisedNodes()) {
-//            if (advertisedNodeAddr == id) {
-//                continue;
-//            }
-//
-//            if (routingTable.containsKey(advertisedNodeAddr)) {
-//                OLSR_RoutingTableEntry existingEntry = routingTable.get(advertisedNodeAddr);
-//
-//                // If the existing route is through the TC originator and it's a 2-hop route
-//                // or if the existing route has a higher hop count than what we'd get through the TC originator
-//                if ((existingEntry.getNextHop() == tcOriginatorAddr && existingEntry.getHopCount() == 2) ||
-//                        (getHopCountToNode(tcOriginatorAddr) + 1 < existingEntry.getHopCount())) {
-//
-//                    // Update the existing entry
-//                    existingEntry.setNextHop(tcOriginatorAddr);
-//                    existingEntry.setHopCount(getHopCountToNode(tcOriginatorAddr) + 1);
-//                    existingEntry.setTimeReceived(System.currentTimeMillis());
-//                }
-//            } else {
-//                // We don't have a route to this node yet, create a new entry
-//                // Only create if we have a route to the TC originator
-//                if (routingTable.containsKey(tcOriginatorAddr) || neighbourTable_oneHop.stream().anyMatch(n -> n.getId() == tcOriginatorAddr)) {
-//                    int hopCount = getHopCountToNode(tcOriginatorAddr) + 1;
-//                    OLSR_RoutingTableEntry newEntry = new OLSR_RoutingTableEntry(
-//                            advertisedNodeAddr,
-//                            getNextHopToNode(tcOriginatorAddr),
-//                            hopCount
-//                    );
-//                    routingTable.put(advertisedNodeAddr, newEntry);
-//                }
-//            }
-//        }
-//    }
 
     private int getHopCountToNode(int nodeAddr) {
         if (neighbourTable_oneHop.stream().anyMatch(n -> n.getId() == nodeAddr)) {

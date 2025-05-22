@@ -44,9 +44,8 @@ public final class Constants {
 
     //OLSR
     public static final int OLSR_HELLO_INTERVAL = 1000;
-    public static final int OLSR_TC_INTERVAL = 5000;
-    public static final int OLSR_NEIGHBOR_EXPIRATION_TIME = OLSR_HELLO_INTERVAL*100000;
-    public static final int OLSR_TOP_HOLD_INTERVAL = OLSR_TC_INTERVAL*300000;
+    public static final int OLSR_TC_INTERVAL = 2500;
+    public static final int OLSR_NEIGHBOR_EXPIRATION_TIME = OLSR_HELLO_INTERVAL*3;
 
 
 

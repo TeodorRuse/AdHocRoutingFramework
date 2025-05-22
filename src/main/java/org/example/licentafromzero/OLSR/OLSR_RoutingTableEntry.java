@@ -14,7 +14,7 @@ public class OLSR_RoutingTableEntry {
     }
 
     public boolean isExpired(){
-        return timeReceived + Constants.OLSR_NEIGHBOR_EXPIRATION_TIME >  System.currentTimeMillis();
+        return timeReceived + Constants.OLSR_NEIGHBOR_EXPIRATION_TIME <=  System.currentTimeMillis();
     }
 
     public int getDestination() {

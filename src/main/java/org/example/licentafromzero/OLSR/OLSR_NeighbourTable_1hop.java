@@ -12,7 +12,7 @@ public class OLSR_NeighbourTable_1hop {
     }
 
     public boolean isExpired(){
-        return timeReceived + Constants.OLSR_NEIGHBOR_EXPIRATION_TIME > System.currentTimeMillis();
+        return System.currentTimeMillis() >= timeReceived + Constants.OLSR_NEIGHBOR_EXPIRATION_TIME;
     }
 
     public int getId() {

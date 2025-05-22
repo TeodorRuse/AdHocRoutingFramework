@@ -3,6 +3,7 @@ package org.example.licentafromzero.OLSR;
 import javafx.util.Pair;
 import org.example.licentafromzero.Domain.Constants;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -17,8 +18,9 @@ public class OLSR_NeighbourTable_2hop {
     }
 
     public void updateNextHops() {
-        nextHops.entrySet().removeIf(entry -> entry.getValue() + Constants.OLSR_NEIGHBOR_EXPIRATION_TIME >  System.currentTimeMillis());
+        nextHops.entrySet().removeIf(entry -> entry.getValue() + Constants.OLSR_NEIGHBOR_EXPIRATION_TIME <=  System.currentTimeMillis());
     }
+
 
     public boolean isExpired(){
         return nextHops.isEmpty();

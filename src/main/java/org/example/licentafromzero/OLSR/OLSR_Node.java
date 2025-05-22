@@ -24,8 +24,6 @@ public class OLSR_Node extends Node {
     private Timer resendTimer = new Timer(Constants.OLSR_RESEND_TIME);
     private Timer randomMessageTimer;
 
-    private ArrayList<Message> waitingMessages = new ArrayList<>();
-
     public OLSR_Node(int x, int y, int id) {
         super(x, y, id);
 
@@ -522,10 +520,6 @@ public class OLSR_Node extends Node {
 
     public ArrayList<Integer> getMrpSelectors() {
         return mrpSelectors;
-    }
-
-    public ArrayList<Message> getWaitingMessages() {
-        return waitingMessages;
     }
 
     public String prettyPrintNodeState() {

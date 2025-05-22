@@ -6,6 +6,8 @@ public final class Constants {
     //General values
     public static final int SIMULATION_TIME = 30; //seconds
     public static final int SIMULATION_NR_NODES = 10;
+    public static final int SIMULATION_SIZE_X = 900;
+    public static final int SIMULATION_SIZE_Y = 900;
     public static int SIMULATION_DELAY_BETWEEN_FRAMES = 10;
     public static final int SIMULATION_EXEC_TIME_NODE = 100; // NO modify
     public static final int SIMULATION_PROBABILITY_NODE_TURN_OFF = 0; // %%1000
@@ -22,8 +24,11 @@ public final class Constants {
 
     //Node values
     public static final int NODE_DELAY = 10; // NO modify
-    public static final int NODE_SPEED_BOUND = 2;
+    public static final int NODE_SPEED_BOUND = 10;
     public static final int NODE_SPEED_MIN_VAL = -NODE_SPEED_BOUND;
+    public static final int NODE_MOBILITY_TYPE = 2; // 0 = static | 1 = randomDirection | 2 = randomWaypoint
+    public static final int NODE_MOBILITY_WAYPOINT_PAUSE = 2000; //ms to pause after reached waypoint
+
     public static final int NODE_MESSAGE_DELAY_BOUND = 1000;
     public static final int NODE_MESSAGE_DELAY_MIN_VAL = 1000;
     public static final int NODE_COMM_RANGE_BOUND = 500;

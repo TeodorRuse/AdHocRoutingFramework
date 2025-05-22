@@ -19,22 +19,32 @@ public class Node {
     protected HashSet<Integer> newNeighbours;
     protected boolean updatingNeighbours = false;
     protected boolean updatedPaths = true; //not for this one, but children have it
+    protected ArrayList<Message> waitingMessages = new ArrayList<>(); //not for this one, but children have it
 
     protected Timer randomMessageTimer;
+    private long pauseEndTime = 0; // Pause time for waypoint
+    private double destX, destY; // For RANDOM_WAYPOINT
 
     public Node(int x, int y, int id){
         this.x = x;
         this.y = y;
         this.id = id;
 
-        this.speedX = random.nextInt(Constants.NODE_SPEED_BOUND) + Constants.NODE_SPEED_MIN_VAL;
-        this.speedY = random.nextInt(Constants.NODE_SPEED_BOUND) + Constants.NODE_SPEED_MIN_VAL;
         this.messageDelay = random.nextInt(Constants.NODE_MESSAGE_DELAY_BOUND) + Constants.NODE_MESSAGE_DELAY_MIN_VAL;
         this.communicationRadius = random.nextInt(Constants.NODE_COMM_RANGE_BOUND) + Constants.NODE_COMM_RANGE_MIN_VAL;
         this.neighbours = new HashSet<>();
         this.newNeighbours = new HashSet<>();
 
         this.randomMessageTimer = new Timer(messageDelay);
+
+        //initialize for mobility
+        if(Constants.NODE_MOBILITY_TYPE == 1) {
+            this.speedX = random.nextInt(Constants.NODE_SPEED_BOUND) + Constants.NODE_SPEED_MIN_VAL;
+            this.speedY = random.nextInt(Constants.NODE_SPEED_BOUND) + Constants.NODE_SPEED_MIN_VAL;
+        }else if(Constants.NODE_MOBILITY_TYPE==2){
+            destX = random.nextInt(Constants.SIMULATION_SIZE_X);
+            destY = random.nextInt(Constants.SIMULATION_SIZE_Y);
+        }
     }
 
     public Node(int x, int y, int id, int communicationRadius){
@@ -42,14 +52,20 @@ public class Node {
         this.y = y;
         this.id = id;
 
-        this.speedX = random.nextInt(Constants.NODE_SPEED_BOUND) + Constants.NODE_SPEED_MIN_VAL;
-        this.speedY = random.nextInt(Constants.NODE_SPEED_BOUND) + Constants.NODE_SPEED_MIN_VAL;
         this.messageDelay = random.nextInt(Constants.NODE_MESSAGE_DELAY_BOUND) + Constants.NODE_MESSAGE_DELAY_MIN_VAL;
         this.communicationRadius = communicationRadius;
         this.neighbours = new HashSet<>();
         this.newNeighbours = new HashSet<>();
 
         this.randomMessageTimer = new Timer(messageDelay);
+
+        if(Constants.NODE_MOBILITY_TYPE == 1) {
+            this.speedX = random.nextInt(Constants.NODE_SPEED_BOUND) + Constants.NODE_SPEED_MIN_VAL;
+            this.speedY = random.nextInt(Constants.NODE_SPEED_BOUND) + Constants.NODE_SPEED_MIN_VAL;
+        }else if(Constants.NODE_MOBILITY_TYPE==2){
+            destX = random.nextInt(Constants.SIMULATION_SIZE_X);
+            destY = random.nextInt(Constants.SIMULATION_SIZE_Y);
+        }
     }
 
     public void turnOn(int runtTime) {         //runtTime is in millis
@@ -63,19 +79,17 @@ public class Node {
 
             discoverNeighbours();
 
-//            if (totalRunTime - lastMessageSent >= messageDelay) {
             if(randomMessageTimer.tick(totalRunTime)){
-                //Not efficient but should work for now
                 List<Integer> neighbourList = new ArrayList<>(neighbours);
                 if (!neighbourList.isEmpty()) {
                     Integer randomNeighbour = neighbourList.get(random.nextInt(neighbourList.size()));
                     sendMessage(new Message(id, randomNeighbour, "Hello from " + id)); //unicast random
                 }
-//                sendMessage(new Message(id, -1, "Random Hello!" , MessageType.TEXT, true));
                 lastMessageSent = totalRunTime;
             }
 
-//            move();
+            if(id == 0)
+                move();
 
             try {
                 Thread.sleep(Constants.NODE_DELAY);
@@ -133,13 +147,24 @@ public class Node {
     }
 
     public void move(){
-        this.x = this.x + speedX;
-        this.y = this.y + speedY;
 
-        if(x <= 0 || x >= 900)
-            speedX *= -1;
-        if(y <= 0 || y >= 900)
-            speedY *= -1;
+        switch (Constants.NODE_MOBILITY_TYPE){
+            case 1: //randomDirection
+                this.x = this.x + speedX;
+                this.y = this.y + speedY;
+
+                if(x <= 0 || x >= 900)
+                    speedX *= -1;
+                if(y <= 0 || y >= 900)
+                    speedY *= -1;
+                break;
+            case 2: //randomWaypoint
+                moveRandomWaypoint();
+                break;
+            default:
+                break;
+        }
+
 
     }
 
@@ -153,6 +178,43 @@ public class Node {
 
     public void sendMessage(Message message){
         this.messageRouter.sendMessage(message);
+    }
+
+    public void moveRandomWaypoint(){
+        long currentTime = System.currentTimeMillis();
+
+        // If reached destination or paused
+        if ((x == destX && y == destY) || currentTime < pauseEndTime) {
+            if (currentTime >= pauseEndTime) {
+                // Choose new random destination
+                destX = random.nextInt(Constants.SIMULATION_SIZE_X);
+                destY = random.nextInt(Constants.SIMULATION_SIZE_Y);
+                log(0, " chose new destination (" + destX + " " + destY + ")");
+            }
+            return;
+        }
+
+        // Movement vector
+        double dx = destX - x;
+        double dy = destY - y;
+        double distance = Math.sqrt(dx * dx + dy * dy);
+
+        if (distance < 5) {
+            log(0, " reached destination, resting");
+            // Close enough to stop
+            x = (int) destX;
+            y = (int) destY;
+            pauseEndTime = currentTime + Constants.NODE_MOBILITY_WAYPOINT_PAUSE;
+            return;
+        }
+
+        // Normalize speed
+        double stepSize = 2.0; // constant speed
+        double stepX = (dx / distance) * stepSize;
+        double stepY = (dy / distance) * stepSize;
+
+        x += stepX;
+        y += stepY;
     }
 
     public int getX() {
@@ -237,5 +299,29 @@ public class Node {
 
     public long getTotalRunTime() {
         return totalRunTime;
+    }
+
+    public ArrayList<Message> getWaitingMessages() {
+        return waitingMessages;
+    }
+
+    public void setWaitingMessages(ArrayList<Message> waitingMessages) {
+        this.waitingMessages = waitingMessages;
+    }
+
+    public double getDestX() {
+        return destX;
+    }
+
+    public void setDestX(double destX) {
+        this.destX = destX;
+    }
+
+    public double getDestY() {
+        return destY;
+    }
+
+    public void setDestY(double destY) {
+        this.destY = destY;
     }
 }

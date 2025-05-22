@@ -1,0 +1,119 @@
+Node 0  discovering neighbours
+Node 1  discovering neighbours
+Node 2  received NEIGHBOUR_SYN from: 0
+Node 2  discovering neighbours
+Node 3  received NEIGHBOUR_SYN from: 0
+Node 3  received NEIGHBOUR_SYN from: 1
+Node 3  received NEIGHBOUR_SYN from: 2
+Node 3  discovering neighbours
+Node 4  received NEIGHBOUR_SYN from: 0
+Node 4  received NEIGHBOUR_SYN from: 2
+Node 4  received NEIGHBOUR_SYN from: 3
+Node 4  discovering neighbours
+Node 5  discovering neighbours
+Node 6  received NEIGHBOUR_SYN from: 0
+Node 6  received NEIGHBOUR_SYN from: 2
+Node 6  discovering neighbours
+Node 7  received NEIGHBOUR_SYN from: 5
+Node 7  received NEIGHBOUR_SYN from: 6
+Node 7  discovering neighbours
+Node 8  received NEIGHBOUR_SYN from: 0
+Node 8  received NEIGHBOUR_SYN from: 2
+Node 8  received NEIGHBOUR_SYN from: 3
+Node 8  received NEIGHBOUR_SYN from: 5
+Node 8  received NEIGHBOUR_SYN from: 6
+Node 8  received NEIGHBOUR_SYN from: 7
+Node 8  discovering neighbours
+Node 9  received NEIGHBOUR_SYN from: 1
+Node 9  received NEIGHBOUR_SYN from: 3
+Node 9  discovering neighbours
+Node 0  received NEIGHBOUR_ACK from: 2
+Node 0  received NEIGHBOUR_SYN from: 2
+Node 0  received NEIGHBOUR_ACK from: 3
+Node 0  received NEIGHBOUR_SYN from: 3
+Node 0  received NEIGHBOUR_ACK from: 6
+Node 0  received NEIGHBOUR_SYN from: 6
+Node 1  received NEIGHBOUR_ACK from: 3
+Node 1  received NEIGHBOUR_SYN from: 3
+Node 1  received NEIGHBOUR_ACK from: 9
+Node 1  received NEIGHBOUR_SYN from: 9
+Node 2  received NEIGHBOUR_ACK from: 6
+Node 2  received NEIGHBOUR_SYN from: 6
+Node 2  received NEIGHBOUR_ACK from: 0
+Node 3  received NEIGHBOUR_ACK from: 4
+Node 3  received NEIGHBOUR_SYN from: 4
+Node 3  received NEIGHBOUR_ACK from: 0
+Node 3  received NEIGHBOUR_ACK from: 1
+Node 4  received NEIGHBOUR_ACK from: 3
+Node 5  received NEIGHBOUR_SYN from: 6
+Node 5  received NEIGHBOUR_ACK from: 7
+Node 5  received NEIGHBOUR_SYN from: 7
+Node 5  received NEIGHBOUR_ACK from: 8
+Node 5  received NEIGHBOUR_SYN from: 8
+Node 6  received NEIGHBOUR_ACK from: 0
+Node 6  received NEIGHBOUR_ACK from: 2
+Node 7  received NEIGHBOUR_ACK from: 5
+Node 8  received NEIGHBOUR_ACK from: 5
+Node 9  received NEIGHBOUR_ACK from: 1
+Node 3  received TEXT from: 0
+Node 3 received: Hello from 0
+Node 4  received TEXT from: 4
+Node 4 received: Hello from 4
+Node 1  received TEXT from: 3
+Node 1 received: Hello from 3
+Node 1  received TEXT from: 9
+Node 1 received: Hello from 9
+Node 1  received TEXT from: 1
+Node 1 received: Hello from 1
+Node 1  discovering neighbours
+Node 2  received TEXT from: 6
+Node 2 received: Hello from 6
+Node 2  received TEXT from: 2
+Node 2 received: Hello from 2
+Node 2  discovering neighbours
+Node 3  received NEIGHBOUR_SYN from: 1
+Node 3  received NEIGHBOUR_SYN from: 2
+Node 3  discovering neighbours
+Node 4  received NEIGHBOUR_SYN from: 2
+Node 4  received NEIGHBOUR_SYN from: 3
+Node 4  discovering neighbours
+Node 5  discovering neighbours
+Node 6  received NEIGHBOUR_SYN from: 2
+Node 6  discovering neighbours
+Node 7  received TEXT from: 7
+Node 7 received: Hello from 7
+Node 7  received TEXT from: 5
+Node 7 received: Hello from 5
+Node 7  received NEIGHBOUR_SYN from: 5
+Node 7  received NEIGHBOUR_SYN from: 6
+Node 7  discovering neighbours
+Node 8  received NEIGHBOUR_SYN from: 2
+Node 8  received NEIGHBOUR_SYN from: 3
+Node 8  received NEIGHBOUR_SYN from: 5
+Node 8  received NEIGHBOUR_SYN from: 6
+Node 8  received NEIGHBOUR_SYN from: 7
+Node 8  discovering neighbours
+Node 9  received NEIGHBOUR_SYN from: 1
+Node 9  received NEIGHBOUR_SYN from: 3
+Node 9  discovering neighbours
+Node 0  received NEIGHBOUR_SYN from: 2
+Node 0  received NEIGHBOUR_SYN from: 3
+Node 0  received NEIGHBOUR_SYN from: 6
+Node 0  discovering neighbours
+Node 1  received NEIGHBOUR_ACK from: 3
+Node 1  received NEIGHBOUR_SYN from: 3
+Node 1  received NEIGHBOUR_ACK from: 9
+Node 1  received NEIGHBOUR_SYN from: 9
+Node 2  received NEIGHBOUR_ACK from: 6
+Node 2  received NEIGHBOUR_SYN from: 6
+Node 2  received NEIGHBOUR_ACK from: 0
+Node 2  received NEIGHBOUR_SYN from: 0
+Node 2  received TEXT from: 0
+Node 2 received: Hello from 0
+Node 3  received NEIGHBOUR_ACK from: 4
+Node 3  received NEIGHBOUR_SYN from: 4
+Node 3  received NEIGHBOUR_ACK from: 0
+Node 3  received NEIGHBOUR_SYN from: 0
+Node 3  received NEIGHBOUR_ACK from: 1
+Node 4  received NEIGHBOUR_SYN from: 0
+Node 4  received NEIGHBOUR_ACK from: 3

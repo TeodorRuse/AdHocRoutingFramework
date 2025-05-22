@@ -32,7 +32,6 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 //TODO: Add moving around the ground
 //TODO: add home screen with display protoclol, and modify constants
 //TODO: Add node details when clicked on node
-//TODO: ADD RANDOM WAYPOINT MOBILITY!!
 
 public class NetworkSimulationController {
 
@@ -125,7 +124,7 @@ public class NetworkSimulationController {
             }
 
 //            ground.setupRandom_Standard(Constants.SIMULATION_NR_NODES);
-//            ground.setupFromFile_Standard("src/main/java/org/example/licentafromzero/Config/configuration1.txt");
+            ground.setupFromFile_Standard("src/main/java/org/example/licentafromzero/Config/configuration1.txt");
 
 //            ground.setupRandom_DSRNode(Constants.SIMULATION_NR_NODES);
 //            ground.setupFromFile_DSRNode("src/main/java/org/example/licentafromzero/Config/configuration1.txt");
@@ -140,7 +139,7 @@ public class NetworkSimulationController {
 //            ground.setupFromFile_CBRPNode("src/main/java/org/example/licentafromzero/Config/configuration2.txt");
 
 //            ground.setupRandom_OLSRNode(Constants.SIMULATION_NR_NODES);
-            ground.setupFromFile_OLSRNode("src/main/java/org/example/licentafromzero/Config/configuration2.txt");
+//            ground.setupFromFile_OLSRNode("src/main/java/org/example/licentafromzero/Config/configuration2.txt");
 
             // Start async simulation and update UI on each tick
             groundThread = new Thread((() -> {
@@ -480,6 +479,43 @@ public class NetworkSimulationController {
         Text runtimeLabel = new Text(x - 50, y + 45, "Runtime: " + node.getTotalRunTime() + " ms");
         runtimeLabel.setFill(Color.WHITE);
         runtimeLabel.setFont(Font.font("Arial", FontWeight.BOLD, 12));
+
+        // Show destination dot if using waypoint mobility
+        if (Constants.NODE_MOBILITY_TYPE == 2) {
+            Circle destDot = new Circle(node.getDestX(), node.getDestY(), 12); // Slightly larger for visibility
+            destDot.setFill(Color.TRANSPARENT);
+            destDot.setStroke(Color.DODGERBLUE);
+            destDot.setStrokeWidth(2);
+            destDot.getStrokeDashArray().addAll(4d, 4d); // Dotted outline
+            // Calculate unit direction vector from node to destination
+
+            double dx = node.getDestX() - x;
+            double dy = node.getDestY() - y;
+            double length = Math.sqrt(dx * dx + dy * dy);
+            if (length != 0) {
+                double unitX = dx / length;
+                double unitY = dy / length;
+
+                // Draw a small line (vector) from the node towards the destination
+                double arrowLength = 30;
+                Line directionLine = new Line(
+                        x, y,
+                        x + unitX * arrowLength,
+                        y + unitY * arrowLength
+                );
+                directionLine.setStroke(Color.DODGERBLUE);
+                directionLine.setStrokeWidth(2);
+
+                Text destinationLabel = new Text(node.getDestX() - 25, node.getDestY() + 25, "Destination");
+                destinationLabel.setFill(Color.GRAY);
+                destinationLabel.setFont(Font.font("Arial", FontWeight.NORMAL, 10));
+
+
+                canvas.getChildren().addAll(directionLine, destinationLabel);
+            }
+
+            canvas.getChildren().add(destDot);
+        }
 
         // Add a background rectangle for better readability
         Rectangle textBg = new Rectangle(

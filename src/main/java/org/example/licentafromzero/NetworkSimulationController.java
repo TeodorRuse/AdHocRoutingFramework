@@ -29,6 +29,8 @@ import java.io.*;
 import java.util.*;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
+//TODO: add actual timers to all protocols;
+//TODO: replace the 900 ground size with Constats
 //TODO: Add moving around the ground
 //TODO: add home screen with display protoclol, and modify constants
 //TODO: Add node details when clicked on node
@@ -70,6 +72,7 @@ public class NetworkSimulationController {
 
     // Animation tracking
     private long lastUpdateTime = 0;
+    private long pauseTime = 0;
     private Map<Integer, Double> nodeAnimationPhases = new HashMap<>();
 
     private Ground ground = new Ground(900, 900);
@@ -123,23 +126,44 @@ public class NetworkSimulationController {
                 nodeAnimationPhases.put(i, Math.random() * Math.PI * 2);
             }
 
-//            ground.setupRandom_Standard(Constants.SIMULATION_NR_NODES);
-            ground.setupFromFile_Standard("src/main/java/org/example/licentafromzero/Config/configuration1.txt");
-
-//            ground.setupRandom_DSRNode(Constants.SIMULATION_NR_NODES);
-//            ground.setupFromFile_DSRNode("src/main/java/org/example/licentafromzero/Config/configuration1.txt");
-
-//            ground.setupRandom_AODVNode(Constants.SIMULATION_NR_NODES);
-//            ground.setupFromFile_AODVNode("src/main/java/org/example/licentafromzero/Config/configuration2.txt");
-
-//            ground.setupRandom_SAODVNode(Constants.SIMULATION_NR_NODES);
-//            ground.setupFromFile_SAODVNode("src/main/java/org/example/licentafromzero/Config/configuration2.txt");
-
-//            ground.setupRandom_CBRPNode(Constants.SIMULATION_NR_NODES +5);
-//            ground.setupFromFile_CBRPNode("src/main/java/org/example/licentafromzero/Config/configuration2.txt");
-
-//            ground.setupRandom_OLSRNode(Constants.SIMULATION_NR_NODES);
-//            ground.setupFromFile_OLSRNode("src/main/java/org/example/licentafromzero/Config/configuration2.txt");
+            switch(Constants.SIMULATION_MODE){
+                case 1:
+                    ground.setupRandom_Standard(Constants.SIMULATION_NR_NODES);
+                    break;
+                case 2:
+                    ground.setupFromFile_Standard("src/main/java/org/example/licentafromzero/Config/configuration1.txt");
+                    break;
+                case 3:
+                    ground.setupRandom_DSRNode(Constants.SIMULATION_NR_NODES);
+                    break;
+                case 4:
+                    ground.setupFromFile_DSRNode("src/main/java/org/example/licentafromzero/Config/configuration1.txt");
+                    break;
+                case 5:
+                    ground.setupRandom_AODVNode(Constants.SIMULATION_NR_NODES);
+                    break;
+                case 6:
+                    ground.setupFromFile_AODVNode("src/main/java/org/example/licentafromzero/Config/configuration2.txt");
+                    break;
+                case 7:
+                    ground.setupRandom_SAODVNode(Constants.SIMULATION_NR_NODES);
+                    break;
+                case 8:
+                    ground.setupFromFile_SAODVNode("src/main/java/org/example/licentafromzero/Config/configuration2.txt");
+                    break;
+                case 9:
+                    ground.setupRandom_CBRPNode(Constants.SIMULATION_NR_NODES);
+                    break;
+                case 10:
+                    ground.setupFromFile_CBRPNode("src/main/java/org/example/licentafromzero/Config/configuration2.txt");
+                    break;
+                case 11:
+                    ground.setupRandom_OLSRNode(Constants.SIMULATION_NR_NODES);
+                    break;
+                case 12:
+                    ground.setupFromFile_OLSRNode("src/main/java/org/example/licentafromzero/Config/configuration2.txt");
+                    break;
+            }
 
             // Start async simulation and update UI on each tick
             groundThread = new Thread((() -> {
@@ -918,13 +942,14 @@ private void drawClusters() {
             stopButton.setText("Turn on");
             stopButton.setStyle("-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5;");
             lastFrameRate = Constants.SIMULATION_DELAY_BETWEEN_FRAMES;
+            pauseTime = System.currentTimeMillis();
             Constants.SIMULATION_DELAY_BETWEEN_FRAMES = 10000000;
             appendToLog("Simulation paused");
         } else {
             stopButton.setText("Turn off");
             stopButton.setStyle("-fx-background-color: #3498db; -fx-text-fill: white; -fx-font-weight: bold; -fx-background-radius: 5;");
             groundThread.interrupt();
-            System.err.println(lastFrameRate);
+            Constants.SIMULATION_PAUSE_TIME += System.currentTimeMillis() - pauseTime;
             Constants.SIMULATION_DELAY_BETWEEN_FRAMES = lastFrameRate;
             appendToLog("Simulation resumed");
         }

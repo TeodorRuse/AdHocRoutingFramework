@@ -281,7 +281,7 @@ public class Ground {
         long simDuration = simTimeInSeconds * 1000;
         int chance;
 
-        while (System.currentTimeMillis() < startTime + simDuration) {
+        while (System.currentTimeMillis() - Constants.SIMULATION_PAUSE_TIME < startTime + simDuration) {
             for(int i=0;i<numberNodes; i++){
 
                 chance = random.nextInt(1000);

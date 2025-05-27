@@ -48,8 +48,8 @@ public class OLSR_Node extends Node {
             discoverNeighbours();
             updateTimers();
 
-            if(id == 0)
-                move();
+//            if(id == 0)
+//                move();
 
             try {
                 Thread.sleep(Constants.NODE_DELAY);
@@ -85,7 +85,8 @@ public class OLSR_Node extends Node {
             case OLSR_TEXT:
                 OLSR_Message_TEXT msgOLSRTEXT = (OLSR_Message_TEXT) message;
 
-                if(routingTable.containsKey(msgOLSRTEXT.getFinalDestination())) {
+                if(routingTable.containsKey(msgOLSRTEXT.getFinalDestination()) &&
+                        routingTable.get(msgOLSRTEXT.getFinalDestination()).getNextHop() != id) {
                     msgOLSRTEXT.setDestination(routingTable.get(msgOLSRTEXT.getFinalDestination()).getNextHop());
                     log(1, "sending message further to "+ routingTable.get(msgOLSRTEXT.getFinalDestination()).getNextHop() + " to reach " + msgOLSRTEXT.getFinalDestination());
                     messageRouter.sendMessage(msgOLSRTEXT);

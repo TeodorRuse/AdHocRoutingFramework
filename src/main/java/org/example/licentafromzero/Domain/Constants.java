@@ -5,6 +5,7 @@ public final class Constants {
 
     //General values
     public static final int SIMULATION_TIME = 30; //seconds
+    public static final int SIMULATION_MODE = 10; // 1 = normal | 3 = DSR | 5 = AODV | 7 = SAODV | 9 = CBRP | 11 = OLSR | even = file
     public static final int SIMULATION_NR_NODES = 10;
     public static final int SIMULATION_SIZE_X = 900;
     public static final int SIMULATION_SIZE_Y = 900;
@@ -13,6 +14,7 @@ public final class Constants {
     public static final int SIMULATION_PROBABILITY_NODE_TURN_OFF = 0; // %%1000
     public static final int SIMULATION_PROBABILITY_NODE_TURN_ON = 0;
     public static final int SIMULATION_RSA_KEY_SIZE = 1024;
+    public static long SIMULATION_PAUSE_TIME = 0;
 
     public static final int LOG_LEVEL_ALL             = 0; // Log everything
     public static final int LOG_LEVEL_NODE            = 1; // Display all nodes actions/messages

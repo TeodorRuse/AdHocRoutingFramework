@@ -9,7 +9,7 @@ public class Timer {
     }
 
     public boolean tick(long currentTime){
-        if(currentTime - lastActivation > waitTime){
+        if(currentTime - Constants.SIMULATION_PAUSE_TIME - lastActivation > waitTime){
             lastActivation = currentTime;
             return true;
         }

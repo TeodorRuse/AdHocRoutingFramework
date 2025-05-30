@@ -29,13 +29,15 @@ import java.io.*;
 import java.util.*;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
-//TODO: add actual timers to all protocols;
-//TODO: replace the 900 ground size with Constats
-//TODO: Add moving around the ground
 //TODO: add home screen with display protoclol, and modify constants
 //TODO: Add node details when clicked on node
+//TODO: Add moving around the ground
+
+
+//TODO: Timers don't really work after pausing. rethink all strucure.
 
 public class NetworkSimulationController {
+
 
     @FXML
     private Pane canvas;
@@ -45,6 +47,7 @@ public class NetworkSimulationController {
     public Slider speedSlider;
     @FXML
     public Button stopButton;
+    public Label timeLabel;
 
     // New UI components for log display
     @FXML
@@ -77,6 +80,8 @@ public class NetworkSimulationController {
 
     private Ground ground = new Ground(900, 900);
     private Thread groundThread;
+
+    private long startTime, simDuration;
 
     // Color schemes for better visualization
     private final Color[] NODE_COLORS = {
@@ -167,6 +172,7 @@ public class NetworkSimulationController {
 
             // Start async simulation and update UI on each tick
             groundThread = new Thread((() -> {
+                startTime = System.currentTimeMillis();
                 ground.turnOnSimulationAsync(Constants.SIMULATION_TIME, () -> {
                     long currentTime = System.currentTimeMillis();
                     // Update animation phases
@@ -182,6 +188,8 @@ public class NetworkSimulationController {
 
                     drawGround();
                     drawConnections();
+                    timeLabel.setText(String.valueOf(calculateTimeLeft()));
+
                 });
             }));
 
@@ -663,173 +671,173 @@ public class NetworkSimulationController {
         }
     }
 
-private void drawClusters() {
-    // Map to store cluster heads and their members
-    Map<Integer, List<Integer>> clusters = new HashMap<>();
-    Map<Integer, Set<Integer>> clusterGateways = new HashMap<>();
+    private void drawClusters() {
+        // Map to store cluster heads and their members
+        Map<Integer, List<Integer>> clusters = new HashMap<>();
+        Map<Integer, Set<Integer>> clusterGateways = new HashMap<>();
 
-    // First pass: identify all cluster heads and initialize their member lists
-    for (Node node : ground.getNodes()) {
-        if (node instanceof CBRP_Node) {
-            CBRP_Node cbrpNode = (CBRP_Node) node;
-            if (cbrpNode.getNodeStatus() == 1) { // C_HEAD
-                clusters.put(node.getId(), new ArrayList<>());
-                clusterGateways.put(node.getId(), new HashSet<>());
-            }
-        }
-    }
-
-    // Second pass: assign members and gateways to their cluster heads
-    for (Node node : ground.getNodes()) {
-        if (node instanceof CBRP_Node) {
-            CBRP_Node cbrpNode = (CBRP_Node) node;
-            if (cbrpNode.getNodeStatus() == 2) { // C_MEMBER
-                // Get the cluster head(s) this node belongs to
-                List<Integer> hostClusters = cbrpNode.getHostClusters();
-                for (Integer headId : hostClusters) {
-                    if (clusters.containsKey(headId)) {
-                        clusters.get(headId).add(node.getId());
-                    }
-                }
-            } else if (cbrpNode.getNodeStatus() == 3) { // C_GATEWAY
-                // Get the cluster head(s) this gateway connects
-                List<Integer> hostClusters = cbrpNode.getHostClusters();
-                for (Integer headId : hostClusters) {
-                    if (clusterGateways.containsKey(headId)) {
-                        clusterGateways.get(headId).add(node.getId());
-                    }
+        // First pass: identify all cluster heads and initialize their member lists
+        for (Node node : ground.getNodes()) {
+            if (node instanceof CBRP_Node) {
+                CBRP_Node cbrpNode = (CBRP_Node) node;
+                if (cbrpNode.getNodeStatus() == 1) { // C_HEAD
+                    clusters.put(node.getId(), new ArrayList<>());
+                    clusterGateways.put(node.getId(), new HashSet<>());
                 }
             }
         }
-    }
 
-    // Now draw the clusters with enhanced visualization
-    int colorIndex = 0;
-
-    for (Map.Entry<Integer, List<Integer>> cluster : clusters.entrySet()) {
-        int headId = cluster.getKey();
-        List<Integer> members = cluster.getValue();
-        Set<Integer> gateways = clusterGateways.getOrDefault(headId, new HashSet<>());
-
-        // Get the cluster head node
-        Node headNode = ground.getNodeFromId(headId);
-        double headX = headNode.getX() * (canvasX / (double) ground.getSizeX());
-        double headY = canvasY - (headNode.getY() * (canvasY / (double) ground.getSizeY()));
-
-        // Skip if the head is above the canvas (in control panel area)
-        if (headY < 0) {
-            continue;
-        }
-
-        // Calculate the maximum distance from head to any member
-        double maxDistance = 0;
-
-        // Include all members and gateways in calculation
-        List<Integer> allNodes = new ArrayList<>(members);
-        allNodes.addAll(gateways);
-
-        for (Integer nodeId : allNodes) {
-            Node memberNode = ground.getNodeFromId(nodeId);
-            double memberX = memberNode.getX() * (canvasX / (double) ground.getSizeX());
-            double memberY = canvasY - (memberNode.getY() * (canvasY / (double) ground.getSizeY()));
-
-            // Calculate distance from head to member
-            double distance = Math.sqrt(Math.pow(memberX - headX, 2) + Math.pow(memberY - headY, 2));
-            if (distance > maxDistance) {
-                maxDistance = distance;
+        // Second pass: assign members and gateways to their cluster heads
+        for (Node node : ground.getNodes()) {
+            if (node instanceof CBRP_Node) {
+                CBRP_Node cbrpNode = (CBRP_Node) node;
+                if (cbrpNode.getNodeStatus() == 2) { // C_MEMBER
+                    // Get the cluster head(s) this node belongs to
+                    List<Integer> hostClusters = cbrpNode.getHostClusters();
+                    for (Integer headId : hostClusters) {
+                        if (clusters.containsKey(headId)) {
+                            clusters.get(headId).add(node.getId());
+                        }
+                    }
+                } else if (cbrpNode.getNodeStatus() == 3) { // C_GATEWAY
+                    // Get the cluster head(s) this gateway connects
+                    List<Integer> hostClusters = cbrpNode.getHostClusters();
+                    for (Integer headId : hostClusters) {
+                        if (clusterGateways.containsKey(headId)) {
+                            clusterGateways.get(headId).add(node.getId());
+                        }
+                    }
+                }
             }
         }
 
-        // Add some padding to the radius
-        maxDistance = Math.max(maxDistance, 50) + CLUSTER_PADDING;
+        // Now draw the clusters with enhanced visualization
+        int colorIndex = 0;
 
-        // Ensure the cluster doesn't extend above the canvas
-        if (headY - maxDistance < 0) {
-            // Adjust the radius to stay within canvas
-            maxDistance = Math.max(headY - 10, 30);
+        for (Map.Entry<Integer, List<Integer>> cluster : clusters.entrySet()) {
+            int headId = cluster.getKey();
+            List<Integer> members = cluster.getValue();
+            Set<Integer> gateways = clusterGateways.getOrDefault(headId, new HashSet<>());
+
+            // Get the cluster head node
+            Node headNode = ground.getNodeFromId(headId);
+            double headX = headNode.getX() * (canvasX / (double) ground.getSizeX());
+            double headY = canvasY - (headNode.getY() * (canvasY / (double) ground.getSizeY()));
+
+            // Skip if the head is above the canvas (in control panel area)
+            if (headY < 0) {
+                continue;
+            }
+
+            // Calculate the maximum distance from head to any member
+            double maxDistance = 0;
+
+            // Include all members and gateways in calculation
+            List<Integer> allNodes = new ArrayList<>(members);
+            allNodes.addAll(gateways);
+
+            for (Integer nodeId : allNodes) {
+                Node memberNode = ground.getNodeFromId(nodeId);
+                double memberX = memberNode.getX() * (canvasX / (double) ground.getSizeX());
+                double memberY = canvasY - (memberNode.getY() * (canvasY / (double) ground.getSizeY()));
+
+                // Calculate distance from head to member
+                double distance = Math.sqrt(Math.pow(memberX - headX, 2) + Math.pow(memberY - headY, 2));
+                if (distance > maxDistance) {
+                    maxDistance = distance;
+                }
+            }
+
+            // Add some padding to the radius
+            maxDistance = Math.max(maxDistance, 50) + CLUSTER_PADDING;
+
+            // Ensure the cluster doesn't extend above the canvas
+            if (headY - maxDistance < 0) {
+                // Adjust the radius to stay within canvas
+                maxDistance = Math.max(headY - 10, 30);
+            }
+
+            // Draw the cluster circle centered on the head
+            Circle clusterCircle = new Circle(headX, headY, maxDistance);
+
+            // Create a radial gradient for the cluster fill
+            Color baseColor = CLUSTER_COLORS[colorIndex % CLUSTER_COLORS.length];
+            Stop[] stops = new Stop[] {
+                    new Stop(0, baseColor.deriveColor(0, 1, 1.2, 0.4)),
+                    new Stop(1, baseColor.deriveColor(0, 1, 0.8, 0.2))
+            };
+
+            javafx.scene.paint.RadialGradient gradient = new javafx.scene.paint.RadialGradient(
+                    0, 0, headX, headY, maxDistance, false, CycleMethod.NO_CYCLE, stops
+            );
+
+            clusterCircle.setFill(gradient);
+            clusterCircle.setStroke(baseColor.deriveColor(0, 1, 0.7, 0.8));
+            clusterCircle.setStrokeWidth(2.5);
+
+            // Add inner glow effect
+            InnerShadow innerGlow = new InnerShadow();
+            innerGlow.setRadius(4.0);
+            innerGlow.setColor(baseColor.deriveColor(0, 1, 1.5, 0.3));
+            clusterCircle.setEffect(innerGlow);
+
+            // Draw the cluster head indicator
+            Circle headIndicator = new Circle(headX, headY, CLUSTER_HEAD_INDICATOR_SIZE);
+            headIndicator.setFill(Color.TRANSPARENT);
+            headIndicator.setStroke(Color.BLACK);
+            headIndicator.setStrokeWidth(3);
+
+            // Add cluster label
+            Text clusterLabel = new Text(headX - 40, headY - maxDistance + 20,
+                    "Cluster " + headId + " (" + (members.size() + 1) + " nodes)");
+            clusterLabel.setFill(Color.rgb(50, 50, 50, 0.8));
+            clusterLabel.setFont(Font.font("Arial", FontWeight.BOLD, 12));
+
+            // Add to canvas
+            canvas.getChildren().addAll(clusterCircle, headIndicator, clusterLabel);
+
+            // Draw connections from head to members with different styles
+            for (Integer memberId : members) {
+                Node memberNode = ground.getNodeFromId(memberId);
+                double memberX = memberNode.getX() * (canvasX / (double) ground.getSizeX());
+                double memberY = canvasY - (memberNode.getY() * (canvasY / (double) ground.getSizeY()));
+
+                // Skip connections that go into the control panel
+                if (memberY < 0) continue;
+
+                Line line = new Line(headX, headY, memberX, memberY);
+                line.setStroke(baseColor.deriveColor(0, 1, 0.7, 0.7));
+                line.setStrokeWidth(1.5);
+                line.getStrokeDashArray().addAll(5d, 5d);
+
+                canvas.getChildren().add(line);
+            }
+
+            // Draw gateway connections with different style
+            for (Integer gatewayId : gateways) {
+                Node gatewayNode = ground.getNodeFromId(gatewayId);
+                double gatewayX = gatewayNode.getX() * (canvasX / (double) ground.getSizeX());
+                double gatewayY = canvasY - (gatewayNode.getY() * (canvasY / (double) ground.getSizeY()));
+
+                // Skip connections that go into the control panel
+                if (gatewayY < 0) continue;
+
+                Line line = new Line(headX, headY, gatewayX, gatewayY);
+                line.setStroke(Color.PURPLE);
+                line.setStrokeWidth(2.0);
+                line.getStrokeDashArray().addAll(2d, 2d);
+
+                canvas.getChildren().add(line);
+
+                // Add gateway label
+                Text gwLabel = new Text(gatewayX + 15, gatewayY - 5, "GW");
+                gwLabel.setFill(Color.PURPLE);
+                gwLabel.setFont(Font.font("Arial", FontWeight.BOLD, 10));
+                canvas.getChildren().add(gwLabel);
+            }
+
+            colorIndex++;
         }
-
-        // Draw the cluster circle centered on the head
-        Circle clusterCircle = new Circle(headX, headY, maxDistance);
-
-        // Create a radial gradient for the cluster fill
-        Color baseColor = CLUSTER_COLORS[colorIndex % CLUSTER_COLORS.length];
-        Stop[] stops = new Stop[] {
-                new Stop(0, baseColor.deriveColor(0, 1, 1.2, 0.4)),
-                new Stop(1, baseColor.deriveColor(0, 1, 0.8, 0.2))
-        };
-
-        javafx.scene.paint.RadialGradient gradient = new javafx.scene.paint.RadialGradient(
-                0, 0, headX, headY, maxDistance, false, CycleMethod.NO_CYCLE, stops
-        );
-
-        clusterCircle.setFill(gradient);
-        clusterCircle.setStroke(baseColor.deriveColor(0, 1, 0.7, 0.8));
-        clusterCircle.setStrokeWidth(2.5);
-
-        // Add inner glow effect
-        InnerShadow innerGlow = new InnerShadow();
-        innerGlow.setRadius(4.0);
-        innerGlow.setColor(baseColor.deriveColor(0, 1, 1.5, 0.3));
-        clusterCircle.setEffect(innerGlow);
-
-        // Draw the cluster head indicator
-        Circle headIndicator = new Circle(headX, headY, CLUSTER_HEAD_INDICATOR_SIZE);
-        headIndicator.setFill(Color.TRANSPARENT);
-        headIndicator.setStroke(Color.BLACK);
-        headIndicator.setStrokeWidth(3);
-
-        // Add cluster label
-        Text clusterLabel = new Text(headX - 40, headY - maxDistance + 20,
-                "Cluster " + headId + " (" + (members.size() + 1) + " nodes)");
-        clusterLabel.setFill(Color.rgb(50, 50, 50, 0.8));
-        clusterLabel.setFont(Font.font("Arial", FontWeight.BOLD, 12));
-
-        // Add to canvas
-        canvas.getChildren().addAll(clusterCircle, headIndicator, clusterLabel);
-
-        // Draw connections from head to members with different styles
-        for (Integer memberId : members) {
-            Node memberNode = ground.getNodeFromId(memberId);
-            double memberX = memberNode.getX() * (canvasX / (double) ground.getSizeX());
-            double memberY = canvasY - (memberNode.getY() * (canvasY / (double) ground.getSizeY()));
-
-            // Skip connections that go into the control panel
-            if (memberY < 0) continue;
-
-            Line line = new Line(headX, headY, memberX, memberY);
-            line.setStroke(baseColor.deriveColor(0, 1, 0.7, 0.7));
-            line.setStrokeWidth(1.5);
-            line.getStrokeDashArray().addAll(5d, 5d);
-
-            canvas.getChildren().add(line);
-        }
-
-        // Draw gateway connections with different style
-        for (Integer gatewayId : gateways) {
-            Node gatewayNode = ground.getNodeFromId(gatewayId);
-            double gatewayX = gatewayNode.getX() * (canvasX / (double) ground.getSizeX());
-            double gatewayY = canvasY - (gatewayNode.getY() * (canvasY / (double) ground.getSizeY()));
-
-            // Skip connections that go into the control panel
-            if (gatewayY < 0) continue;
-
-            Line line = new Line(headX, headY, gatewayX, gatewayY);
-            line.setStroke(Color.PURPLE);
-            line.setStrokeWidth(2.0);
-            line.getStrokeDashArray().addAll(2d, 2d);
-
-            canvas.getChildren().add(line);
-
-            // Add gateway label
-            Text gwLabel = new Text(gatewayX + 15, gatewayY - 5, "GW");
-            gwLabel.setFill(Color.PURPLE);
-            gwLabel.setFont(Font.font("Arial", FontWeight.BOLD, 10));
-            canvas.getChildren().add(gwLabel);
-        }
-
-        colorIndex++;
-    }
 }
 
     public int classifyMessageType(Message message) {
@@ -953,6 +961,15 @@ private void drawClusters() {
             Constants.SIMULATION_DELAY_BETWEEN_FRAMES = lastFrameRate;
             appendToLog("Simulation resumed");
         }
+    }
+
+    private long calculateTimeLeft(){
+        long timeLeft = startTime + (Constants.SIMULATION_TIME*1000) - System.currentTimeMillis() + Constants.SIMULATION_PAUSE_TIME;
+
+        if(timeLeft < 0)
+            timeLeft = 0;
+
+        return timeLeft;
     }
 
     // Log reader class to monitor the log file

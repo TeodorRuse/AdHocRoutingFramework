@@ -4,15 +4,15 @@ public final class Constants {
     private Constants(){};
 
     //General values
-    public static final int SIMULATION_TIME = 30; //seconds
-    public static final int SIMULATION_MODE = 12; // 1 = normal | 3 = DSR | 5 = AODV | 7 = SAODV | 9 = CBRP | 11 = OLSR | even = file
+    public static final int SIMULATION_TIME = 10; //seconds
+    public static final int SIMULATION_MODE = 6; // 1 = normal | 3 = DSR | 5 = AODV | 7 = SAODV | 9 = CBRP | 11 = OLSR | even = file
     public static final int SIMULATION_NR_NODES = 10;
     public static final int SIMULATION_SIZE_X = 900;
     public static final int SIMULATION_SIZE_Y = 900;
     public static int SIMULATION_DELAY_BETWEEN_FRAMES = 10;
     public static final int SIMULATION_EXEC_TIME_NODE = 100; // NO modify
-    public static final int SIMULATION_PROBABILITY_NODE_TURN_OFF = 20; // %%1000
-    public static final int SIMULATION_PROBABILITY_NODE_TURN_ON = 10;
+    public static final int SIMULATION_PROBABILITY_NODE_TURN_OFF = 0; // %%1000
+    public static final int SIMULATION_PROBABILITY_NODE_TURN_ON = 0;
     public static final int SIMULATION_RSA_KEY_SIZE = 1024;
     public static long SIMULATION_PAUSE_TIME = 0;
 
@@ -21,14 +21,14 @@ public final class Constants {
     public static final int LOG_LEVEL_MESSAGE         = 2; // Only relevant messages
     public static final int LOG_LEVEL_TEXT            = 3; // Only text messages
 
-    public static int LOG_LEVEL = 1;
+    public static int LOG_LEVEL = 0;
 
 
     //Node values
     public static final int NODE_DELAY = 10; // NO modify
     public static final int NODE_SPEED_BOUND = 10;
     public static final int NODE_SPEED_MIN_VAL = -NODE_SPEED_BOUND;
-    public static final int NODE_MOBILITY_TYPE = 2; // 0 = static | 1 = randomDirection | 2 = randomWaypoint
+    public static final int NODE_MOBILITY_TYPE = 0; // 0 = static | 1 = randomDirection | 2 = randomWaypoint
     public static final int NODE_MOBILITY_WAYPOINT_PAUSE = 2000; //ms to pause after reached waypoint
 
     public static final int NODE_MESSAGE_DELAY_BOUND = 1000;

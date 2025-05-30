@@ -15,8 +15,6 @@ public class Node {
     protected int messageDelay;
     protected long lastMessageSent;
     protected long lastNeighbourDiscovery;
-//    protected Timer neighbourDiscoveryTimer = new Timer(Constants.NODE_NEIGHBOUR_DISCOVERY_PERIOD);
-//    protected Timer neighbourDiscoveryDurationTimer = new Timer(Constants.NODE_NEIGHBOUR_DISCOVERY_DURATION);
     protected boolean active = true;
     protected HashSet<Integer> newNeighbours;
     protected boolean updatingNeighbours = false;
@@ -143,28 +141,6 @@ public class Node {
             updatingNeighbours = false;
         }
     }
-
-//TODO: add back -> introcudes other probelms
-//    public void discoverNeighbours(){
-//
-////        if(totalRunTime == -1 || totalRunTime - lastNeighbourDiscovery >= Constants.NODE_NEIGHBOUR_DISCOVERY_PERIOD){
-//        if(neighbourDiscoveryTimer.tick(totalRunTime)){
-//            Message message = new Message(id, -1, MessageType.NEIGHBOUR_SYN, true);
-//            sendMessage(message);
-////            lastNeighbourDiscovery = totalRunTime;
-//            updatingNeighbours = true;
-//            log(1,  " discovering neighbours");
-//        }
-//
-////        if(totalRunTime - lastNeighbourDiscovery >= Constants.NODE_NEIGHBOUR_DISCOVERY_DURATION && updatingNeighbours){
-//        if(neighbourDiscoveryDurationTimer.tick(totalRunTime) && updatingNeighbours){
-//            neighbours = new HashSet<>(newNeighbours);
-//            neighbours.add(id);
-//            updatedPaths = false;
-//            newNeighbours.clear();
-//            updatingNeighbours = false;
-//        }
-//    }
 
     public void log(int level, String text){
         Util.log(level, id, text);

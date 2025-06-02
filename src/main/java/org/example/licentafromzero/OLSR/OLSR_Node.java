@@ -609,4 +609,18 @@ public class OLSR_Node extends Node {
 
         return sb.toString();
     }
+
+    @Override
+    public String toInfo() {
+        return super.toInfo() + "\n\n" +
+                "OLSR Info\n" +
+                "---------\n" +
+                "MPRs: " + multipleRelayPoints + "\n" +
+                "MPR Selectors: " + mrpSelectors + "\n" +
+                "Sequence Number: " + seqNum + "\n" +
+                "Known Messages: " + knownMessages.size() + "\n" +
+                "One-Hop Neighbours: " + neighbourTable_oneHop.size() + "\n" +
+                "Two-Hop Neighbours: " + neighbourTable_twoHop.size() + "\n" +
+                "Routing Table: " + routingTable.size();
+    }
 }

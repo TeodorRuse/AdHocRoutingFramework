@@ -366,4 +366,16 @@ public class AODV_Node extends Node {
         Util.log(table, false);
     }
 
+    @Override
+    public String toInfo() {
+        return super.toInfo() + "\n\n" +
+                "AODV Info\n" +
+                "---------\n" +
+                "Sequence #: " + sequenceNumber + "\n" +
+                "Broadcast ID: " + broadcastId + "\n" +
+                "Known Msg IDs: " + knownMessageIDs.size() + "\n" +
+                "Routing Table Entries: " + routingTable.size();
+    }
+
+
 }

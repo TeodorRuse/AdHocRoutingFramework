@@ -1,1258 +1,678 @@
-Node 0  failed to send NEIGHBOUR_SYN - out of range: 0 -> 1
-Node 0  successfully sent NEIGHBOUR_SYN : 0 -> 2
-Node 0  successfully sent NEIGHBOUR_SYN : 0 -> 3
-Node 0  successfully sent NEIGHBOUR_SYN : 0 -> 4
-Node 0  failed to send NEIGHBOUR_SYN - out of range: 0 -> 5
-Node 0  successfully sent NEIGHBOUR_SYN : 0 -> 6
-Node 0  failed to send NEIGHBOUR_SYN - out of range: 0 -> 7
-Node 0  failed to send NEIGHBOUR_SYN - out of range: 0 -> 8
-Node 0  failed to send NEIGHBOUR_SYN - out of range: 0 -> 9
 Node 0  discovering neighbours
-Node 1  failed to send NEIGHBOUR_SYN - out of range: 1 -> 0
-Node 1  failed to send NEIGHBOUR_SYN - out of range: 1 -> 2
-Node 1  successfully sent NEIGHBOUR_SYN : 1 -> 3
-Node 1  failed to send NEIGHBOUR_SYN - out of range: 1 -> 4
-Node 1  failed to send NEIGHBOUR_SYN - out of range: 1 -> 5
-Node 1  failed to send NEIGHBOUR_SYN - out of range: 1 -> 6
-Node 1  failed to send NEIGHBOUR_SYN - out of range: 1 -> 7
-Node 1  failed to send NEIGHBOUR_SYN - out of range: 1 -> 8
-Node 1  successfully sent NEIGHBOUR_SYN : 1 -> 9
 Node 1  discovering neighbours
 Node 2 received NEIGHBOUR_SYN from 0
-Node 2  successfully sent NEIGHBOUR_ACK : 2 -> 0
-Node 2  successfully sent NEIGHBOUR_SYN : 2 -> 0
-Node 2  failed to send NEIGHBOUR_SYN - out of range: 2 -> 1
-Node 2  successfully sent NEIGHBOUR_SYN : 2 -> 3
-Node 2  successfully sent NEIGHBOUR_SYN : 2 -> 4
-Node 2  failed to send NEIGHBOUR_SYN - out of range: 2 -> 5
-Node 2  successfully sent NEIGHBOUR_SYN : 2 -> 6
-Node 2  failed to send NEIGHBOUR_SYN - out of range: 2 -> 7
-Node 2  failed to send NEIGHBOUR_SYN - out of range: 2 -> 8
-Node 2  failed to send NEIGHBOUR_SYN - out of range: 2 -> 9
 Node 2  discovering neighbours
 Node 3 received NEIGHBOUR_SYN from 0
-Node 3  successfully sent NEIGHBOUR_ACK : 3 -> 0
 Node 3 received NEIGHBOUR_SYN from 1
-Node 3  successfully sent NEIGHBOUR_ACK : 3 -> 1
 Node 3 received NEIGHBOUR_SYN from 2
-Node 3  failed to send NEIGHBOUR_ACK - out of range: 3 -> 2
-Node 3  successfully sent NEIGHBOUR_SYN : 3 -> 0
-Node 3  successfully sent NEIGHBOUR_SYN : 3 -> 1
-Node 3  failed to send NEIGHBOUR_SYN - out of range: 3 -> 2
-Node 3  successfully sent NEIGHBOUR_SYN : 3 -> 4
-Node 3  failed to send NEIGHBOUR_SYN - out of range: 3 -> 5
-Node 3  failed to send NEIGHBOUR_SYN - out of range: 3 -> 6
-Node 3  failed to send NEIGHBOUR_SYN - out of range: 3 -> 7
-Node 3  failed to send NEIGHBOUR_SYN - out of range: 3 -> 8
-Node 3  successfully sent NEIGHBOUR_SYN : 3 -> 9
 Node 3  discovering neighbours
 Node 4 received NEIGHBOUR_SYN from 0
-Node 4  failed to send NEIGHBOUR_ACK - out of range: 4 -> 0
 Node 4 received NEIGHBOUR_SYN from 2
-Node 4  failed to send NEIGHBOUR_ACK - out of range: 4 -> 2
 Node 4 received NEIGHBOUR_SYN from 3
-Node 4  successfully sent NEIGHBOUR_ACK : 4 -> 3
-Node 4  failed to send NEIGHBOUR_SYN - out of range: 4 -> 0
-Node 4  failed to send NEIGHBOUR_SYN - out of range: 4 -> 1
-Node 4  failed to send NEIGHBOUR_SYN - out of range: 4 -> 2
-Node 4  successfully sent NEIGHBOUR_SYN : 4 -> 3
-Node 4  failed to send NEIGHBOUR_SYN - out of range: 4 -> 5
-Node 4  failed to send NEIGHBOUR_SYN - out of range: 4 -> 6
-Node 4  failed to send NEIGHBOUR_SYN - out of range: 4 -> 7
-Node 4  failed to send NEIGHBOUR_SYN - out of range: 4 -> 8
-Node 4  failed to send NEIGHBOUR_SYN - out of range: 4 -> 9
 Node 4  discovering neighbours
-Node 5  failed to send NEIGHBOUR_SYN - out of range: 5 -> 0
-Node 5  failed to send NEIGHBOUR_SYN - out of range: 5 -> 1
-Node 5  failed to send NEIGHBOUR_SYN - out of range: 5 -> 2
-Node 5  failed to send NEIGHBOUR_SYN - out of range: 5 -> 3
-Node 5  failed to send NEIGHBOUR_SYN - out of range: 5 -> 4
-Node 5  failed to send NEIGHBOUR_SYN - out of range: 5 -> 6
-Node 5  successfully sent NEIGHBOUR_SYN : 5 -> 7
-Node 5  successfully sent NEIGHBOUR_SYN : 5 -> 8
-Node 5  failed to send NEIGHBOUR_SYN - out of range: 5 -> 9
 Node 5  discovering neighbours
 Node 6 received NEIGHBOUR_SYN from 0
-Node 6  successfully sent NEIGHBOUR_ACK : 6 -> 0
 Node 6 received NEIGHBOUR_SYN from 2
-Node 6  successfully sent NEIGHBOUR_ACK : 6 -> 2
-Node 6  successfully sent NEIGHBOUR_SYN : 6 -> 0
-Node 6  failed to send NEIGHBOUR_SYN - out of range: 6 -> 1
-Node 6  successfully sent NEIGHBOUR_SYN : 6 -> 2
-Node 6  failed to send NEIGHBOUR_SYN - out of range: 6 -> 3
-Node 6  successfully sent NEIGHBOUR_SYN : 6 -> 4
-Node 6  successfully sent NEIGHBOUR_SYN : 6 -> 5
-Node 6  successfully sent NEIGHBOUR_SYN : 6 -> 7
-Node 6  failed to send NEIGHBOUR_SYN - out of range: 6 -> 8
-Node 6  failed to send NEIGHBOUR_SYN - out of range: 6 -> 9
 Node 6  discovering neighbours
 Node 7 received NEIGHBOUR_SYN from 5
-Node 7  successfully sent NEIGHBOUR_ACK : 7 -> 5
 Node 7 received NEIGHBOUR_SYN from 6
-Node 7  successfully sent NEIGHBOUR_ACK : 7 -> 6
-Node 7  failed to send NEIGHBOUR_SYN - out of range: 7 -> 0
-Node 7  failed to send NEIGHBOUR_SYN - out of range: 7 -> 1
-Node 7  failed to send NEIGHBOUR_SYN - out of range: 7 -> 2
-Node 7  failed to send NEIGHBOUR_SYN - out of range: 7 -> 3
-Node 7  failed to send NEIGHBOUR_SYN - out of range: 7 -> 4
-Node 7  successfully sent NEIGHBOUR_SYN : 7 -> 5
-Node 7  successfully sent NEIGHBOUR_SYN : 7 -> 6
-Node 7  failed to send NEIGHBOUR_SYN - out of range: 7 -> 8
-Node 7  failed to send NEIGHBOUR_SYN - out of range: 7 -> 9
 Node 7  discovering neighbours
 Node 8 received NEIGHBOUR_SYN from 5
-Node 8  successfully sent NEIGHBOUR_ACK : 8 -> 5
-Node 8  failed to send NEIGHBOUR_SYN - out of range: 8 -> 0
-Node 8  failed to send NEIGHBOUR_SYN - out of range: 8 -> 1
-Node 8  failed to send NEIGHBOUR_SYN - out of range: 8 -> 2
-Node 8  failed to send NEIGHBOUR_SYN - out of range: 8 -> 3
-Node 8  failed to send NEIGHBOUR_SYN - out of range: 8 -> 4
-Node 8  successfully sent NEIGHBOUR_SYN : 8 -> 5
-Node 8  failed to send NEIGHBOUR_SYN - out of range: 8 -> 6
-Node 8  failed to send NEIGHBOUR_SYN - out of range: 8 -> 7
-Node 8  successfully sent NEIGHBOUR_SYN : 8 -> 9
 Node 8  discovering neighbours
 Node 9 received NEIGHBOUR_SYN from 1
-Node 9  successfully sent NEIGHBOUR_ACK : 9 -> 1
 Node 9 received NEIGHBOUR_SYN from 3
-Node 9  successfully sent NEIGHBOUR_ACK : 9 -> 3
 Node 9 received NEIGHBOUR_SYN from 8
-Node 9  successfully sent NEIGHBOUR_ACK : 9 -> 8
-Node 9  failed to send NEIGHBOUR_SYN - out of range: 9 -> 0
-Node 9  successfully sent NEIGHBOUR_SYN : 9 -> 1
-Node 9  failed to send NEIGHBOUR_SYN - out of range: 9 -> 2
-Node 9  successfully sent NEIGHBOUR_SYN : 9 -> 3
-Node 9  failed to send NEIGHBOUR_SYN - out of range: 9 -> 4
-Node 9  successfully sent NEIGHBOUR_SYN : 9 -> 5
-Node 9  failed to send NEIGHBOUR_SYN - out of range: 9 -> 6
-Node 9  failed to send NEIGHBOUR_SYN - out of range: 9 -> 7
-Node 9  successfully sent NEIGHBOUR_SYN : 9 -> 8
 Node 9  discovering neighbours
 Node 0 received NEIGHBOUR_ACK from 2
 Node 0 received NEIGHBOUR_SYN from 2
-Node 0  successfully sent NEIGHBOUR_ACK : 0 -> 2
 Node 0 received NEIGHBOUR_ACK from 3
 Node 0 received NEIGHBOUR_SYN from 3
-Node 0  successfully sent NEIGHBOUR_ACK : 0 -> 3
 Node 0 received NEIGHBOUR_ACK from 6
 Node 0 received NEIGHBOUR_SYN from 6
-Node 0  successfully sent NEIGHBOUR_ACK : 0 -> 6
 Node 1 received NEIGHBOUR_ACK from 3
 Node 1 received NEIGHBOUR_SYN from 3
-Node 1  successfully sent NEIGHBOUR_ACK : 1 -> 3
 Node 1 received NEIGHBOUR_ACK from 9
 Node 1 received NEIGHBOUR_SYN from 9
-Node 1  successfully sent NEIGHBOUR_ACK : 1 -> 9
 Node 2 received NEIGHBOUR_ACK from 6
 Node 2 received NEIGHBOUR_SYN from 6
-Node 2  successfully sent NEIGHBOUR_ACK : 2 -> 6
 Node 2 received NEIGHBOUR_ACK from 0
 Node 3 received NEIGHBOUR_ACK from 4
 Node 3 received NEIGHBOUR_SYN from 4
-Node 3  successfully sent NEIGHBOUR_ACK : 3 -> 4
 Node 3 received NEIGHBOUR_ACK from 9
 Node 3 received NEIGHBOUR_SYN from 9
-Node 3  successfully sent NEIGHBOUR_ACK : 3 -> 9
 Node 3 received NEIGHBOUR_ACK from 0
 Node 3 received NEIGHBOUR_ACK from 1
 Node 4 received NEIGHBOUR_SYN from 6
-Node 4  failed to send NEIGHBOUR_ACK - out of range: 4 -> 6
 Node 4 received NEIGHBOUR_ACK from 3
 Node 5 received NEIGHBOUR_SYN from 6
-Node 5  failed to send NEIGHBOUR_ACK - out of range: 5 -> 6
 Node 5 received NEIGHBOUR_ACK from 7
 Node 5 received NEIGHBOUR_SYN from 7
-Node 5  successfully sent NEIGHBOUR_ACK : 5 -> 7
 Node 5 received NEIGHBOUR_ACK from 8
 Node 5 received NEIGHBOUR_SYN from 8
-Node 5  successfully sent NEIGHBOUR_ACK : 5 -> 8
 Node 5 received NEIGHBOUR_SYN from 9
-Node 5  failed to send NEIGHBOUR_ACK - out of range: 5 -> 9
 Node 6 received NEIGHBOUR_ACK from 7
 Node 6 received NEIGHBOUR_SYN from 7
-Node 6  successfully sent NEIGHBOUR_ACK : 6 -> 7
 Node 6 received NEIGHBOUR_ACK from 0
 Node 6 received NEIGHBOUR_ACK from 2
+Node 6 received OLSR_HELLO from 2
 Node 7 received NEIGHBOUR_ACK from 5
 Node 7 received NEIGHBOUR_ACK from 6
 Node 8 received NEIGHBOUR_ACK from 9
 Node 8 received NEIGHBOUR_SYN from 9
-Node 8  successfully sent NEIGHBOUR_ACK : 8 -> 9
 Node 8 received NEIGHBOUR_ACK from 5
 Node 9 received NEIGHBOUR_ACK from 1
 Node 9 received NEIGHBOUR_ACK from 3
 Node 9 received NEIGHBOUR_ACK from 8
-Node 4  beginning route discovery to 3
-Node 4  successfully sent AODV_RREQ : 4 -> 3
-Node 9  beginning route discovery to 0
-Node 9  successfully sent AODV_RREQ : 9 -> 1
-Node 9  successfully sent AODV_RREQ : 9 -> 3
-Node 9  successfully sent AODV_RREQ : 9 -> 8
-Node 0  beginning route discovery to 4
-Node 0  successfully sent AODV_RREQ : 0 -> 2
-Node 0  successfully sent AODV_RREQ : 0 -> 3
-Node 0  successfully sent AODV_RREQ : 0 -> 6
-Node 0  failed to send NEIGHBOUR_SYN - out of range: 0 -> 1
-Node 0  successfully sent NEIGHBOUR_SYN : 0 -> 2
-Node 0  successfully sent NEIGHBOUR_SYN : 0 -> 3
-Node 0  successfully sent NEIGHBOUR_SYN : 0 -> 4
-Node 0  failed to send NEIGHBOUR_SYN - out of range: 0 -> 5
-Node 0  successfully sent NEIGHBOUR_SYN : 0 -> 6
-Node 0  failed to send NEIGHBOUR_SYN - out of range: 0 -> 7
-Node 0  failed to send NEIGHBOUR_SYN - out of range: 0 -> 8
-Node 0  failed to send NEIGHBOUR_SYN - out of range: 0 -> 9
+Node 0 received OLSR_HELLO from 2
+Node 2 received OLSR_HELLO from 0
+Node 3 received OLSR_HELLO from 0
+Node 3 received OLSR_HELLO from 1
+Node 4 received OLSR_HELLO from 3
+Node 5 received OLSR_HELLO from 7
+Node 6 received OLSR_HELLO from 7
+Node 6 received OLSR_HELLO from 0
+Node 7 received OLSR_HELLO from 5
+Node 7 received OLSR_HELLO from 6
+Node 8 received OLSR_HELLO from 5
+Node 9 received OLSR_HELLO from 1
+Node 9 received OLSR_HELLO from 3
+Node 9 received OLSR_HELLO from 8
+Node 0 received OLSR_HELLO from 3
+Node 0 received OLSR_HELLO from 6
 Node 0  discovering neighbours
-Node 1 received AODV_RREQ from 9
-Node 1 sending RREQ[9|0] to all
-Node 1  successfully sent AODV_RREQ : 1 -> 3
-Node 1  successfully sent AODV_RREQ : 1 -> 9
-Node 1  beginning route discovery to 0
-Node 1  successfully sent AODV_RREQ : 1 -> 3
-Node 1  successfully sent AODV_RREQ : 1 -> 9
-Node 1  failed to send NEIGHBOUR_SYN - out of range: 1 -> 0
-Node 1  failed to send NEIGHBOUR_SYN - out of range: 1 -> 2
-Node 1  successfully sent NEIGHBOUR_SYN : 1 -> 3
-Node 1  failed to send NEIGHBOUR_SYN - out of range: 1 -> 4
-Node 1  failed to send NEIGHBOUR_SYN - out of range: 1 -> 5
-Node 1  failed to send NEIGHBOUR_SYN - out of range: 1 -> 6
-Node 1  failed to send NEIGHBOUR_SYN - out of range: 1 -> 7
-Node 1  failed to send NEIGHBOUR_SYN - out of range: 1 -> 8
-Node 1  successfully sent NEIGHBOUR_SYN : 1 -> 9
-Node 1  discovering neighbours
-Node 2 received AODV_RREQ from 0
-Node 2 sending RREQ[0|0] to all
-Node 2  successfully sent AODV_RREQ : 2 -> 0
-Node 2  successfully sent AODV_RREQ : 2 -> 6
+Node 1 received OLSR_HELLO from 3
+Node 1 received OLSR_HELLO from 9
+Node 2 received OLSR_HELLO from 6
 Node 2 received NEIGHBOUR_SYN from 0
-Node 2  successfully sent NEIGHBOUR_ACK : 2 -> 0
-Node 2  beginning route discovery to 1
-Node 2  successfully sent AODV_RREQ : 2 -> 0
-Node 2  successfully sent AODV_RREQ : 2 -> 6
-Node 2  successfully sent NEIGHBOUR_SYN : 2 -> 0
-Node 2  failed to send NEIGHBOUR_SYN - out of range: 2 -> 1
-Node 2  successfully sent NEIGHBOUR_SYN : 2 -> 3
-Node 2  successfully sent NEIGHBOUR_SYN : 2 -> 4
-Node 2  failed to send NEIGHBOUR_SYN - out of range: 2 -> 5
-Node 2  successfully sent NEIGHBOUR_SYN : 2 -> 6
-Node 2  failed to send NEIGHBOUR_SYN - out of range: 2 -> 7
-Node 2  failed to send NEIGHBOUR_SYN - out of range: 2 -> 8
-Node 2  failed to send NEIGHBOUR_SYN - out of range: 2 -> 9
+Node 2 received OLSR_HELLO from 0
 Node 2  discovering neighbours
-Node 3 received AODV_RREQ from 4
-Node 3 is the finalDestination for: [4|0] -> 3 sending RREP
-Node 3  successfully sent AODV_RREP : 3 -> 4
-Node 3 received AODV_RREQ from 9
-Node 3 sending RREQ[9|0] to all
-Node 3  successfully sent AODV_RREQ : 3 -> 0
-Node 3  successfully sent AODV_RREQ : 3 -> 1
-Node 3  successfully sent AODV_RREQ : 3 -> 4
-Node 3  successfully sent AODV_RREQ : 3 -> 9
-Node 3 received AODV_RREQ from 0
-Node 3 knows route, and has fresher info, sending RREP
-Node 3  successfully sent AODV_RREP : 3 -> 0
+Node 3 received OLSR_HELLO from 4
+Node 3 received OLSR_HELLO from 9
 Node 3 received NEIGHBOUR_SYN from 0
-Node 3  successfully sent NEIGHBOUR_ACK : 3 -> 0
-Node 3 received AODV_RREQ from 1
-Node 3 RREQ( [9|0] -> 0 )is known, discarding
-Node 3 received AODV_RREQ from 1
-Node 3 knows route, and has fresher info, sending RREP
-Node 3  successfully sent AODV_RREP : 3 -> 1
-Node 3 received NEIGHBOUR_SYN from 1
-Node 3  successfully sent NEIGHBOUR_ACK : 3 -> 1
+Node 3 received OLSR_HELLO from 0
+Node 3 received OLSR_TEXT from 1
+Node 3 sending message further to 4 to reach 4
 Node 3 received NEIGHBOUR_SYN from 2
-Node 3  failed to send NEIGHBOUR_ACK - out of range: 3 -> 2
-Node 3 using known route to send to 1
-Node 3  successfully sent AODV_TEXT : 3 -> 1
-Node 3  successfully sent NEIGHBOUR_SYN : 3 -> 0
-Node 3  successfully sent NEIGHBOUR_SYN : 3 -> 1
-Node 3  failed to send NEIGHBOUR_SYN - out of range: 3 -> 2
-Node 3  successfully sent NEIGHBOUR_SYN : 3 -> 4
-Node 3  failed to send NEIGHBOUR_SYN - out of range: 3 -> 5
-Node 3  failed to send NEIGHBOUR_SYN - out of range: 3 -> 6
-Node 3  failed to send NEIGHBOUR_SYN - out of range: 3 -> 7
-Node 3  failed to send NEIGHBOUR_SYN - out of range: 3 -> 8
-Node 3  successfully sent NEIGHBOUR_SYN : 3 -> 9
-Node 3  discovering neighbours
 Node 4 received NEIGHBOUR_SYN from 0
-Node 4  failed to send NEIGHBOUR_ACK - out of range: 4 -> 0
 Node 4 received NEIGHBOUR_SYN from 2
-Node 4  failed to send NEIGHBOUR_ACK - out of range: 4 -> 2
-Node 4 received AODV_RREP from 3
-Node 4 received requested route to 3
-Node 4 received AODV_RREQ from 3
-Node 4 sending RREQ[9|0] to all
-Node 4  successfully sent AODV_RREQ : 4 -> 3
-Node 4 received NEIGHBOUR_SYN from 3
-Node 4  successfully sent NEIGHBOUR_ACK : 4 -> 3
-Node 4  failed to send NEIGHBOUR_SYN - out of range: 4 -> 0
-Node 4  failed to send NEIGHBOUR_SYN - out of range: 4 -> 1
-Node 4  failed to send NEIGHBOUR_SYN - out of range: 4 -> 2
-Node 4  successfully sent NEIGHBOUR_SYN : 4 -> 3
-Node 4  failed to send NEIGHBOUR_SYN - out of range: 4 -> 5
-Node 4  failed to send NEIGHBOUR_SYN - out of range: 4 -> 6
-Node 4  failed to send NEIGHBOUR_SYN - out of range: 4 -> 7
-Node 4  failed to send NEIGHBOUR_SYN - out of range: 4 -> 8
-Node 4  failed to send NEIGHBOUR_SYN - out of range: 4 -> 9
-Node 4  discovering neighbours
-Node 5  beginning route discovery to 1
-Node 5  successfully sent AODV_RREQ : 5 -> 7
-Node 5  successfully sent AODV_RREQ : 5 -> 8
-Node 5  failed to send NEIGHBOUR_SYN - out of range: 5 -> 0
-Node 5  failed to send NEIGHBOUR_SYN - out of range: 5 -> 1
-Node 5  failed to send NEIGHBOUR_SYN - out of range: 5 -> 2
-Node 5  failed to send NEIGHBOUR_SYN - out of range: 5 -> 3
-Node 5  failed to send NEIGHBOUR_SYN - out of range: 5 -> 4
-Node 5  failed to send NEIGHBOUR_SYN - out of range: 5 -> 6
-Node 5  successfully sent NEIGHBOUR_SYN : 5 -> 7
-Node 5  successfully sent NEIGHBOUR_SYN : 5 -> 8
-Node 5  failed to send NEIGHBOUR_SYN - out of range: 5 -> 9
+Node 4 received OLSR_TEXT from 3
+Node 4 received text: Hello from 1
+Node 5 received OLSR_HELLO from 8
 Node 5  discovering neighbours
-Node 6 received AODV_RREQ from 0
-Node 6 sending RREQ[0|0] to all
-Node 6  successfully sent AODV_RREQ : 6 -> 0
-Node 6  successfully sent AODV_RREQ : 6 -> 2
-Node 6  successfully sent AODV_RREQ : 6 -> 7
 Node 6 received NEIGHBOUR_SYN from 0
-Node 6  successfully sent NEIGHBOUR_ACK : 6 -> 0
-Node 6 received AODV_RREQ from 2
-Node 6 RREQ( [0|0] -> 4 )is known, discarding
-Node 6 received AODV_RREQ from 2
-Node 6 sending RREQ[2|1] to all
-Node 6  successfully sent AODV_RREQ : 6 -> 0
-Node 6  successfully sent AODV_RREQ : 6 -> 2
-Node 6  successfully sent AODV_RREQ : 6 -> 7
+Node 6 received OLSR_HELLO from 0
 Node 6 received NEIGHBOUR_SYN from 2
-Node 6  successfully sent NEIGHBOUR_ACK : 6 -> 2
-Node 6  beginning route discovery to 9
-Node 6  successfully sent AODV_RREQ : 6 -> 0
-Node 6  successfully sent AODV_RREQ : 6 -> 2
-Node 6  successfully sent AODV_RREQ : 6 -> 7
-Node 6  successfully sent NEIGHBOUR_SYN : 6 -> 0
-Node 6  failed to send NEIGHBOUR_SYN - out of range: 6 -> 1
-Node 6  successfully sent NEIGHBOUR_SYN : 6 -> 2
-Node 6  failed to send NEIGHBOUR_SYN - out of range: 6 -> 3
-Node 6  successfully sent NEIGHBOUR_SYN : 6 -> 4
-Node 6  successfully sent NEIGHBOUR_SYN : 6 -> 5
-Node 6  successfully sent NEIGHBOUR_SYN : 6 -> 7
-Node 6  failed to send NEIGHBOUR_SYN - out of range: 6 -> 8
-Node 6  failed to send NEIGHBOUR_SYN - out of range: 6 -> 9
-Node 6  discovering neighbours
-Node 7 received AODV_RREQ from 5
-Node 7 sending RREQ[5|0] to all
-Node 7  successfully sent AODV_RREQ : 7 -> 5
-Node 7  successfully sent AODV_RREQ : 7 -> 6
+Node 6 received OLSR_TEXT from 2
+Node 6 received text: Hello from 2
+Node 6 received OLSR_HELLO from 2
+Node 7 received NEIGHBOUR_SYN from 0
 Node 7 received NEIGHBOUR_SYN from 5
-Node 7  successfully sent NEIGHBOUR_ACK : 7 -> 5
-Node 7 received AODV_RREQ from 6
-Node 7 sending RREQ[0|0] to all
-Node 7  successfully sent AODV_RREQ : 7 -> 5
-Node 7  successfully sent AODV_RREQ : 7 -> 6
-Node 7 received AODV_RREQ from 6
-Node 7 sending RREQ[2|1] to all
-Node 7  successfully sent AODV_RREQ : 7 -> 5
-Node 7  successfully sent AODV_RREQ : 7 -> 6
-Node 7 received AODV_RREQ from 6
-Node 7 sending RREQ[6|2] to all
-Node 7  successfully sent AODV_RREQ : 7 -> 5
-Node 7  successfully sent AODV_RREQ : 7 -> 6
-Node 7 received NEIGHBOUR_SYN from 6
-Node 7  successfully sent NEIGHBOUR_ACK : 7 -> 6
-Node 7 using known route to send to 6
-Node 7  successfully sent AODV_TEXT : 7 -> 6
-Node 7  failed to send NEIGHBOUR_SYN - out of range: 7 -> 0
-Node 7  failed to send NEIGHBOUR_SYN - out of range: 7 -> 1
-Node 7  failed to send NEIGHBOUR_SYN - out of range: 7 -> 2
-Node 7  failed to send NEIGHBOUR_SYN - out of range: 7 -> 3
-Node 7  failed to send NEIGHBOUR_SYN - out of range: 7 -> 4
-Node 7  successfully sent NEIGHBOUR_SYN : 7 -> 5
-Node 7  successfully sent NEIGHBOUR_SYN : 7 -> 6
-Node 7  failed to send NEIGHBOUR_SYN - out of range: 7 -> 8
-Node 7  failed to send NEIGHBOUR_SYN - out of range: 7 -> 9
+Node 7 received OLSR_HELLO from 5
+Node 7 received OLSR_TEXT from 6
+Node 7 received text: Hello from 6
 Node 7  discovering neighbours
-Node 8 received AODV_RREQ from 9
-Node 8 sending RREQ[9|0] to all
-Node 8  successfully sent AODV_RREQ : 8 -> 5
-Node 8  successfully sent AODV_RREQ : 8 -> 9
-Node 8 received AODV_RREQ from 5
-Node 8 sending RREQ[5|0] to all
-Node 8  successfully sent AODV_RREQ : 8 -> 5
-Node 8  successfully sent AODV_RREQ : 8 -> 9
+Node 8 received OLSR_HELLO from 9
+Node 8 received OLSR_TEXT from 5
+Node 8 sending message further to 9 to reach 9
 Node 8 received NEIGHBOUR_SYN from 5
-Node 8  successfully sent NEIGHBOUR_ACK : 8 -> 5
-Node 8  beginning route discovery to 4
-Node 8  successfully sent AODV_RREQ : 8 -> 5
-Node 8  successfully sent AODV_RREQ : 8 -> 9
-Node 9 received AODV_RREQ from 1
-Node 9 RREQ( [9|0] -> 0 )is known, discarding
-Node 9 received AODV_RREQ from 1
-Node 9 sending RREQ[1|1] to all
-Node 9  successfully sent AODV_RREQ : 9 -> 1
-Node 9  successfully sent AODV_RREQ : 9 -> 3
-Node 9  successfully sent AODV_RREQ : 9 -> 8
-Node 9 received NEIGHBOUR_SYN from 1
-Node 9  successfully sent NEIGHBOUR_ACK : 9 -> 1
-Node 9 received AODV_RREQ from 3
-Node 9 RREQ( [9|0] -> 0 )is known, discarding
-Node 9 received NEIGHBOUR_SYN from 3
-Node 9  successfully sent NEIGHBOUR_ACK : 9 -> 3
-Node 9 received AODV_RREQ from 8
-Node 9 RREQ( [9|0] -> 0 )is known, discarding
-Node 9 received AODV_RREQ from 8
-Node 9 knows route, and has fresher info, sending RREP
-Node 9  successfully sent AODV_RREP : 9 -> 8
-Node 9 received AODV_RREQ from 8
-Node 9 sending RREQ[8|2] to all
-Node 9  successfully sent AODV_RREQ : 9 -> 1
-Node 9  successfully sent AODV_RREQ : 9 -> 3
-Node 9  successfully sent AODV_RREQ : 9 -> 8
-Node 9  failed to send NEIGHBOUR_SYN - out of range: 9 -> 0
-Node 9  successfully sent NEIGHBOUR_SYN : 9 -> 1
-Node 9  failed to send NEIGHBOUR_SYN - out of range: 9 -> 2
-Node 9  successfully sent NEIGHBOUR_SYN : 9 -> 3
-Node 9  failed to send NEIGHBOUR_SYN - out of range: 9 -> 4
-Node 9  successfully sent NEIGHBOUR_SYN : 9 -> 5
-Node 9  failed to send NEIGHBOUR_SYN - out of range: 9 -> 6
-Node 9  failed to send NEIGHBOUR_SYN - out of range: 9 -> 7
-Node 9  successfully sent NEIGHBOUR_SYN : 9 -> 8
+Node 8 received OLSR_HELLO from 5
+Node 8  discovering neighbours
+Node 9 received OLSR_TEXT from 8
+Node 9 received text: Hello from 5
+Node 9 received NEIGHBOUR_SYN from 8
+Node 9 received OLSR_HELLO from 8
 Node 9  discovering neighbours
-Node 0 received AODV_RREQ from 2
-Node 0 RREQ( [0|0] -> 4 )is known, discarding
 Node 0 received NEIGHBOUR_ACK from 2
-Node 0 received AODV_RREQ from 2
-Node 0 sending RREQ[2|1] to all
-Node 0  successfully sent AODV_RREQ : 0 -> 2
-Node 0  successfully sent AODV_RREQ : 0 -> 3
-Node 0  successfully sent AODV_RREQ : 0 -> 6
 Node 0 received NEIGHBOUR_SYN from 2
-Node 0  successfully sent NEIGHBOUR_ACK : 0 -> 2
-Node 0 received AODV_RREQ from 3
-Node 0 is the finalDestination for: [9|0] -> 0 sending RREP
-Node 0  successfully sent AODV_RREP : 0 -> 3
-Node 0 received AODV_RREP from 3
-Node 0 RREP is not from the target node, but a cached one!
-Node 0 received requested route to 4
+Node 0 received OLSR_HELLO from 2
 Node 0 received NEIGHBOUR_ACK from 3
-Node 0 received NEIGHBOUR_SYN from 3
-Node 0  successfully sent NEIGHBOUR_ACK : 0 -> 3
-Node 0 received AODV_RREQ from 6
-Node 0 RREQ( [0|0] -> 4 )is known, discarding
 Node 0 received NEIGHBOUR_ACK from 6
-Node 0 received AODV_RREQ from 6
-Node 0 RREQ( [2|1] -> 1 )is known, discarding
-Node 0 received AODV_RREQ from 6
-Node 0 knows route, and has fresher info, sending RREP
-Node 0  successfully sent AODV_RREP : 0 -> 6
-Node 0 received NEIGHBOUR_SYN from 6
-Node 0  successfully sent NEIGHBOUR_ACK : 0 -> 6
-Node 1 received AODV_RREQ from 3
-Node 1 RREQ( [9|0] -> 0 )is known, discarding
-Node 1 received AODV_RREP from 3
-Node 1 RREP is not from the target node, but a cached one!
-Node 1 received requested route to 0
-Node 1 received NEIGHBOUR_ACK from 3
-Node 1 received AODV_TEXT from 3
-Node 1 received text: Hello from 3
-Node 1 received NEIGHBOUR_SYN from 3
-Node 1  successfully sent NEIGHBOUR_ACK : 1 -> 3
-Node 1 received AODV_RREQ from 9
-Node 1 RREQ( [1|1] -> 0 )is known, discarding
-Node 1 received NEIGHBOUR_ACK from 9
-Node 1 received AODV_RREQ from 9
-Node 1 sending RREQ[8|2] to all
-Node 1  successfully sent AODV_RREQ : 1 -> 3
-Node 1  successfully sent AODV_RREQ : 1 -> 9
 Node 1 received NEIGHBOUR_SYN from 9
-Node 1  successfully sent NEIGHBOUR_ACK : 1 -> 9
-Node 2 received AODV_RREQ from 6
-Node 2 RREQ( [0|0] -> 4 )is known, discarding
-Node 2 received AODV_RREQ from 6
-Node 2 RREQ( [2|1] -> 1 )is known, discarding
+Node 1  discovering neighbours
 Node 2 received NEIGHBOUR_ACK from 6
-Node 2 received AODV_RREQ from 6
-Node 2 sending RREQ[6|2] to all
-Node 2  successfully sent AODV_RREQ : 2 -> 0
-Node 2  successfully sent AODV_RREQ : 2 -> 6
-Node 2 received NEIGHBOUR_SYN from 6
-Node 2  successfully sent NEIGHBOUR_ACK : 2 -> 6
-Node 2 received AODV_RREQ from 0
-Node 2 RREQ( [2|1] -> 1 )is known, discarding
 Node 2 received NEIGHBOUR_ACK from 0
-Node 3 received AODV_RREQ from 4
-Node 3 RREQ( [9|0] -> 0 )is known, discarding
+Node 2 received OLSR_TC from 0
+Node 3 received OLSR_TEXT from 4
+Node 3 sending message further to 0 to reach 0
+Node 3 received NEIGHBOUR_SYN from 9
+Node 3 received OLSR_TEXT from 0
+Node 3 sending message further to 1 to reach 1
+Node 3 received OLSR_TC from 0
+Node 3 received NEIGHBOUR_SYN from 1
+Node 3 received OLSR_HELLO from 1
+Node 3  discovering neighbours
+Node 4 received OLSR_TC from 3
+Node 4 received NEIGHBOUR_SYN from 3
+Node 4 received OLSR_HELLO from 3
+Node 4 received OLSR_TC from 3
+Node 4  discovering neighbours
+Node 5 received NEIGHBOUR_ACK from 7
+Node 5 received NEIGHBOUR_SYN from 7
+Node 5 received OLSR_HELLO from 7
+Node 5 received NEIGHBOUR_ACK from 8
+Node 5 received NEIGHBOUR_SYN from 8
+Node 5 received OLSR_HELLO from 8
+Node 5 received NEIGHBOUR_SYN from 9
+Node 6 received NEIGHBOUR_SYN from 7
+Node 6 received OLSR_HELLO from 7
+Node 6 received OLSR_TC from 0
+Node 6  discovering neighbours
+Node 7 received NEIGHBOUR_ACK from 5
+Node 7 received OLSR_TC from 5
+Node 7 received NEIGHBOUR_ACK from 6
+Node 7 received OLSR_TC from 6
+Node 7 received NEIGHBOUR_SYN from 6
+Node 7 received OLSR_HELLO from 6
+Node 7 received OLSR_TC from 6
+Node 8 received NEIGHBOUR_ACK from 9
+Node 8 received NEIGHBOUR_SYN from 9
+Node 8 received NEIGHBOUR_ACK from 5
+Node 8 received OLSR_TC from 5
+Node 9 received NEIGHBOUR_ACK from 1
+Node 9 received NEIGHBOUR_SYN from 1
+Node 9 received OLSR_HELLO from 1
+Node 9 received NEIGHBOUR_ACK from 3
+Node 9 received OLSR_TC from 3
+Node 9 received NEIGHBOUR_SYN from 3
+Node 9 received OLSR_HELLO from 3
+Node 9 received OLSR_TEXT from 3
+Node 9 sending message further to 8 to reach 8
+Node 9 received OLSR_TC from 3
+Node 9 received NEIGHBOUR_ACK from 8
+Node 9 received OLSR_TC from 8
+Node 9 received OLSR_TC from 8
+Node 0 received OLSR_TEXT from 3
+Node 0 received text: Hello from 4
+Node 0 received OLSR_TC from 3
+Node 0 received NEIGHBOUR_SYN from 3
+Node 0 received OLSR_HELLO from 3
+Node 0 received OLSR_TC from 3
+Node 0 received OLSR_TC from 6
+Node 0 received NEIGHBOUR_SYN from 6
+Node 0 received OLSR_HELLO from 6
+Node 0 received OLSR_TC from 6
+Node 1 received OLSR_TEXT from 3
+Node 1 received text: Hello from 0
+Node 1 received OLSR_TC from 3
+Node 1 received NEIGHBOUR_ACK from 3
+Node 1 received NEIGHBOUR_SYN from 3
+Node 1 received OLSR_HELLO from 3
+Node 1 received OLSR_TC from 3
+Node 1 received NEIGHBOUR_ACK from 9
+Node 1 received OLSR_TC from 9
+Node 1 received OLSR_TC from 9
+Node 1 received OLSR_TC from 9
+Node 1 received OLSR_TC from 9
+Node 1 received OLSR_HELLO from 9
+Node 1 received OLSR_TC from 9
+Node 2 received OLSR_TC from 6
+Node 2 received NEIGHBOUR_SYN from 6
+Node 2 received OLSR_HELLO from 6
+Node 2 received OLSR_TC from 6
+Node 2 received OLSR_TC from 0
+Node 2 received OLSR_TC from 0
+Node 2 received OLSR_TC from 0
+Node 2 received OLSR_HELLO from 0
 Node 3 received NEIGHBOUR_ACK from 4
 Node 3 received NEIGHBOUR_SYN from 4
-Node 3  successfully sent NEIGHBOUR_ACK : 3 -> 4
-Node 3 received AODV_RREQ from 9
-Node 3 RREQ( [1|1] -> 0 )is known, discarding
+Node 3 received OLSR_HELLO from 4
+Node 3 received OLSR_TC from 9
 Node 3 received NEIGHBOUR_ACK from 9
-Node 3 received AODV_RREQ from 9
-Node 3 knows route, and has fresher info, sending RREP
-Node 3  successfully sent AODV_RREP : 3 -> 9
-Node 3 received NEIGHBOUR_SYN from 9
-Node 3  successfully sent NEIGHBOUR_ACK : 3 -> 9
-Node 3 received AODV_RREQ from 0
-Node 3 knows route, and has fresher info, sending RREP
-Node 3  successfully sent AODV_RREP : 3 -> 0
-Node 3 received AODV_RREP from 0
-Node 3  successfully sent AODV_RREP : 3 -> 9
+Node 3 received OLSR_TC from 9
+Node 3 received OLSR_TC from 9
+Node 3 received OLSR_TC from 9
+Node 3 received OLSR_HELLO from 9
+Node 3 received OLSR_TEXT from 9
+Node 3 received text: Hello from 9
+Node 3 received OLSR_TC from 9
+Node 3 received OLSR_TC from 0
 Node 3 received NEIGHBOUR_ACK from 0
+Node 3 received OLSR_TC from 0
+Node 3 received OLSR_TC from 0
+Node 3 received OLSR_HELLO from 0
 Node 3 received NEIGHBOUR_ACK from 1
-Node 3 received AODV_RREQ from 1
-Node 3 RREQ( [8|2] -> 4 )is known, discarding
+Node 3 received OLSR_HELLO from 1
 Node 4 received NEIGHBOUR_SYN from 6
-Node 4  failed to send NEIGHBOUR_ACK - out of range: 4 -> 6
 Node 4 received NEIGHBOUR_ACK from 3
+Node 4 received OLSR_TC from 3
+Node 4 received OLSR_TC from 3
+Node 4 received OLSR_TC from 3
+Node 4 received OLSR_TC from 3
+Node 4 received OLSR_TC from 3
 Node 5 received NEIGHBOUR_SYN from 6
-Node 5  failed to send NEIGHBOUR_ACK - out of range: 5 -> 6
-Node 5 received AODV_RREQ from 7
-Node 5 RREQ( [5|0] -> 1 )is known, discarding
-Node 5 received NEIGHBOUR_ACK from 7
-Node 5 received AODV_RREQ from 7
-Node 5 sending RREQ[0|0] to all
-Node 5  successfully sent AODV_RREQ : 5 -> 7
-Node 5  successfully sent AODV_RREQ : 5 -> 8
-Node 5 received AODV_RREQ from 7
-Node 5 sending RREQ[2|1] to all
-Node 5  successfully sent AODV_RREQ : 5 -> 7
-Node 5  successfully sent AODV_RREQ : 5 -> 8
-Node 5 received AODV_RREQ from 7
-Node 5 sending RREQ[6|2] to all
-Node 5  successfully sent AODV_RREQ : 5 -> 7
-Node 5  successfully sent AODV_RREQ : 5 -> 8
-Node 5 received NEIGHBOUR_SYN from 7
-Node 5  successfully sent NEIGHBOUR_ACK : 5 -> 7
-Node 5 received AODV_RREQ from 8
-Node 5 knows route, and has fresher info, sending RREP
-Node 5  successfully sent AODV_RREP : 5 -> 8
-Node 5 received AODV_RREQ from 8
-Node 5 RREQ( [5|0] -> 1 )is known, discarding
-Node 5 received NEIGHBOUR_ACK from 8
-Node 5 received AODV_RREQ from 8
-Node 5 sending RREQ[8|2] to all
-Node 5  successfully sent AODV_RREQ : 5 -> 7
-Node 5  successfully sent AODV_RREQ : 5 -> 8
-Node 5 received NEIGHBOUR_SYN from 9
-Node 5  failed to send NEIGHBOUR_ACK - out of range: 5 -> 9
-Node 6 received AODV_RREQ from 7
-Node 6 sending RREQ[5|0] to all
-Node 6  successfully sent AODV_RREQ : 6 -> 0
-Node 6  successfully sent AODV_RREQ : 6 -> 2
-Node 6  successfully sent AODV_RREQ : 6 -> 7
-Node 6 received AODV_RREQ from 7
-Node 6 RREQ( [0|0] -> 4 )is known, discarding
-Node 6 received AODV_RREQ from 7
-Node 6 RREQ( [2|1] -> 1 )is known, discarding
-Node 6 received AODV_RREQ from 7
-Node 6 RREQ( [6|2] -> 9 )is known, discarding
+Node 5 received OLSR_TC from 7
+Node 5 received OLSR_TC from 7
+Node 5 received OLSR_TC from 7
+Node 5 received OLSR_TC from 7
+Node 5 received OLSR_TC from 8
+Node 5 received OLSR_TC from 8
+Node 6 received OLSR_TC from 7
+Node 6 received OLSR_TC from 7
 Node 6 received NEIGHBOUR_ACK from 7
-Node 6 received AODV_TEXT from 7
-Node 6 received text: Hello from 7
-Node 6 received NEIGHBOUR_SYN from 7
-Node 6  successfully sent NEIGHBOUR_ACK : 6 -> 7
-Node 6 received AODV_RREQ from 0
-Node 6 RREQ( [2|1] -> 1 )is known, discarding
-Node 6 received AODV_RREP from 0
-Node 6 RREP is not from the target node, but a cached one!
-Node 6 received requested route to 9
+Node 6 received OLSR_TC from 7
+Node 6 received OLSR_TC from 7
+Node 6 received OLSR_TC from 0
+Node 6 received OLSR_TC from 0
 Node 6 received NEIGHBOUR_ACK from 0
-Node 6 received AODV_RREQ from 2
-Node 6 RREQ( [6|2] -> 9 )is known, discarding
+Node 6 received OLSR_TC from 0
+Node 6 received OLSR_HELLO from 0
 Node 6 received NEIGHBOUR_ACK from 2
-Node 7 received AODV_RREQ from 5
-Node 7 RREQ( [0|0] -> 4 )is known, discarding
-Node 7 received AODV_RREQ from 5
-Node 7 RREQ( [2|1] -> 1 )is known, discarding
-Node 7 received AODV_RREQ from 5
-Node 7 RREQ( [6|2] -> 9 )is known, discarding
-Node 7 received NEIGHBOUR_ACK from 5
-Node 7 received AODV_RREQ from 5
-Node 7 sending RREQ[8|2] to all
-Node 7  successfully sent AODV_RREQ : 7 -> 5
-Node 7  successfully sent AODV_RREQ : 7 -> 6
-Node 7 received AODV_RREQ from 6
-Node 7 RREQ( [5|0] -> 1 )is known, discarding
-Node 7 received NEIGHBOUR_ACK from 6
-Node 8 received AODV_RREQ from 9
-Node 8 sending RREQ[1|1] to all
-Node 8  successfully sent AODV_RREQ : 8 -> 5
-Node 8  successfully sent AODV_RREQ : 8 -> 9
-Node 8 received AODV_RREP from 9
-Node 8 RREP is not from the target node, but a cached one!
-Node 8  successfully sent AODV_RREP : 8 -> 5
-Node 8 received AODV_RREQ from 9
-Node 8 RREQ( [8|2] -> 4 )is known, discarding
-Node 8 received NEIGHBOUR_SYN from 9
-Node 8  successfully sent NEIGHBOUR_ACK : 8 -> 9
-Node 8 received AODV_RREQ from 5
-Node 8 sending RREQ[0|0] to all
-Node 8  successfully sent AODV_RREQ : 8 -> 5
-Node 8  successfully sent AODV_RREQ : 8 -> 9
-Node 8 received AODV_RREQ from 5
-Node 8 knows route, and has fresher info, sending RREP
-Node 8  successfully sent AODV_RREP : 8 -> 5
-Node 8 received AODV_RREQ from 5
-Node 8 knows route, and has fresher info, sending RREP
-Node 8  successfully sent AODV_RREP : 8 -> 5
-Node 8 received AODV_RREP from 5
-Node 8 RREP is not from the target node, but a cached one!
-Node 8  successfully sent AODV_RREP : 8 -> 9
-Node 8 received AODV_RREQ from 5
-Node 8 RREQ( [8|2] -> 4 )is known, discarding
-Node 8  failed to send NEIGHBOUR_SYN - out of range: 8 -> 0
-Node 8  failed to send NEIGHBOUR_SYN - out of range: 8 -> 1
-Node 8  failed to send NEIGHBOUR_SYN - out of range: 8 -> 2
-Node 8  failed to send NEIGHBOUR_SYN - out of range: 8 -> 3
-Node 8  failed to send NEIGHBOUR_SYN - out of range: 8 -> 4
-Node 8  successfully sent NEIGHBOUR_SYN : 8 -> 5
-Node 8  failed to send NEIGHBOUR_SYN - out of range: 8 -> 6
-Node 8  failed to send NEIGHBOUR_SYN - out of range: 8 -> 7
-Node 8  successfully sent NEIGHBOUR_SYN : 8 -> 9
-Node 8  discovering neighbours
-Node 9 received AODV_RREQ from 1
-Node 9 RREQ( [8|2] -> 4 )is known, discarding
-Node 9 received NEIGHBOUR_ACK from 1
-Node 9 received AODV_RREP from 3
-Node 9 RREP is not from the target node, but a cached one!
-Node 9  successfully sent AODV_RREP : 9 -> 8
-Node 9 received NEIGHBOUR_ACK from 3
-Node 9 received AODV_RREP from 3
-Node 9 received requested route to 0
-Node 9 received AODV_RREQ from 8
-Node 9 RREQ( [1|1] -> 0 )is known, discarding
-Node 9 received NEIGHBOUR_ACK from 8
-Node 9 received AODV_RREQ from 8
-Node 9 knows route, and has fresher info, sending RREP
-Node 9  successfully sent AODV_RREP : 9 -> 8
-Node 9 received AODV_RREP from 8
-Node 9 RREP is not from the target node, but a cached one!
-Node 9 received requested route to 0
-Node 9 received NEIGHBOUR_SYN from 8
-Node 9  successfully sent NEIGHBOUR_ACK : 9 -> 8
-Node 0 received AODV_RREQ from 2
-Node 0 RREQ( [6|2] -> 9 )is known, discarding
-Node 0 received AODV_RREP from 3
-Node 0 RREP is not from the target node, but a cached one!
-Node 0  successfully sent AODV_RREP : 0 -> 2
-Node 0 received AODV_RREQ from 6
-Node 0 knows route, and has fresher info, sending RREP
-Node 0  successfully sent AODV_RREP : 0 -> 6
-Node 2 received AODV_RREQ from 6
-Node 2 sending RREQ[5|0] to all
-Node 2  successfully sent AODV_RREQ : 2 -> 0
-Node 2  successfully sent AODV_RREQ : 2 -> 6
-Node 2 received AODV_RREP from 0
-Node 2 RREP is not from the target node, but a cached one!
-Node 2 received requested route to 1
-Node 4 using known route to send to 3
-Node 4  successfully sent AODV_TEXT : 4 -> 3
-Node 5 received AODV_RREQ from 7
-Node 5 RREQ( [8|2] -> 4 )is known, discarding
-Node 5 received AODV_RREQ from 8
-Node 5 knows route, and has fresher info, sending RREP
-Node 5  successfully sent AODV_RREP : 5 -> 8
-Node 5 received AODV_RREP from 8
-Node 5 RREP is not from the target node, but a cached one!
-Node 5 received requested route to 1
-Node 5 received AODV_RREQ from 8
-Node 5 RREQ( [0|0] -> 4 )is known, discarding
-Node 5 received AODV_RREP from 8
-Node 5 RREP is not from the target node, but a cached one!
-Node 5  successfully sent AODV_RREP : 5 -> 7
-Node 5 received AODV_RREP from 8
-Node 5 RREP is not from the target node, but a cached one!
-Node 5  successfully sent AODV_RREP : 5 -> 7
-Node 5 received NEIGHBOUR_SYN from 8
-Node 5  successfully sent NEIGHBOUR_ACK : 5 -> 8
-Node 6 received AODV_RREQ from 7
-Node 6 sending RREQ[8|2] to all
-Node 6  successfully sent AODV_RREQ : 6 -> 0
-Node 6  successfully sent AODV_RREQ : 6 -> 2
-Node 6  successfully sent AODV_RREQ : 6 -> 7
-Node 6 received AODV_RREP from 0
-Node 6 RREP is not from the target node, but a cached one!
-Node 6  successfully sent AODV_RREP : 6 -> 7
-Node 6 received AODV_RREQ from 2
-Node 6 RREQ( [5|0] -> 1 )is known, discarding
-Node 7 received AODV_RREP from 5
-Node 7 RREP is not from the target node, but a cached one!
-Node 7  successfully sent AODV_RREP : 7 -> 6
-Node 7 received AODV_RREP from 5
-Node 7 RREP is not from the target node, but a cached one!
-Node 7  successfully sent AODV_RREP : 7 -> 6
-Node 7 received AODV_RREQ from 6
-Node 7 RREQ( [8|2] -> 4 )is known, discarding
-Node 7 received AODV_RREP from 6
-Node 7 RREP is not from the target node, but a cached one!
-Node 7  successfully sent AODV_RREP : 7 -> 5
-Node 7 using known route to send to 0
-Node 7  successfully sent AODV_TEXT : 7 -> 6
-Node 8 received AODV_RREP from 9
-Node 8 RREP is not from the target node, but a cached one!
-Node 8 received requested route to 4
-Node 8 received AODV_RREP from 9
-Node 8 RREP is not from the target node, but a cached one!
-Node 8  successfully sent AODV_RREP : 8 -> 5
-Node 8 received NEIGHBOUR_ACK from 9
-Node 8 received AODV_RREP from 5
-Node 8 RREP is not from the target node, but a cached one!
-Node 8  successfully sent AODV_RREP : 8 -> 9
-Node 8 received NEIGHBOUR_ACK from 5
-Node 8  beginning route discovery to 7
-Node 8  successfully sent AODV_RREQ : 8 -> 5
-Node 8  successfully sent AODV_RREQ : 8 -> 9
-Node 9 received AODV_RREP from 8
-Node 9 RREP is not from the target node, but a cached one!
-Node 9  successfully sent AODV_RREP : 9 -> 1
-Node 9 received AODV_RREQ from 8
-Node 9 sending RREQ[8|4] to all
-Node 9  successfully sent AODV_RREQ : 9 -> 1
-Node 9  successfully sent AODV_RREQ : 9 -> 3
-Node 9  successfully sent AODV_RREQ : 9 -> 8
-Node 9  beginning route discovery to 3
-Node 9  successfully sent AODV_RREQ : 9 -> 1
-Node 9  successfully sent AODV_RREQ : 9 -> 3
-Node 9  successfully sent AODV_RREQ : 9 -> 8
-Node 0 received AODV_RREQ from 2
-Node 0 RREQ( [5|0] -> 1 )is known, discarding
-Node 0 received AODV_RREQ from 6
-Node 0 knows route, and has fresher info, sending RREP
-Node 0  successfully sent AODV_RREP : 0 -> 6
-Node 0 using known route to send to 6
-Node 0  successfully sent AODV_TEXT : 0 -> 6
-Node 1 received AODV_RREP from 9
-Node 1 RREP is not from the target node, but a cached one!
-Node 1 received requested route to 0
-Node 1 received AODV_RREQ from 9
-Node 1 sending RREQ[8|4] to all
-Node 1  successfully sent AODV_RREQ : 1 -> 3
-Node 1  successfully sent AODV_RREQ : 1 -> 9
-Node 1 received AODV_RREQ from 9
-Node 1 sending RREQ[9|3] to all
-Node 1  successfully sent AODV_RREQ : 1 -> 3
-Node 1  successfully sent AODV_RREQ : 1 -> 9
-Node 1 using known route to send to 9
-Node 1  successfully sent AODV_TEXT : 1 -> 9
-Node 2 received AODV_RREQ from 6
-Node 2 sending RREQ[8|2] to all
-Node 2  successfully sent AODV_RREQ : 2 -> 0
-Node 2  successfully sent AODV_RREQ : 2 -> 6
-Node 2  beginning route discovery to 3
-Node 2  successfully sent AODV_RREQ : 2 -> 0
-Node 2  successfully sent AODV_RREQ : 2 -> 6
-Node 3 received AODV_TEXT from 4
-Node 3 received text: Hello from 4
-Node 3 received AODV_RREQ from 9
-Node 3 sending RREQ[8|4] to all
-Node 3  successfully sent AODV_RREQ : 3 -> 0
-Node 3  successfully sent AODV_RREQ : 3 -> 1
-Node 3  successfully sent AODV_RREQ : 3 -> 4
-Node 3  successfully sent AODV_RREQ : 3 -> 9
-Node 3 received AODV_RREQ from 9
-Node 3 is the finalDestination for: [9|3] -> 3 sending RREP
-Node 3  successfully sent AODV_RREP : 3 -> 9
-Node 3 received AODV_RREQ from 1
-Node 3 RREQ( [8|4] -> 7 )is known, discarding
-Node 3 received AODV_RREQ from 1
-Node 3 RREQ( [9|3] -> 3 )is known, discarding
-Node 3 using known route to send to 8
-Node 3  successfully sent AODV_TEXT : 3 -> 9
-Node 4 received AODV_RREQ from 3
-Node 4 sending RREQ[8|4] to all
-Node 4  successfully sent AODV_RREQ : 4 -> 3
-Node 5 received AODV_RREP from 7
-Node 5 RREP is not from the target node, but a cached one!
-Node 5 received requested route to 1
-Node 5 received AODV_RREP from 8
-Node 5 RREP is not from the target node, but a cached one!
-Node 5  successfully sent AODV_RREP : 5 -> 7
-Node 5 received AODV_RREQ from 8
-Node 5 sending RREQ[8|4] to all
-Node 5  successfully sent AODV_RREQ : 5 -> 7
-Node 5  successfully sent AODV_RREQ : 5 -> 8
-Node 5 using known route to send to 1
-Node 5  successfully sent AODV_TEXT : 5 -> 8
-Node 6 received AODV_RREP from 7
-Node 6 RREP is not from the target node, but a cached one!
-Node 6  successfully sent AODV_RREP : 6 -> 2
-Node 6 received AODV_RREP from 7
-Node 6 RREP is not from the target node, but a cached one!
-Node 6 received requested route to 9
-Node 6 received AODV_TEXT from 7
-Node 6  successfully sent AODV_TEXT : 6 -> 0
-Node 6 received AODV_RREP from 0
-Node 6 RREP is not from the target node, but a cached one!
-Node 6  successfully sent AODV_RREP : 6 -> 7
-Node 6 received AODV_TEXT from 0
-Node 6 received text: Hello from 0
-Node 6 received AODV_RREQ from 2
-Node 6 RREQ( [8|2] -> 4 )is known, discarding
-Node 6 received AODV_RREQ from 2
-Node 6 sending RREQ[2|4] to all
-Node 6  successfully sent AODV_RREQ : 6 -> 0
-Node 6  successfully sent AODV_RREQ : 6 -> 2
-Node 6  successfully sent AODV_RREQ : 6 -> 7
-Node 6 using known route to send to 4
-Node 6  successfully sent AODV_TEXT : 6 -> 0
-Node 7 received AODV_RREP from 5
-Node 7 RREP is not from the target node, but a cached one!
-Node 7  successfully sent AODV_RREP : 7 -> 6
-Node 7 received AODV_RREQ from 5
-Node 7 is the finalDestination for: [8|4] -> 7 sending RREP
-Node 7  successfully sent AODV_RREP : 7 -> 5
-Node 7 received AODV_RREP from 6
-Node 7 RREP is not from the target node, but a cached one!
-Node 7  successfully sent AODV_RREP : 7 -> 5
-Node 7 received AODV_RREQ from 6
-Node 7 sending RREQ[2|4] to all
-Node 7  successfully sent AODV_RREQ : 7 -> 5
-Node 7  successfully sent AODV_RREQ : 7 -> 6
-Node 8 received AODV_RREQ from 9
-Node 8 RREQ( [8|4] -> 7 )is known, discarding
-Node 8 received AODV_RREQ from 9
-Node 8 sending RREQ[9|3] to all
-Node 8  successfully sent AODV_RREQ : 8 -> 5
-Node 8  successfully sent AODV_RREQ : 8 -> 9
-Node 8 received AODV_RREQ from 5
-Node 8 RREQ( [8|4] -> 7 )is known, discarding
-Node 8 received AODV_TEXT from 5
-Node 8  successfully sent AODV_TEXT : 8 -> 9
-Node 9 received AODV_RREQ from 1
-Node 9 RREQ( [8|4] -> 7 )is known, discarding
-Node 9 received AODV_RREQ from 1
-Node 9 RREQ( [9|3] -> 3 )is known, discarding
-Node 9 received AODV_TEXT from 1
-Node 9 received text: Hello from 1
-Node 9 received AODV_RREQ from 3
-Node 9 RREQ( [8|4] -> 7 )is known, discarding
-Node 9 received AODV_RREP from 3
-Node 9 received requested route to 3
-Node 9 received AODV_TEXT from 3
-Node 9  successfully sent AODV_TEXT : 9 -> 8
-Node 9 received AODV_RREQ from 8
-Node 9 RREQ( [9|3] -> 3 )is known, discarding
-Node 9 received AODV_TEXT from 8
-Node 9  successfully sent AODV_TEXT : 9 -> 1
-Node 0 received AODV_RREQ from 2
-Node 0 RREQ( [8|2] -> 4 )is known, discarding
-Node 0 received AODV_RREQ from 2
-Node 0 sending RREQ[2|4] to all
-Node 0  successfully sent AODV_RREQ : 0 -> 2
-Node 0  successfully sent AODV_RREQ : 0 -> 3
-Node 0  successfully sent AODV_RREQ : 0 -> 6
-Node 0 received AODV_RREQ from 3
-Node 0 sending RREQ[8|4] to all
-Node 0  successfully sent AODV_RREQ : 0 -> 2
-Node 0  successfully sent AODV_RREQ : 0 -> 3
-Node 0  successfully sent AODV_RREQ : 0 -> 6
-Node 0 received AODV_TEXT from 6
-Node 0 received text: Hello from 7
-Node 0 received AODV_RREQ from 6
-Node 0 RREQ( [2|4] -> 3 )is known, discarding
-Node 0 received AODV_TEXT from 6
-Node 0  successfully sent AODV_TEXT : 0 -> 3
-Node 0  failed to send NEIGHBOUR_SYN - out of range: 0 -> 1
-Node 0  successfully sent NEIGHBOUR_SYN : 0 -> 2
-Node 0  successfully sent NEIGHBOUR_SYN : 0 -> 3
-Node 0  successfully sent NEIGHBOUR_SYN : 0 -> 4
-Node 0  failed to send NEIGHBOUR_SYN - out of range: 0 -> 5
-Node 0  successfully sent NEIGHBOUR_SYN : 0 -> 6
-Node 0  failed to send NEIGHBOUR_SYN - out of range: 0 -> 7
-Node 0  failed to send NEIGHBOUR_SYN - out of range: 0 -> 8
-Node 0  failed to send NEIGHBOUR_SYN - out of range: 0 -> 9
-Node 0  discovering neighbours
-Node 1 received AODV_RREQ from 3
-Node 1 RREQ( [8|4] -> 7 )is known, discarding
-Node 1 received AODV_TEXT from 9
-Node 1 received text: Hello from 5
-Node 1  failed to send NEIGHBOUR_SYN - out of range: 1 -> 0
-Node 1  failed to send NEIGHBOUR_SYN - out of range: 1 -> 2
-Node 1  successfully sent NEIGHBOUR_SYN : 1 -> 3
-Node 1  failed to send NEIGHBOUR_SYN - out of range: 1 -> 4
-Node 1  failed to send NEIGHBOUR_SYN - out of range: 1 -> 5
-Node 1  failed to send NEIGHBOUR_SYN - out of range: 1 -> 6
-Node 1  failed to send NEIGHBOUR_SYN - out of range: 1 -> 7
-Node 1  failed to send NEIGHBOUR_SYN - out of range: 1 -> 8
-Node 1  successfully sent NEIGHBOUR_SYN : 1 -> 9
-Node 1  discovering neighbours
-Node 2 received AODV_RREP from 6
-Node 2 RREP is not from the target node, but a cached one!
-Node 2 received requested route to 1
-Node 2 received AODV_RREQ from 6
-Node 2 RREQ( [2|4] -> 3 )is known, discarding
-Node 2 received AODV_RREQ from 0
-Node 2 RREQ( [2|4] -> 3 )is known, discarding
-Node 2 received AODV_RREQ from 0
-Node 2 sending RREQ[8|4] to all
-Node 2  successfully sent AODV_RREQ : 2 -> 0
-Node 2  successfully sent AODV_RREQ : 2 -> 6
-Node 2 received NEIGHBOUR_SYN from 0
-Node 2  successfully sent NEIGHBOUR_ACK : 2 -> 0
-Node 2  successfully sent NEIGHBOUR_SYN : 2 -> 0
-Node 2  failed to send NEIGHBOUR_SYN - out of range: 2 -> 1
-Node 2  successfully sent NEIGHBOUR_SYN : 2 -> 3
-Node 2  successfully sent NEIGHBOUR_SYN : 2 -> 4
-Node 2  failed to send NEIGHBOUR_SYN - out of range: 2 -> 5
-Node 2  successfully sent NEIGHBOUR_SYN : 2 -> 6
-Node 2  failed to send NEIGHBOUR_SYN - out of range: 2 -> 7
-Node 2  failed to send NEIGHBOUR_SYN - out of range: 2 -> 8
-Node 2  failed to send NEIGHBOUR_SYN - out of range: 2 -> 9
-Node 2  discovering neighbours
-Node 3 received AODV_RREQ from 4
-Node 3 RREQ( [8|4] -> 7 )is known, discarding
-Node 3 received AODV_RREQ from 0
-Node 3 is the finalDestination for: [2|4] -> 3 sending RREP
-Node 3  successfully sent AODV_RREP : 3 -> 0
-Node 3 received AODV_RREQ from 0
-Node 3 RREQ( [8|4] -> 7 )is known, discarding
-Node 3 received AODV_TEXT from 0
-Node 3  successfully sent AODV_TEXT : 3 -> 4
-Node 3 received NEIGHBOUR_SYN from 0
-Node 3  successfully sent NEIGHBOUR_ACK : 3 -> 0
-Node 3 received NEIGHBOUR_SYN from 1
-Node 3  successfully sent NEIGHBOUR_ACK : 3 -> 1
-Node 3 received NEIGHBOUR_SYN from 2
-Node 3  failed to send NEIGHBOUR_ACK - out of range: 3 -> 2
-Node 3  successfully sent NEIGHBOUR_SYN : 3 -> 0
-Node 3  successfully sent NEIGHBOUR_SYN : 3 -> 1
-Node 3  failed to send NEIGHBOUR_SYN - out of range: 3 -> 2
-Node 3  successfully sent NEIGHBOUR_SYN : 3 -> 4
-Node 3  failed to send NEIGHBOUR_SYN - out of range: 3 -> 5
-Node 3  failed to send NEIGHBOUR_SYN - out of range: 3 -> 6
-Node 3  failed to send NEIGHBOUR_SYN - out of range: 3 -> 7
-Node 3  failed to send NEIGHBOUR_SYN - out of range: 3 -> 8
-Node 3  successfully sent NEIGHBOUR_SYN : 3 -> 9
-Node 3  discovering neighbours
-Node 4 received NEIGHBOUR_SYN from 0
-Node 4  failed to send NEIGHBOUR_ACK - out of range: 4 -> 0
-Node 4 received NEIGHBOUR_SYN from 2
-Node 4  failed to send NEIGHBOUR_ACK - out of range: 4 -> 2
-Node 4 received AODV_TEXT from 3
-Node 4 received text: Hello from 6
-Node 4 received NEIGHBOUR_SYN from 3
-Node 4  successfully sent NEIGHBOUR_ACK : 4 -> 3
-Node 4  failed to send NEIGHBOUR_SYN - out of range: 4 -> 0
-Node 4  failed to send NEIGHBOUR_SYN - out of range: 4 -> 1
-Node 4  failed to send NEIGHBOUR_SYN - out of range: 4 -> 2
-Node 4  successfully sent NEIGHBOUR_SYN : 4 -> 3
-Node 4  failed to send NEIGHBOUR_SYN - out of range: 4 -> 5
-Node 4  failed to send NEIGHBOUR_SYN - out of range: 4 -> 6
-Node 4  failed to send NEIGHBOUR_SYN - out of range: 4 -> 7
-Node 4  failed to send NEIGHBOUR_SYN - out of range: 4 -> 8
-Node 4  failed to send NEIGHBOUR_SYN - out of range: 4 -> 9
-Node 4  discovering neighbours
-Node 5 received AODV_RREP from 7
-Node 5  successfully sent AODV_RREP : 5 -> 8
-Node 5 received AODV_RREP from 7
-Node 5 RREP is not from the target node, but a cached one!
-Node 5  successfully sent AODV_RREP : 5 -> 8
-Node 5 received AODV_RREQ from 7
-Node 5 sending RREQ[2|4] to all
-Node 5  successfully sent AODV_RREQ : 5 -> 7
-Node 5  successfully sent AODV_RREQ : 5 -> 8
-Node 5 received AODV_RREQ from 8
-Node 5 sending RREQ[9|3] to all
-Node 5  successfully sent AODV_RREQ : 5 -> 7
-Node 5  successfully sent AODV_RREQ : 5 -> 8
-Node 5  failed to send NEIGHBOUR_SYN - out of range: 5 -> 0
-Node 5  failed to send NEIGHBOUR_SYN - out of range: 5 -> 1
-Node 5  failed to send NEIGHBOUR_SYN - out of range: 5 -> 2
-Node 5  failed to send NEIGHBOUR_SYN - out of range: 5 -> 3
-Node 5  failed to send NEIGHBOUR_SYN - out of range: 5 -> 4
-Node 5  failed to send NEIGHBOUR_SYN - out of range: 5 -> 6
-Node 5  successfully sent NEIGHBOUR_SYN : 5 -> 7
-Node 5  successfully sent NEIGHBOUR_SYN : 5 -> 8
-Node 5  failed to send NEIGHBOUR_SYN - out of range: 5 -> 9
-Node 5  discovering neighbours
-Node 6 received AODV_RREP from 7
-Node 6 RREP is not from the target node, but a cached one!
-Node 6  successfully sent AODV_RREP : 6 -> 0
-Node 6 received AODV_RREQ from 7
-Node 6 RREQ( [2|4] -> 3 )is known, discarding
-Node 6 received AODV_RREQ from 0
-Node 6 RREQ( [2|4] -> 3 )is known, discarding
-Node 6 received AODV_RREQ from 0
-Node 6 sending RREQ[8|4] to all
-Node 6  successfully sent AODV_RREQ : 6 -> 0
-Node 6  successfully sent AODV_RREQ : 6 -> 2
-Node 6  successfully sent AODV_RREQ : 6 -> 7
-Node 6 received NEIGHBOUR_SYN from 0
-Node 6  successfully sent NEIGHBOUR_ACK : 6 -> 0
-Node 6 received AODV_RREQ from 2
-Node 6 RREQ( [8|4] -> 7 )is known, discarding
-Node 6 received NEIGHBOUR_SYN from 2
-Node 6  successfully sent NEIGHBOUR_ACK : 6 -> 2
-Node 6  successfully sent NEIGHBOUR_SYN : 6 -> 0
-Node 6  failed to send NEIGHBOUR_SYN - out of range: 6 -> 1
-Node 6  successfully sent NEIGHBOUR_SYN : 6 -> 2
-Node 6  failed to send NEIGHBOUR_SYN - out of range: 6 -> 3
-Node 6  successfully sent NEIGHBOUR_SYN : 6 -> 4
-Node 6  successfully sent NEIGHBOUR_SYN : 6 -> 5
-Node 6  successfully sent NEIGHBOUR_SYN : 6 -> 7
-Node 6  failed to send NEIGHBOUR_SYN - out of range: 6 -> 8
-Node 6  failed to send NEIGHBOUR_SYN - out of range: 6 -> 9
-Node 6  discovering neighbours
-Node 7 received AODV_RREQ from 5
-Node 7 RREQ( [2|4] -> 3 )is known, discarding
-Node 7 received AODV_RREQ from 5
-Node 7 sending RREQ[9|3] to all
-Node 7  successfully sent AODV_RREQ : 7 -> 5
-Node 7  successfully sent AODV_RREQ : 7 -> 6
-Node 7 received NEIGHBOUR_SYN from 5
-Node 7  successfully sent NEIGHBOUR_ACK : 7 -> 5
-Node 7 received AODV_RREQ from 6
-Node 7 RREQ( [8|4] -> 7 )is known, discarding
-Node 7 received NEIGHBOUR_SYN from 6
-Node 7  successfully sent NEIGHBOUR_ACK : 7 -> 6
-Node 7  failed to send NEIGHBOUR_SYN - out of range: 7 -> 0
-Node 7  failed to send NEIGHBOUR_SYN - out of range: 7 -> 1
-Node 7  failed to send NEIGHBOUR_SYN - out of range: 7 -> 2
-Node 7  failed to send NEIGHBOUR_SYN - out of range: 7 -> 3
-Node 7  failed to send NEIGHBOUR_SYN - out of range: 7 -> 4
-Node 7  successfully sent NEIGHBOUR_SYN : 7 -> 5
-Node 7  successfully sent NEIGHBOUR_SYN : 7 -> 6
-Node 7  failed to send NEIGHBOUR_SYN - out of range: 7 -> 8
-Node 7  failed to send NEIGHBOUR_SYN - out of range: 7 -> 9
-Node 7  discovering neighbours
-Node 8 received AODV_TEXT from 9
+Node 6 received OLSR_HELLO from 2
+Node 7 received OLSR_TC from 5
+Node 7 received OLSR_TC from 5
+Node 7 received OLSR_TC from 5
+Node 7 received OLSR_TC from 5
+Node 7 received OLSR_TC from 5
+Node 7 received OLSR_HELLO from 5
+Node 7 received OLSR_TC from 6
+Node 7 received OLSR_TC from 6
+Node 7 received OLSR_TC from 6
+Node 7 received OLSR_TC from 6
+Node 7 received OLSR_HELLO from 6
+Node 8 received OLSR_TC from 9
+Node 8 received OLSR_TEXT from 9
 Node 8 received text: Hello from 3
-Node 8 received AODV_RREP from 5
-Node 8 received requested route to 7
-Node 8 received AODV_RREP from 5
-Node 8 RREP is not from the target node, but a cached one!
-Node 8 received requested route to 4
-Node 8 received AODV_RREQ from 5
-Node 8 sending RREQ[2|4] to all
-Node 8  successfully sent AODV_RREQ : 8 -> 5
-Node 8  successfully sent AODV_RREQ : 8 -> 9
-Node 8 received AODV_RREQ from 5
-Node 8 RREQ( [9|3] -> 3 )is known, discarding
+Node 8 received OLSR_TC from 9
+Node 8 received OLSR_TC from 9
+Node 8 received OLSR_TC from 9
+Node 8 received OLSR_HELLO from 9
+Node 8 received OLSR_TC from 9
+Node 8 received OLSR_TC from 5
+Node 8 received OLSR_TC from 5
+Node 8 received OLSR_TC from 5
+Node 8 received OLSR_TC from 5
+Node 8 received OLSR_TC from 5
+Node 8 received OLSR_HELLO from 5
+Node 9 received OLSR_HELLO from 1
+Node 9 received OLSR_TC from 3
+Node 9 received OLSR_TC from 3
+Node 9 received OLSR_TC from 3
+Node 9 received OLSR_TC from 3
+Node 9 received OLSR_TC from 3
+Node 9 received OLSR_TC from 8
+Node 9 received OLSR_TC from 8
+Node 9 received OLSR_TC from 8
+Node 9 received OLSR_TC from 8
+Node 9 received OLSR_TC from 8
+Node 9 received OLSR_TC from 8
+Node 9 received OLSR_HELLO from 8
+Node 0 received OLSR_HELLO from 2
+Node 0 received OLSR_TC from 3
+Node 0 received OLSR_TC from 3
+Node 0 received OLSR_TC from 3
+Node 0 received OLSR_TC from 3
+Node 0 received OLSR_TC from 3
+Node 0 received OLSR_TC from 6
+Node 0 received OLSR_TC from 6
+Node 0 received OLSR_TC from 6
+Node 0 received OLSR_TC from 6
+Node 0 received OLSR_HELLO from 6
+Node 1 received OLSR_TC from 3
+Node 1 received OLSR_TC from 3
+Node 1 received OLSR_TC from 3
+Node 1 received OLSR_TC from 3
+Node 1 received OLSR_TC from 3
+Node 1 received OLSR_TC from 9
+Node 1 received OLSR_TC from 9
+Node 1 received OLSR_TC from 9
+Node 1 received OLSR_HELLO from 9
+Node 2 received OLSR_TC from 6
+Node 2 received OLSR_TC from 6
+Node 2 received OLSR_TC from 6
+Node 2 received OLSR_TC from 6
+Node 2 received OLSR_HELLO from 6
+Node 2 received OLSR_TC from 0
+Node 2 received OLSR_TC from 0
+Node 2 received OLSR_TC from 0
+Node 2 received OLSR_TC from 0
+Node 3 received OLSR_TC from 9
+Node 3 received OLSR_TC from 9
+Node 3 received OLSR_TC from 9
+Node 3 received OLSR_HELLO from 9
+Node 3 received OLSR_TEXT from 9
+Node 3 sending message further to 0 to reach 0
+Node 3 received OLSR_TC from 0
+Node 3 received OLSR_TC from 0
+Node 3 received OLSR_TC from 0
+Node 3 received OLSR_TC from 0
+Node 3 received OLSR_TEXT from 1
+Node 3 sending message further to 4 to reach 4
+Node 4 received OLSR_TC from 3
+Node 4 received OLSR_TEXT from 3
+Node 4 received text: Hello from 1
+Node 4 received OLSR_HELLO from 3
+Node 5 received OLSR_TC from 7
+Node 5 received OLSR_TC from 7
+Node 5 received OLSR_TC from 7
+Node 5 received OLSR_TEXT from 7
+Node 5  no route known to reach 9
+Node 5 received OLSR_HELLO from 7
+Node 5 received OLSR_TC from 8
+Node 5 received OLSR_TC from 8
+Node 5 received OLSR_TC from 8
+Node 5 received OLSR_TC from 8
+Node 5 received OLSR_TC from 8
+Node 5 received OLSR_TC from 8
+Node 5 received OLSR_HELLO from 8
+Node 6 received OLSR_TC from 7
+Node 6 received OLSR_TC from 7
+Node 6 received OLSR_TC from 7
+Node 6 received OLSR_HELLO from 7
+Node 6 received OLSR_TC from 0
+Node 6 received OLSR_TC from 0
+Node 6 received OLSR_TC from 0
+Node 6 received OLSR_TC from 0
+Node 6 received OLSR_TEXT from 0
+Node 6 received text: Hello from 0
+Node 7 received OLSR_TC from 5
+Node 7 received OLSR_TC from 5
+Node 7 received OLSR_TEXT from 5
+Node 7 sending message further to 6 to reach 2
+Node 7 received OLSR_TC from 6
+Node 7 received OLSR_TC from 6
+Node 7 received OLSR_TEXT from 6
+Node 7 sending message further to 5 to reach 5
+Node 8 received OLSR_TC from 9
+Node 8 received OLSR_TC from 9
+Node 8 received OLSR_TC from 9
+Node 8 received OLSR_HELLO from 9
+Node 8 received OLSR_TC from 5
+Node 8 received OLSR_TC from 5
+Node 9 received OLSR_TC from 3
+Node 9 received OLSR_HELLO from 3
+Node 0 received OLSR_TC from 3
+Node 0 received OLSR_TEXT from 3
+Node 0 received text: Hello from 9
+Node 0 received OLSR_HELLO from 3
+Node 0 received OLSR_TEXT from 3
+Node 0 sending message further to 6 to reach 6
+Node 0 received OLSR_TC from 6
+Node 0 received OLSR_TC from 6
+Node 0  discovering neighbours
+Node 1 received OLSR_TC from 3
+Node 1 received OLSR_HELLO from 3
+Node 1  discovering neighbours
+Node 2 received OLSR_TC from 6
+Node 2 received OLSR_TC from 6
+Node 2 received NEIGHBOUR_SYN from 0
+Node 2 received OLSR_HELLO from 0
+Node 2  discovering neighbours
+Node 3 received OLSR_HELLO from 4
+Node 3 received NEIGHBOUR_SYN from 0
+Node 3 received OLSR_HELLO from 0
+Node 3 received NEIGHBOUR_SYN from 1
+Node 3 received OLSR_HELLO from 1
+Node 3 received NEIGHBOUR_SYN from 2
+Node 3  discovering neighbours
+Node 4 received NEIGHBOUR_SYN from 0
+Node 4 received NEIGHBOUR_SYN from 2
+Node 4 received NEIGHBOUR_SYN from 3
+Node 4 received OLSR_HELLO from 3
+Node 4  discovering neighbours
+Node 5 received OLSR_TC from 7
+Node 5 received OLSR_TEXT from 7
+Node 5 received text: Hello from 6
+Node 5 received NEIGHBOUR_SYN from 0
+Node 5  discovering neighbours
+Node 6 received OLSR_TC from 7
+Node 6 received OLSR_TEXT from 7
+Node 6 sending message further to 2 to reach 2
+Node 6 received OLSR_TEXT from 0
+Node 6 received text: Hello from 3
+Node 6 received NEIGHBOUR_SYN from 0
+Node 6 received OLSR_HELLO from 0
+Node 6 received NEIGHBOUR_SYN from 2
+Node 6 received OLSR_HELLO from 2
+Node 6  discovering neighbours
+Node 7 received NEIGHBOUR_SYN from 0
+Node 7 received NEIGHBOUR_SYN from 5
+Node 7 received OLSR_HELLO from 5
+Node 7 received NEIGHBOUR_SYN from 6
+Node 7 received OLSR_HELLO from 6
+Node 7  discovering neighbours
 Node 8 received NEIGHBOUR_SYN from 5
-Node 8  successfully sent NEIGHBOUR_ACK : 8 -> 5
-Node 8  failed to send NEIGHBOUR_SYN - out of range: 8 -> 0
-Node 8  failed to send NEIGHBOUR_SYN - out of range: 8 -> 1
-Node 8  failed to send NEIGHBOUR_SYN - out of range: 8 -> 2
-Node 8  failed to send NEIGHBOUR_SYN - out of range: 8 -> 3
-Node 8  failed to send NEIGHBOUR_SYN - out of range: 8 -> 4
-Node 8  successfully sent NEIGHBOUR_SYN : 8 -> 5
-Node 8  failed to send NEIGHBOUR_SYN - out of range: 8 -> 6
-Node 8  failed to send NEIGHBOUR_SYN - out of range: 8 -> 7
-Node 8  successfully sent NEIGHBOUR_SYN : 8 -> 9
+Node 8 received OLSR_HELLO from 5
 Node 8  discovering neighbours
-Node 8 using known route to send to 6
-Node 8  successfully sent AODV_TEXT : 8 -> 5
 Node 9 received NEIGHBOUR_SYN from 1
-Node 9  successfully sent NEIGHBOUR_ACK : 9 -> 1
+Node 9 received OLSR_HELLO from 1
 Node 9 received NEIGHBOUR_SYN from 3
-Node 9  successfully sent NEIGHBOUR_ACK : 9 -> 3
-Node 9 received AODV_RREQ from 8
-Node 9 knows route, and has fresher info, sending RREP
-Node 9  successfully sent AODV_RREP : 9 -> 8
+Node 9 received OLSR_HELLO from 3
 Node 9 received NEIGHBOUR_SYN from 8
-Node 9  successfully sent NEIGHBOUR_ACK : 9 -> 8
-Node 9  failed to send NEIGHBOUR_SYN - out of range: 9 -> 0
-Node 9  successfully sent NEIGHBOUR_SYN : 9 -> 1
-Node 9  failed to send NEIGHBOUR_SYN - out of range: 9 -> 2
-Node 9  successfully sent NEIGHBOUR_SYN : 9 -> 3
-Node 9  failed to send NEIGHBOUR_SYN - out of range: 9 -> 4
-Node 9  successfully sent NEIGHBOUR_SYN : 9 -> 5
-Node 9  failed to send NEIGHBOUR_SYN - out of range: 9 -> 6
-Node 9  failed to send NEIGHBOUR_SYN - out of range: 9 -> 7
-Node 9  successfully sent NEIGHBOUR_SYN : 9 -> 8
 Node 9  discovering neighbours
-Node 0 received AODV_RREQ from 2
-Node 0 RREQ( [8|4] -> 7 )is known, discarding
 Node 0 received NEIGHBOUR_ACK from 2
 Node 0 received NEIGHBOUR_SYN from 2
-Node 0  successfully sent NEIGHBOUR_ACK : 0 -> 2
-Node 0 received AODV_RREP from 3
-Node 0  successfully sent AODV_RREP : 0 -> 2
+Node 0 received OLSR_HELLO from 2
 Node 0 received NEIGHBOUR_ACK from 3
 Node 0 received NEIGHBOUR_SYN from 3
-Node 0  successfully sent NEIGHBOUR_ACK : 0 -> 3
-Node 0 received AODV_RREP from 6
-Node 0 RREP is not from the target node, but a cached one!
-Node 0 received requested route to 4
-Node 0 received AODV_RREQ from 6
-Node 0 RREQ( [8|4] -> 7 )is known, discarding
+Node 0 received OLSR_HELLO from 3
 Node 0 received NEIGHBOUR_ACK from 6
 Node 0 received NEIGHBOUR_SYN from 6
-Node 0  successfully sent NEIGHBOUR_ACK : 0 -> 6
+Node 0 received OLSR_HELLO from 6
+Node 0 received NEIGHBOUR_ACK from 7
+Node 0 received NEIGHBOUR_SYN from 7
+Node 0 received NEIGHBOUR_SYN from 9
 Node 1 received NEIGHBOUR_ACK from 3
 Node 1 received NEIGHBOUR_SYN from 3
-Node 1  successfully sent NEIGHBOUR_ACK : 1 -> 3
+Node 1 received OLSR_HELLO from 3
 Node 1 received NEIGHBOUR_ACK from 9
 Node 1 received NEIGHBOUR_SYN from 9
-Node 1  successfully sent NEIGHBOUR_ACK : 1 -> 9
-Node 1  beginning route discovery to 6
-Node 1  successfully sent AODV_RREQ : 1 -> 3
-Node 1  successfully sent AODV_RREQ : 1 -> 9
-Node 2 received AODV_RREQ from 6
-Node 2 RREQ( [8|4] -> 7 )is known, discarding
+Node 1 received OLSR_HELLO from 9
+Node 2 received OLSR_TEXT from 6
+Node 2 received text: Hello from 5
 Node 2 received NEIGHBOUR_ACK from 6
 Node 2 received NEIGHBOUR_SYN from 6
-Node 2  successfully sent NEIGHBOUR_ACK : 2 -> 6
+Node 2 received OLSR_HELLO from 6
 Node 2 received NEIGHBOUR_ACK from 0
-Node 2 received AODV_RREP from 0
-Node 2 received requested route to 3
-Node 2 route to 0 via 0 is stale.
-Node 2 sending RERR([2|5]) all neighbours for [0]
-Node 2  successfully sent AODV_RERR : 2 -> 0
-Node 2  successfully sent AODV_RERR : 2 -> 6
 Node 3 received NEIGHBOUR_ACK from 4
 Node 3 received NEIGHBOUR_SYN from 4
-Node 3  successfully sent NEIGHBOUR_ACK : 3 -> 4
+Node 3 received OLSR_HELLO from 4
 Node 3 received NEIGHBOUR_ACK from 9
 Node 3 received NEIGHBOUR_SYN from 9
-Node 3  successfully sent NEIGHBOUR_ACK : 3 -> 9
+Node 3 received OLSR_HELLO from 9
+Node 3 received OLSR_TEXT from 9
+Node 3 sending message further to 4 to reach 4
 Node 3 received NEIGHBOUR_ACK from 0
+Node 3 received OLSR_TEXT from 0
+Node 3 sending message further to 9 to reach 9
 Node 3 received NEIGHBOUR_ACK from 1
-Node 3 received AODV_RREQ from 1
-Node 3 sending RREQ[1|4] to all
-Node 3  successfully sent AODV_RREQ : 3 -> 0
-Node 3  successfully sent AODV_RREQ : 3 -> 1
-Node 3  successfully sent AODV_RREQ : 3 -> 4
-Node 3  successfully sent AODV_RREQ : 3 -> 9
-Node 3 route to 0 via 0 is stale.
-Node 3 route to 4 via 4 is stale.
-Node 3 sending RERR([3|6]) all neighbours for [0, 4]
-Node 3  successfully sent AODV_RERR : 3 -> 0
-Node 3  successfully sent AODV_RERR : 3 -> 1
-Node 3  successfully sent AODV_RERR : 3 -> 4
-Node 3  successfully sent AODV_RERR : 3 -> 9
 Node 4 received NEIGHBOUR_SYN from 6
-Node 4  failed to send NEIGHBOUR_ACK - out of range: 4 -> 6
 Node 4 received NEIGHBOUR_ACK from 3
-Node 4 received AODV_RREQ from 3
-Node 4 sending RREQ[1|4] to all
-Node 4  successfully sent AODV_RREQ : 4 -> 3
-Node 4 received AODV_RERR from 3
-Node 4 sending RERR([3|6]) all neighbours for [0, 4]
-Node 4  successfully sent AODV_RERR : 4 -> 3
-Node 4  beginning route discovery to 6
-Node 4  successfully sent AODV_RREQ : 4 -> 3
-Node 4 route to 3 via 3 is stale.
-Node 4 route to 9 via 3 is stale.
-Node 4 sending RERR([4|4]) all neighbours for [3, 9]
-Node 4  successfully sent AODV_RERR : 4 -> 3
+Node 4 received OLSR_TEXT from 3
+Node 4 received text: Hello from 9
 Node 5 received NEIGHBOUR_SYN from 6
-Node 5  failed to send NEIGHBOUR_ACK - out of range: 5 -> 6
-Node 5 received AODV_RREQ from 7
-Node 5 RREQ( [9|3] -> 3 )is known, discarding
 Node 5 received NEIGHBOUR_ACK from 7
 Node 5 received NEIGHBOUR_SYN from 7
-Node 5  successfully sent NEIGHBOUR_ACK : 5 -> 7
-Node 5 received AODV_RREQ from 8
-Node 5 RREQ( [2|4] -> 3 )is known, discarding
+Node 5 received OLSR_HELLO from 7
 Node 5 received NEIGHBOUR_ACK from 8
+Node 5 received OLSR_TEXT from 8
+Node 5 received text: Hello from 8
 Node 5 received NEIGHBOUR_SYN from 8
-Node 5  successfully sent NEIGHBOUR_ACK : 5 -> 8
-Node 5 received AODV_TEXT from 8
-Node 5  successfully sent AODV_TEXT : 5 -> 7
 Node 5 received NEIGHBOUR_SYN from 9
-Node 5  failed to send NEIGHBOUR_ACK - out of range: 5 -> 9
-Node 6 received AODV_RREQ from 7
-Node 6 sending RREQ[9|3] to all
-Node 6  successfully sent AODV_RREQ : 6 -> 0
-Node 6  successfully sent AODV_RREQ : 6 -> 2
-Node 6  successfully sent AODV_RREQ : 6 -> 7
 Node 6 received NEIGHBOUR_ACK from 7
 Node 6 received NEIGHBOUR_SYN from 7
-Node 6  successfully sent NEIGHBOUR_ACK : 6 -> 7
+Node 6 received OLSR_HELLO from 7
 Node 6 received NEIGHBOUR_ACK from 0
 Node 6 received NEIGHBOUR_ACK from 2
-Node 6 received AODV_RERR from 2
-Node 6 sending RERR([2|5]) all neighbours for [0]
-Node 6  successfully sent AODV_RERR : 6 -> 0
-Node 6  successfully sent AODV_RERR : 6 -> 2
-Node 6  successfully sent AODV_RERR : 6 -> 7
-Node 6 route to 0 via 0 is stale.
-Node 6 sending RERR([6|8]) all neighbours for [0]
-Node 6  successfully sent AODV_RERR : 6 -> 0
-Node 6  successfully sent AODV_RERR : 6 -> 2
-Node 6  successfully sent AODV_RERR : 6 -> 7
+Node 7 received NEIGHBOUR_ACK from 0
 Node 7 received NEIGHBOUR_ACK from 5
-Node 7 received AODV_TEXT from 5
-Node 7  successfully sent AODV_TEXT : 7 -> 6
-Node 7 received AODV_RREQ from 6
-Node 7 RREQ( [9|3] -> 3 )is known, discarding
 Node 7 received NEIGHBOUR_ACK from 6
-Node 7 received AODV_RERR from 6
-Node 7 sending RERR([2|5]) all neighbours for [0]
-Node 7  successfully sent AODV_RERR : 7 -> 5
-Node 7  successfully sent AODV_RERR : 7 -> 6
-Node 7 received AODV_RERR from 6
-Node 7 sending RERR([6|8]) all neighbours for [0]
-Node 7  successfully sent AODV_RERR : 7 -> 5
-Node 7  successfully sent AODV_RERR : 7 -> 6
-Node 7  removing route to 0 via broken next hop 6
-Node 7 using known route to send to 2
-Node 7  successfully sent AODV_TEXT : 7 -> 6
-Node 7 route to 5 via 5 is stale.
-Node 7 route to 6 via 6 is stale.
-Node 7 sending RERR([7|10]) all neighbours for [5, 6]
-Node 7  successfully sent AODV_RERR : 7 -> 5
-Node 7  successfully sent AODV_RERR : 7 -> 6
-Node 8 received AODV_RREP from 9
-Node 8 RREP is not from the target node, but a cached one!
-Node 8  successfully sent AODV_RREP : 8 -> 5
 Node 8 received NEIGHBOUR_ACK from 9
 Node 8 received NEIGHBOUR_SYN from 9
-Node 8  successfully sent NEIGHBOUR_ACK : 8 -> 9
+Node 8 received OLSR_HELLO from 9
 Node 8 received NEIGHBOUR_ACK from 5
-Node 8 route to 5 via 5 is stale.
-Node 8 sending RERR([8|6]) all neighbours for [5]
-Node 8  successfully sent AODV_RERR : 8 -> 5
-Node 8  successfully sent AODV_RERR : 8 -> 9
 Node 9 received NEIGHBOUR_ACK from 1
-Node 9 received AODV_RREQ from 1
-Node 9 sending RREQ[1|4] to all
-Node 9  successfully sent AODV_RREQ : 9 -> 1
-Node 9  successfully sent AODV_RREQ : 9 -> 3
-Node 9  successfully sent AODV_RREQ : 9 -> 8
 Node 9 received NEIGHBOUR_ACK from 3
-Node 9 received AODV_RREQ from 3
-Node 9 RREQ( [1|4] -> 6 )is known, discarding
-Node 9 received AODV_RERR from 3
-Node 9 sending RERR([3|6]) all neighbours for [0, 4]
-Node 9  successfully sent AODV_RERR : 9 -> 1
-Node 9  successfully sent AODV_RERR : 9 -> 3
-Node 9  successfully sent AODV_RERR : 9 -> 8
-Node 9  removing route to 0 via broken next hop 3
-Node 9  removing route to 4 via broken next hop 3
+Node 9 received OLSR_TEXT from 3
+Node 9 received text: Hello from 0
+Node 9 received OLSR_TEXT from 3
+Node 9 sending message further to 8 to reach 8
 Node 9 received NEIGHBOUR_ACK from 8
-Node 9 received AODV_RERR from 8
-Node 9 sending RERR([8|6]) all neighbours for [5]
-Node 9  successfully sent AODV_RERR : 9 -> 1
-Node 9  successfully sent AODV_RERR : 9 -> 3
-Node 9  successfully sent AODV_RERR : 9 -> 8
-Node 9  removing route to 5 via broken next hop 8
-Node 9  beginning route discovery to 6
-Node 9  successfully sent AODV_RREQ : 9 -> 1
-Node 9  successfully sent AODV_RREQ : 9 -> 3
-Node 9  successfully sent AODV_RREQ : 9 -> 8
-=============================================================
-Simulation finished
-Messages sent: 596
-Text messages sent: 19
-Text message success rate: 100.0%
-More information can be found in log.txt
-[0] Undelivered text messages (0)
- 
-[1] Undelivered text messages (1)
- Message { source=1, destination=6, text='Hello from 1', messageType=TEXT }
-[2] Undelivered text messages (0)
- 
-[3] Undelivered text messages (0)
- 
-[4] Undelivered text messages (1)
- Message { source=4, destination=6, text='Hello from 4', messageType=TEXT }
-[5] Undelivered text messages (0)
- 
-[6] Undelivered text messages (0)
- 
-[7] Undelivered text messages (0)
- 
-[8] Undelivered text messages (0)
- 
-[9] Undelivered text messages (1)
- Message { source=9, destination=6, text='Hello from 9', messageType=TEXT }
+Node 9 received OLSR_HELLO from 8
+Node 2 received OLSR_TC from 0
+Node 2 received OLSR_HELLO from 0
+Node 3 received OLSR_TC from 0
+Node 3 received OLSR_HELLO from 0
+Node 3 received OLSR_HELLO from 1
+Node 4 received OLSR_TC from 3
+Node 4 received OLSR_TC from 3
+Node 4 received OLSR_HELLO from 3
+Node 5 received OLSR_HELLO from 8
+Node 5 sending waiting message to 9
+Node 5 sending message further to 8 to reach 9
+Node 6 received OLSR_TC from 0
+Node 6 received OLSR_HELLO from 0
+Node 6 received OLSR_HELLO from 2
+Node 7 received OLSR_TC from 0
+Node 7 received OLSR_HELLO from 0
+Node 7 received OLSR_TC from 5
+Node 7 received OLSR_HELLO from 5
+Node 7 received OLSR_TC from 6
+Node 7 received OLSR_TEXT from 6
+Node 7 received text: Hello from 6
+Node 7 received OLSR_HELLO from 6
+Node 7 received OLSR_TC from 6
+Node 8 received OLSR_TEXT from 9
+Node 8 received text: Hello from 3
+Node 8 received OLSR_TEXT from 5
+Node 8 sending message further to 9 to reach 9
+Node 8 received OLSR_TC from 5
+Node 8 received OLSR_TEXT from 5
+Node 8 sending message further to 9 to reach 9
+Node 8 received OLSR_HELLO from 5
+Node 9 received OLSR_HELLO from 1
+Node 9 received OLSR_TC from 3
+Node 9 received OLSR_TC from 3
+Node 9 received OLSR_HELLO from 3
+Node 9 received OLSR_TEXT from 8
+Node 9 received text: Hello from 7
+Node 9 received OLSR_TC from 8
+Node 9 received OLSR_TEXT from 8
+Node 9 received text: Hello from 5
+Node 9 received OLSR_TC from 8
+Node 0 received OLSR_HELLO from 2
+Node 0 received OLSR_TC from 3
+Node 0 received OLSR_TC from 3
+Node 0 received OLSR_HELLO from 3
+Node 0 received OLSR_TC from 6
+Node 0 received OLSR_HELLO from 6
+Node 0 received OLSR_TC from 6
+Node 0 received OLSR_TC from 7
+Node 0 received OLSR_HELLO from 7
+Node 1 received OLSR_TC from 3
+Node 1 received OLSR_TC from 3
+Node 1 received OLSR_HELLO from 3
+Node 1 received OLSR_TC from 9
+Node 1 received OLSR_TC from 9
+Node 1 received OLSR_TC from 9
+Node 1 received OLSR_TC from 9
+Node 1 received OLSR_TC from 9
+Node 1 received OLSR_HELLO from 9
+Node 2 received OLSR_TC from 6
+Node 2 received OLSR_HELLO from 6
+Node 2 received OLSR_TC from 6
+Node 2 received OLSR_TC from 0
+Node 2 received OLSR_TC from 0
+Node 2 received OLSR_TC from 0
+Node 2 received OLSR_TC from 0
+Node 3 received OLSR_TEXT from 4
+Node 3 sending message further to 0 to reach 0
+Node 3 received OLSR_HELLO from 4
+Node 3 received OLSR_TC from 9
+Node 3 received OLSR_TC from 9
+Node 3 received OLSR_TC from 9
+Node 3 received OLSR_TC from 9
+Node 3 received OLSR_TC from 9
+Node 3 received OLSR_HELLO from 9
+Node 3 received OLSR_TEXT from 9
+Node 3 sending message further to 4 to reach 4
+Node 3 received OLSR_TC from 0
+Node 3 received OLSR_TC from 0
+Node 3 received OLSR_TC from 0
+Node 3 received OLSR_TC from 0
+Node 3 received OLSR_TEXT from 1
+Node 3 received text: Hello from 1
+Node 4 received OLSR_TC from 3
+Node 4 received OLSR_TC from 3
+Node 4 received OLSR_TC from 3
+Node 4 received OLSR_TC from 3
+Node 4 received OLSR_TEXT from 3
+Node 4 received text: Hello from 9
+Node 4 received OLSR_TC from 3
+Node 4 received OLSR_TC from 3
+Node 5 received OLSR_TC from 7
+Node 5 received OLSR_TC from 7
+Node 5 received OLSR_TC from 7
+Node 5 received OLSR_TC from 7
+Node 5 received OLSR_HELLO from 7
+Node 5 received OLSR_TC from 8
+Node 5 received OLSR_TC from 8
+Node 6 received OLSR_TC from 7
+Node 6 received OLSR_TC from 7
+Node 6 received OLSR_TC from 7
+Node 6 received OLSR_TC from 7
+Node 6 received OLSR_HELLO from 7
+Node 6 received OLSR_TC from 0
+Node 6 received OLSR_TC from 0
+Node 6 received OLSR_TC from 0
+Node 6 received OLSR_TC from 0
+Node 6 received OLSR_TEXT from 2
+Node 6 sending message further to 7 to reach 5
+Node 7 received OLSR_TC from 0
+Node 7 received OLSR_TC from 0
+Node 7 received OLSR_TC from 0
+Node 7 received OLSR_TC from 0
+Node 7 received OLSR_TC from 5
+Node 7 received OLSR_TC from 5
+Node 7 received OLSR_TC from 5
+Node 7 received OLSR_TC from 5
+Node 7 received OLSR_TC from 5
+Node 7 received OLSR_TC from 6
+Node 7 received OLSR_TC from 6
+Node 7 received OLSR_TC from 6
+Node 7 received OLSR_TEXT from 6
+Node 7 sending message further to 5 to reach 5
+Node 8 received OLSR_TC from 9
+Node 8 received OLSR_TC from 9
+Node 8 received OLSR_TC from 9
+Node 8 received OLSR_TC from 9
+Node 8 received OLSR_TC from 9
+Node 8 received OLSR_HELLO from 9
+Node 8 received OLSR_TC from 5
+Node 8 received OLSR_TC from 5
+Node 8 received OLSR_TC from 5
+Node 8 received OLSR_TC from 5
+Node 8 received OLSR_TC from 5
+Node 9 received OLSR_TC from 3
+Node 9 received OLSR_TC from 3
+Node 9 received OLSR_TC from 3
+Node 9 received OLSR_TC from 3
+Node 9 received OLSR_TC from 3
+Node 9 received OLSR_TC from 3
+Node 9 received OLSR_TC from 8
+Node 9 received OLSR_TC from 8
+Node 9 received OLSR_TC from 8
+Node 9 received OLSR_TC from 8
+Node 9 received OLSR_TC from 8
+Node 9 received OLSR_TC from 8
+Node 9 received OLSR_HELLO from 8
+Node 9 received OLSR_TEXT from 8
+Node 9 sending message further to 1 to reach 1
+Node 9  discovering neighbours
+Node 0 received OLSR_TEXT from 3
+Node 0 received text: Hello from 4
+Node 0 received OLSR_TC from 3
+Node 0 received OLSR_TC from 3
+Node 0 received OLSR_TC from 3
+Node 0 received OLSR_TC from 3
+Node 0 received OLSR_TC from 3
+Node 0 received OLSR_TC from 3
+Node 0 received OLSR_TC from 6
+Node 0 received OLSR_TC from 6
+Node 0 received OLSR_TC from 6
+Node 0 received OLSR_TC from 7
+Node 0 received OLSR_TC from 7
+Node 0 received OLSR_TC from 7
+Node 0 received OLSR_TEXT from 7
+Node 0 sending message further to 3 to reach 9
+Node 0 received NEIGHBOUR_SYN from 9
+Node 0  discovering neighbours

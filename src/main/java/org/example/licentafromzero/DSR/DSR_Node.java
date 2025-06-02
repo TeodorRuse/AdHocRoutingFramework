@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class DSR_Node extends Node {
 
@@ -255,4 +256,14 @@ public class DSR_Node extends Node {
     public Map<Integer, ArrayList<Integer>> getKnownRoutes() {
         return knownRoutes;
     }
+
+    @Override
+    public String toInfo() {
+        return super.toInfo() + "\n\n" +
+                "DSR Info\n" +
+                "--------\n" +
+                "Known Routes: " + knownRoutes.size() + "\n";
+    }
+
+
 }

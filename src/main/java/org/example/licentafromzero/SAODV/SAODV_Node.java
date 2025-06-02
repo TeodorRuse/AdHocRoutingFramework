@@ -467,4 +467,30 @@ public class SAODV_Node extends Node {
     public void setKeyChain(Map<Integer, PublicKey> keyChain) {
         this.keyChain = keyChain;
     }
+
+    private String shortenKey(byte[] keyBytes) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < Math.min(8, keyBytes.length); i++) {
+            sb.append(String.format("%02X", keyBytes[i]));
+        }
+        return sb.toString() + "...";
+    }
+
+    @Override
+    public String toInfo() {
+        String publicKeyShort = shortenKey(keyPair.getPublic().getEncoded());
+        String privateKeyShort = shortenKey(keyPair.getPrivate().getEncoded());
+
+        return super.toInfo() + "\n\n" +
+                "SAODV Info\n" +
+                "---------------\n" +
+                "ID: " + id + "\n" +
+                "Sequence #: " + sequenceNumber + "\n" +
+                "Broadcast ID: " + broadcastId + "\n" +
+                "Routing Table Entries: " + routingTable.size() + "\n" +
+                "Known Msg IDs: " + knownMessageIDs.size() + "\n" +
+                "Public Key (start): " + publicKeyShort + "\n" +
+                "Private Key (start): " + privateKeyShort + "\n";
+    }
+
 }

@@ -1,6 +1,7 @@
 package org.example.licentafromzero.Domain;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Node {
     protected int x, y;
@@ -323,5 +324,25 @@ public class Node {
 
     public void setDestY(double destY) {
         this.destY = destY;
+    }
+
+    public String toInfo() {
+        return "Node Info\n" +
+                "----------\n" +
+                "ID: " + id + "\n" +
+                "Position: (" + x + ", " + y + ")\n" +
+                "Speed: (" + speedX + ", " + speedY + ")\n" +
+                "Destination: (" + (int) destX + ", " + (int) destY + ")\n" +
+                "Communication Radius: " + communicationRadius + "\n" +
+                "Active: " + active + "\n" +
+                "Neighbours: " + neighbours.size() + "\n" +
+                "Messages In Transit: " + messages.size() + "\n" +
+                "Total Runtime: " + totalRunTime + " ms\n" +
+                "Message Delay: " + messageDelay + " ms\n" +
+                "Waiting Messages: " + waitingMessages.size() + "\n";
+//                "\nWaiting Messages:\n" +
+//                waitingMessages.stream()
+//                        .map(Message::prettyPrint)
+//                        .collect(Collectors.joining("\n"));
     }
 }

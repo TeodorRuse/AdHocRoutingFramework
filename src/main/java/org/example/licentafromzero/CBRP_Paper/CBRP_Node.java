@@ -1091,40 +1091,31 @@ public class CBRP_Node extends Node {
     }
 
     @Override
-    public String toString() {
-        return "CBRP_Node{\n" +
-                "  nodeStatus=" + nodeStatus + ",\n" +
-                "  sequenceNumber=" + sequenceNumber + ",\n" +
-                "  broadcastId=" + broadcastId + ",\n" +
-                "  knownRREQs=" + knownRREQs + ",\n" +
-                "  lastHelloSent=" + lastHelloSent + ",\n" +
-                "  uTimer=" + uTimer + ",\n" +
-                "  cTimer=" + cTimer + ",\n" +
-                "  uTimerActive=" + uTimerActive + ",\n" +
-                "  cTimerActive=" + cTimerActive + ",\n" +
-                "  neighborTable=" + neighborTable + ",\n" +
-                "  clusterAdjacencyTable=" + clusterAdjacencyTable + ",\n" +
-                "  twoHopTopology=" + twoHopTopology + ",\n" +
-                "  routeCache=" + routeCache + ",\n" +
-                "  waitingMessages=" + waitingMessages + ",\n" +
-                "  x=" + x + ",\n" +
-                "  y=" + y + ",\n" +
-                "  speedX=" + speedX + ",\n" +
-                "  speedY=" + speedY + ",\n" +
-                "  communicationRadius=" + communicationRadius + ",\n" +
-                "  id=" + id + ",\n" +
-                "  neighbours=" + neighbours + ",\n" +
-                "  messages=" + messages + ",\n" +
-                "  messageRouter=" + messageRouter + ",\n" +
-                "  totalRunTime=" + totalRunTime + ",\n" +
-                "  random=" + random + ",\n" +
-                "  messageDelay=" + messageDelay + ",\n" +
-                "  lastMessageSent=" + lastMessageSent + ",\n" +
-                "  lastNeighbourDiscovery=" + lastNeighbourDiscovery + ",\n" +
-                "  active=" + active + ",\n" +
-                "  newNeighbours=" + newNeighbours + ",\n" +
-                "  updatingNeighbours=" + updatingNeighbours + ",\n" +
-                "  updatedPaths=" + updatedPaths + "\n" +
-                "} \n";
+    public String toInfo() {
+        String status = switch (getNodeStatus()) {
+            case 0 -> "Undecided";
+            case 1 -> "Cluster Head";
+            case 2 -> "Member";
+            case 3 -> "Gateway";
+            default -> "Unknown";
+        };
+
+        return super.toInfo() + "\n\n" +
+                "CBRP Info\n" +
+                "---------\n" +
+                "Status: " + status + "\n" +
+                "BroadcastId ID: " + broadcastId + "\n" +
+                "Sequence Number: " + sequenceNumber + "\n" +
+                "Known RREQs: " + knownRREQs.size() + "\n" +
+                "Last Hello Sent: " + lastHelloSent + "\n" +
+                "Undecided Timer: " + (uTimerActive ? "Active, expires at " + uTimer : "Inactive") + "\n" +
+                "Contention Timer: " + (cTimerActive ? "Active, expires at " + cTimer : "Inactive") + "\n" +
+                "Neighbors: " + getNeighborsWithBidirectionalLinks() + "\n" +
+                "Cluster Adjacency Table: " + clusterAdjacencyTable.size() + " entries\n" +
+                "Two-Hop Topology: " + twoHopTopology.size() + " entries\n" +
+                "Route Cache: " + routeCache.size() + " entries\n" +
+                "Waiting Messages: " + waitingMessages.size() + "\n" +
+                "Neighbors: " + neighbours.size() + "\n" +
+                "Neighbor Table: " + neighborTable.size() + " entries";
     }
 }

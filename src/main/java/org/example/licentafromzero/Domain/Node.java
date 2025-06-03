@@ -340,9 +340,5 @@ public class Node {
                 "Total Runtime: " + totalRunTime + " ms\n" +
                 "Message Delay: " + messageDelay + " ms\n" +
                 "Waiting Messages: " + waitingMessages.size() + "\n";
-//                "\nWaiting Messages:\n" +
-//                waitingMessages.stream()
-//                        .map(Message::prettyPrint)
-//                        .collect(Collectors.joining("\n"));
     }
 }

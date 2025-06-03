@@ -122,4 +122,16 @@ public class DSR_Message extends Message {
                 ", finalDestination=" + finalDestination +
                 "} " + super.toString();
     }
+
+    @Override
+    public String getInfo() {
+        return super.getInfo() +
+                "Protocol: DSR\n" +
+                "Request ID: " + requestId + "\n" +
+                "TTL: " + ttl + "\n" +
+                "Final Destination: " + finalDestination + "\n" +
+                "Route Record: " + routeRecord + "\n" +
+                "Final Route: " + finalRoute + "\n";
+    }
+
 }

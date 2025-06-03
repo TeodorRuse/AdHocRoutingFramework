@@ -144,4 +144,15 @@ public class CBRP_Message extends Message {
                 ", shortened=" + shortened +
                 '}';
     }
+
+    @Override
+    public String getInfo() {
+        return super.getInfo() +
+                "Protocol: CBRP\n" +
+                "Final Destination: " + finalDestination + "\n" +
+                "Route: " + sourceRoute + "\n" +
+                "Repaired: " + repaired + "\n" +
+                "Shortened: " + shortened + "\n";
+    }
+
 }

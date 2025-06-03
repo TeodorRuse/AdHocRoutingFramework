@@ -224,7 +224,7 @@ public class NetworkSimulationApp extends Application {
         // === Progress bar + time ===
         VBox progressBox = new VBox(5);
         progressBox.setAlignment(Pos.BOTTOM_CENTER);
-        progressBox.setPrefWidth(624);
+        progressBox.setPrefWidth(600);
 
         timeProgressBar = new ProgressBar(0);
         timeProgressBar.setPrefWidth(800);
@@ -421,7 +421,7 @@ public class NetworkSimulationApp extends Application {
 
     private void createRightPanel() {
         rightPanel = new VBox();
-        rightPanel.setPrefWidth(250);
+        rightPanel.setPrefWidth(280);
         rightPanel.setSpacing(15);
         rightPanel.setPadding(new Insets(20));
         rightPanel.setStyle("-fx-background-color: white; -fx-border-color: #e0e0e0; -fx-border-width: 0 0 0 1;");
@@ -1106,37 +1106,78 @@ public class NetworkSimulationApp extends Application {
         }
     }
 
+//    private void updateMessageInfo() {
+//        if (selectedMessage != null) {
+//            StringBuilder info = new StringBuilder();
+//            info.append("=== MESSAGE INFORMATION ===\n\n");
+//            info.append("Type: ").append(selectedMessage.getMessageType()).append("\n");
+//            info.append("Source: Node ").append(selectedMessage.getSource()).append("\n");
+//            info.append("Destination: Node ").append(selectedMessage.getDestination()).append("\n");
+//            info.append("Status: ").append(selectedMessage.isSuccessful() ? "Successful" : "Failed").append("\n");
+//            info.append("Multicast: ").append(selectedMessage.isMulticast() ? "Yes" : "No").append("\n");
+//            info.append("Frames Shown: ").append(selectedMessage.getNumberFramesShown()).append("\n");
+//
+//            // Add message content if available
+//            if (selectedMessage.getInfo() != null) {
+//                info.append("Content: ").append(selectedMessage.getInfo()).append("\n");
+//            }
+//
+//            // Add source and destination node details
+//            Node sourceNode = ground.getNodes().get(selectedMessage.getSource());
+//            Node destNode = ground.getNodeFromId(selectedMessage.getDestination());
+//
+//            info.append("\n=== SOURCE NODE ===\n");
+//            info.append("Position: (").append(sourceNode.getX()).append(", ").append(sourceNode.getY()).append(")\n");
+//            info.append("Active: ").append(sourceNode.isActive() ? "Yes" : "No").append("\n");
+//
+//            info.append("\n=== DESTINATION NODE ===\n");
+//            info.append("Position: (").append(destNode.getX()).append(", ").append(destNode.getY()).append(")\n");
+//            info.append("Active: ").append(destNode.isActive() ? "Yes" : "No").append("\n");
+//
+//            nodeInfoText.setText(info.toString());
+//        }
+//    }
     private void updateMessageInfo() {
         if (selectedMessage != null) {
             StringBuilder info = new StringBuilder();
             info.append("=== MESSAGE INFORMATION ===\n\n");
-            info.append("Type: ").append(selectedMessage.getMessageType()).append("\n");
-            info.append("Source: Node ").append(selectedMessage.getSource()).append("\n");
-            info.append("Destination: Node ").append(selectedMessage.getDestination()).append("\n");
-            info.append("Status: ").append(selectedMessage.isSuccessful() ? "Successful" : "Failed").append("\n");
-            info.append("Multicast: ").append(selectedMessage.isMulticast() ? "Yes" : "No").append("\n");
-            info.append("Frames Shown: ").append(selectedMessage.getNumberFramesShown()).append("\n");
 
-            // Add message content if available
-            if (selectedMessage.getContent() != null) {
-                info.append("Content: ").append(selectedMessage.getContent()).append("\n");
+            // Use the message's own getInfo() implementation
+            String messageDetails = selectedMessage.getInfo();
+            if (messageDetails != null && !messageDetails.isEmpty()) {
+                info.append(messageDetails).append("\n");
+            } else {
+                // Fallback if getInfo() is not implemented properly
+                info.append("Type: ").append(selectedMessage.getMessageType()).append("\n");
+                info.append("Source: Node ").append(selectedMessage.getSource()).append("\n");
+                info.append("Destination: Node ").append(selectedMessage.getDestination()).append("\n");
+                info.append("Status: ").append(selectedMessage.isSuccessful() ? "Successful" : "Failed").append("\n");
+                info.append("Multicast: ").append(selectedMessage.isMulticast() ? "Yes" : "No").append("\n");
             }
 
-            // Add source and destination node details
+            // Always show runtime display info
+            info.append("Frames Shown: ").append(selectedMessage.getNumberFramesShown()).append("\n");
+
+            // Add source node info
             Node sourceNode = ground.getNodes().get(selectedMessage.getSource());
             Node destNode = ground.getNodeFromId(selectedMessage.getDestination());
 
-            info.append("\n=== SOURCE NODE ===\n");
-            info.append("Position: (").append(sourceNode.getX()).append(", ").append(sourceNode.getY()).append(")\n");
-            info.append("Active: ").append(sourceNode.isActive() ? "Yes" : "No").append("\n");
+            if (sourceNode != null) {
+                info.append("\n=== SOURCE NODE ===\n");
+                info.append("Position: (").append(sourceNode.getX()).append(", ").append(sourceNode.getY()).append(")\n");
+                info.append("Active: ").append(sourceNode.isActive() ? "Yes" : "No").append("\n");
+            }
 
-            info.append("\n=== DESTINATION NODE ===\n");
-            info.append("Position: (").append(destNode.getX()).append(", ").append(destNode.getY()).append(")\n");
-            info.append("Active: ").append(destNode.isActive() ? "Yes" : "No").append("\n");
+            if (destNode != null) {
+                info.append("\n=== DESTINATION NODE ===\n");
+                info.append("Position: (").append(destNode.getX()).append(", ").append(destNode.getY()).append(")\n");
+                info.append("Active: ").append(destNode.isActive() ? "Yes" : "No").append("\n");
+            }
 
             nodeInfoText.setText(info.toString());
         }
     }
+
 
     // Update the existing updateNodeInfo method name for consistency
     private void updateNodeInfo() {

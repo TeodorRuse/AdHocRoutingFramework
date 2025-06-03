@@ -281,4 +281,47 @@ public class SAODV_Message extends Message {
                 "signedBy=" + signedBy;
 
     }
+
+    @Override
+    public String getInfo() {
+        StringBuilder info = new StringBuilder();
+
+        info.append("SAODV Message\n");
+        info.append("-------------\n");
+        info.append("Type: ").append(messageType).append("\n");
+        info.append("Source: ").append(source).append("\n");
+        info.append("Destination: ").append(destination).append("\n");
+        info.append("Original Source: ").append(originalSource).append("\n");
+        info.append("Actual Source: ").append(actualSource == -1 ? "N/A" : actualSource).append("\n");
+        info.append("Final Destination: ").append(finalDestination).append("\n");
+        info.append("Source Seq #: ").append(sourceSeqNum).append("\n");
+        info.append("Dest Seq #: ").append(destSeqNum).append("\n");
+        info.append("Broadcast ID: ").append(broadcastId).append("\n");
+        info.append("Hop Count: ").append(hopCount).append("\n");
+        info.append("Time Sent: ").append(timeSent).append(" ms\n");
+
+        if (unreachableAddresses != null && !unreachableAddresses.isEmpty()) {
+            info.append("Unreachable Addresses: ").append(unreachableAddresses).append("\n");
+        }
+
+        if (text != null && !text.isEmpty()) {
+            info.append("Text: ").append(text).append("\n");
+        }
+
+        if (signature != null) {
+            info.append("Signed By: ").append(signedBy).append("\n");
+            info.append("Signature (Base64): ").append(getSignatureBase64()).append("\n");
+        }
+
+        if (doubleSignature != null) {
+            info.append("Double Signature: ").append(doubleSignature.getKey()).append(" (").append(
+                    Base64.getEncoder().encodeToString(doubleSignature.getValue())).append(")\n");
+        }
+
+        info.append("Multicast: ").append(isMulticast).append("\n");
+        info.append("Successful: ").append(isSuccessful).append("\n");
+
+        return info.toString();
+    }
+
 }

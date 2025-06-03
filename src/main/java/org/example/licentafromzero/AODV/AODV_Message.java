@@ -157,4 +157,17 @@ public class AODV_Message extends Message {
     public void increaseHopCount(){
         hopCount++;
     }
+
+    @Override
+    public String getInfo() {
+        return super.getInfo() +
+                "Protocol: AODV\n" +
+                "Broadcast ID: " + broadcastId + "\n" +
+                "Source Seq #: " + sourceSeqNum + "\n" +
+                "Dest Seq #: " + destSeqNum + "\n" +
+                "Hop Count: " + hopCount + "\n" +
+                "Time Sent: " + timeSent + " ms\n";
+    }
+
+
 }

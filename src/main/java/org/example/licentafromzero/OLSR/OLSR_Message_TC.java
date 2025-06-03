@@ -71,4 +71,14 @@ public class OLSR_Message_TC extends Message {
                 ", isMulticast=" + isMulticast +
                 "} " + super.toString();
     }
+
+    @Override
+    public String getInfo() {
+        return super.getInfo() +
+                "Protocol: OLSR (TC)\n" +
+                "Original Source: " + originalSource + "\n" +
+                "Message ID: " + msgId + "\n" +
+                "Advertised Nodes: " + advertisedNodes + "\n";
+    }
+
 }

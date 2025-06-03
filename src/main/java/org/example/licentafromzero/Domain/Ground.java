@@ -313,7 +313,7 @@ public class Ground {
         //
         // Final update
         Platform.runLater(uiCallback);
-        Util.log("=============================================================");
+        Util.log("=========================================================");
         Util.log("Simulation finished");
         Util.log("Messages sent: " + messageRouter.getMessages().size());
         Util.log("Text messages sent: " + messageRouter.getNumberTextsSent());

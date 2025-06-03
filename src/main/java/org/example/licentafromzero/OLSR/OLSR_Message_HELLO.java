@@ -58,4 +58,13 @@ public class OLSR_Message_HELLO extends Message {
                 ", isMulticast=" + isMulticast +
                 "} " + super.toString();
     }
+
+    @Override
+    public String getInfo() {
+        return super.getInfo() +
+                "Protocol: OLSR (HELLO)\n" +
+                "Neighbors (1-hop): " + neighbours.size() + "\n" +
+                "MPR Senders: " + mrpsSender + "\n";
+    }
+
 }

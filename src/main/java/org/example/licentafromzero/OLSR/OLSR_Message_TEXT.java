@@ -28,4 +28,12 @@ public class OLSR_Message_TEXT extends Message {
     public void setFinalDestination(int finalDestination) {
         this.finalDestination = finalDestination;
     }
+
+    @Override
+    public String getInfo() {
+        return super.getInfo() +
+                "Protocol: OLSR (TEXT)\n" +
+                "Final Destination: " + finalDestination + "\n";
+    }
+
 }

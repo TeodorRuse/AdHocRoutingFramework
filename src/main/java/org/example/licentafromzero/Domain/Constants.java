@@ -3,13 +3,11 @@ package org.example.licentafromzero.Domain;
 public final class Constants {
     private Constants(){};
 
-    //TODO: make the bottom pannel buttons more visible
     //TODO: make arrow titles more visible, maybe add more animations.
-    //TODO: maybe after protocol finishes, add a view results button (green, next to exit), where loads fancy animation on logo, and dumps log.txt
 
     //General values
     public static final int SIMULATION_TIME = 30; //seconds
-    public static final int SIMULATION_MODE = 12; // 1 = normal | 3 = DSR | 5 = AODV | 7 = SAODV | 9 = CBRP | 11 = OLSR | even = file
+    public static final int SIMULATION_MODE = 5; // 1 = normal | 3 = DSR | 5 = AODV | 7 = SAODV | 9 = CBRP | 11 = OLSR | even = file
     public static final int SIMULATION_NR_NODES = 10;
     public static final int SIMULATION_SIZE_X = 900;
     public static final int SIMULATION_SIZE_Y = 900;

@@ -4,7 +4,6 @@ import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.effect.DropShadow;
@@ -23,15 +22,9 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
-import javafx.scene.text.TextAlignment;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
-import org.example.licentafromzero.AODV.AODV_Node;
 import org.example.licentafromzero.CBRP_Paper.CBRP_Node;
-import org.example.licentafromzero.DSR.DSR_Node;
 import org.example.licentafromzero.Domain.*;
-import org.example.licentafromzero.OLSR.OLSR_Node;
-import org.example.licentafromzero.SAODV.SAODV_Node;
 
 import java.io.*;
 import java.util.*;
@@ -46,6 +39,7 @@ public class NetworkSimulationApp extends Application {
     private VBox rightPanel;
     private HBox bottomPanel;
     private HBox topPanel;
+    private ArrayList<Button> speedButtons = new ArrayList<>();
 
     // Simulation components
     private Ground ground;
@@ -56,9 +50,6 @@ public class NetworkSimulationApp extends Application {
 
     // Controls
     private Button playPauseButton;
-    private Button slowButton;
-    private Button fastButton;
-    private Slider speedSlider;
     private ProgressBar timeProgressBar;
     private Label timeLabel;
     private Label protocolLabel;
@@ -86,6 +77,7 @@ public class NetworkSimulationApp extends Application {
     private static final double CLUSTER_HEAD_INDICATOR_SIZE = 22;
     private static final double CLUSTER_PADDING = 25;
     private static final int MAX_LOG_ENTRIES = 1000;
+    private static int lastSimSpeed;
 
     // Color schemes
     private final Color[] NODE_COLORS = {
@@ -130,7 +122,7 @@ public class NetworkSimulationApp extends Application {
 
 
         // Initialize the ground simulation
-        ground = new Ground(900, 900);
+        ground = new Ground(Constants.SIMULATION_SIZE_X, Constants.SIMULATION_SIZE_Y);
 
         // Initialize all panels
         createTopPanel();
@@ -153,12 +145,6 @@ public class NetworkSimulationApp extends Application {
         primaryStage.setScene(scene);
 
         primaryStage.setMaximized(true);
-
-//        Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
-//        primaryStage.setX(screenBounds.getMinX());
-//        primaryStage.setY(screenBounds.getMinY());
-//        primaryStage.setWidth(screenBounds.getWidth());
-//        primaryStage.setHeight(screenBounds.getHeight());
 
         primaryStage.show();
 
@@ -185,11 +171,6 @@ public class NetworkSimulationApp extends Application {
         centerWrapper.getChildren().addAll(topPanel, simulationCanvas, bottomPanel);
         VBox.setVgrow(simulationCanvas, Priority.ALWAYS);
 
-        // Optional: set preferred widths
-//        leftWrapper.setPrefWidth(300);
-//        rightWrapper.setPrefWidth(300);
-//        bottomPanel.setPrefHeight(150); // or as needed
-
         mainLayout.getChildren().addAll(leftWrapper, centerWrapper, rightWrapper);
         HBox.setHgrow(centerWrapper, Priority.ALWAYS);
     }
@@ -197,45 +178,170 @@ public class NetworkSimulationApp extends Application {
     private void createTopPanel() {
         topPanel = new HBox();
         topPanel.setPrefHeight(180);
-        topPanel.setAlignment(Pos.CENTER_LEFT);
+        topPanel.setAlignment(Pos.CENTER);
         topPanel.setPadding(new Insets(10, 20, 10, 20));
         topPanel.setSpacing(20);
         topPanel.setStyle("-fx-background-color: white; -fx-border-color: #e0e0e0; -fx-border-width: 0 0 1 0;");
 
-        // Logo placeholder
+        // === Logo ===
         Image logoImage = new Image(getClass().getResourceAsStream("/org/example/licentafromzero/FEROX-logo-shield.png"));
         ImageView logoView = new ImageView(logoImage);
-        logoView.setFitHeight(180);
+        logoView.setFitHeight(160);
         logoView.setPreserveRatio(true);
 
-        // Add it to topPanel (e.g., at the beginning)
-        topPanel.getChildren().add(0, logoView); // Add at index 0 if you want it first
+        // === VBox: Title + Protocol + Speed Controls ===
+        VBox infoBox = new VBox(8);
+        infoBox.setAlignment(Pos.CENTER_LEFT);
 
-
-        // Title
         Label titleLabel = new Label("Ad-Hoc Network Simulator");
-        titleLabel.setFont(Font.font("Arial", FontWeight.BOLD, 18));
+        titleLabel.setFont(Font.font("Arial", FontWeight.BOLD, 20));
         titleLabel.setTextFill(Color.rgb(44, 62, 80));
 
-        // Protocol info
         protocolLabel = new Label("Protocol: " + getProtocolName());
-        protocolLabel.setFont(Font.font("Arial", FontWeight.NORMAL, 14));
-        protocolLabel.setTextFill(Color.rgb(127, 140, 141));
+        protocolLabel.setFont(Font.font("Arial", FontWeight.NORMAL, 16));
+        protocolLabel.setTextFill(Color.rgb(0,0,0));
 
-        // Spacer
-        Region spacer = new Region();
-        HBox.setHgrow(spacer, Priority.ALWAYS);
+        // Control buttons
+        playPauseButton = createControlButton("⏸", 14, 10000000);
+        playPauseButton.setOnAction(e -> togglePlayPause());
 
-        // Right side buttons
-        Button exitButton = createStyledButton("Exit Simulation", "#e74c3c");
+        speedButtons.add(createControlButton("▶", 16, 1500));     // fast)
+        speedButtons.add(createControlButton("▶▶", 16, 800));  // faster
+        speedButtons.add(createControlButton("▶▶▶", 14, 300));  // faster
+        speedButtons.add(createControlButton("▶▶▶▶", 12, 10)); // fastest
+        updateSpeedButtonStyles();
 
+        HBox speedBox = new HBox(10, playPauseButton, speedButtons.get(0), speedButtons.get(1), speedButtons.get(2), speedButtons.get(3));
+        speedBox.setAlignment(Pos.BOTTOM_LEFT);
+
+        infoBox.getChildren().addAll(titleLabel, protocolLabel, speedBox);
+
+        // === Progress bar + time ===
+        VBox progressBox = new VBox(5);
+        progressBox.setAlignment(Pos.BOTTOM_CENTER);
+        progressBox.setPrefWidth(624);
+
+        timeProgressBar = new ProgressBar(0);
+        timeProgressBar.setPrefWidth(800);
+        timeProgressBar.setPrefHeight(20);
+        timeProgressBar.setStyle("-fx-accent: #3498db;");
+
+        timeLabel = new Label("00:00 / " + String.format("%02d:%02d",
+                Constants.SIMULATION_TIME / 60, Constants.SIMULATION_TIME % 60));
+        timeLabel.setFont(Font.font("Arial", FontWeight.BOLD, 14));
+        timeLabel.setTextFill(Color.rgb(44, 62, 80));
+
+        Pane emptySpace = new Pane();
+        emptySpace.setPrefHeight(20);
+
+        progressBox.getChildren().addAll(timeProgressBar, timeLabel, emptySpace);
+
+        // === Exit Button ===
+        VBox finalButtonsVBox = new VBox();
+        finalButtonsVBox.setAlignment(Pos.BOTTOM_CENTER);
+        Pane emptySpace2 = new Pane();
+        emptySpace2.setPrefHeight(40);
+
+        Button exitButton = createStyledButton("Exit", "#e74c3c");
         exitButton.setOnAction(e -> {
             Platform.exit();
             System.exit(0);
         });
 
-        topPanel.getChildren().addAll(titleLabel, protocolLabel, spacer, exitButton);
+        finalButtonsVBox.getChildren().addAll(exitButton, emptySpace2);
+
+        // === Spacer ===
+        Region spacer = new Region();
+        HBox.setHgrow(spacer, Priority.ALWAYS);
+
+        // === Final assembly ===
+        topPanel.getChildren().addAll(logoView, infoBox, progressBox, spacer, finalButtonsVBox);
     }
+
+    private void setSimDelay(int delay){
+        Constants.SIMULATION_DELAY_BETWEEN_FRAMES = delay;
+    }
+
+    private void togglePlayPause() {
+        stopSimulation = !stopSimulation;
+
+        if (stopSimulation) {
+            pauseTime = System.currentTimeMillis();
+            playPauseButton.setStyle("-fx-background-color: rgb(8,100,187);" +
+                    "-fx-text-fill: white;" +
+                    "-fx-background-radius: 0;");
+
+            for (Button btn : speedButtons) {
+                btn.setDisable(true);
+                btn.setStyle("-fx-background-color: #444444;" +
+                        "-fx-text-fill: #aaaaaa;" +
+                        "-fx-background-radius: 0;");
+            }
+
+            lastSimSpeed = Constants.SIMULATION_DELAY_BETWEEN_FRAMES;
+            Constants.SIMULATION_DELAY_BETWEEN_FRAMES = 10000000;
+            appendToLog("Simulation paused");
+        } else {
+
+            playPauseButton.setStyle("-fx-background-color: rgb(0,51,102);" +
+                    "-fx-text-fill: white;" +
+                    "-fx-background-radius: 0;");
+            for (Button btn : speedButtons) {
+                btn.setDisable(false);
+            }
+            updateSpeedButtonStyles();
+
+            if (groundThread != null) {
+                groundThread.interrupt();
+            }
+            Constants.SIMULATION_PAUSE_TIME += System.currentTimeMillis() - pauseTime;
+            Constants.SIMULATION_DELAY_BETWEEN_FRAMES = lastSimSpeed;
+            appendToLog("Simulation resumed");
+        }
+    }
+
+
+    private Button createControlButton(String text, int textSize, int delay) {
+        Button btn = new Button(text);
+        btn.setPrefSize(40, 40);
+        btn.setFont(Font.font("Arial", FontWeight.BOLD, textSize));
+        btn.setUserData(delay);
+
+        btn.setStyle("-fx-background-color: rgb(0,51,102);" +
+                "-fx-text-fill: white;" +
+                "-fx-background-radius: 0;");
+
+        btn.setOnMouseEntered(e -> btn.setStyle(btn.getStyle() + "-fx-opacity: 0.9;"));
+        btn.setOnMouseClicked(e -> updateSpeedButtonStyles());
+
+
+        if(!text.equals("⏸")) {
+            btn.setOnAction(e -> setSimDelay(delay));
+        }
+
+        return btn;
+    }
+
+    private void updateSpeedButtonStyles() {
+        for (Button btn : speedButtons) {
+            int buttonDelay = (int) btn.getUserData();
+
+            if (Constants.SIMULATION_DELAY_BETWEEN_FRAMES == buttonDelay) {
+                // Selected style
+
+                btn.setStyle("-fx-background-color: rgb(8,100,187);" +
+                        "-fx-text-fill: white;" +
+                        "-fx-background-radius: 0;");
+            } else {
+                // Normal style
+                btn.setStyle("-fx-background-color: rgb(0,51,102);" +
+                        "-fx-text-fill: white;" +
+                        "-fx-background-radius: 0;");
+            }
+        }
+    }
+
+
 
     private void createLeftPanel() {
         leftPanel = new VBox();
@@ -310,7 +416,7 @@ public class NetworkSimulationApp extends Application {
 
     private void createRightPanel() {
         rightPanel = new VBox();
-        rightPanel.setPrefWidth(300);
+        rightPanel.setPrefWidth(250);
         rightPanel.setSpacing(15);
         rightPanel.setPadding(new Insets(20));
         rightPanel.setStyle("-fx-background-color: white; -fx-border-color: #e0e0e0; -fx-border-width: 0 0 0 1;");
@@ -323,7 +429,7 @@ public class NetworkSimulationApp extends Application {
         nodeInfoText = new TextArea();
         nodeInfoText.setEditable(false);
         nodeInfoText.setWrapText(true);
-        nodeInfoText.setPrefHeight(500);
+        nodeInfoText.setPrefHeight(600);
         nodeInfoText.setStyle("-fx-font-family: 'Consolas', 'Courier New', monospace; " +
                 "-fx-font-size: 11px; " +
                 "-fx-background-color: #f8f9fa; " +
@@ -338,7 +444,7 @@ public class NetworkSimulationApp extends Application {
         VBox statsBox = new VBox(8);
         statsBox.setPadding(new Insets(10));
         statsBox.setStyle("-fx-background-color: #f8f9fa; -fx-border-color: #dee2e6; -fx-border-radius: 4;");
-        statsBox.setPrefHeight(500);
+        statsBox.setPrefHeight(400);
 
         Label statsLabel = new Label(getSimulationStatsText());
         statsLabel.setFont(Font.font("Arial", FontWeight.NORMAL, 12));
@@ -403,60 +509,11 @@ public class NetworkSimulationApp extends Application {
 
     private void createBottomPanel() {
         bottomPanel = new HBox();
-        bottomPanel.setPrefHeight(80);
+        bottomPanel.setPrefHeight(10);
         bottomPanel.setAlignment(Pos.CENTER);
         bottomPanel.setPadding(new Insets(15, 20, 15, 20));
         bottomPanel.setSpacing(20);
         bottomPanel.setStyle("-fx-background-color: white; -fx-border-color: #e0e0e0; -fx-border-width: 1 0 0 0;");
-
-        // Speed controls
-        slowButton = createControlButton("⏪", "#f39c12");
-        playPauseButton = createControlButton("⏸", "#e74c3c");
-        fastButton = createControlButton("⏩", "#f39c12");
-
-        slowButton.setOnAction(e -> adjustSpeed(0.5));
-        playPauseButton.setOnAction(e -> togglePlayPause());
-        fastButton.setOnAction(e -> adjustSpeed(2.0));
-
-        // Speed slider
-        VBox sliderBox = new VBox(5);
-        sliderBox.setAlignment(Pos.CENTER);
-
-        Label speedLabel = new Label("Simulation Speed");
-        speedLabel.setFont(Font.font("Arial", FontWeight.NORMAL, 12));
-        speedLabel.setTextFill(Color.rgb(127, 140, 141));
-
-        speedSlider = new Slider(1, 1500, Constants.SIMULATION_DELAY_BETWEEN_FRAMES);
-        speedSlider.setPrefWidth(200);
-        speedSlider.setShowTickMarks(true);
-        speedSlider.setShowTickLabels(true);
-        speedSlider.setMajorTickUnit(500);
-        speedSlider.setStyle("-fx-control-inner-background: #ecf0f1;");
-
-        speedSlider.valueProperty().addListener((obs, oldVal, newVal) -> {
-            Constants.SIMULATION_DELAY_BETWEEN_FRAMES = newVal.intValue();
-        });
-
-        sliderBox.getChildren().addAll(speedLabel, speedSlider);
-
-        // Progress bar and time
-        VBox progressBox = new VBox(5);
-        progressBox.setAlignment(Pos.CENTER);
-        progressBox.setPrefWidth(250);
-
-        timeProgressBar = new ProgressBar(0);
-        timeProgressBar.setPrefWidth(250);
-        timeProgressBar.setStyle("-fx-accent: #3498db;");
-
-        timeLabel = new Label("00:00 / " + String.format("%02d:%02d",
-                Constants.SIMULATION_TIME / 60, Constants.SIMULATION_TIME % 60));
-        timeLabel.setFont(Font.font("Arial", FontWeight.BOLD, 14));
-        timeLabel.setTextFill(Color.rgb(44, 62, 80));
-
-        progressBox.getChildren().addAll(timeProgressBar, timeLabel);
-
-        bottomPanel.getChildren().addAll(slowButton, playPauseButton, fastButton,
-                new Separator(), sliderBox, new Separator(), progressBox);
     }
 
     private Button createStyledButton(String text, String color) {
@@ -471,27 +528,6 @@ public class NetworkSimulationApp extends Application {
         // Add hover effect
         button.setOnMouseEntered(e -> button.setStyle(button.getStyle() + "-fx-opacity: 0.9;"));
         button.setOnMouseExited(e -> button.setStyle(button.getStyle().replace("-fx-opacity: 0.9;", "")));
-
-        return button;
-    }
-
-    private Button createControlButton(String text, String color) {
-        Button button = new Button(text);
-        button.setPrefSize(50, 50);
-        button.setStyle(String.format("-fx-background-color: %s; " +
-                "-fx-text-fill: white; " +
-                "-fx-font-size: 18; " +
-                "-fx-font-weight: bold; " +
-                "-fx-background-radius: 25; " +
-                "-fx-border-radius: 25;", color));
-
-        // Add shadow effect
-        DropShadow shadow = new DropShadow();
-        shadow.setRadius(5.0);
-        shadow.setOffsetX(2.0);
-        shadow.setOffsetY(2.0);
-        shadow.setColor(Color.rgb(0, 0, 0, 0.3));
-        button.setEffect(shadow);
 
         return button;
     }
@@ -1001,34 +1037,6 @@ public class NetworkSimulationApp extends Application {
                     elapsedSeconds / 60, elapsedSeconds % 60,
                     totalSeconds / 60, totalSeconds % 60));
         }
-    }
-
-    private void togglePlayPause() {
-        stopSimulation = !stopSimulation;
-
-        if (stopSimulation) {
-            playPauseButton.setText("▶");
-            playPauseButton.setStyle(playPauseButton.getStyle().replace("#e74c3c", "#27ae60"));
-            pauseTime = System.currentTimeMillis();
-            Constants.SIMULATION_DELAY_BETWEEN_FRAMES = 10000000;
-            appendToLog("Simulation paused");
-        } else {
-            playPauseButton.setText("⏸");
-            playPauseButton.setStyle(playPauseButton.getStyle().replace("#27ae60", "#e74c3c"));
-            if (groundThread != null) {
-                groundThread.interrupt();
-            }
-            Constants.SIMULATION_PAUSE_TIME += System.currentTimeMillis() - pauseTime;
-            Constants.SIMULATION_DELAY_BETWEEN_FRAMES = (int) speedSlider.getValue();
-            appendToLog("Simulation resumed");
-        }
-    }
-
-    private void adjustSpeed(double factor) {
-        double currentValue = speedSlider.getValue();
-        double newValue = currentValue / factor;
-        newValue = Math.max(speedSlider.getMin(), Math.min(speedSlider.getMax(), newValue));
-        speedSlider.setValue(newValue);
     }
 
     private void startLogReader() {

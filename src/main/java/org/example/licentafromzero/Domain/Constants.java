@@ -3,7 +3,6 @@ package org.example.licentafromzero.Domain;
 public final class Constants {
     private Constants(){};
 
-    //TODO: make the text in the right panel better: bigger, more space etc.
     //TODO: make the bottom pannel buttons more visible
     //TODO: make arrow titles more visible, maybe add more animations.
     //TODO: maybe after protocol finishes, add a view results button (green, next to exit), where loads fancy animation on logo, and dumps log.txt

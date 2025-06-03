@@ -44,6 +44,7 @@ Node 3 received NEIGHBOUR_ACK from 0
 Node 3 received NEIGHBOUR_ACK from 1
 Node 4 received NEIGHBOUR_SYN from 6
 Node 4 received NEIGHBOUR_ACK from 3
+Node 4 received OLSR_HELLO from 3
 Node 5 received NEIGHBOUR_SYN from 6
 Node 5 received NEIGHBOUR_ACK from 7
 Node 5 received NEIGHBOUR_SYN from 7
@@ -54,7 +55,6 @@ Node 6 received NEIGHBOUR_ACK from 7
 Node 6 received NEIGHBOUR_SYN from 7
 Node 6 received NEIGHBOUR_ACK from 0
 Node 6 received NEIGHBOUR_ACK from 2
-Node 6 received OLSR_HELLO from 2
 Node 7 received NEIGHBOUR_ACK from 5
 Node 7 received NEIGHBOUR_ACK from 6
 Node 8 received NEIGHBOUR_ACK from 9
@@ -62,617 +62,161 @@ Node 8 received NEIGHBOUR_SYN from 9
 Node 8 received NEIGHBOUR_ACK from 5
 Node 9 received NEIGHBOUR_ACK from 1
 Node 9 received NEIGHBOUR_ACK from 3
-Node 9 received NEIGHBOUR_ACK from 8
-Node 0 received OLSR_HELLO from 2
-Node 2 received OLSR_HELLO from 0
-Node 3 received OLSR_HELLO from 0
-Node 3 received OLSR_HELLO from 1
-Node 4 received OLSR_HELLO from 3
-Node 5 received OLSR_HELLO from 7
-Node 6 received OLSR_HELLO from 7
-Node 6 received OLSR_HELLO from 0
-Node 7 received OLSR_HELLO from 5
-Node 7 received OLSR_HELLO from 6
-Node 8 received OLSR_HELLO from 5
-Node 9 received OLSR_HELLO from 1
 Node 9 received OLSR_HELLO from 3
+Node 9 received NEIGHBOUR_ACK from 8
 Node 9 received OLSR_HELLO from 8
 Node 0 received OLSR_HELLO from 3
-Node 0 received OLSR_HELLO from 6
-Node 0  discovering neighbours
 Node 1 received OLSR_HELLO from 3
-Node 1 received OLSR_HELLO from 9
-Node 2 received OLSR_HELLO from 6
-Node 2 received NEIGHBOUR_SYN from 0
 Node 2 received OLSR_HELLO from 0
-Node 2  discovering neighbours
-Node 3 received OLSR_HELLO from 4
-Node 3 received OLSR_HELLO from 9
-Node 3 received NEIGHBOUR_SYN from 0
 Node 3 received OLSR_HELLO from 0
-Node 3 received OLSR_TEXT from 1
-Node 3 sending message further to 4 to reach 4
-Node 3 received NEIGHBOUR_SYN from 2
-Node 4 received NEIGHBOUR_SYN from 0
-Node 4 received NEIGHBOUR_SYN from 2
-Node 4 received OLSR_TEXT from 3
-Node 4 received text: Hello from 1
-Node 5 received OLSR_HELLO from 8
-Node 5  discovering neighbours
-Node 6 received NEIGHBOUR_SYN from 0
-Node 6 received OLSR_HELLO from 0
-Node 6 received NEIGHBOUR_SYN from 2
-Node 6 received OLSR_TEXT from 2
-Node 6 received text: Hello from 2
-Node 6 received OLSR_HELLO from 2
-Node 7 received NEIGHBOUR_SYN from 0
-Node 7 received NEIGHBOUR_SYN from 5
-Node 7 received OLSR_HELLO from 5
-Node 7 received OLSR_TEXT from 6
-Node 7 received text: Hello from 6
-Node 7  discovering neighbours
-Node 8 received OLSR_HELLO from 9
-Node 8 received OLSR_TEXT from 5
-Node 8 sending message further to 9 to reach 9
-Node 8 received NEIGHBOUR_SYN from 5
-Node 8 received OLSR_HELLO from 5
-Node 8  discovering neighbours
-Node 9 received OLSR_TEXT from 8
-Node 9 received text: Hello from 5
-Node 9 received NEIGHBOUR_SYN from 8
-Node 9 received OLSR_HELLO from 8
-Node 9  discovering neighbours
-Node 0 received NEIGHBOUR_ACK from 2
-Node 0 received NEIGHBOUR_SYN from 2
-Node 0 received OLSR_HELLO from 2
-Node 0 received NEIGHBOUR_ACK from 3
-Node 0 received NEIGHBOUR_ACK from 6
-Node 1 received NEIGHBOUR_SYN from 9
-Node 1  discovering neighbours
-Node 2 received NEIGHBOUR_ACK from 6
-Node 2 received NEIGHBOUR_ACK from 0
-Node 2 received OLSR_TC from 0
-Node 3 received OLSR_TEXT from 4
-Node 3 sending message further to 0 to reach 0
-Node 3 received NEIGHBOUR_SYN from 9
-Node 3 received OLSR_TEXT from 0
-Node 3 sending message further to 1 to reach 1
-Node 3 received OLSR_TC from 0
-Node 3 received NEIGHBOUR_SYN from 1
 Node 3 received OLSR_HELLO from 1
-Node 3  discovering neighbours
-Node 4 received OLSR_TC from 3
-Node 4 received NEIGHBOUR_SYN from 3
-Node 4 received OLSR_HELLO from 3
-Node 4 received OLSR_TC from 3
-Node 4  discovering neighbours
-Node 5 received NEIGHBOUR_ACK from 7
-Node 5 received NEIGHBOUR_SYN from 7
 Node 5 received OLSR_HELLO from 7
-Node 5 received NEIGHBOUR_ACK from 8
-Node 5 received NEIGHBOUR_SYN from 8
 Node 5 received OLSR_HELLO from 8
-Node 5 received NEIGHBOUR_SYN from 9
-Node 6 received NEIGHBOUR_SYN from 7
 Node 6 received OLSR_HELLO from 7
-Node 6 received OLSR_TC from 0
-Node 6  discovering neighbours
-Node 7 received NEIGHBOUR_ACK from 5
-Node 7 received OLSR_TC from 5
-Node 7 received NEIGHBOUR_ACK from 6
-Node 7 received OLSR_TC from 6
-Node 7 received NEIGHBOUR_SYN from 6
-Node 7 received OLSR_HELLO from 6
-Node 7 received OLSR_TC from 6
-Node 8 received NEIGHBOUR_ACK from 9
-Node 8 received NEIGHBOUR_SYN from 9
-Node 8 received NEIGHBOUR_ACK from 5
-Node 8 received OLSR_TC from 5
-Node 9 received NEIGHBOUR_ACK from 1
-Node 9 received NEIGHBOUR_SYN from 1
-Node 9 received OLSR_HELLO from 1
-Node 9 received NEIGHBOUR_ACK from 3
-Node 9 received OLSR_TC from 3
-Node 9 received NEIGHBOUR_SYN from 3
-Node 9 received OLSR_HELLO from 3
-Node 9 received OLSR_TEXT from 3
-Node 9 sending message further to 8 to reach 8
-Node 9 received OLSR_TC from 3
-Node 9 received NEIGHBOUR_ACK from 8
-Node 9 received OLSR_TC from 8
-Node 9 received OLSR_TC from 8
-Node 0 received OLSR_TEXT from 3
-Node 0 received text: Hello from 4
-Node 0 received OLSR_TC from 3
-Node 0 received NEIGHBOUR_SYN from 3
-Node 0 received OLSR_HELLO from 3
-Node 0 received OLSR_TC from 3
-Node 0 received OLSR_TC from 6
-Node 0 received NEIGHBOUR_SYN from 6
-Node 0 received OLSR_HELLO from 6
-Node 0 received OLSR_TC from 6
-Node 1 received OLSR_TEXT from 3
-Node 1 received text: Hello from 0
-Node 1 received OLSR_TC from 3
-Node 1 received NEIGHBOUR_ACK from 3
-Node 1 received NEIGHBOUR_SYN from 3
-Node 1 received OLSR_HELLO from 3
-Node 1 received OLSR_TC from 3
-Node 1 received NEIGHBOUR_ACK from 9
-Node 1 received OLSR_TC from 9
-Node 1 received OLSR_TC from 9
-Node 1 received OLSR_TC from 9
-Node 1 received OLSR_TC from 9
-Node 1 received OLSR_HELLO from 9
-Node 1 received OLSR_TC from 9
-Node 2 received OLSR_TC from 6
-Node 2 received NEIGHBOUR_SYN from 6
-Node 2 received OLSR_HELLO from 6
-Node 2 received OLSR_TC from 6
-Node 2 received OLSR_TC from 0
-Node 2 received OLSR_TC from 0
-Node 2 received OLSR_TC from 0
-Node 2 received OLSR_HELLO from 0
-Node 3 received NEIGHBOUR_ACK from 4
-Node 3 received NEIGHBOUR_SYN from 4
-Node 3 received OLSR_HELLO from 4
-Node 3 received OLSR_TC from 9
-Node 3 received NEIGHBOUR_ACK from 9
-Node 3 received OLSR_TC from 9
-Node 3 received OLSR_TC from 9
-Node 3 received OLSR_TC from 9
-Node 3 received OLSR_HELLO from 9
-Node 3 received OLSR_TEXT from 9
-Node 3 received text: Hello from 9
-Node 3 received OLSR_TC from 9
-Node 3 received OLSR_TC from 0
-Node 3 received NEIGHBOUR_ACK from 0
-Node 3 received OLSR_TC from 0
-Node 3 received OLSR_TC from 0
-Node 3 received OLSR_HELLO from 0
-Node 3 received NEIGHBOUR_ACK from 1
-Node 3 received OLSR_HELLO from 1
-Node 4 received NEIGHBOUR_SYN from 6
-Node 4 received NEIGHBOUR_ACK from 3
-Node 4 received OLSR_TC from 3
-Node 4 received OLSR_TC from 3
-Node 4 received OLSR_TC from 3
-Node 4 received OLSR_TC from 3
-Node 4 received OLSR_TC from 3
-Node 5 received NEIGHBOUR_SYN from 6
-Node 5 received OLSR_TC from 7
-Node 5 received OLSR_TC from 7
-Node 5 received OLSR_TC from 7
-Node 5 received OLSR_TC from 7
-Node 5 received OLSR_TC from 8
-Node 5 received OLSR_TC from 8
-Node 6 received OLSR_TC from 7
-Node 6 received OLSR_TC from 7
-Node 6 received NEIGHBOUR_ACK from 7
-Node 6 received OLSR_TC from 7
-Node 6 received OLSR_TC from 7
-Node 6 received OLSR_TC from 0
-Node 6 received OLSR_TC from 0
-Node 6 received NEIGHBOUR_ACK from 0
-Node 6 received OLSR_TC from 0
 Node 6 received OLSR_HELLO from 0
-Node 6 received NEIGHBOUR_ACK from 2
 Node 6 received OLSR_HELLO from 2
-Node 7 received OLSR_TC from 5
-Node 7 received OLSR_TC from 5
-Node 7 received OLSR_TC from 5
-Node 7 received OLSR_TC from 5
-Node 7 received OLSR_TC from 5
 Node 7 received OLSR_HELLO from 5
-Node 7 received OLSR_TC from 6
-Node 7 received OLSR_TC from 6
-Node 7 received OLSR_TC from 6
-Node 7 received OLSR_TC from 6
-Node 7 received OLSR_HELLO from 6
-Node 8 received OLSR_TC from 9
-Node 8 received OLSR_TEXT from 9
-Node 8 received text: Hello from 3
-Node 8 received OLSR_TC from 9
-Node 8 received OLSR_TC from 9
-Node 8 received OLSR_TC from 9
-Node 8 received OLSR_HELLO from 9
-Node 8 received OLSR_TC from 9
-Node 8 received OLSR_TC from 5
-Node 8 received OLSR_TC from 5
-Node 8 received OLSR_TC from 5
-Node 8 received OLSR_TC from 5
-Node 8 received OLSR_TC from 5
-Node 8 received OLSR_HELLO from 5
-Node 9 received OLSR_HELLO from 1
-Node 9 received OLSR_TC from 3
-Node 9 received OLSR_TC from 3
-Node 9 received OLSR_TC from 3
-Node 9 received OLSR_TC from 3
-Node 9 received OLSR_TC from 3
-Node 9 received OLSR_TC from 8
-Node 9 received OLSR_TC from 8
-Node 9 received OLSR_TC from 8
-Node 9 received OLSR_TC from 8
-Node 9 received OLSR_TC from 8
-Node 9 received OLSR_TC from 8
-Node 9 received OLSR_HELLO from 8
-Node 0 received OLSR_HELLO from 2
-Node 0 received OLSR_TC from 3
-Node 0 received OLSR_TC from 3
-Node 0 received OLSR_TC from 3
-Node 0 received OLSR_TC from 3
-Node 0 received OLSR_TC from 3
-Node 0 received OLSR_TC from 6
-Node 0 received OLSR_TC from 6
-Node 0 received OLSR_TC from 6
-Node 0 received OLSR_TC from 6
-Node 0 received OLSR_HELLO from 6
-Node 1 received OLSR_TC from 3
-Node 1 received OLSR_TC from 3
-Node 1 received OLSR_TC from 3
-Node 1 received OLSR_TC from 3
-Node 1 received OLSR_TC from 3
-Node 1 received OLSR_TC from 9
-Node 1 received OLSR_TC from 9
-Node 1 received OLSR_TC from 9
-Node 1 received OLSR_HELLO from 9
-Node 2 received OLSR_TC from 6
-Node 2 received OLSR_TC from 6
-Node 2 received OLSR_TC from 6
-Node 2 received OLSR_TC from 6
-Node 2 received OLSR_HELLO from 6
-Node 2 received OLSR_TC from 0
-Node 2 received OLSR_TC from 0
-Node 2 received OLSR_TC from 0
-Node 2 received OLSR_TC from 0
-Node 3 received OLSR_TC from 9
-Node 3 received OLSR_TC from 9
-Node 3 received OLSR_TC from 9
-Node 3 received OLSR_HELLO from 9
-Node 3 received OLSR_TEXT from 9
-Node 3 sending message further to 0 to reach 0
-Node 3 received OLSR_TC from 0
-Node 3 received OLSR_TC from 0
-Node 3 received OLSR_TC from 0
-Node 3 received OLSR_TC from 0
-Node 3 received OLSR_TEXT from 1
-Node 3 sending message further to 4 to reach 4
-Node 4 received OLSR_TC from 3
-Node 4 received OLSR_TEXT from 3
-Node 4 received text: Hello from 1
-Node 4 received OLSR_HELLO from 3
-Node 5 received OLSR_TC from 7
-Node 5 received OLSR_TC from 7
-Node 5 received OLSR_TC from 7
-Node 5 received OLSR_TEXT from 7
-Node 5  no route known to reach 9
-Node 5 received OLSR_HELLO from 7
-Node 5 received OLSR_TC from 8
-Node 5 received OLSR_TC from 8
-Node 5 received OLSR_TC from 8
-Node 5 received OLSR_TC from 8
-Node 5 received OLSR_TC from 8
-Node 5 received OLSR_TC from 8
-Node 5 received OLSR_HELLO from 8
-Node 6 received OLSR_TC from 7
-Node 6 received OLSR_TC from 7
-Node 6 received OLSR_TC from 7
-Node 6 received OLSR_HELLO from 7
-Node 6 received OLSR_TC from 0
-Node 6 received OLSR_TC from 0
-Node 6 received OLSR_TC from 0
-Node 6 received OLSR_TC from 0
-Node 6 received OLSR_TEXT from 0
-Node 6 received text: Hello from 0
-Node 7 received OLSR_TC from 5
-Node 7 received OLSR_TC from 5
 Node 7 received OLSR_TEXT from 5
-Node 7 sending message further to 6 to reach 2
-Node 7 received OLSR_TC from 6
-Node 7 received OLSR_TC from 6
-Node 7 received OLSR_TEXT from 6
-Node 7 sending message further to 5 to reach 5
-Node 8 received OLSR_TC from 9
-Node 8 received OLSR_TC from 9
-Node 8 received OLSR_TC from 9
-Node 8 received OLSR_HELLO from 9
-Node 8 received OLSR_TC from 5
-Node 8 received OLSR_TC from 5
-Node 9 received OLSR_TC from 3
-Node 9 received OLSR_HELLO from 3
-Node 0 received OLSR_TC from 3
-Node 0 received OLSR_TEXT from 3
-Node 0 received text: Hello from 9
-Node 0 received OLSR_HELLO from 3
-Node 0 received OLSR_TEXT from 3
-Node 0 sending message further to 6 to reach 6
-Node 0 received OLSR_TC from 6
-Node 0 received OLSR_TC from 6
+Node 7 sending message further to 6 to reach 6
+Node 7 received OLSR_HELLO from 6
+Node 8 received OLSR_HELLO from 5
+Node 9 received OLSR_HELLO from 1
+Node 0 received OLSR_HELLO from 2
+Node 0 received OLSR_HELLO from 6
 Node 0  discovering neighbours
-Node 1 received OLSR_TC from 3
-Node 1 received OLSR_HELLO from 3
-Node 1  discovering neighbours
-Node 2 received OLSR_TC from 6
-Node 2 received OLSR_TC from 6
+Node 1 received OLSR_HELLO from 9
+Node 2 received OLSR_HELLO from 6
 Node 2 received NEIGHBOUR_SYN from 0
 Node 2 received OLSR_HELLO from 0
-Node 2  discovering neighbours
 Node 3 received OLSR_HELLO from 4
+Node 3 received OLSR_HELLO from 9
 Node 3 received NEIGHBOUR_SYN from 0
 Node 3 received OLSR_HELLO from 0
-Node 3 received NEIGHBOUR_SYN from 1
-Node 3 received OLSR_HELLO from 1
-Node 3 received NEIGHBOUR_SYN from 2
-Node 3  discovering neighbours
-Node 4 received NEIGHBOUR_SYN from 0
-Node 4 received NEIGHBOUR_SYN from 2
-Node 4 received NEIGHBOUR_SYN from 3
-Node 4 received OLSR_HELLO from 3
-Node 4  discovering neighbours
-Node 5 received OLSR_TC from 7
-Node 5 received OLSR_TEXT from 7
-Node 5 received text: Hello from 6
-Node 5 received NEIGHBOUR_SYN from 0
-Node 5  discovering neighbours
-Node 6 received OLSR_TC from 7
-Node 6 received OLSR_TEXT from 7
-Node 6 sending message further to 2 to reach 2
-Node 6 received OLSR_TEXT from 0
-Node 6 received text: Hello from 3
-Node 6 received NEIGHBOUR_SYN from 0
-Node 6 received OLSR_HELLO from 0
-Node 6 received NEIGHBOUR_SYN from 2
-Node 6 received OLSR_HELLO from 2
-Node 6  discovering neighbours
-Node 7 received NEIGHBOUR_SYN from 0
-Node 7 received NEIGHBOUR_SYN from 5
-Node 7 received OLSR_HELLO from 5
-Node 7 received NEIGHBOUR_SYN from 6
-Node 7 received OLSR_HELLO from 6
-Node 7  discovering neighbours
-Node 8 received NEIGHBOUR_SYN from 5
-Node 8 received OLSR_HELLO from 5
-Node 8  discovering neighbours
-Node 9 received NEIGHBOUR_SYN from 1
-Node 9 received OLSR_HELLO from 1
-Node 9 received NEIGHBOUR_SYN from 3
-Node 9 received OLSR_HELLO from 3
-Node 9 received NEIGHBOUR_SYN from 8
-Node 9  discovering neighbours
-Node 0 received NEIGHBOUR_ACK from 2
-Node 0 received NEIGHBOUR_SYN from 2
-Node 0 received OLSR_HELLO from 2
-Node 0 received NEIGHBOUR_ACK from 3
-Node 0 received NEIGHBOUR_SYN from 3
-Node 0 received OLSR_HELLO from 3
-Node 0 received NEIGHBOUR_ACK from 6
-Node 0 received NEIGHBOUR_SYN from 6
-Node 0 received OLSR_HELLO from 6
-Node 0 received NEIGHBOUR_ACK from 7
-Node 0 received NEIGHBOUR_SYN from 7
-Node 0 received NEIGHBOUR_SYN from 9
-Node 1 received NEIGHBOUR_ACK from 3
-Node 1 received NEIGHBOUR_SYN from 3
-Node 1 received OLSR_HELLO from 3
-Node 1 received NEIGHBOUR_ACK from 9
-Node 1 received NEIGHBOUR_SYN from 9
-Node 1 received OLSR_HELLO from 9
-Node 2 received OLSR_TEXT from 6
-Node 2 received text: Hello from 5
-Node 2 received NEIGHBOUR_ACK from 6
-Node 2 received NEIGHBOUR_SYN from 6
-Node 2 received OLSR_HELLO from 6
-Node 2 received NEIGHBOUR_ACK from 0
-Node 3 received NEIGHBOUR_ACK from 4
-Node 3 received NEIGHBOUR_SYN from 4
-Node 3 received OLSR_HELLO from 4
-Node 3 received NEIGHBOUR_ACK from 9
-Node 3 received NEIGHBOUR_SYN from 9
-Node 3 received OLSR_HELLO from 9
-Node 3 received OLSR_TEXT from 9
-Node 3 sending message further to 4 to reach 4
-Node 3 received NEIGHBOUR_ACK from 0
-Node 3 received OLSR_TEXT from 0
-Node 3 sending message further to 9 to reach 9
-Node 3 received NEIGHBOUR_ACK from 1
-Node 4 received NEIGHBOUR_SYN from 6
-Node 4 received NEIGHBOUR_ACK from 3
-Node 4 received OLSR_TEXT from 3
-Node 4 received text: Hello from 9
-Node 5 received NEIGHBOUR_SYN from 6
-Node 5 received NEIGHBOUR_ACK from 7
-Node 5 received NEIGHBOUR_SYN from 7
-Node 5 received OLSR_HELLO from 7
-Node 5 received NEIGHBOUR_ACK from 8
-Node 5 received OLSR_TEXT from 8
-Node 5 received text: Hello from 8
-Node 5 received NEIGHBOUR_SYN from 8
-Node 5 received NEIGHBOUR_SYN from 9
-Node 6 received NEIGHBOUR_ACK from 7
-Node 6 received NEIGHBOUR_SYN from 7
-Node 6 received OLSR_HELLO from 7
-Node 6 received NEIGHBOUR_ACK from 0
-Node 6 received NEIGHBOUR_ACK from 2
-Node 7 received NEIGHBOUR_ACK from 0
-Node 7 received NEIGHBOUR_ACK from 5
-Node 7 received NEIGHBOUR_ACK from 6
-Node 8 received NEIGHBOUR_ACK from 9
-Node 8 received NEIGHBOUR_SYN from 9
-Node 8 received OLSR_HELLO from 9
-Node 8 received NEIGHBOUR_ACK from 5
-Node 9 received NEIGHBOUR_ACK from 1
-Node 9 received NEIGHBOUR_ACK from 3
-Node 9 received OLSR_TEXT from 3
-Node 9 received text: Hello from 0
-Node 9 received OLSR_TEXT from 3
-Node 9 sending message further to 8 to reach 8
-Node 9 received NEIGHBOUR_ACK from 8
-Node 9 received OLSR_HELLO from 8
-Node 2 received OLSR_TC from 0
-Node 2 received OLSR_HELLO from 0
-Node 3 received OLSR_TC from 0
-Node 3 received OLSR_HELLO from 0
-Node 3 received OLSR_HELLO from 1
-Node 4 received OLSR_TC from 3
-Node 4 received OLSR_TC from 3
-Node 4 received OLSR_HELLO from 3
-Node 5 received OLSR_HELLO from 8
-Node 5 sending waiting message to 9
-Node 5 sending message further to 8 to reach 9
-Node 6 received OLSR_TC from 0
-Node 6 received OLSR_HELLO from 0
-Node 6 received OLSR_HELLO from 2
-Node 7 received OLSR_TC from 0
-Node 7 received OLSR_HELLO from 0
-Node 7 received OLSR_TC from 5
-Node 7 received OLSR_HELLO from 5
-Node 7 received OLSR_TC from 6
-Node 7 received OLSR_TEXT from 6
-Node 7 received text: Hello from 6
-Node 7 received OLSR_HELLO from 6
-Node 7 received OLSR_TC from 6
-Node 8 received OLSR_TEXT from 9
-Node 8 received text: Hello from 3
-Node 8 received OLSR_TEXT from 5
-Node 8 sending message further to 9 to reach 9
-Node 8 received OLSR_TC from 5
-Node 8 received OLSR_TEXT from 5
-Node 8 sending message further to 9 to reach 9
-Node 8 received OLSR_HELLO from 5
-Node 9 received OLSR_HELLO from 1
-Node 9 received OLSR_TC from 3
-Node 9 received OLSR_TC from 3
-Node 9 received OLSR_HELLO from 3
-Node 9 received OLSR_TEXT from 8
-Node 9 received text: Hello from 7
-Node 9 received OLSR_TC from 8
-Node 9 received OLSR_TEXT from 8
-Node 9 received text: Hello from 5
-Node 9 received OLSR_TC from 8
-Node 0 received OLSR_HELLO from 2
-Node 0 received OLSR_TC from 3
-Node 0 received OLSR_TC from 3
-Node 0 received OLSR_HELLO from 3
-Node 0 received OLSR_TC from 6
-Node 0 received OLSR_HELLO from 6
-Node 0 received OLSR_TC from 6
-Node 0 received OLSR_TC from 7
-Node 0 received OLSR_HELLO from 7
-Node 1 received OLSR_TC from 3
-Node 1 received OLSR_TC from 3
-Node 1 received OLSR_HELLO from 3
-Node 1 received OLSR_TC from 9
-Node 1 received OLSR_TC from 9
-Node 1 received OLSR_TC from 9
-Node 1 received OLSR_TC from 9
-Node 1 received OLSR_TC from 9
-Node 1 received OLSR_HELLO from 9
-Node 2 received OLSR_TC from 6
-Node 2 received OLSR_HELLO from 6
-Node 2 received OLSR_TC from 6
-Node 2 received OLSR_TC from 0
-Node 2 received OLSR_TC from 0
-Node 2 received OLSR_TC from 0
-Node 2 received OLSR_TC from 0
-Node 3 received OLSR_TEXT from 4
-Node 3 sending message further to 0 to reach 0
-Node 3 received OLSR_HELLO from 4
-Node 3 received OLSR_TC from 9
-Node 3 received OLSR_TC from 9
-Node 3 received OLSR_TC from 9
-Node 3 received OLSR_TC from 9
-Node 3 received OLSR_TC from 9
-Node 3 received OLSR_HELLO from 9
-Node 3 received OLSR_TEXT from 9
-Node 3 sending message further to 4 to reach 4
-Node 3 received OLSR_TC from 0
-Node 3 received OLSR_TC from 0
-Node 3 received OLSR_TC from 0
-Node 3 received OLSR_TC from 0
 Node 3 received OLSR_TEXT from 1
 Node 3 received text: Hello from 1
-Node 4 received OLSR_TC from 3
-Node 4 received OLSR_TC from 3
-Node 4 received OLSR_TC from 3
-Node 4 received OLSR_TC from 3
-Node 4 received OLSR_TEXT from 3
-Node 4 received text: Hello from 9
-Node 4 received OLSR_TC from 3
-Node 4 received OLSR_TC from 3
-Node 5 received OLSR_TC from 7
-Node 5 received OLSR_TC from 7
-Node 5 received OLSR_TC from 7
-Node 5 received OLSR_TC from 7
-Node 5 received OLSR_HELLO from 7
-Node 5 received OLSR_TC from 8
-Node 5 received OLSR_TC from 8
-Node 6 received OLSR_TC from 7
-Node 6 received OLSR_TC from 7
-Node 6 received OLSR_TC from 7
-Node 6 received OLSR_TC from 7
-Node 6 received OLSR_HELLO from 7
-Node 6 received OLSR_TC from 0
-Node 6 received OLSR_TC from 0
-Node 6 received OLSR_TC from 0
-Node 6 received OLSR_TC from 0
-Node 6 received OLSR_TEXT from 2
-Node 6 sending message further to 7 to reach 5
-Node 7 received OLSR_TC from 0
-Node 7 received OLSR_TC from 0
-Node 7 received OLSR_TC from 0
-Node 7 received OLSR_TC from 0
-Node 7 received OLSR_TC from 5
-Node 7 received OLSR_TC from 5
-Node 7 received OLSR_TC from 5
-Node 7 received OLSR_TC from 5
-Node 7 received OLSR_TC from 5
-Node 7 received OLSR_TC from 6
-Node 7 received OLSR_TC from 6
-Node 7 received OLSR_TC from 6
-Node 7 received OLSR_TEXT from 6
-Node 7 sending message further to 5 to reach 5
-Node 8 received OLSR_TC from 9
-Node 8 received OLSR_TC from 9
-Node 8 received OLSR_TC from 9
-Node 8 received OLSR_TC from 9
-Node 8 received OLSR_TC from 9
+Node 3  discovering neighbours
+Node 4 received NEIGHBOUR_SYN from 0
+Node 4 received NEIGHBOUR_SYN from 3
+Node 4 received OLSR_HELLO from 3
+Node 4  discovering neighbours
+Node 5  discovering neighbours
+Node 6 received OLSR_TEXT from 7
+Node 6 received text: Hello from 5
+Node 6 received NEIGHBOUR_SYN from 0
+Node 6 received OLSR_HELLO from 0
+Node 6  discovering neighbours
+Node 7 received NEIGHBOUR_SYN from 0
+Node 7 received NEIGHBOUR_SYN from 5
+Node 7 received NEIGHBOUR_SYN from 6
+Node 7 received OLSR_HELLO from 6
+Node 7  discovering neighbours
 Node 8 received OLSR_HELLO from 9
-Node 8 received OLSR_TC from 5
-Node 8 received OLSR_TC from 5
-Node 8 received OLSR_TC from 5
-Node 8 received OLSR_TC from 5
-Node 8 received OLSR_TC from 5
-Node 9 received OLSR_TC from 3
-Node 9 received OLSR_TC from 3
-Node 9 received OLSR_TC from 3
-Node 9 received OLSR_TC from 3
-Node 9 received OLSR_TC from 3
-Node 9 received OLSR_TC from 3
-Node 9 received OLSR_TC from 8
-Node 9 received OLSR_TC from 8
-Node 9 received OLSR_TC from 8
-Node 9 received OLSR_TC from 8
-Node 9 received OLSR_TC from 8
-Node 9 received OLSR_TC from 8
+Node 8 received NEIGHBOUR_SYN from 5
+Node 8  discovering neighbours
+Node 9 received NEIGHBOUR_SYN from 3
+Node 9 received OLSR_HELLO from 3
+Node 9 received NEIGHBOUR_SYN from 8
 Node 9 received OLSR_HELLO from 8
-Node 9 received OLSR_TEXT from 8
-Node 9 sending message further to 1 to reach 1
 Node 9  discovering neighbours
-Node 0 received OLSR_TEXT from 3
-Node 0 received text: Hello from 4
-Node 0 received OLSR_TC from 3
-Node 0 received OLSR_TC from 3
-Node 0 received OLSR_TC from 3
-Node 0 received OLSR_TC from 3
+Node 0 received NEIGHBOUR_ACK from 2
+Node 0 received NEIGHBOUR_ACK from 3
+Node 0 received NEIGHBOUR_SYN from 3
+Node 0 received OLSR_HELLO from 3
+Node 0 received NEIGHBOUR_ACK from 6
+Node 0 received NEIGHBOUR_SYN from 6
+Node 0 received OLSR_HELLO from 6
+Node 1 received NEIGHBOUR_SYN from 3
+Node 1 received OLSR_HELLO from 3
+Node 1 received NEIGHBOUR_SYN from 9
+Node 1 received OLSR_HELLO from 9
+Node 1  discovering neighbours
+Node 2 received NEIGHBOUR_SYN from 6
+Node 2 received OLSR_HELLO from 6
+Node 2 received OLSR_TC from 0
+Node 2  discovering neighbours
+Node 3 received NEIGHBOUR_ACK from 4
+Node 3 received OLSR_TEXT from 4
+Node 3 sending message further to 9 to reach 9
+Node 3 received NEIGHBOUR_SYN from 4
+Node 3 received NEIGHBOUR_ACK from 9
+Node 3 received NEIGHBOUR_SYN from 9
+Node 3 received OLSR_HELLO from 9
+Node 3 received NEIGHBOUR_ACK from 0
+Node 3 received OLSR_TC from 0
+Node 3 received NEIGHBOUR_ACK from 1
+Node 3 received NEIGHBOUR_SYN from 1
+Node 3 received OLSR_HELLO from 1
+Node 3 received NEIGHBOUR_SYN from 2
+Node 4 received NEIGHBOUR_SYN from 6
+Node 4 received NEIGHBOUR_SYN from 2
+Node 4 received NEIGHBOUR_ACK from 3
+Node 4 received OLSR_TC from 3
+Node 4 received OLSR_TC from 3
+Node 5 received NEIGHBOUR_SYN from 6
+Node 5 received NEIGHBOUR_ACK from 7
+Node 5 received NEIGHBOUR_SYN from 7
+Node 5 received OLSR_HELLO from 7
+Node 5 received NEIGHBOUR_ACK from 8
+Node 5 received NEIGHBOUR_SYN from 8
+Node 5 received OLSR_HELLO from 8
+Node 5 received NEIGHBOUR_SYN from 9
+Node 6 received NEIGHBOUR_ACK from 7
+Node 6 received OLSR_TEXT from 7
+Node 6 sending message further to 2 to reach 2
+Node 6 received NEIGHBOUR_SYN from 7
+Node 6 received OLSR_HELLO from 7
+Node 6 received NEIGHBOUR_ACK from 0
+Node 6 received OLSR_TEXT from 0
+Node 6 received text: Hello from 0
+Node 6 received OLSR_TC from 0
+Node 6 received NEIGHBOUR_ACK from 2
+Node 6 received NEIGHBOUR_SYN from 2
+Node 6 received OLSR_HELLO from 2
+Node 7 received NEIGHBOUR_ACK from 5
+Node 7 received OLSR_HELLO from 5
+Node 7 received OLSR_TC from 5
+Node 7 received NEIGHBOUR_ACK from 6
+Node 7 received OLSR_TC from 6
+Node 7 received OLSR_TC from 6
+Node 8 received NEIGHBOUR_ACK from 9
+Node 8 received NEIGHBOUR_SYN from 9
+Node 8 received OLSR_HELLO from 9
+Node 8 received NEIGHBOUR_ACK from 5
+Node 8 received OLSR_HELLO from 5
+Node 8 received OLSR_TC from 5
+Node 9 received NEIGHBOUR_ACK from 1
+Node 9 received NEIGHBOUR_SYN from 1
+Node 9 received OLSR_HELLO from 1
+Node 9 received OLSR_TEXT from 3
+Node 9 received text: Hello from 4
+Node 9 received NEIGHBOUR_ACK from 3
+Node 9 received OLSR_TC from 3
+Node 9 received OLSR_TC from 3
+Node 9 received NEIGHBOUR_ACK from 8
+Node 9 received OLSR_TC from 8
+Node 9 received OLSR_TC from 8
+Node 0 received NEIGHBOUR_SYN from 2
+Node 0 received OLSR_HELLO from 2
 Node 0 received OLSR_TC from 3
 Node 0 received OLSR_TC from 3
 Node 0 received OLSR_TC from 6
 Node 0 received OLSR_TC from 6
-Node 0 received OLSR_TC from 6
-Node 0 received OLSR_TC from 7
-Node 0 received OLSR_TC from 7
-Node 0 received OLSR_TC from 7
-Node 0 received OLSR_TEXT from 7
-Node 0 sending message further to 3 to reach 9
-Node 0 received NEIGHBOUR_SYN from 9
-Node 0  discovering neighbours
+Node 1 received OLSR_TC from 3
+Node 1 received NEIGHBOUR_ACK from 3
+Node 1 received OLSR_TC from 3
+Node 1 received NEIGHBOUR_ACK from 9
+Node 1 received OLSR_TC from 9
+Node 1 received OLSR_TC from 9
+Node 1 received OLSR_TC from 9
+Node 1 received OLSR_TC from 9
+Node 1 received OLSR_TC from 9
+Node 2 received OLSR_TEXT from 6
+Node 2 received text: Hello from 7
+Node 2 received OLSR_TC from 6
+Node 2 received NEIGHBOUR_ACK from 6
+Node 2 received OLSR_TC from 6
+Node 2 received NEIGHBOUR_ACK from 0
+Node 2 received OLSR_TC from 0
+Node 2 received OLSR_TC from 0
+Node 2 received OLSR_TC from 0
+Node 2 received OLSR_HELLO from 0

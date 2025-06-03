@@ -196,16 +196,16 @@ public class NetworkSimulationApp extends Application {
 
     private void createTopPanel() {
         topPanel = new HBox();
-        topPanel.setPrefHeight(80);
+        topPanel.setPrefHeight(180);
         topPanel.setAlignment(Pos.CENTER_LEFT);
         topPanel.setPadding(new Insets(10, 20, 10, 20));
         topPanel.setSpacing(20);
         topPanel.setStyle("-fx-background-color: white; -fx-border-color: #e0e0e0; -fx-border-width: 0 0 1 0;");
 
         // Logo placeholder
-        Image logoImage = new Image(getClass().getResourceAsStream("/org/example/licentafromzero/logo.png"));
+        Image logoImage = new Image(getClass().getResourceAsStream("/org/example/licentafromzero/FEROX-logo-shield.png"));
         ImageView logoView = new ImageView(logoImage);
-        logoView.setFitHeight(80);
+        logoView.setFitHeight(180);
         logoView.setPreserveRatio(true);
 
         // Add it to topPanel (e.g., at the beginning)

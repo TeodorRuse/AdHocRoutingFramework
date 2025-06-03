@@ -22,6 +22,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
 import org.example.licentafromzero.CBRP_Paper.CBRP_Node;
 import org.example.licentafromzero.Domain.*;
@@ -61,6 +62,10 @@ public class NetworkSimulationApp extends Application {
     private ConcurrentLinkedQueue<String> logQueue = new ConcurrentLinkedQueue<>();
     private LogReader logReader;
     private Thread logReaderThread;
+
+    // Add these fields to your class
+    private Message selectedMessage = null;
+    private boolean isMessageSelected = false;
 
     // Node info panel
     private VBox nodeInfoPanel;
@@ -364,7 +369,7 @@ public class NetworkSimulationApp extends Application {
 
         logFilterComboBox = new ComboBox<>();
         logFilterComboBox.getItems().addAll("All Logs", "Node Status", "Messages", "Text");
-        logFilterComboBox.setValue("All Logs");
+        setLogFilterComboBoxValue();
         logFilterComboBox.setPrefWidth(120);
         logFilterComboBox.setStyle("-fx-background-color: #ecf0f1; -fx-border-color: #bdc3c7; -fx-border-radius: 4;");
 
@@ -446,55 +451,130 @@ public class NetworkSimulationApp extends Application {
         statsBox.setStyle("-fx-background-color: #f8f9fa; -fx-border-color: #dee2e6; -fx-border-radius: 4;");
         statsBox.setPrefHeight(400);
 
-        Label statsLabel = new Label(getSimulationStatsText());
-        statsLabel.setFont(Font.font("Arial", FontWeight.NORMAL, 12));
-        statsLabel.setWrapText(true);
+        TextFlow statsFlow = getSimulationStatsText();
+        statsFlow.setPrefWidth(280); // match your layout width
 
-        statsBox.getChildren().add(statsLabel);
+        ScrollPane scrollPane = new ScrollPane(statsFlow);
+        scrollPane.setFitToWidth(true);
+        scrollPane.setStyle("-fx-background-color: transparent; -fx-border-color: #ccc;");
+        scrollPane.setPrefViewportHeight(300); // height control
 
-        rightPanel.getChildren().addAll(nodeInfoTitle, nodeInfoText,
-                new Separator(), statsTitle, statsBox);
+        statsBox.getChildren().add(scrollPane);
+
+        rightPanel.getChildren().addAll(
+                nodeInfoTitle,
+                nodeInfoText,
+                new Separator(),
+                statsTitle,
+                statsBox
+        );
     }
 
-    private String getSimulationStatsText() {
-        StringBuilder sb = new StringBuilder();
+//    private String getSimulationStatsText() {
+//        StringBuilder sb = new StringBuilder();
+//
+//        sb.append("Protocol: ").append(getProtocolName()).append("\n");
+//        sb.append("Nodes: ").append(Constants.SIMULATION_NR_NODES).append("\n");
+//        sb.append("Duration: ").append(Constants.SIMULATION_TIME).append(" s\n");
+//        sb.append("Size: ").append(Constants.SIMULATION_SIZE_X).append(" x ")
+//                .append(Constants.SIMULATION_SIZE_Y).append("\n");
+//        sb.append("Frame Delay: ").append(Constants.SIMULATION_DELAY_BETWEEN_FRAMES).append(" ms\n");
+//        sb.append("Node Turn-Off %: ").append(Constants.SIMULATION_PROBABILITY_NODE_TURN_OFF / 10.0).append("%\n");
+//        sb.append("Node Turn-On %: ").append(Constants.SIMULATION_PROBABILITY_NODE_TURN_ON / 10.0).append("%\n");
+//        sb.append("Mobility: ").append(getMobilityName(Constants.NODE_MOBILITY_TYPE)).append("\n");
+//        sb.append("Comm Range: ").append(Constants.NODE_COMM_RANGE_MIN_VAL)
+//                .append("–").append(Constants.NODE_COMM_RANGE_BOUND).append("\n");
+//        sb.append("Node Speed: ").append(Constants.NODE_SPEED_MIN_VAL)
+//                .append("–").append(Constants.NODE_SPEED_BOUND).append("\n");
+//        sb.append("Pause Time: ").append(Constants.SIMULATION_PAUSE_TIME).append(" ms\n");
+//        sb.append("Log Level: ").append(Constants.LOG_LEVEL).append("\n");
+//
+//
+//        // Protocol-specific additions
+//        if (getProtocolName().equals("AODV") || getProtocolName().equals("SAODV") ) { // AODV/SAODV
+//            sb.append("Stale Route Timeout: ").append(Constants.NODE_AODV_STALE_ROUTE_PERIOD).append(" ms\n");
+//            if (getProtocolName().equals("SAODV")) {
+//                sb.append("SAODV Key Size: ").append(Constants.SIMULATION_RSA_KEY_SIZE).append(" bits\n");
+//                sb.append("SAODV Fwd Buffer Size: ").append(Constants.NODE_SAODV_FORWARD_BUFFER_SIZE).append("\n");
+//            }
+//        } else if (getProtocolName().equals("CBRP")) { // CBRP
+//            sb.append("Hello Interval: ").append(Constants.NODE_CBRP_HELLO_INTERVAL).append(" ms\n");
+//            sb.append("Contention Period: ").append(Constants.NODE_CBRP_CONTENTION_PERIOD).append(" ms\n");
+//            sb.append("Undecided Period: ").append(Constants.NODE_CBRP_UNDECIDED_PD).append(" ms\n");
+//        } else if (getProtocolName().equals("OLSR")) { // OLSR
+//            sb.append("Hello Interval: ").append(Constants.OLSR_HELLO_INTERVAL).append(" ms\n");
+//            sb.append("TC Interval: ").append(Constants.OLSR_TC_INTERVAL).append(" ms\n");
+//            sb.append("Neighbor Expiration: ").append(Constants.OLSR_NEIGHBOR_EXPIRATION_TIME).append(" ms\n");
+//        }
+//
+//        return sb.toString();
+//    }
 
-        sb.append("Protocol: ").append(getProtocolName()).append("\n");
-        sb.append("Nodes: ").append(Constants.SIMULATION_NR_NODES).append("\n");
-        sb.append("Duration: ").append(Constants.SIMULATION_TIME).append(" s\n");
-        sb.append("Size: ").append(Constants.SIMULATION_SIZE_X).append(" x ")
-                .append(Constants.SIMULATION_SIZE_Y).append("\n");
-        sb.append("Frame Delay: ").append(Constants.SIMULATION_DELAY_BETWEEN_FRAMES).append(" ms\n");
-        sb.append("Node Turn-Off %: ").append(Constants.SIMULATION_PROBABILITY_NODE_TURN_OFF / 10.0).append("%\n");
-        sb.append("Node Turn-On %: ").append(Constants.SIMULATION_PROBABILITY_NODE_TURN_ON / 10.0).append("%\n");
-        sb.append("Mobility: ").append(getMobilityName(Constants.NODE_MOBILITY_TYPE)).append("\n");
-        sb.append("Comm Range: ").append(Constants.NODE_COMM_RANGE_MIN_VAL)
-                .append("–").append(Constants.NODE_COMM_RANGE_BOUND).append("\n");
-        sb.append("Node Speed: ").append(Constants.NODE_SPEED_MIN_VAL)
-                .append("–").append(Constants.NODE_SPEED_BOUND).append("\n");
-        sb.append("Pause Time: ").append(Constants.SIMULATION_PAUSE_TIME).append(" ms\n");
-        sb.append("Log Level: ").append(Constants.LOG_LEVEL).append("\n");
+    private TextFlow getSimulationStatsText() {
+        TextFlow textFlow = new TextFlow();
+        textFlow.setLineSpacing(5);
+        textFlow.setPadding(new Insets(10));
+        textFlow.setStyle("-fx-font-family: 'Consolas'; -fx-font-size: 13px;");
 
+        addStyledLine(textFlow, "Protocol", getProtocolName());
+        addStyledLine(textFlow, "Nodes", String.valueOf(Constants.SIMULATION_NR_NODES));
+        addStyledLine(textFlow, "Duration", Constants.SIMULATION_TIME + " s");
+        addStyledLine(textFlow, "Size", Constants.SIMULATION_SIZE_X + " x " + Constants.SIMULATION_SIZE_Y);
+        addStyledLine(textFlow, "Frame Delay", Constants.SIMULATION_DELAY_BETWEEN_FRAMES + " ms");
+        addStyledLine(textFlow, "Node Turn-Off %", (Constants.SIMULATION_PROBABILITY_NODE_TURN_OFF / 10.0) + "%");
+        addStyledLine(textFlow, "Node Turn-On %", (Constants.SIMULATION_PROBABILITY_NODE_TURN_ON / 10.0) + "%");
+        addStyledLine(textFlow, "Mobility", getMobilityName(Constants.NODE_MOBILITY_TYPE));
+        addStyledLine(textFlow, "Comm Range", Constants.NODE_COMM_RANGE_MIN_VAL + "–" + Constants.NODE_COMM_RANGE_BOUND);
+        addStyledLine(textFlow, "Node Speed", Constants.NODE_SPEED_MIN_VAL + "–" + Constants.NODE_SPEED_BOUND);
+        addStyledLine(textFlow, "Pause Time", Constants.SIMULATION_PAUSE_TIME + " ms");
+        addStyledLine(textFlow, "Log Level", String.valueOf(Constants.LOG_LEVEL));
 
         // Protocol-specific additions
-        if (getProtocolName().equals("AODV") || getProtocolName().equals("SAODV") ) { // AODV/SAODV
-            sb.append("Stale Route Timeout: ").append(Constants.NODE_AODV_STALE_ROUTE_PERIOD).append(" ms\n");
-            if (getProtocolName().equals("SAODV")) {
-                sb.append("SAODV Key Size: ").append(Constants.SIMULATION_RSA_KEY_SIZE).append(" bits\n");
-                sb.append("SAODV Fwd Buffer Size: ").append(Constants.NODE_SAODV_FORWARD_BUFFER_SIZE).append("\n");
-            }
-        } else if (getProtocolName().equals("CBRP")) { // CBRP
-            sb.append("Hello Interval: ").append(Constants.NODE_CBRP_HELLO_INTERVAL).append(" ms\n");
-            sb.append("Contention Period: ").append(Constants.NODE_CBRP_CONTENTION_PERIOD).append(" ms\n");
-            sb.append("Undecided Period: ").append(Constants.NODE_CBRP_UNDECIDED_PD).append(" ms\n");
-        } else if (getProtocolName().equals("OLSR")) { // OLSR
-            sb.append("Hello Interval: ").append(Constants.OLSR_HELLO_INTERVAL).append(" ms\n");
-            sb.append("TC Interval: ").append(Constants.OLSR_TC_INTERVAL).append(" ms\n");
-            sb.append("Neighbor Expiration: ").append(Constants.OLSR_NEIGHBOR_EXPIRATION_TIME).append(" ms\n");
+        switch (getProtocolName()) {
+            case "AODV":
+                addStyledLine(textFlow, "Stale Route Timeout", Constants.NODE_AODV_STALE_ROUTE_PERIOD + " ms");
+                break;
+
+            case "SAODV":
+                addStyledLine(textFlow, "Stale Route Timeout", Constants.NODE_AODV_STALE_ROUTE_PERIOD + " ms");
+                addStyledLine(textFlow, "SAODV Key Size", Constants.SIMULATION_RSA_KEY_SIZE + " bits");
+                addStyledLine(textFlow, "SAODV Fwd Buffer Size", String.valueOf(Constants.NODE_SAODV_FORWARD_BUFFER_SIZE));
+                break;
+
+            case "CBRP":
+                addStyledLine(textFlow, "Hello Interval", Constants.NODE_CBRP_HELLO_INTERVAL + " ms");
+                addStyledLine(textFlow, "Contention Period", Constants.NODE_CBRP_CONTENTION_PERIOD + " ms");
+                addStyledLine(textFlow, "Undecided Period", Constants.NODE_CBRP_UNDECIDED_PD + " ms");
+                break;
+
+            case "OLSR":
+                addStyledLine(textFlow, "Hello Interval", Constants.OLSR_HELLO_INTERVAL + " ms");
+                addStyledLine(textFlow, "TC Interval", Constants.OLSR_TC_INTERVAL + " ms");
+                addStyledLine(textFlow, "Neighbor Expiration", Constants.OLSR_NEIGHBOR_EXPIRATION_TIME + " ms");
+                break;
         }
 
-        return sb.toString();
+        // Extra system information
+        addStyledLine(textFlow, "JVM Heap", (Runtime.getRuntime().totalMemory() / 1024 / 1024) + " MB");
+        addStyledLine(textFlow, "Free Memory", (Runtime.getRuntime().freeMemory() / 1024 / 1024) + " MB");
+        addStyledLine(textFlow, "Available CPUs", String.valueOf(Runtime.getRuntime().availableProcessors()));
+        addStyledLine(textFlow, "Java Version", System.getProperty("java.version"));
+        addStyledLine(textFlow, "OS", System.getProperty("os.name"));
+
+        return textFlow;
     }
+
+    private void addStyledLine(TextFlow flow, String label, String value) {
+        Text labelText = new Text(label + ": ");
+        labelText.setStyle("-fx-font-weight: bold; -fx-fill: #222;");
+
+        Text valueText = new Text(value + "\n");
+        valueText.setStyle("-fx-fill: #444;");
+
+        flow.getChildren().addAll(labelText, valueText);
+    }
+
+
 
 
     private String getMobilityName(int type) {
@@ -926,63 +1006,6 @@ public class NetworkSimulationApp extends Application {
         }
     }
 
-//    private void drawConnectionWithLabel(Line line, Color color, String label) {
-//        line.setStroke(color);
-//        line.setStrokeWidth(2);
-//        line.getStrokeDashArray().addAll(5d, 5d);
-//
-//        // Add arrow head
-//        double arrowLength = 10;
-//        double arrowWidth = 5;
-//
-//        double dx = line.getEndX() - line.getStartX();
-//        double dy = line.getEndY() - line.getStartY();
-//        double length = Math.sqrt(dx * dx + dy * dy);
-//
-//        if (length < 20) return;
-//
-//        double endRatio = 0.9;
-//        double arrowX = line.getStartX() + dx * endRatio;
-//        double arrowY = line.getStartY() + dy * endRatio;
-//
-//        dx = dx / length;
-//        dy = dy / length;
-//
-//        double perpX = -dy;
-//        double perpY = dx;
-//
-//        Polygon arrowHead = new Polygon();
-//        arrowHead.getPoints().addAll(
-//                arrowX + dx * arrowLength, arrowY + dy * arrowLength,
-//                arrowX + perpX * arrowWidth, arrowY + perpY * arrowWidth,
-//                arrowX - perpX * arrowWidth, arrowY - perpY * arrowWidth
-//        );
-//        arrowHead.setFill(color);
-//
-//        simulationCanvas.getChildren().addAll(line, arrowHead);
-//
-//        if (label != null && !label.isEmpty()) {
-//            double midX = (line.getStartX() + line.getEndX()) / 2;
-//            double midY = (line.getStartY() + line.getEndY()) / 2;
-//
-//            Text labelText = new Text(midX, midY, label);
-//            labelText.setFill(Color.DARKGOLDENROD);
-//            labelText.setFont(Font.font("Arial", FontWeight.BOLD, 10));
-//
-//            Rectangle textBg = new Rectangle(
-//                    midX - labelText.getBoundsInLocal().getWidth()/2 - 3,
-//                    midY - labelText.getBoundsInLocal().getHeight()/2 - 3,
-//                    labelText.getBoundsInLocal().getWidth() + 6,
-//                    labelText.getBoundsInLocal().getHeight() + 6
-//            );
-//            textBg.setFill(color.deriveColor(0, 1, 1, 0.7));
-//            textBg.setArcWidth(5);
-//            textBg.setArcHeight(5);
-//
-//            simulationCanvas.getChildren().addAll(textBg, labelText);
-//        }
-//    }
-
     private void drawConnectionWithLabel(Line line, Color color, String label) {
         // Make the line more prominent
         line.setStroke(color);
@@ -1073,11 +1096,109 @@ public class NetworkSimulationApp extends Application {
         }
     }
 
+    private void updateInfoPanel() {
+        if (isMessageSelected && selectedMessage != null) {
+            updateMessageInfo();
+        } else if (focusedNodeIndex >= 0 && focusedNodeIndex < ground.getNodes().size()) {
+            updateNodeInfo();
+        } else {
+            nodeInfoText.setText("No selection");
+        }
+    }
+
+    private void updateMessageInfo() {
+        if (selectedMessage != null) {
+            StringBuilder info = new StringBuilder();
+            info.append("=== MESSAGE INFORMATION ===\n\n");
+            info.append("Type: ").append(selectedMessage.getMessageType()).append("\n");
+            info.append("Source: Node ").append(selectedMessage.getSource()).append("\n");
+            info.append("Destination: Node ").append(selectedMessage.getDestination()).append("\n");
+            info.append("Status: ").append(selectedMessage.isSuccessful() ? "Successful" : "Failed").append("\n");
+            info.append("Multicast: ").append(selectedMessage.isMulticast() ? "Yes" : "No").append("\n");
+            info.append("Frames Shown: ").append(selectedMessage.getNumberFramesShown()).append("\n");
+
+            // Add message content if available
+            if (selectedMessage.getContent() != null) {
+                info.append("Content: ").append(selectedMessage.getContent()).append("\n");
+            }
+
+            // Add source and destination node details
+            Node sourceNode = ground.getNodes().get(selectedMessage.getSource());
+            Node destNode = ground.getNodeFromId(selectedMessage.getDestination());
+
+            info.append("\n=== SOURCE NODE ===\n");
+            info.append("Position: (").append(sourceNode.getX()).append(", ").append(sourceNode.getY()).append(")\n");
+            info.append("Active: ").append(sourceNode.isActive() ? "Yes" : "No").append("\n");
+
+            info.append("\n=== DESTINATION NODE ===\n");
+            info.append("Position: (").append(destNode.getX()).append(", ").append(destNode.getY()).append(")\n");
+            info.append("Active: ").append(destNode.isActive() ? "Yes" : "No").append("\n");
+
+            nodeInfoText.setText(info.toString());
+        }
+    }
+
+    // Update the existing updateNodeInfo method name for consistency
+    private void updateNodeInfo() {
+        if (focusedNodeIndex >= 0 && focusedNodeIndex < ground.getNodes().size()) {
+            Node node = ground.getNodes().get(focusedNodeIndex);
+            nodeInfoText.setText(node.toInfo());
+        }
+    }
+
+    private void selectMessage(Message message) {
+        selectedMessage = message;
+        isMessageSelected = true;
+        focusedNodeIndex = -1; // Clear node selection
+        updateInfoPanel();
+    }
+
+    private void selectNode(int nodeId) {
+        focusedNodeIndex = nodeId;
+        isMessageSelected = false;
+        selectedMessage = null;
+        updateInfoPanel();
+    }
+
+    private void clearSelection() {
+        focusedNodeIndex = -1;
+        isMessageSelected = false;
+        selectedMessage = null;
+        updateInfoPanel();
+    }
+
     private void handleCanvasClick(MouseEvent event) {
-        // Find closest node to click
         double clickX = event.getX();
         double clickY = event.getY();
 
+        // First check for message clicks (higher priority since they're smaller targets)
+        List<Message> messages = new ArrayList<>(ground.getMessageRouter().getMessages());
+        for (Message message : messages) {
+            if (message.getNumberFramesShown() > 0 &&
+                    classifyMessageType(message) >= Constants.LOG_LEVEL) {
+
+                Node source = ground.getNodes().get(message.getSource());
+                Node destination = ground.getNodeFromId(message.getDestination());
+
+                if (source != null && destination != null) {
+                    double x1 = source.getX() * (simulationCanvas.getWidth() / (double) ground.getSizeX());
+                    double y1 = simulationCanvas.getHeight() - (source.getY() * (simulationCanvas.getHeight() / (double) ground.getSizeY()));
+                    double x2 = destination.getX() * (simulationCanvas.getWidth() / (double) ground.getSizeX());
+                    double y2 = simulationCanvas.getHeight() - (destination.getY() * (simulationCanvas.getHeight() / (double) ground.getSizeY()));
+
+//                    // Calculate distance from click to message line
+                    double distanceToLine = distanceFromPointToLine(clickX, clickY, x1, y1, x2, y2);
+
+                    if (distanceToLine < 15) { // 15 pixel threshold for message selection
+                        selectMessage(message);
+                        return; // Exit early if message is selected
+                    }
+
+                }
+            }
+        }
+
+        // If no message was clicked, check for nodes
         Node closestNode = null;
         double minDistance = Double.MAX_VALUE;
 
@@ -1094,21 +1215,22 @@ public class NetworkSimulationApp extends Application {
 
         if (closestNode != null) {
             selectNode(closestNode.getId());
-        }
-    }
-
-    private void selectNode(int nodeId) {
-        focusedNodeIndex = nodeId;
-        updateNodeInfo();
-    }
-
-    private void updateNodeInfo() {
-        if (focusedNodeIndex >= 0 && focusedNodeIndex < ground.getNodes().size()) {
-            Node node = ground.getNodes().get(focusedNodeIndex);
-            nodeInfoText.setText(node.toInfo());
         } else {
-            nodeInfoText.setText("No node selected");
+            // Clear selection if nothing was clicked
+            clearSelection();
         }
+    }
+
+    // Helper method to calculate distance from point to line
+    private double distanceFromPointToLine(double px, double py, double x1, double y1, double x2, double y2) {
+        double lineLength = Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+        if (lineLength == 0) return Math.sqrt(Math.pow(px - x1, 2) + Math.pow(py - y1, 2));
+
+        double t = Math.max(0, Math.min(1, ((px - x1) * (x2 - x1) + (py - y1) * (y2 - y1)) / (lineLength * lineLength)));
+        double projectionX = x1 + t * (x2 - x1);
+        double projectionY = y1 + t * (y2 - y1);
+
+        return Math.sqrt(Math.pow(px - projectionX, 2) + Math.pow(py - projectionY, 2));
     }
 
 
@@ -1156,6 +1278,25 @@ public class NetworkSimulationApp extends Application {
             case "Text" -> 3;
             default -> 0;
         };
+    }
+
+    private void setLogFilterComboBoxValue() {
+        switch (Constants.LOG_LEVEL){
+            case 0:
+                logFilterComboBox.setValue("All Logs");
+                break;
+            case 1:
+                logFilterComboBox.setValue("Node Status");
+                break;
+            case 2:
+                logFilterComboBox.setValue("Messages");
+                break;
+            case 3:
+                logFilterComboBox.setValue("Text");
+                break;
+
+        }
+
     }
 
     private String getProtocolName() {

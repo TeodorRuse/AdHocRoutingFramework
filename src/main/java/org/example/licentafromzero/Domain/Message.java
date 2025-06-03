@@ -124,5 +124,17 @@ public class Message {
                 '}';
     }
 
+    public String getContent() {
+        return "Message{" +
+                "source=" + source +
+                ", destination=" + destination +
+                ", text='" + text + '\'' +
+                ", isSuccessful=" + isSuccessful +
+                ", numberFramesShown=" + numberFramesShown +
+                ", messageType=" + messageType +
+                ", isMulticast=" + isMulticast +
+                '}';
+    }
+
 
 }

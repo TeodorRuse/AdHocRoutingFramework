@@ -1,1307 +1,302 @@
 Node 0  discovering neighbours
 Node 1  discovering neighbours
-Node 2 received NEIGHBOUR_SYN from 1
+Node 2 received NEIGHBOUR_SYN from 0
 Node 2  discovering neighbours
 Node 3 received NEIGHBOUR_SYN from 0
 Node 3 received NEIGHBOUR_SYN from 1
+Node 3 received NEIGHBOUR_SYN from 2
 Node 3  discovering neighbours
 Node 4 received NEIGHBOUR_SYN from 0
-Node 4 received NEIGHBOUR_SYN from 1
+Node 4 received NEIGHBOUR_SYN from 2
 Node 4 received NEIGHBOUR_SYN from 3
 Node 4  discovering neighbours
-Node 5 received NEIGHBOUR_SYN from 1
-Node 5 received NEIGHBOUR_SYN from 4
 Node 5  discovering neighbours
-Node 6 received NEIGHBOUR_SYN from 1
+Node 6 received NEIGHBOUR_SYN from 0
 Node 6 received NEIGHBOUR_SYN from 2
-Node 6 received NEIGHBOUR_SYN from 5
 Node 6  discovering neighbours
-Node 7 received NEIGHBOUR_SYN from 1
-Node 7 received NEIGHBOUR_SYN from 3
+Node 7 received NEIGHBOUR_SYN from 5
 Node 7 received NEIGHBOUR_SYN from 6
 Node 7  discovering neighbours
-Node 8 received NEIGHBOUR_SYN from 1
-Node 8 received NEIGHBOUR_SYN from 2
-Node 8 received NEIGHBOUR_SYN from 4
 Node 8 received NEIGHBOUR_SYN from 5
-Node 8 received NEIGHBOUR_SYN from 6
 Node 8  discovering neighbours
-Node 9 received NEIGHBOUR_SYN from 0
 Node 9 received NEIGHBOUR_SYN from 1
 Node 9 received NEIGHBOUR_SYN from 3
-Node 9 received NEIGHBOUR_SYN from 4
-Node 9 received NEIGHBOUR_SYN from 5
 Node 9 received NEIGHBOUR_SYN from 8
 Node 9  discovering neighbours
-Node 0 received NEIGHBOUR_SYN from 1
+Node 0 received NEIGHBOUR_ACK from 2
+Node 0 received NEIGHBOUR_SYN from 2
 Node 0 received NEIGHBOUR_ACK from 3
 Node 0 received NEIGHBOUR_SYN from 3
-Node 0 received NEIGHBOUR_ACK from 4
-Node 0 received NEIGHBOUR_SYN from 4
-Node 0 received NEIGHBOUR_SYN from 5
-Node 0 received NEIGHBOUR_SYN from 8
-Node 0 received NEIGHBOUR_ACK from 9
-Node 0 received NEIGHBOUR_SYN from 9
+Node 0 received NEIGHBOUR_ACK from 6
+Node 0 received NEIGHBOUR_SYN from 6
 Node 1 received NEIGHBOUR_ACK from 3
 Node 1 received NEIGHBOUR_SYN from 3
-Node 1 received NEIGHBOUR_ACK from 5
-Node 1 received NEIGHBOUR_SYN from 5
-Node 1 received NEIGHBOUR_ACK from 7
-Node 1 received NEIGHBOUR_SYN from 7
-Node 1 received NEIGHBOUR_ACK from 8
-Node 1 received NEIGHBOUR_SYN from 8
-Node 2 received NEIGHBOUR_SYN from 5
+Node 1 received NEIGHBOUR_ACK from 9
+Node 1 received NEIGHBOUR_SYN from 9
 Node 2 received NEIGHBOUR_ACK from 6
 Node 2 received NEIGHBOUR_SYN from 6
-Node 2 received NEIGHBOUR_ACK from 8
-Node 2 received NEIGHBOUR_SYN from 8
+Node 2 received NEIGHBOUR_ACK from 0
 Node 3 received NEIGHBOUR_ACK from 4
 Node 3 received NEIGHBOUR_SYN from 4
-Node 3 received NEIGHBOUR_SYN from 5
-Node 3 received NEIGHBOUR_SYN from 8
+Node 3 received NEIGHBOUR_ACK from 9
+Node 3 received NEIGHBOUR_SYN from 9
 Node 3 received NEIGHBOUR_ACK from 0
 Node 3 received NEIGHBOUR_ACK from 1
-Node 4 received NEIGHBOUR_ACK from 5
-Node 4 received NEIGHBOUR_SYN from 5
-Node 4 received NEIGHBOUR_ACK from 8
-Node 4 received NEIGHBOUR_SYN from 8
-Node 4 received NEIGHBOUR_ACK from 9
-Node 4 received NEIGHBOUR_SYN from 9
-Node 4 received NEIGHBOUR_ACK from 0
+Node 4 received NEIGHBOUR_SYN from 6
 Node 4 received NEIGHBOUR_ACK from 3
+Node 5 received NEIGHBOUR_SYN from 6
+Node 5 received NEIGHBOUR_ACK from 7
+Node 5 received NEIGHBOUR_SYN from 7
 Node 5 received NEIGHBOUR_ACK from 8
 Node 5 received NEIGHBOUR_SYN from 8
-Node 5 received NEIGHBOUR_ACK from 9
 Node 5 received NEIGHBOUR_SYN from 9
-Node 5 received NEIGHBOUR_ACK from 1
-Node 5 received NEIGHBOUR_ACK from 4
-Node 6 received NEIGHBOUR_ACK from 8
-Node 6 received NEIGHBOUR_SYN from 8
+Node 6 received NEIGHBOUR_ACK from 7
+Node 6 received NEIGHBOUR_SYN from 7
+Node 6 received NEIGHBOUR_ACK from 0
 Node 6 received NEIGHBOUR_ACK from 2
-Node 7 received NEIGHBOUR_SYN from 8
-Node 7 received NEIGHBOUR_ACK from 1
-Node 8 received NEIGHBOUR_ACK from 1
-Node 8 received NEIGHBOUR_ACK from 2
-Node 8 received NEIGHBOUR_ACK from 4
+Node 7 received NEIGHBOUR_ACK from 5
+Node 7 received NEIGHBOUR_ACK from 6
+Node 8 received NEIGHBOUR_ACK from 9
+Node 8 received NEIGHBOUR_SYN from 9
 Node 8 received NEIGHBOUR_ACK from 5
-Node 8 received NEIGHBOUR_ACK from 6
-Node 9 received NEIGHBOUR_ACK from 0
-Node 9 received NEIGHBOUR_ACK from 4
-Node 9 received NEIGHBOUR_ACK from 5
-Node 2  beginning route discovery to 6
-Node 3  beginning route discovery to 8
-Node 4 received AODV_RREQ from 3
-Node 4 sending RREQ[3|0] to all
-Node 4  beginning route discovery to 2
-Node 5 received AODV_RREQ from 4
-Node 5 sending RREQ[3|0] to all
-Node 5 received AODV_RREQ from 4
-Node 5 sending RREQ[4|1] to all
-Node 6 received AODV_RREQ from 2
-Node 6 is the finalDestination for: [2|0] -> 6 sending RREP
-Node 7  beginning route discovery to 4
-Node 8 received AODV_RREQ from 2
-Node 8 sending RREQ[2|0] to all
-Node 8 received AODV_RREQ from 4
-Node 8 is the finalDestination for: [3|0] -> 8 sending RREP
-Node 8 received AODV_RREQ from 4
-Node 8 knows route, and has fresher info, sending RREP
-Node 8 received AODV_RREQ from 5
-Node 8 RREQ( [3|0] -> 8 )is known, discarding
-Node 8 received AODV_RREQ from 5
-Node 8 RREQ( [4|1] -> 2 )is known, discarding
-Node 8  beginning route discovery to 6
-Node 9 received AODV_RREQ from 4
-Node 9 sending RREQ[3|0] to all
-Node 9 received AODV_RREQ from 4
-Node 9 sending RREQ[4|1] to all
-Node 9 received AODV_RREQ from 5
-Node 9 RREQ( [3|0] -> 8 )is known, discarding
-Node 9 received AODV_RREQ from 5
-Node 9 RREQ( [4|1] -> 2 )is known, discarding
-Node 9 using known route to send to 3
-Node 0 received AODV_RREQ from 3
-Node 0 sending RREQ[3|0] to all
-Node 0 received AODV_RREQ from 4
-Node 0 RREQ( [3|0] -> 8 )is known, discarding
-Node 0 received AODV_RREQ from 4
-Node 0 sending RREQ[4|1] to all
-Node 0 received AODV_RREQ from 9
-Node 0 RREQ( [3|0] -> 8 )is known, discarding
-Node 0 received AODV_RREQ from 9
-Node 0 RREQ( [4|1] -> 2 )is known, discarding
-Node 0 using known route to send to 3
+Node 9 received NEIGHBOUR_ACK from 1
+Node 9 received NEIGHBOUR_ACK from 3
+Node 9 received NEIGHBOUR_ACK from 8
+Node 2 received OLSR_HELLO from 0
+Node 3 received OLSR_HELLO from 0
+Node 3 received OLSR_HELLO from 1
+Node 4 received OLSR_HELLO from 3
+Node 6 received OLSR_HELLO from 0
+Node 6 received OLSR_HELLO from 2
+Node 7 received OLSR_HELLO from 5
+Node 7 received OLSR_HELLO from 6
+Node 8 received OLSR_HELLO from 5
+Node 9 received OLSR_HELLO from 1
+Node 9 received OLSR_HELLO from 3
+Node 9 received OLSR_TEXT from 3
+Node 9 received text: Hello from 3
+Node 9 received OLSR_HELLO from 8
+Node 0 received OLSR_HELLO from 2
+Node 0 received OLSR_HELLO from 3
+Node 0 received OLSR_HELLO from 6
 Node 0  discovering neighbours
-Node 1 received AODV_RREQ from 3
-Node 1 sending RREQ[3|0] to all
-Node 1 received AODV_RREQ from 5
-Node 1 RREQ( [3|0] -> 8 )is known, discarding
-Node 1 received AODV_RREQ from 5
-Node 1 sending RREQ[4|1] to all
-Node 1 received AODV_RREQ from 7
-Node 1 knows route, and has fresher info, sending RREP
-Node 1 received AODV_RREQ from 8
-Node 1 sending RREQ[2|0] to all
-Node 1 received AODV_RREQ from 8
-Node 1 sending RREQ[8|2] to all
-Node 1 received NEIGHBOUR_SYN from 0
-Node 1 using known route to send to 8
-Node 1  discovering neighbours
-Node 2 received AODV_RREP from 6
-Node 2 received requested route to 6
-Node 2 received AODV_RREQ from 8
-Node 2 RREQ( [2|0] -> 6 )is known, discarding
-Node 2 received AODV_RREQ from 8
-Node 2 knows route, and has fresher info, sending RREP
-Node 2 received NEIGHBOUR_SYN from 1
+Node 1 received OLSR_HELLO from 3
+Node 1 received OLSR_HELLO from 9
+Node 2 received OLSR_HELLO from 6
+Node 2 received NEIGHBOUR_SYN from 0
+Node 2 received OLSR_HELLO from 0
 Node 2  discovering neighbours
-Node 3 received AODV_RREQ from 4
-Node 3 RREQ( [3|0] -> 8 )is known, discarding
-Node 3 received AODV_RREQ from 4
-Node 3 sending RREQ[4|1] to all
-Node 3 received AODV_RREQ from 0
-Node 3 RREQ( [3|0] -> 8 )is known, discarding
-Node 3 received AODV_RREQ from 0
-Node 3 RREQ( [4|1] -> 2 )is known, discarding
-Node 3 received AODV_TEXT from 0
-Node 3 received text: Hello from 0
+Node 3 received OLSR_HELLO from 4
+Node 3 received OLSR_HELLO from 9
 Node 3 received NEIGHBOUR_SYN from 0
-Node 3 received AODV_RREQ from 1
-Node 3 RREQ( [3|0] -> 8 )is known, discarding
-Node 3 received AODV_RREQ from 1
-Node 3 RREQ( [4|1] -> 2 )is known, discarding
-Node 3 received AODV_RREQ from 1
-Node 3 sending RREQ[2|0] to all
-Node 3 received AODV_RREQ from 1
-Node 3 sending RREQ[8|2] to all
-Node 3 received NEIGHBOUR_SYN from 1
+Node 3 received OLSR_HELLO from 0
+Node 3 received NEIGHBOUR_SYN from 2
 Node 3  discovering neighbours
-Node 4 received AODV_RREQ from 5
-Node 4 RREQ( [3|0] -> 8 )is known, discarding
-Node 4 received AODV_RREQ from 5
-Node 4 RREQ( [4|1] -> 2 )is known, discarding
-Node 4 received AODV_RREQ from 8
-Node 4 sending RREQ[2|0] to all
-Node 4 received AODV_RREP from 8
-Node 4 received AODV_RREP from 8
-Node 4 RREP is not from the target node, but a cached one!
-Node 4 received requested route to 2
-Node 4 received AODV_RREQ from 8
-Node 4 sending RREQ[8|2] to all
-Node 4 received AODV_RREQ from 9
-Node 4 RREQ( [3|0] -> 8 )is known, discarding
-Node 4 received AODV_RREQ from 9
-Node 4 RREQ( [4|1] -> 2 )is known, discarding
-Node 4 received AODV_TEXT from 9
-Node 4 received AODV_RREQ from 0
-Node 4 RREQ( [3|0] -> 8 )is known, discarding
-Node 4 received AODV_RREQ from 0
-Node 4 RREQ( [4|1] -> 2 )is known, discarding
 Node 4 received NEIGHBOUR_SYN from 0
-Node 4 received NEIGHBOUR_SYN from 1
-Node 4 received AODV_RREQ from 3
-Node 4 RREQ( [4|1] -> 2 )is known, discarding
-Node 4 received AODV_RREQ from 3
-Node 4 RREQ( [2|0] -> 6 )is known, discarding
-Node 4 received AODV_RREQ from 3
-Node 4 RREQ( [8|2] -> 6 )is known, discarding
+Node 4 received NEIGHBOUR_SYN from 2
 Node 4 received NEIGHBOUR_SYN from 3
+Node 4 received OLSR_HELLO from 3
 Node 4  discovering neighbours
-Node 5 received AODV_RREQ from 8
-Node 5 sending RREQ[2|0] to all
-Node 5 received AODV_RREQ from 8
-Node 5 sending RREQ[8|2] to all
-Node 5 received AODV_RREQ from 9
-Node 5 RREQ( [3|0] -> 8 )is known, discarding
-Node 5 received AODV_RREQ from 9
-Node 5 RREQ( [4|1] -> 2 )is known, discarding
-Node 5 received AODV_RREQ from 1
-Node 5 RREQ( [3|0] -> 8 )is known, discarding
-Node 5 received AODV_RREQ from 1
-Node 5 RREQ( [4|1] -> 2 )is known, discarding
-Node 5 received AODV_RREQ from 1
-Node 5 RREQ( [2|0] -> 6 )is known, discarding
-Node 5 received AODV_RREQ from 1
-Node 5 RREQ( [8|2] -> 6 )is known, discarding
-Node 5 received NEIGHBOUR_SYN from 1
-Node 5 received AODV_RREQ from 4
-Node 5 RREQ( [2|0] -> 6 )is known, discarding
-Node 5 received AODV_RREQ from 4
-Node 5 RREQ( [8|2] -> 6 )is known, discarding
-Node 5 received NEIGHBOUR_SYN from 4
-Node 5  beginning route discovery to 9
-Node 6 received AODV_RREQ from 8
-Node 6 RREQ( [2|0] -> 6 )is known, discarding
-Node 6 received AODV_RREQ from 8
-Node 6 is the finalDestination for: [8|2] -> 6 sending RREP
-Node 6 received NEIGHBOUR_SYN from 1
+Node 5 received OLSR_HELLO from 7
+Node 5 received OLSR_HELLO from 8
+Node 6 received OLSR_HELLO from 7
+Node 6 received NEIGHBOUR_SYN from 0
+Node 6 received OLSR_HELLO from 0
 Node 6 received NEIGHBOUR_SYN from 2
-Node 6  discovering neighbours
-Node 6  beginning route discovery to 1
-Node 7 received AODV_RREQ from 1
-Node 7 sending RREQ[3|0] to all
-Node 7 received AODV_RREQ from 1
-Node 7 sending RREQ[4|1] to all
-Node 7 received AODV_RREP from 1
-Node 7 RREP is not from the target node, but a cached one!
-Node 7 received requested route to 4
-Node 7 received AODV_RREQ from 1
-Node 7 sending RREQ[2|0] to all
-Node 7 received AODV_RREQ from 1
-Node 7 sending RREQ[8|2] to all
-Node 7 received NEIGHBOUR_SYN from 1
-Node 7 received NEIGHBOUR_SYN from 3
-Node 7 received NEIGHBOUR_SYN from 6
-Node 7  discovering neighbours
-Node 8 received AODV_RREQ from 1
-Node 8 RREQ( [3|0] -> 8 )is known, discarding
-Node 8 received AODV_RREQ from 1
-Node 8 RREQ( [4|1] -> 2 )is known, discarding
-Node 8 received AODV_RREQ from 1
-Node 8 RREQ( [2|0] -> 6 )is known, discarding
-Node 8 received AODV_RREQ from 1
-Node 8 RREQ( [8|2] -> 6 )is known, discarding
-Node 8 received AODV_TEXT from 1
-Node 8 received text: Hello from 1
-Node 8 received NEIGHBOUR_SYN from 1
-Node 8 received AODV_RREP from 2
-Node 8 RREP is not from the target node, but a cached one!
-Node 8 received requested route to 6
-Node 8 received NEIGHBOUR_SYN from 2
-Node 8 received AODV_RREQ from 4
-Node 8 RREQ( [2|0] -> 6 )is known, discarding
-Node 8 received AODV_RREQ from 4
-Node 8 RREQ( [8|2] -> 6 )is known, discarding
-Node 8 received NEIGHBOUR_SYN from 4
-Node 8 received AODV_RREQ from 5
-Node 8 RREQ( [2|0] -> 6 )is known, discarding
-Node 8 received AODV_RREQ from 5
-Node 8 RREQ( [8|2] -> 6 )is known, discarding
-Node 8 received AODV_RREQ from 5
-Node 8 sending RREQ[5|4] to all
-Node 8 received AODV_RREP from 6
-Node 8 received requested route to 6
-Node 8 received NEIGHBOUR_SYN from 6
-Node 8 received AODV_RREQ from 6
-Node 8 sending RREQ[6|2] to all
+Node 6 received OLSR_HELLO from 2
+Node 7 received NEIGHBOUR_SYN from 0
+Node 7 received OLSR_TEXT from 5
+Node 7 sending message further to 6 to reach 6
+Node 8 received OLSR_HELLO from 9
 Node 8  discovering neighbours
-Node 9 received AODV_RREQ from 0
-Node 9 RREQ( [3|0] -> 8 )is known, discarding
-Node 9 received AODV_RREQ from 0
-Node 9 RREQ( [4|1] -> 2 )is known, discarding
-Node 9 received NEIGHBOUR_SYN from 0
-Node 9 received NEIGHBOUR_SYN from 1
 Node 9 received NEIGHBOUR_SYN from 3
-Node 9 received AODV_RREQ from 4
-Node 9 sending RREQ[2|0] to all
-Node 9 received AODV_RREQ from 4
-Node 9 sending RREQ[8|2] to all
-Node 9 received NEIGHBOUR_SYN from 4
-Node 9 received AODV_RREQ from 5
-Node 9 RREQ( [2|0] -> 6 )is known, discarding
-Node 9 received AODV_RREQ from 5
-Node 9 RREQ( [8|2] -> 6 )is known, discarding
-Node 9 received AODV_RREQ from 5
-Node 9 is the finalDestination for: [5|4] -> 9 sending RREP
+Node 9 received OLSR_HELLO from 3
 Node 9 received NEIGHBOUR_SYN from 8
-Node 9  discovering neighbours
-Node 0 received NEIGHBOUR_ACK from 1
-Node 0 received NEIGHBOUR_SYN from 1
-Node 0 received AODV_RREQ from 3
-Node 0 RREQ( [4|1] -> 2 )is known, discarding
+Node 0 received NEIGHBOUR_ACK from 2
+Node 0 received NEIGHBOUR_SYN from 2
+Node 0 received OLSR_HELLO from 2
 Node 0 received NEIGHBOUR_ACK from 3
-Node 0 received AODV_RREQ from 3
-Node 0 sending RREQ[2|0] to all
-Node 0 received AODV_RREQ from 3
-Node 0 sending RREQ[8|2] to all
 Node 0 received NEIGHBOUR_SYN from 3
-Node 0 received AODV_RREQ from 4
-Node 0 RREQ( [2|0] -> 6 )is known, discarding
-Node 0 received AODV_RREQ from 4
-Node 0 RREQ( [8|2] -> 6 )is known, discarding
-Node 0 received NEIGHBOUR_ACK from 4
-Node 0 received NEIGHBOUR_SYN from 4
-Node 0 received NEIGHBOUR_SYN from 8
-Node 0 received NEIGHBOUR_ACK from 9
-Node 0 received AODV_RREQ from 9
-Node 0 RREQ( [2|0] -> 6 )is known, discarding
-Node 0 received AODV_RREQ from 9
-Node 0 RREQ( [8|2] -> 6 )is known, discarding
-Node 0 received NEIGHBOUR_SYN from 9
-Node 1 received AODV_RREQ from 3
-Node 1 RREQ( [4|1] -> 2 )is known, discarding
-Node 1 received AODV_RREQ from 3
-Node 1 RREQ( [2|0] -> 6 )is known, discarding
-Node 1 received AODV_RREQ from 3
-Node 1 RREQ( [8|2] -> 6 )is known, discarding
-Node 1 received NEIGHBOUR_ACK from 3
+Node 0 received OLSR_HELLO from 3
+Node 0 received NEIGHBOUR_ACK from 6
 Node 1 received NEIGHBOUR_SYN from 3
-Node 1 received AODV_RREQ from 5
-Node 1 RREQ( [2|0] -> 6 )is known, discarding
-Node 1 received AODV_RREQ from 5
-Node 1 RREQ( [8|2] -> 6 )is known, discarding
-Node 1 received NEIGHBOUR_ACK from 5
-Node 1 received AODV_RREQ from 5
-Node 1 sending RREQ[5|4] to all
-Node 1 received AODV_RREQ from 7
-Node 1 RREQ( [3|0] -> 8 )is known, discarding
-Node 1 received AODV_RREQ from 7
-Node 1 RREQ( [4|1] -> 2 )is known, discarding
-Node 1 received AODV_RREQ from 7
-Node 1 RREQ( [2|0] -> 6 )is known, discarding
-Node 1 received AODV_RREQ from 7
-Node 1 RREQ( [8|2] -> 6 )is known, discarding
-Node 1 received NEIGHBOUR_ACK from 7
-Node 1 received NEIGHBOUR_SYN from 7
-Node 1 received NEIGHBOUR_ACK from 8
-Node 1 received AODV_RREQ from 8
-Node 1 RREQ( [5|4] -> 9 )is known, discarding
-Node 1 received AODV_RREQ from 8
-Node 1 is the finalDestination for: [6|2] -> 1 sending RREP
-Node 1 received NEIGHBOUR_SYN from 8
-Node 1 received NEIGHBOUR_ACK from 0
+Node 1 received OLSR_HELLO from 3
+Node 1  discovering neighbours
 Node 2 received NEIGHBOUR_ACK from 6
-Node 2 received NEIGHBOUR_SYN from 6
-Node 2 received AODV_RREQ from 6
-Node 2 sending RREQ[6|2] to all
-Node 2 received NEIGHBOUR_ACK from 8
-Node 2 received AODV_RREQ from 8
-Node 2 sending RREQ[5|4] to all
-Node 2 received AODV_RREQ from 8
-Node 2 RREQ( [6|2] -> 1 )is known, discarding
-Node 2 received NEIGHBOUR_SYN from 8
-Node 3 received AODV_RREQ from 4
-Node 3 RREQ( [2|0] -> 6 )is known, discarding
-Node 3 received AODV_RREP from 4
-Node 3 received requested route to 8
-Node 3 received AODV_RREQ from 4
-Node 3 RREQ( [8|2] -> 6 )is known, discarding
-Node 3 received AODV_TEXT from 4
-Node 3 received text: Hello from 9
+Node 2 received NEIGHBOUR_ACK from 0
+Node 2 received OLSR_TEXT from 0
+Node 2 received text: Hello from 0
+Node 2 received OLSR_TC from 0
 Node 3 received NEIGHBOUR_ACK from 4
 Node 3 received NEIGHBOUR_SYN from 4
-Node 3 received NEIGHBOUR_SYN from 8
-Node 3 received AODV_RREQ from 0
-Node 3 RREQ( [2|0] -> 6 )is known, discarding
-Node 3 received AODV_RREQ from 0
-Node 3 RREQ( [8|2] -> 6 )is known, discarding
+Node 3 received OLSR_HELLO from 4
+Node 3 received NEIGHBOUR_ACK from 9
+Node 3 received OLSR_TEXT from 9
+Node 3 sending message further to 4 to reach 4
 Node 3 received NEIGHBOUR_ACK from 0
+Node 3 received OLSR_TC from 0
 Node 3 received NEIGHBOUR_ACK from 1
-Node 3 received AODV_RREQ from 1
-Node 3 sending RREQ[5|4] to all
-Node 4 received AODV_RREQ from 5
-Node 4 RREQ( [2|0] -> 6 )is known, discarding
-Node 4 received AODV_RREQ from 5
-Node 4 RREQ( [8|2] -> 6 )is known, discarding
-Node 4 received NEIGHBOUR_ACK from 5
-Node 4 received AODV_RREQ from 5
-Node 4 sending RREQ[5|4] to all
-Node 4 received NEIGHBOUR_ACK from 8
-Node 4 received AODV_RREQ from 8
-Node 4 RREQ( [5|4] -> 9 )is known, discarding
-Node 4 received AODV_RREQ from 8
-Node 4 sending RREQ[6|2] to all
-Node 4 received NEIGHBOUR_SYN from 8
-Node 4 received AODV_RREQ from 9
-Node 4 RREQ( [2|0] -> 6 )is known, discarding
-Node 4 received AODV_RREQ from 9
-Node 4 RREQ( [8|2] -> 6 )is known, discarding
-Node 4 received NEIGHBOUR_ACK from 9
-Node 4 received NEIGHBOUR_SYN from 9
-Node 4 received AODV_RREQ from 0
-Node 4 RREQ( [2|0] -> 6 )is known, discarding
-Node 4 received AODV_RREQ from 0
-Node 4 RREQ( [8|2] -> 6 )is known, discarding
-Node 4 received NEIGHBOUR_ACK from 0
+Node 3 received NEIGHBOUR_SYN from 1
+Node 3 received OLSR_HELLO from 1
 Node 4 received NEIGHBOUR_ACK from 3
-Node 4 received AODV_RREQ from 3
-Node 4 RREQ( [5|4] -> 9 )is known, discarding
-Node 5 received AODV_RREQ from 8
-Node 5 RREQ( [5|4] -> 9 )is known, discarding
-Node 5 received AODV_RREQ from 8
-Node 5 sending RREQ[6|2] to all
-Node 5 received NEIGHBOUR_SYN from 8
-Node 5 received AODV_RREQ from 9
-Node 5 RREQ( [2|0] -> 6 )is known, discarding
-Node 5 received AODV_RREQ from 9
-Node 5 RREQ( [8|2] -> 6 )is known, discarding
-Node 5 received AODV_RREP from 9
-Node 5 received requested route to 9
-Node 5 received NEIGHBOUR_SYN from 9
-Node 5 received AODV_RREQ from 1
-Node 5 RREQ( [5|4] -> 9 )is known, discarding
-Node 5 received AODV_RREQ from 4
-Node 5 RREQ( [5|4] -> 9 )is known, discarding
-Node 5 received AODV_RREQ from 4
-Node 5 RREQ( [6|2] -> 1 )is known, discarding
-Node 5  discovering neighbours
-Node 6 received AODV_RREQ from 8
-Node 6 sending RREQ[5|4] to all
-Node 6 received NEIGHBOUR_ACK from 8
-Node 6 received AODV_RREQ from 8
-Node 6 RREQ( [6|2] -> 1 )is known, discarding
-Node 6 received NEIGHBOUR_SYN from 8
-Node 6 received NEIGHBOUR_ACK from 2
-Node 6 received AODV_RREQ from 2
-Node 6 RREQ( [6|2] -> 1 )is known, discarding
-Node 6 received AODV_RREQ from 2
-Node 6 RREQ( [5|4] -> 9 )is known, discarding
-Node 6 received NEIGHBOUR_SYN from 5
-Node 7 received NEIGHBOUR_SYN from 8
-Node 7 received AODV_RREQ from 1
-Node 7 sending RREQ[5|4] to all
-Node 7 received NEIGHBOUR_ACK from 1
-Node 8 received AODV_RREQ from 1
-Node 8 RREQ( [5|4] -> 9 )is known, discarding
-Node 8 received AODV_RREP from 1
-Node 8 received NEIGHBOUR_ACK from 1
-Node 8 received AODV_RREQ from 2
-Node 8 RREQ( [6|2] -> 1 )is known, discarding
-Node 8 received AODV_RREQ from 2
-Node 8 RREQ( [5|4] -> 9 )is known, discarding
-Node 8 received NEIGHBOUR_ACK from 2
-Node 8 received AODV_RREQ from 4
-Node 8 RREQ( [5|4] -> 9 )is known, discarding
-Node 8 received AODV_RREQ from 4
-Node 8 RREQ( [6|2] -> 1 )is known, discarding
-Node 8 received NEIGHBOUR_ACK from 4
-Node 8 received AODV_RREQ from 5
-Node 8 RREQ( [6|2] -> 1 )is known, discarding
-Node 8 received NEIGHBOUR_ACK from 5
-Node 8 received NEIGHBOUR_SYN from 5
-Node 8 received AODV_RREQ from 6
-Node 8 RREQ( [5|4] -> 9 )is known, discarding
-Node 8 received NEIGHBOUR_ACK from 6
-Node 8  beginning route discovery to 0
-Node 9 received AODV_RREQ from 0
-Node 9 RREQ( [2|0] -> 6 )is known, discarding
-Node 9 received AODV_RREQ from 0
-Node 9 RREQ( [8|2] -> 6 )is known, discarding
-Node 9 received NEIGHBOUR_ACK from 0
-Node 9 received AODV_RREQ from 4
-Node 9 RREQ( [5|4] -> 9 )is known, discarding
-Node 9 received AODV_RREQ from 4
-Node 9 sending RREQ[6|2] to all
-Node 9 received NEIGHBOUR_ACK from 4
-Node 9 received AODV_RREQ from 5
-Node 9 RREQ( [6|2] -> 1 )is known, discarding
-Node 9 received NEIGHBOUR_ACK from 5
-Node 9 received NEIGHBOUR_SYN from 5
-Node 0 received AODV_RREQ from 3
-Node 0 sending RREQ[5|4] to all
-Node 0 received AODV_RREQ from 4
-Node 0 RREQ( [5|4] -> 9 )is known, discarding
-Node 0 received AODV_RREQ from 4
-Node 0 sending RREQ[6|2] to all
-Node 0 received NEIGHBOUR_SYN from 5
-Node 0 received AODV_RREQ from 9
-Node 0 RREQ( [6|2] -> 1 )is known, discarding
-Node 1 received AODV_RREQ from 3
-Node 1 RREQ( [5|4] -> 9 )is known, discarding
-Node 1 received AODV_RREQ from 5
-Node 1 RREQ( [6|2] -> 1 )is known, discarding
-Node 1 received NEIGHBOUR_SYN from 5
-Node 1 received AODV_RREQ from 7
-Node 1 RREQ( [5|4] -> 9 )is known, discarding
-Node 1 received AODV_RREQ from 8
-Node 1 sending RREQ[8|4] to all
-Node 1 using known route to send to 6
-Node 2 received NEIGHBOUR_SYN from 5
-Node 2 received AODV_RREQ from 6
-Node 2 RREQ( [5|4] -> 9 )is known, discarding
-Node 2 received AODV_RREQ from 8
-Node 2 sending RREQ[8|4] to all
-Node 2  beginning route discovery to 4
-Node 3 received AODV_RREQ from 4
-Node 3 RREQ( [5|4] -> 9 )is known, discarding
-Node 3 received AODV_RREQ from 4
-Node 3 sending RREQ[6|2] to all
-Node 3 received NEIGHBOUR_SYN from 5
-Node 3 received AODV_RREQ from 0
-Node 3 RREQ( [5|4] -> 9 )is known, discarding
-Node 3 received AODV_RREQ from 0
-Node 3 RREQ( [6|2] -> 1 )is known, discarding
-Node 3 received AODV_RREQ from 1
-Node 3 sending RREQ[8|4] to all
-Node 3 using known route to send to 2
-Node 4 received AODV_RREQ from 5
-Node 4 RREQ( [6|2] -> 1 )is known, discarding
-Node 4 received NEIGHBOUR_SYN from 5
-Node 4 received AODV_RREQ from 8
-Node 4 sending RREQ[8|4] to all
-Node 4 received AODV_RREQ from 9
-Node 4 RREQ( [6|2] -> 1 )is known, discarding
-Node 4 received AODV_RREQ from 0
-Node 4 RREQ( [5|4] -> 9 )is known, discarding
-Node 4 received AODV_RREQ from 0
-Node 4 RREQ( [6|2] -> 1 )is known, discarding
-Node 4 received AODV_RREQ from 3
-Node 4 RREQ( [6|2] -> 1 )is known, discarding
-Node 4 received AODV_RREQ from 3
-Node 4 RREQ( [8|4] -> 0 )is known, discarding
-Node 4 using known route to send to 2
-Node 5 received NEIGHBOUR_ACK from 8
-Node 5 received AODV_RREQ from 8
-Node 5 sending RREQ[8|4] to all
-Node 5 received AODV_RREQ from 9
-Node 5 RREQ( [6|2] -> 1 )is known, discarding
-Node 5 received NEIGHBOUR_ACK from 9
-Node 5 received NEIGHBOUR_ACK from 1
-Node 5 received AODV_RREQ from 1
-Node 5 RREQ( [8|4] -> 0 )is known, discarding
-Node 5 received NEIGHBOUR_ACK from 4
-Node 5 received AODV_RREQ from 4
-Node 5 RREQ( [8|4] -> 0 )is known, discarding
-Node 5 using known route to send to 8
-Node 6 received AODV_RREP from 8
-Node 6 received requested route to 1
-Node 6 received AODV_RREQ from 8
-Node 6 sending RREQ[8|4] to all
-Node 6 received AODV_RREQ from 2
-Node 6 RREQ( [8|4] -> 0 )is known, discarding
-Node 6 received AODV_RREQ from 2
-Node 6 sending RREQ[2|3] to all
-Node 7 received AODV_RREQ from 1
-Node 7 sending RREQ[8|4] to all
-Node 7 using known route to send to 5
-Node 8 received AODV_RREQ from 1
-Node 8 RREQ( [8|4] -> 0 )is known, discarding
-Node 8 received AODV_TEXT from 1
-Node 8 received AODV_RREQ from 2
-Node 8 RREQ( [8|4] -> 0 )is known, discarding
-Node 8 received AODV_RREQ from 2
-Node 8 knows route, and has fresher info, sending RREP
-Node 8 received AODV_RREQ from 4
-Node 8 RREQ( [8|4] -> 0 )is known, discarding
-Node 8 received AODV_TEXT from 4
-Node 8 received AODV_RREQ from 5
-Node 8 RREQ( [8|4] -> 0 )is known, discarding
-Node 8 received AODV_TEXT from 5
-Node 8 received text: Hello from 5
-Node 8 received AODV_RREQ from 6
-Node 8 RREQ( [8|4] -> 0 )is known, discarding
-Node 8 received AODV_RREQ from 6
-Node 8 RREQ( [2|3] -> 4 )is known, discarding
-Node 9 received AODV_RREQ from 0
-Node 9 RREQ( [5|4] -> 9 )is known, discarding
-Node 9 received AODV_RREQ from 0
-Node 9 RREQ( [6|2] -> 1 )is known, discarding
-Node 9 received AODV_RREQ from 4
-Node 9 sending RREQ[8|4] to all
-Node 9 received AODV_RREQ from 5
-Node 9 RREQ( [8|4] -> 0 )is known, discarding
-Node 9 using known route to send to 4
-Node 0 received AODV_RREQ from 3
-Node 0 RREQ( [6|2] -> 1 )is known, discarding
-Node 0 received AODV_RREQ from 3
-Node 0 is the finalDestination for: [8|4] -> 0 sending RREP
-Node 0 received AODV_RREQ from 4
-Node 0 RREQ( [8|4] -> 0 )is known, discarding
-Node 0 received AODV_RREQ from 9
-Node 0 RREQ( [8|4] -> 0 )is known, discarding
-Node 1 received AODV_RREQ from 3
-Node 1 RREQ( [6|2] -> 1 )is known, discarding
-Node 1 received AODV_RREQ from 3
-Node 1 RREQ( [8|4] -> 0 )is known, discarding
-Node 1 received AODV_TEXT from 3
-Node 1 received AODV_RREQ from 5
-Node 1 RREQ( [8|4] -> 0 )is known, discarding
-Node 1 received AODV_RREQ from 7
-Node 1 RREQ( [8|4] -> 0 )is known, discarding
-Node 1 received AODV_TEXT from 7
-Node 2 received AODV_RREQ from 6
-Node 2 RREQ( [8|4] -> 0 )is known, discarding
-Node 2 received AODV_RREQ from 6
-Node 2 RREQ( [2|3] -> 4 )is known, discarding
-Node 2 received AODV_RREP from 8
-Node 2 RREP is not from the target node, but a cached one!
-Node 2 received requested route to 4
-Node 2 received AODV_TEXT from 8
-Node 2 received text: Hello from 4
-Node 3 received AODV_RREQ from 4
-Node 3 RREQ( [8|4] -> 0 )is known, discarding
-Node 3 received AODV_RREP from 0
-Node 4 received AODV_RREQ from 5
-Node 4 RREQ( [8|4] -> 0 )is known, discarding
-Node 4 received AODV_RREQ from 9
-Node 4 RREQ( [8|4] -> 0 )is known, discarding
-Node 4 received AODV_TEXT from 9
+Node 4 received OLSR_TEXT from 3
 Node 4 received text: Hello from 9
-Node 5 received AODV_RREQ from 9
-Node 5 RREQ( [8|4] -> 0 )is known, discarding
-Node 5 received AODV_TEXT from 1
-Node 5 received text: Hello from 7
-Node 6 received AODV_TEXT from 8
-Node 6 received text: Hello from 1
-Node 8 received AODV_TEXT from 1
-Node 8  beginning route discovery to 9
-Node 0 using known route to send to 3
-Node 0  discovering neighbours
-Node 1 received AODV_RREP from 3
-Node 1 received AODV_RREQ from 8
-Node 1 RREQ( [8|4] -> 9 )is known, discarding
-Node 1 received NEIGHBOUR_SYN from 0
-Node 1 using known route to send to 3
-Node 1  discovering neighbours
-Node 2 received AODV_TEXT from 8
-Node 2 received text: Hello from 3
-Node 2 received AODV_RREQ from 8
-Node 2 RREQ( [8|4] -> 9 )is known, discarding
-Node 2 received NEIGHBOUR_SYN from 1
-Node 2  discovering neighbours
-Node 2  beginning route discovery to 0
-Node 3 received AODV_TEXT from 0
-Node 3 received text: Hello from 0
-Node 3 received NEIGHBOUR_SYN from 0
-Node 3 received AODV_TEXT from 1
-Node 3 received text: Hello from 1
-Node 3 received NEIGHBOUR_SYN from 1
-Node 3  discovering neighbours
-Node 4 received AODV_RREQ from 8
-Node 4 RREQ( [8|4] -> 9 )is known, discarding
-Node 4 received NEIGHBOUR_SYN from 0
-Node 4 received NEIGHBOUR_SYN from 1
-Node 4 received NEIGHBOUR_SYN from 3
-Node 4  discovering neighbours
-Node 4 using known route to send to 5
-Node 5 received AODV_RREQ from 8
-Node 5 RREQ( [8|4] -> 9 )is known, discarding
-Node 5 received NEIGHBOUR_SYN from 1
-Node 5 received NEIGHBOUR_SYN from 4
-Node 5 received AODV_TEXT from 4
-Node 5 received text: Hello from 4
-Node 5  discovering neighbours
-Node 5 using known route to send to 9
-Node 6 received AODV_RREQ from 8
-Node 6 RREQ( [8|4] -> 9 )is known, discarding
-Node 6 received NEIGHBOUR_SYN from 1
-Node 6 received NEIGHBOUR_SYN from 2
-Node 6 received AODV_RREQ from 2
-Node 6 RREQ( [2|3] -> 0 )is known, discarding
-Node 6 received NEIGHBOUR_SYN from 5
-Node 6  discovering neighbours
-Node 6 using known route to send to 1
-Node 7 received NEIGHBOUR_SYN from 1
-Node 7 received NEIGHBOUR_SYN from 3
-Node 7 received NEIGHBOUR_SYN from 6
-Node 7 using known route to send to 4
-Node 7  discovering neighbours
-Node 8 received AODV_RREP from 1
-Node 8 received requested route to 0
-Node 8 received NEIGHBOUR_SYN from 1
-Node 8 received NEIGHBOUR_SYN from 2
-Node 8 received AODV_RREQ from 2
-Node 8 RREQ( [2|3] -> 0 )is known, discarding
-Node 8 received NEIGHBOUR_SYN from 4
-Node 8 received NEIGHBOUR_SYN from 5
-Node 8 received NEIGHBOUR_SYN from 6
-Node 8 received AODV_TEXT from 6
-Node 8  discovering neighbours
-Node 9 received NEIGHBOUR_SYN from 0
-Node 9 received NEIGHBOUR_SYN from 1
-Node 9 received NEIGHBOUR_SYN from 3
-Node 9 received NEIGHBOUR_SYN from 4
-Node 9 received NEIGHBOUR_SYN from 5
-Node 9 received AODV_TEXT from 5
-Node 9 received text: Hello from 5
-Node 9 received NEIGHBOUR_SYN from 8
-Node 9  beginning route discovery to 1
-Node 9  discovering neighbours
-Node 0 received NEIGHBOUR_ACK from 1
-Node 0 received NEIGHBOUR_SYN from 1
-Node 0 received NEIGHBOUR_ACK from 3
-Node 0 received NEIGHBOUR_SYN from 3
-Node 0 received NEIGHBOUR_ACK from 4
-Node 0 received NEIGHBOUR_SYN from 4
-Node 0 received NEIGHBOUR_SYN from 5
-Node 0 received NEIGHBOUR_SYN from 8
-Node 0 received NEIGHBOUR_ACK from 9
-Node 0 received AODV_RREQ from 9
-Node 0 sending RREQ[9|7] to all
-Node 0 received NEIGHBOUR_SYN from 9
-Node 0 route to 3 via 3 is stale.
-Node 0 route to 4 via 4 is stale.
-Node 0 sending RERR([0|8]) all neighbours for [3, 4]
-Node 1 received NEIGHBOUR_ACK from 3
-Node 1 received NEIGHBOUR_SYN from 3
-Node 1 received NEIGHBOUR_ACK from 5
-Node 1 received NEIGHBOUR_SYN from 5
-Node 1 received NEIGHBOUR_ACK from 7
-Node 1 received AODV_TEXT from 7
-Node 1 received NEIGHBOUR_SYN from 7
-Node 1 received NEIGHBOUR_ACK from 8
-Node 1 received AODV_TEXT from 8
-Node 1 received text: Hello from 6
-Node 1 received NEIGHBOUR_SYN from 8
-Node 1 received NEIGHBOUR_ACK from 0
-Node 1 received AODV_RREQ from 0
-Node 1 is the finalDestination for: [9|7] -> 1 sending RREP
-Node 1 received AODV_RERR from 0
-Node 1 sending RERR([0|8]) all neighbours for [3, 4]
-Node 1 route to 2 via 8 is stale.
-Node 1 route to 3 via 3 is stale.
-Node 1 route to 4 via 5 is stale.
-Node 1 route to 7 via 7 is stale.
-Node 1 sending RERR([1|9]) all neighbours for [2, 3, 4, 7]
-Node 2 received NEIGHBOUR_SYN from 5
-Node 2 received NEIGHBOUR_ACK from 6
-Node 2 received NEIGHBOUR_SYN from 6
-Node 2 received NEIGHBOUR_ACK from 8
-Node 2 received NEIGHBOUR_SYN from 8
-Node 3 received NEIGHBOUR_ACK from 4
-Node 3 received NEIGHBOUR_SYN from 4
-Node 3 received NEIGHBOUR_SYN from 5
-Node 3 received NEIGHBOUR_SYN from 8
-Node 3 received NEIGHBOUR_ACK from 0
-Node 3 received AODV_RREQ from 0
-Node 3 sending RREQ[9|7] to all
-Node 3 received AODV_RERR from 0
-Node 3 sending RERR([0|8]) all neighbours for [3, 4]
-Node 3 received NEIGHBOUR_ACK from 1
-Node 3 received AODV_RERR from 1
-Node 3 received AODV_RERR from 1
-Node 3 sending RERR([1|9]) all neighbours for [2, 3, 4, 7]
-Node 3  removing route to 2 via broken next hop 1
-Node 3 using known route to send to 5
-Node 4 received NEIGHBOUR_ACK from 5
-Node 4 received NEIGHBOUR_SYN from 5
-Node 4 received NEIGHBOUR_ACK from 8
-Node 4 received NEIGHBOUR_SYN from 8
-Node 4 received NEIGHBOUR_ACK from 9
-Node 4 received AODV_RREQ from 9
-Node 4 sending RREQ[9|7] to all
-Node 4 received NEIGHBOUR_SYN from 9
-Node 4 received NEIGHBOUR_ACK from 0
-Node 4 received AODV_RREQ from 0
-Node 4 RREQ( [9|7] -> 1 )is known, discarding
-Node 4 received AODV_RERR from 0
-Node 4 sending RERR([0|8]) all neighbours for [3, 4]
-Node 4 received NEIGHBOUR_ACK from 3
-Node 4 received AODV_RREQ from 3
-Node 4 RREQ( [9|7] -> 1 )is known, discarding
-Node 4 received AODV_RERR from 3
-Node 4 received AODV_RERR from 3
-Node 4 sending RERR([1|9]) all neighbours for [2, 3, 4, 7]
-Node 5 received NEIGHBOUR_ACK from 8
+Node 4 received OLSR_TC from 3
+Node 4 received OLSR_TC from 3
 Node 5 received NEIGHBOUR_SYN from 8
-Node 5 received NEIGHBOUR_ACK from 9
-Node 5 received AODV_RREQ from 9
-Node 5 sending RREQ[9|7] to all
-Node 5 received NEIGHBOUR_SYN from 9
-Node 5 received NEIGHBOUR_ACK from 1
-Node 5 received AODV_TEXT from 1
-Node 5 received AODV_RERR from 1
-Node 5 sending RERR([0|8]) all neighbours for [3, 4]
-Node 5 received AODV_RERR from 1
-Node 5 sending RERR([1|9]) all neighbours for [2, 3, 4, 7]
-Node 5 received NEIGHBOUR_ACK from 4
-Node 5 received AODV_RREQ from 4
-Node 5 RREQ( [9|7] -> 1 )is known, discarding
-Node 5 received AODV_RERR from 4
-Node 5 received AODV_RERR from 4
-Node 6 received NEIGHBOUR_ACK from 8
-Node 6 received NEIGHBOUR_SYN from 8
-Node 6 received NEIGHBOUR_ACK from 2
-Node 7 received NEIGHBOUR_SYN from 8
-Node 7 received NEIGHBOUR_ACK from 1
-Node 7 received AODV_RERR from 1
-Node 7 sending RERR([0|8]) all neighbours for [3, 4]
-Node 7 received AODV_RERR from 1
-Node 7 sending RERR([1|9]) all neighbours for [2, 3, 4, 7]
-Node 7  removing route to 2 via broken next hop 1
-Node 7  removing route to 3 via broken next hop 1
-Node 7  removing route to 4 via broken next hop 1
-Node 8 received NEIGHBOUR_ACK from 1
-Node 8 received AODV_RERR from 1
-Node 8 sending RERR([0|8]) all neighbours for [3, 4]
-Node 8 received AODV_RERR from 1
-Node 8 sending RERR([1|9]) all neighbours for [2, 3, 4, 7]
-Node 8 received NEIGHBOUR_ACK from 2
-Node 8 received NEIGHBOUR_ACK from 4
-Node 8 received AODV_RREQ from 4
-Node 8 knows route, and has fresher info, sending RREP
-Node 8 received AODV_RERR from 4
-Node 8 received AODV_RERR from 4
-Node 8 received NEIGHBOUR_ACK from 5
-Node 8 received AODV_RREQ from 5
-Node 8 RREQ( [9|7] -> 1 )is known, discarding
-Node 8 received AODV_RERR from 5
-Node 8 received AODV_RERR from 5
-Node 8 received NEIGHBOUR_ACK from 6
-Node 8 route to 3 via 4 is stale.
-Node 8 route to 4 via 4 is stale.
-Node 8 route to 5 via 5 is stale.
-Node 8 route to 6 via 6 is stale.
-Node 8 sending RERR([8|6]) all neighbours for [3, 4, 5, 6]
-Node 9 received AODV_RREQ from 0
-Node 9 RREQ( [9|7] -> 1 )is known, discarding
-Node 9 received NEIGHBOUR_ACK from 0
-Node 9 received AODV_RERR from 0
-Node 9 sending RERR([0|8]) all neighbours for [3, 4]
-Node 9 received AODV_RREQ from 4
-Node 9 RREQ( [9|7] -> 1 )is known, discarding
-Node 9 received NEIGHBOUR_ACK from 4
-Node 9 received AODV_RERR from 4
-Node 9 received AODV_RERR from 4
-Node 9 sending RERR([1|9]) all neighbours for [2, 3, 4, 7]
-Node 9 received AODV_RREQ from 5
-Node 9 RREQ( [9|7] -> 1 )is known, discarding
-Node 9 received NEIGHBOUR_ACK from 5
-Node 9 received AODV_RERR from 5
-Node 9 received AODV_RERR from 5
-Node 9 route to 2 via 4 is stale.
-Node 9 route to 3 via 4 is stale.
-Node 9 route to 4 via 4 is stale.
-Node 9 route to 5 via 5 is stale.
-Node 9 sending RERR([9|9]) all neighbours for [2, 3, 4, 5]
-Node 0 received AODV_RREP from 1
-Node 0 received AODV_RERR from 1
-Node 0 sending RERR([0|8]) all neighbours for [3, 4]
-Node 0 received AODV_RERR from 1
-Node 0 sending RERR([1|9]) all neighbours for [2, 3, 4, 7]
-Node 0 received AODV_RREQ from 3
-Node 0 RREQ( [9|7] -> 1 )is known, discarding
-Node 0 received AODV_RERR from 3
-Node 0 received AODV_RERR from 3
-Node 0 received AODV_RREQ from 4
-Node 0 RREQ( [9|7] -> 1 )is known, discarding
-Node 0 received AODV_RERR from 4
-Node 0 received AODV_RERR from 4
-Node 0 received AODV_RERR from 9
-Node 0 received AODV_RERR from 9
-Node 0 received AODV_RERR from 9
-Node 0 sending RERR([9|9]) all neighbours for [2, 3, 4, 5]
-Node 1 received AODV_RREQ from 3
-Node 1 RREQ( [9|7] -> 1 )is known, discarding
-Node 1 received AODV_RERR from 3
-Node 1 received AODV_RERR from 3
-Node 1 sending RERR([1|9]) all neighbours for [2, 3, 4, 7]
-Node 1 received AODV_TEXT from 3
-Node 1 received AODV_RREQ from 5
-Node 1 RREQ( [9|7] -> 1 )is known, discarding
-Node 1 received AODV_RERR from 5
-Node 1 received AODV_RERR from 5
-Node 1 received AODV_RERR from 7
-Node 1 received AODV_RERR from 7
-Node 1 received AODV_RERR from 8
-Node 1 received AODV_RERR from 8
-Node 1 received AODV_RERR from 8
-Node 1 sending RERR([8|6]) all neighbours for [3, 4, 5, 6]
-Node 1  removing route to 6 via broken next hop 8
-Node 1 received AODV_RERR from 0
-Node 1 received AODV_RERR from 0
-Node 1 received AODV_RERR from 0
-Node 1 sending RERR([9|9]) all neighbours for [2, 3, 4, 5]
-Node 1 using known route to send to 5
-Node 2 received AODV_RERR from 8
-Node 2 sending RERR([0|8]) all neighbours for [3, 4]
-Node 2 received AODV_RERR from 8
-Node 2 sending RERR([1|9]) all neighbours for [2, 3, 4, 7]
-Node 2 received AODV_RERR from 8
-Node 2 sending RERR([8|6]) all neighbours for [3, 4, 5, 6]
-Node 2  removing route to 4 via broken next hop 8
-Node 2  removing route to 5 via broken next hop 8
-Node 2  beginning route discovery to 4
-Node 3 received AODV_RREQ from 4
-Node 3 RREQ( [9|7] -> 1 )is known, discarding
-Node 3 received AODV_RERR from 4
-Node 3 received AODV_RERR from 4
-Node 3 received AODV_RERR from 0
-Node 3 received AODV_RERR from 0
-Node 3 received AODV_RERR from 0
-Node 3 sending RERR([9|9]) all neighbours for [2, 3, 4, 5]
-Node 3 received AODV_RERR from 1
-Node 3 received AODV_RERR from 1
-Node 3 sending RERR([8|6]) all neighbours for [3, 4, 5, 6]
-Node 3 received AODV_RERR from 1
-Node 3 route to 4 via 4 is stale.
-Node 3 sending RERR([3|11]) all neighbours for [4]
-Node 4 received AODV_RREQ from 5
-Node 4 RREQ( [9|7] -> 1 )is known, discarding
-Node 4 received AODV_TEXT from 5
-Node 4 received text: Hello from 7
-Node 4 received AODV_RERR from 5
-Node 4 received AODV_RERR from 5
-Node 4 received AODV_RERR from 8
-Node 4 received AODV_RERR from 8
-Node 4 received AODV_RREP from 8
-Node 4 RREP is not from the target node, but a cached one!
-Node 4 received AODV_RERR from 8
-Node 4 sending RERR([8|6]) all neighbours for [3, 4, 5, 6]
-Node 4  removing route to 6 via broken next hop 8
-Node 4 received AODV_RERR from 9
-Node 4 received AODV_RERR from 9
-Node 4 received AODV_RERR from 9
-Node 4 sending RERR([9|9]) all neighbours for [2, 3, 4, 5]
-Node 4 received AODV_RERR from 0
-Node 4 received AODV_RERR from 0
-Node 4 received AODV_RERR from 0
-Node 4 received AODV_RERR from 3
-Node 4 received AODV_RERR from 3
-Node 4 received AODV_RERR from 3
-Node 4 sending RERR([3|11]) all neighbours for [4]
-Node 4 route to 2 via 8 is stale.
-Node 4 route to 3 via 3 is stale.
-Node 4 sending RERR([4|12]) all neighbours for [2, 3]
-Node 5 received AODV_RERR from 8
-Node 5 received AODV_RERR from 8
-Node 5 received AODV_RERR from 8
-Node 5 sending RERR([8|6]) all neighbours for [3, 4, 5, 6]
-Node 5  removing route to 6 via broken next hop 8
-Node 5 received AODV_RERR from 9
-Node 5 received AODV_RERR from 9
-Node 5 received AODV_RERR from 9
-Node 5 sending RERR([9|9]) all neighbours for [2, 3, 4, 5]
-Node 5 received AODV_RERR from 1
-Node 5 received AODV_TEXT from 1
-Node 5 received text: Hello from 3
-Node 5 received AODV_RERR from 1
-Node 5 received AODV_RERR from 1
-Node 5 received AODV_TEXT from 1
-Node 5 received text: Hello from 1
-Node 5 received AODV_RERR from 4
-Node 5 received AODV_RERR from 4
-Node 5 received AODV_RERR from 4
-Node 5 sending RERR([3|11]) all neighbours for [4]
-Node 5 received AODV_RERR from 4
-Node 5 sending RERR([4|12]) all neighbours for [2, 3]
-Node 5  removing route to 3 via broken next hop 4
-Node 5 route to 2 via 8 is stale.
-Node 5 route to 4 via 4 is stale.
-Node 5 sending RERR([5|13]) all neighbours for [2, 4]
-Node 6 received AODV_RERR from 8
-Node 6 sending RERR([0|8]) all neighbours for [3, 4]
-Node 6 received AODV_RERR from 8
-Node 6 sending RERR([1|9]) all neighbours for [2, 3, 4, 7]
-Node 6 received AODV_RERR from 8
-Node 6 sending RERR([8|6]) all neighbours for [3, 4, 5, 6]
-Node 6  removing route to 5 via broken next hop 8
-Node 6 received AODV_RERR from 2
-Node 6 received AODV_RERR from 2
-Node 6 received AODV_RERR from 2
-Node 6 received AODV_RREQ from 2
-Node 6 sending RREQ[2|6] to all
-Node 7 received AODV_RERR from 1
-Node 7 received AODV_RERR from 1
-Node 7 sending RERR([8|6]) all neighbours for [3, 4, 5, 6]
-Node 7 received AODV_RERR from 1
-Node 7 sending RERR([9|9]) all neighbours for [2, 3, 4, 5]
-Node 7 using known route to send to 5
-Node 8 received AODV_RERR from 1
-Node 8 received AODV_RERR from 1
-Node 8 sending RERR([8|6]) all neighbours for [3, 4, 5, 6]
-Node 8 received AODV_RERR from 1
-Node 8 sending RERR([9|9]) all neighbours for [2, 3, 4, 5]
-Node 8 received AODV_RERR from 2
-Node 8 received AODV_RERR from 2
-Node 8 received AODV_RERR from 2
-Node 8 received AODV_RREQ from 2
-Node 8 sending RREQ[2|6] to all
-Node 8 received AODV_RERR from 4
-Node 8 received AODV_RERR from 4
-Node 8 received AODV_RERR from 4
-Node 8 sending RERR([3|11]) all neighbours for [4]
-Node 8 received AODV_RERR from 4
-Node 8 sending RERR([4|12]) all neighbours for [2, 3]
-Node 8 received AODV_RERR from 5
-Node 8 received AODV_RERR from 5
-Node 8 received AODV_RERR from 5
-Node 8 received AODV_RERR from 5
-Node 8 received AODV_RERR from 5
-Node 8 sending RERR([5|13]) all neighbours for [2, 4]
-Node 8 received AODV_RERR from 6
-Node 8 received AODV_RERR from 6
-Node 8 received AODV_RERR from 6
-Node 8 received AODV_RREQ from 6
-Node 8 RREQ( [2|6] -> 4 )is known, discarding
-Node 8  beginning route discovery to 7
-Node 9 received AODV_RREP from 0
-Node 9 received requested route to 1
-Node 9 received AODV_RERR from 0
-Node 9 received AODV_RERR from 0
-Node 9 received AODV_RERR from 0
-Node 9 sending RERR([9|9]) all neighbours for [2, 3, 4, 5]
-Node 9 received AODV_RREP from 4
-Node 9 RREP is not from the target node, but a cached one!
-Node 9 received requested route to 1
-Node 9 received AODV_RERR from 4
-Node 9 sending RERR([8|6]) all neighbours for [3, 4, 5, 6]
-Node 9 received AODV_RERR from 4
-Node 9 received AODV_RERR from 4
-Node 9 sending RERR([3|11]) all neighbours for [4]
-Node 9 received AODV_RERR from 4
-Node 9 sending RERR([4|12]) all neighbours for [2, 3]
-Node 9 received AODV_RERR from 5
-Node 9 received AODV_RERR from 5
-Node 9 received AODV_RERR from 5
-Node 9 received AODV_RERR from 5
-Node 9 received AODV_RERR from 5
-Node 9 sending RERR([5|13]) all neighbours for [2, 4]
-Node 9 using known route to send to 6
-Node 0 received AODV_RERR from 1
-Node 0 received AODV_RERR from 1
-Node 0 sending RERR([8|6]) all neighbours for [3, 4, 5, 6]
-Node 0 received AODV_RERR from 1
-Node 0 received AODV_RERR from 3
-Node 0 received AODV_RERR from 3
-Node 0 received AODV_RERR from 3
-Node 0 sending RERR([3|11]) all neighbours for [4]
-Node 0 received AODV_RERR from 4
-Node 0 received AODV_RERR from 4
-Node 0 received AODV_RERR from 4
-Node 0 received AODV_RERR from 4
-Node 0 sending RERR([4|12]) all neighbours for [2, 3]
-Node 0 received AODV_RERR from 9
-Node 0 received AODV_RERR from 9
-Node 0 received AODV_RERR from 9
-Node 0 received AODV_RERR from 9
-Node 0 received AODV_RERR from 9
-Node 0 sending RERR([5|13]) all neighbours for [2, 4]
-Node 0 using known route to send to 1
-Node 1 received AODV_RERR from 3
-Node 1 received AODV_RERR from 3
-Node 1 received AODV_RERR from 3
-Node 1 sending RERR([3|11]) all neighbours for [4]
-Node 1 received AODV_RERR from 5
-Node 1 received AODV_RERR from 5
-Node 1 received AODV_RERR from 5
-Node 1 received AODV_RERR from 5
-Node 1 sending RERR([4|12]) all neighbours for [2, 3]
-Node 1 received AODV_RERR from 5
-Node 1 sending RERR([5|13]) all neighbours for [2, 4]
-Node 1 received AODV_RERR from 7
-Node 1 received AODV_RERR from 7
-Node 1 received AODV_TEXT from 7
-Node 1 received AODV_RERR from 8
-Node 1 received AODV_RERR from 8
-Node 1 received AODV_RREQ from 8
-Node 1 sending RREQ[2|6] to all
-Node 1 received AODV_RERR from 8
-Node 1 received AODV_RERR from 8
-Node 1 received AODV_RERR from 8
-Node 1 received AODV_RREQ from 8
-Node 1 sending RREQ[8|13] to all
-Node 1 received AODV_RERR from 0
-Node 1 received AODV_RERR from 0
-Node 1 received AODV_RERR from 0
-Node 1 received AODV_RERR from 0
-Node 1 received AODV_TEXT from 0
-Node 1 received text: Hello from 0
-Node 2 received AODV_RERR from 6
-Node 2 received AODV_RERR from 6
-Node 2 received AODV_RERR from 6
-Node 2 received AODV_RREQ from 6
-Node 2 RREQ( [2|6] -> 4 )is known, discarding
-Node 2 received AODV_RERR from 8
-Node 2 received AODV_RERR from 8
-Node 2 sending RERR([9|9]) all neighbours for [2, 3, 4, 5]
-Node 2 received AODV_RREQ from 8
-Node 2 RREQ( [2|6] -> 4 )is known, discarding
-Node 2 received AODV_RERR from 8
-Node 2 sending RERR([3|11]) all neighbours for [4]
-Node 2 received AODV_RERR from 8
-Node 2 sending RERR([4|12]) all neighbours for [2, 3]
-Node 2 received AODV_RERR from 8
-Node 2 sending RERR([5|13]) all neighbours for [2, 4]
-Node 2 received AODV_RREQ from 8
-Node 2 sending RREQ[8|13] to all
-Node 2  discovering neighbours
-Node 3 received AODV_RERR from 4
-Node 3 received AODV_RERR from 4
-Node 3 received AODV_RERR from 4
-Node 3 sending RERR([3|11]) all neighbours for [4]
-Node 3 received AODV_RERR from 4
-Node 3 sending RERR([4|12]) all neighbours for [2, 3]
-Node 3 received AODV_RERR from 0
-Node 3 received AODV_RERR from 0
-Node 3 received AODV_RERR from 0
-Node 3 received AODV_RERR from 0
-Node 3 sending RERR([5|13]) all neighbours for [2, 4]
-Node 3 received AODV_RERR from 1
-Node 3 received AODV_RERR from 1
-Node 3 received AODV_RERR from 1
-Node 3 received AODV_RREQ from 1
-Node 3 sending RREQ[2|6] to all
-Node 3 received AODV_RREQ from 1
-Node 3 sending RREQ[8|13] to all
-Node 3 using known route to send to 5
-Node 4 received AODV_RERR from 5
-Node 4 received AODV_RERR from 5
-Node 4 received AODV_RERR from 5
-Node 4 received AODV_RERR from 5
-Node 4 sending RERR([4|12]) all neighbours for [2, 3]
-Node 4 received AODV_RERR from 5
-Node 4 sending RERR([5|13]) all neighbours for [2, 4]
-Node 4 received AODV_RERR from 8
-Node 4 received AODV_RERR from 8
-Node 4 received AODV_RREQ from 8
-Node 4 is the finalDestination for: [2|6] -> 4 sending RREP
-Node 4 received AODV_RERR from 8
-Node 4 received AODV_RERR from 8
-Node 4 received AODV_RERR from 8
-Node 4 received AODV_RREQ from 8
-Node 4 sending RREQ[8|13] to all
-Node 4 received AODV_RERR from 9
-Node 4 received AODV_RERR from 9
-Node 4 received AODV_RERR from 9
-Node 4 received AODV_RERR from 9
-Node 4 received AODV_RERR from 9
-Node 4 received AODV_TEXT from 9
-Node 4 cannot forward message to 6 because route is broken, restarting route discovery
-Node 4  beginning route discovery to 6
-Node 4 received AODV_RERR from 0
-Node 4 received AODV_RERR from 0
-Node 4 received AODV_RERR from 0
-Node 4 received AODV_RERR from 0
-Node 4 received AODV_RERR from 3
-Node 4 received AODV_RERR from 3
-Node 4 received AODV_RERR from 3
-Node 4 received AODV_RREQ from 3
-Node 4 RREQ( [2|6] -> 4 )is known, discarding
-Node 4 received AODV_RREQ from 3
-Node 4 RREQ( [8|13] -> 7 )is known, discarding
-Node 4 using known route to send to 2
-Node 5 received AODV_RERR from 8
-Node 5 received AODV_RERR from 8
-Node 5 received AODV_RREQ from 8
-Node 5 sending RREQ[2|6] to all
-Node 5 received AODV_RERR from 8
-Node 5 received AODV_RERR from 8
-Node 5 received AODV_RERR from 8
-Node 5 sending RERR([5|13]) all neighbours for [2, 4]
-Node 5 received AODV_RREQ from 8
-Node 5 sending RREQ[8|13] to all
-Node 5 received AODV_RERR from 9
-Node 5 received AODV_RERR from 9
-Node 5 received AODV_RERR from 9
-Node 5 received AODV_RERR from 9
-Node 5 received AODV_RERR from 9
-Node 5 received AODV_RERR from 1
-Node 5 received AODV_RERR from 1
-Node 5 received AODV_RERR from 1
-Node 5 received AODV_TEXT from 1
-Node 5 received text: Hello from 7
-Node 5 received AODV_RREQ from 1
-Node 5 RREQ( [2|6] -> 4 )is known, discarding
-Node 5 received AODV_RREQ from 1
-Node 5 RREQ( [8|13] -> 7 )is known, discarding
-Node 5 received AODV_RERR from 4
-Node 5 received AODV_RERR from 4
-Node 5 received AODV_RREQ from 4
-Node 5 RREQ( [8|13] -> 7 )is known, discarding
-Node 5 received AODV_RREQ from 4
-Node 5 sending RREQ[4|17] to all
-Node 5 using known route to send to 2
-Node 6 received AODV_RERR from 8
-Node 6 received AODV_RERR from 8
-Node 6 sending RERR([9|9]) all neighbours for [2, 3, 4, 5]
-Node 6 received AODV_RREQ from 8
-Node 6 RREQ( [2|6] -> 4 )is known, discarding
-Node 6 received AODV_RERR from 8
-Node 6 sending RERR([3|11]) all neighbours for [4]
-Node 6 received AODV_RERR from 8
-Node 6 sending RERR([4|12]) all neighbours for [2, 3]
-Node 6 received AODV_RERR from 8
-Node 6 sending RERR([5|13]) all neighbours for [2, 4]
-Node 6 received AODV_RREQ from 8
-Node 6 sending RREQ[8|13] to all
-Node 6 received AODV_RERR from 2
-Node 6 received AODV_RERR from 2
-Node 6 received AODV_RERR from 2
-Node 6 received AODV_RERR from 2
-Node 6 received AODV_RREQ from 2
-Node 6 RREQ( [8|13] -> 7 )is known, discarding
-Node 6 received NEIGHBOUR_SYN from 2
-Node 7 received AODV_RERR from 1
-Node 7 sending RERR([3|11]) all neighbours for [4]
-Node 7 received AODV_RERR from 1
-Node 7 sending RERR([4|12]) all neighbours for [2, 3]
-Node 7 received AODV_RERR from 1
-Node 7 sending RERR([5|13]) all neighbours for [2, 4]
-Node 7 received AODV_RREQ from 1
-Node 7 sending RREQ[2|6] to all
-Node 7 received AODV_RREQ from 1
-Node 7 is the finalDestination for: [8|13] -> 7 sending RREP
+Node 5  discovering neighbours
+Node 6 received OLSR_TEXT from 7
+Node 6 received text: Hello from 5
+Node 6 received OLSR_TEXT from 7
+Node 6 sending message further to 0 to reach 0
+Node 6 received OLSR_TC from 0
+Node 6  discovering neighbours
+Node 7 received NEIGHBOUR_SYN from 5
+Node 7 received OLSR_HELLO from 5
+Node 7 received OLSR_TC from 6
+Node 7 received NEIGHBOUR_SYN from 6
+Node 7 received OLSR_HELLO from 6
+Node 7 received OLSR_TEXT from 6
+Node 7 received text: Hello from 6
 Node 7  discovering neighbours
-Node 8 received AODV_RERR from 1
-Node 8 received AODV_RERR from 1
-Node 8 received AODV_RERR from 1
-Node 8 received AODV_RREQ from 1
-Node 8 RREQ( [2|6] -> 4 )is known, discarding
-Node 8 received AODV_RREQ from 1
-Node 8 RREQ( [8|13] -> 7 )is known, discarding
-Node 8 received AODV_RERR from 2
-Node 8 received AODV_RERR from 2
-Node 8 received AODV_RERR from 2
-Node 8 received AODV_RERR from 2
-Node 8 received AODV_RREQ from 2
-Node 8 RREQ( [8|13] -> 7 )is known, discarding
-Node 8 received NEIGHBOUR_SYN from 2
-Node 8 received AODV_RERR from 4
-Node 8 received AODV_RERR from 4
-Node 8 received AODV_RREP from 4
-Node 8 received AODV_RREQ from 4
-Node 8 RREQ( [8|13] -> 7 )is known, discarding
-Node 8 received AODV_RREQ from 4
-Node 8 sending RREQ[4|17] to all
-Node 8 received AODV_TEXT from 4
-Node 8 received AODV_RREQ from 5
-Node 8 RREQ( [2|6] -> 4 )is known, discarding
-Node 8 received AODV_RERR from 5
-Node 8 received AODV_RREQ from 5
-Node 8 RREQ( [8|13] -> 7 )is known, discarding
-Node 8 received AODV_RREQ from 5
-Node 8 RREQ( [4|17] -> 6 )is known, discarding
-Node 8 received AODV_TEXT from 5
-Node 8 received AODV_RERR from 6
-Node 8 received AODV_RERR from 6
-Node 8 received AODV_RERR from 6
-Node 8 received AODV_RERR from 6
-Node 8 received AODV_RREQ from 6
-Node 8 RREQ( [8|13] -> 7 )is known, discarding
-Node 8  discovering neighbours
-Node 9 received AODV_RERR from 0
-Node 9 received AODV_RERR from 0
-Node 9 received AODV_RERR from 0
-Node 9 received AODV_RERR from 0
-Node 9 received AODV_RERR from 4
-Node 9 received AODV_RERR from 4
-Node 9 received AODV_RREQ from 4
-Node 9 sending RREQ[8|13] to all
-Node 9 received AODV_RREQ from 4
-Node 9 knows route, and has fresher info, sending RREP
-Node 9 received AODV_RREQ from 5
-Node 9 knows route, and has fresher info, sending RREP
-Node 9 received AODV_RERR from 5
-Node 9 received AODV_RREQ from 5
-Node 9 RREQ( [8|13] -> 7 )is known, discarding
-Node 9 received AODV_RREQ from 5
-Node 9 RREQ( [4|17] -> 6 )is known, discarding
-Node 9 received NEIGHBOUR_SYN from 8
-=============================================================
-Simulation finished
-Messages sent: 1057
-Text messages sent: 36
-Text message success rate: 100.0%
-More information can be found in log.txt
-[0] Undelivered text messages (0)
- 
-[1] Undelivered text messages (0)
- 
-[2] Undelivered text messages (2)
- Message { source=2, destination=0, text='Hello from 2', messageType=TEXT }
-  Message { source=2, destination=4, text='Hello from 2', messageType=TEXT }
-[3] Undelivered text messages (0)
- 
-[4] Undelivered text messages (1)
- Message { source=4, destination=6, text='Hello from 9', messageType=TEXT }
-[5] Undelivered text messages (0)
- 
-[6] Undelivered text messages (0)
- 
-[7] Undelivered text messages (0)
- 
-[8] Undelivered text messages (1)
- Message { source=8, destination=7, text='Hello from 8', messageType=TEXT }
-[9] Undelivered text messages (0)
- 
+Node 8 received NEIGHBOUR_ACK from 9
+Node 8 received NEIGHBOUR_ACK from 5
+Node 8 received NEIGHBOUR_SYN from 5
+Node 8 received OLSR_HELLO from 5
+Node 9 received NEIGHBOUR_SYN from 1
+Node 9 received OLSR_HELLO from 1
+Node 9 received OLSR_TC from 3
+Node 9 received OLSR_TC from 3
+Node 9 received OLSR_HELLO from 8
+Node 9 received OLSR_TC from 8
+Node 9  discovering neighbours
+Node 0 received OLSR_TC from 3
+Node 0 received OLSR_TC from 3
+Node 0 received OLSR_TEXT from 6
+Node 0 received text: Hello from 7
+Node 0 received OLSR_TC from 6
+Node 0 received NEIGHBOUR_SYN from 6
+Node 0 received OLSR_HELLO from 6
+Node 0 received NEIGHBOUR_SYN from 7
+Node 1 received OLSR_TC from 3
+Node 1 received NEIGHBOUR_ACK from 3
+Node 1 received OLSR_TC from 3
+Node 1 received NEIGHBOUR_ACK from 9
+Node 1 received OLSR_TC from 9
+Node 1 received OLSR_TC from 9
+Node 1 received OLSR_TC from 9
+Node 1 received NEIGHBOUR_SYN from 9
+Node 1 received OLSR_HELLO from 9
+Node 2 received OLSR_TC from 6
+Node 2 received NEIGHBOUR_SYN from 6
+Node 2 received OLSR_HELLO from 6
+Node 2 received OLSR_TC from 0
+Node 2 received OLSR_TC from 0
+Node 2 received OLSR_HELLO from 0
+Node 3 received OLSR_TEXT from 4
+Node 3 sending message further to 0 to reach 6
+Node 3 received OLSR_TC from 9
+Node 3 received OLSR_TC from 9
+Node 3 received OLSR_TC from 9
+Node 3 received NEIGHBOUR_SYN from 9
+Node 3 received OLSR_HELLO from 9
+Node 3 received OLSR_TC from 0
+Node 3 received OLSR_TC from 0
+Node 3 received OLSR_HELLO from 0
+Node 4 received NEIGHBOUR_SYN from 6
+Node 4 received OLSR_TC from 3
+Node 4 received OLSR_TC from 3
+Node 4 received OLSR_TEXT from 3
+Node 4 received text: Hello from 3
+Node 4 received OLSR_HELLO from 3
+Node 5 received NEIGHBOUR_SYN from 6
+Node 5 received NEIGHBOUR_ACK from 7
+Node 5 received OLSR_TC from 7
+Node 5 received NEIGHBOUR_SYN from 7
+Node 5 received OLSR_HELLO from 7
+Node 5 received OLSR_TC from 7
+Node 5 received NEIGHBOUR_ACK from 8
+Node 5 received OLSR_HELLO from 8
+Node 5 received OLSR_TC from 8
+Node 5 received NEIGHBOUR_SYN from 9
+Node 6 received OLSR_TC from 7
+Node 6 received NEIGHBOUR_ACK from 7
+Node 6 received NEIGHBOUR_SYN from 7
+Node 6 received OLSR_HELLO from 7
+Node 6 received OLSR_TC from 7
+Node 6 received OLSR_TC from 0
+Node 6 received OLSR_TC from 0
+Node 6 received NEIGHBOUR_ACK from 0
+Node 6 received OLSR_HELLO from 0
+Node 6 received NEIGHBOUR_ACK from 2
+Node 6 received OLSR_TEXT from 2
+Node 6 sending message further to 7 to reach 7
+Node 6 received OLSR_HELLO from 2
+Node 7 received NEIGHBOUR_ACK from 0
+Node 7 received OLSR_TC from 5
+Node 7 received NEIGHBOUR_ACK from 5
+Node 7 received OLSR_TC from 5
+Node 7 received OLSR_TC from 5
+Node 7 received OLSR_TC from 5
+Node 7 received NEIGHBOUR_ACK from 6
+Node 7 received OLSR_TC from 6
+Node 7 received OLSR_TC from 6
+Node 7 received OLSR_TEXT from 6
+Node 7 received text: Hello from 2
+Node 7 received OLSR_TC from 6
+Node 8 received OLSR_TC from 9
+Node 8 received OLSR_TC from 9
+Node 8 received OLSR_TC from 9
+Node 8 received NEIGHBOUR_SYN from 9
+Node 8 received OLSR_HELLO from 9
+Node 8 received OLSR_TC from 5
+Node 8 received OLSR_TC from 5
+Node 8 received OLSR_TC from 5
+Node 8 received OLSR_TC from 5
+Node 9 received NEIGHBOUR_ACK from 1
+Node 9 received OLSR_TC from 3
+Node 9 received OLSR_TC from 3
+Node 9 received NEIGHBOUR_ACK from 3
+Node 9 received OLSR_HELLO from 3
+Node 9 received OLSR_TC from 8
+Node 9 received OLSR_TC from 8
+Node 9 received OLSR_TC from 8
+Node 9 received NEIGHBOUR_ACK from 8
+Node 9 received OLSR_TC from 8
+Node 9 received OLSR_TC from 8
+Node 9 received OLSR_TEXT from 8
+Node 9 sending message further to 3 to reach 4
+Node 9 received OLSR_HELLO from 8
+Node 0 received OLSR_HELLO from 2
+Node 0 received OLSR_TEXT from 3
+Node 0 sending message further to 6 to reach 6
+Node 0 received OLSR_TC from 3
+Node 0 received OLSR_TC from 3
+Node 0 received OLSR_HELLO from 3
+Node 0 received OLSR_TC from 6
+Node 0 received OLSR_TC from 6
+Node 0 received OLSR_TC from 6
+Node 1 received OLSR_TC from 3
+Node 1 received OLSR_TC from 3
+Node 1 received OLSR_HELLO from 3
+Node 1 received OLSR_TC from 9
+Node 1 received OLSR_TC from 9
+Node 1 received OLSR_TC from 9
+Node 2 received OLSR_TC from 6
+Node 2 received OLSR_TC from 6
+Node 2 received OLSR_TC from 6
+Node 2 received OLSR_TC from 0
+Node 2 received OLSR_TC from 0
+Node 2 received OLSR_TC from 0
+Node 3 received OLSR_HELLO from 4
+Node 3 received OLSR_TC from 9
+Node 3 received OLSR_TC from 9
+Node 3 received OLSR_TEXT from 9
+Node 3 sending message further to 4 to reach 4
+Node 3 received OLSR_TC from 9
+Node 3 received OLSR_TC from 0
+Node 3 received OLSR_TC from 0
+Node 3 received OLSR_TC from 0
+Node 3 received OLSR_HELLO from 1
+Node 3 received OLSR_TEXT from 1
+Node 3 sending message further to 0 to reach 0

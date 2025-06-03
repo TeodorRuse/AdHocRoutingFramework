@@ -3,11 +3,13 @@ package org.example.licentafromzero.Domain;
 public final class Constants {
     private Constants(){};
 
-    //TODO: make arrow titles more visible, maybe add more animations.
+    //TODO: Add message .getContent for arrows for all messageTypes
+    //TODO: Fix message line hitbox
+    //TODO: Handle when more messages have same path (so they don;t overlap visually
 
     //General values
     public static final int SIMULATION_TIME = 30; //seconds
-    public static final int SIMULATION_MODE = 5; // 1 = normal | 3 = DSR | 5 = AODV | 7 = SAODV | 9 = CBRP | 11 = OLSR | even = file
+    public static final int SIMULATION_MODE = 12; // 1 = normal | 3 = DSR | 5 = AODV | 7 = SAODV | 9 = CBRP | 11 = OLSR | even = file
     public static final int SIMULATION_NR_NODES = 10;
     public static final int SIMULATION_SIZE_X = 900;
     public static final int SIMULATION_SIZE_Y = 900;

@@ -926,22 +926,88 @@ public class NetworkSimulationApp extends Application {
         }
     }
 
+//    private void drawConnectionWithLabel(Line line, Color color, String label) {
+//        line.setStroke(color);
+//        line.setStrokeWidth(2);
+//        line.getStrokeDashArray().addAll(5d, 5d);
+//
+//        // Add arrow head
+//        double arrowLength = 10;
+//        double arrowWidth = 5;
+//
+//        double dx = line.getEndX() - line.getStartX();
+//        double dy = line.getEndY() - line.getStartY();
+//        double length = Math.sqrt(dx * dx + dy * dy);
+//
+//        if (length < 20) return;
+//
+//        double endRatio = 0.9;
+//        double arrowX = line.getStartX() + dx * endRatio;
+//        double arrowY = line.getStartY() + dy * endRatio;
+//
+//        dx = dx / length;
+//        dy = dy / length;
+//
+//        double perpX = -dy;
+//        double perpY = dx;
+//
+//        Polygon arrowHead = new Polygon();
+//        arrowHead.getPoints().addAll(
+//                arrowX + dx * arrowLength, arrowY + dy * arrowLength,
+//                arrowX + perpX * arrowWidth, arrowY + perpY * arrowWidth,
+//                arrowX - perpX * arrowWidth, arrowY - perpY * arrowWidth
+//        );
+//        arrowHead.setFill(color);
+//
+//        simulationCanvas.getChildren().addAll(line, arrowHead);
+//
+//        if (label != null && !label.isEmpty()) {
+//            double midX = (line.getStartX() + line.getEndX()) / 2;
+//            double midY = (line.getStartY() + line.getEndY()) / 2;
+//
+//            Text labelText = new Text(midX, midY, label);
+//            labelText.setFill(Color.DARKGOLDENROD);
+//            labelText.setFont(Font.font("Arial", FontWeight.BOLD, 10));
+//
+//            Rectangle textBg = new Rectangle(
+//                    midX - labelText.getBoundsInLocal().getWidth()/2 - 3,
+//                    midY - labelText.getBoundsInLocal().getHeight()/2 - 3,
+//                    labelText.getBoundsInLocal().getWidth() + 6,
+//                    labelText.getBoundsInLocal().getHeight() + 6
+//            );
+//            textBg.setFill(color.deriveColor(0, 1, 1, 0.7));
+//            textBg.setArcWidth(5);
+//            textBg.setArcHeight(5);
+//
+//            simulationCanvas.getChildren().addAll(textBg, labelText);
+//        }
+//    }
+
     private void drawConnectionWithLabel(Line line, Color color, String label) {
+        // Make the line more prominent
         line.setStroke(color);
-        line.setStrokeWidth(2);
-        line.getStrokeDashArray().addAll(5d, 5d);
+        line.setStrokeWidth(3);
+        line.getStrokeDashArray().clear(); // Remove dashes for cleaner look
 
-        // Add arrow head
-        double arrowLength = 10;
-        double arrowWidth = 5;
+        // Add subtle shadow effect to the line
+        DropShadow lineShadow = new DropShadow();
+        lineShadow.setRadius(2.0);
+        lineShadow.setOffsetX(1.0);
+        lineShadow.setOffsetY(1.0);
+        lineShadow.setColor(Color.rgb(0, 0, 0, 0.2));
+        line.setEffect(lineShadow);
 
+        // Calculate line properties
         double dx = line.getEndX() - line.getStartX();
         double dy = line.getEndY() - line.getStartY();
         double length = Math.sqrt(dx * dx + dy * dy);
 
         if (length < 20) return;
 
-        double endRatio = 0.9;
+        // Create more prominent arrow head
+        double arrowLength = 15;
+        double arrowWidth = 8;
+        double endRatio = 0.85;
         double arrowX = line.getStartX() + dx * endRatio;
         double arrowY = line.getStartY() + dy * endRatio;
 
@@ -958,26 +1024,50 @@ public class NetworkSimulationApp extends Application {
                 arrowX - perpX * arrowWidth, arrowY - perpY * arrowWidth
         );
         arrowHead.setFill(color);
+        arrowHead.setEffect(lineShadow); // Same shadow as line
 
         simulationCanvas.getChildren().addAll(line, arrowHead);
 
+        // Enhanced label with better visibility
         if (label != null && !label.isEmpty()) {
             double midX = (line.getStartX() + line.getEndX()) / 2;
             double midY = (line.getStartY() + line.getEndY()) / 2;
 
+            // Create label text with better font
             Text labelText = new Text(midX, midY, label);
-            labelText.setFill(Color.DARKGOLDENROD);
-            labelText.setFont(Font.font("Arial", FontWeight.BOLD, 10));
+            labelText.setFill(Color.WHITE);
+            labelText.setFont(Font.font("Arial", FontWeight.BOLD, 11));
 
+            // Calculate text bounds for proper background sizing
+            double textWidth = labelText.getBoundsInLocal().getWidth();
+            double textHeight = labelText.getBoundsInLocal().getHeight();
+
+            // Create rounded background with padding
             Rectangle textBg = new Rectangle(
-                    midX - labelText.getBoundsInLocal().getWidth()/2 - 3,
-                    midY - labelText.getBoundsInLocal().getHeight()/2 - 3,
-                    labelText.getBoundsInLocal().getWidth() + 6,
-                    labelText.getBoundsInLocal().getHeight() + 6
+                    midX - textWidth/2 - 6,
+                    midY - textHeight/2 - 4,
+                    textWidth + 12,
+                    textHeight + 8
             );
-            textBg.setFill(color.deriveColor(0, 1, 1, 0.7));
-            textBg.setArcWidth(5);
-            textBg.setArcHeight(5);
+
+            // Use the message color for background with good opacity
+            textBg.setFill(color.deriveColor(0, 0.8, 0.9, 0.9));
+            textBg.setStroke(color.deriveColor(0, 1.2, 0.7, 1.0));
+            textBg.setStrokeWidth(1.5);
+            textBg.setArcWidth(8);
+            textBg.setArcHeight(8);
+
+            // Add subtle shadow to the label background
+            DropShadow labelShadow = new DropShadow();
+            labelShadow.setRadius(3.0);
+            labelShadow.setOffsetX(1.5);
+            labelShadow.setOffsetY(1.5);
+            labelShadow.setColor(Color.rgb(0, 0, 0, 0.3));
+            textBg.setEffect(labelShadow);
+
+            // Adjust text position to center it properly in the background
+            labelText.setX(midX - textWidth/2);
+            labelText.setY(midY + textHeight/4);
 
             simulationCanvas.getChildren().addAll(textBg, labelText);
         }

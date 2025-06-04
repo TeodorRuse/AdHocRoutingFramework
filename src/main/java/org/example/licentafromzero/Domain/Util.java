@@ -68,6 +68,15 @@ public class Util {
                     logWriter.newLine();
                 }
                 logWriter.flush();
+            }else{
+                String[] lines = text.split("\\R"); // handles all newline types (Unix, Windows, etc.)
+                for (String line : lines) {
+                    String logEntry = line;
+                    System.out.println(logEntry);
+                    logWriter.write(logEntry);
+                    logWriter.newLine();
+                }
+                logWriter.flush();
             }
 
         } catch (IOException e) {

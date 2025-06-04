@@ -48,6 +48,7 @@ public class NetworkSimulationApp extends Application {
     private boolean stopSimulation = false;
     private int focusedNodeIndex = -1;
     private long startTime, simDuration;
+    private List<Message> currentlyVisibleMessages = new ArrayList<>();
 
     // Controls
     private Button playPauseButton;
@@ -204,7 +205,7 @@ public class NetworkSimulationApp extends Application {
 
         protocolLabel = new Label("Protocol: " + getProtocolName());
         protocolLabel.setFont(Font.font("Arial", FontWeight.NORMAL, 16));
-        protocolLabel.setTextFill(Color.rgb(0,0,0));
+        protocolLabel.setTextFill(Color.rgb(0, 0, 0));
 
         // Control buttons
         playPauseButton = createControlButton("⏸", 14, 10000000);
@@ -263,7 +264,7 @@ public class NetworkSimulationApp extends Application {
         topPanel.getChildren().addAll(logoView, infoBox, progressBox, spacer, finalButtonsVBox);
     }
 
-    private void setSimDelay(int delay){
+    private void setSimDelay(int delay) {
         Constants.SIMULATION_DELAY_BETWEEN_FRAMES = delay;
     }
 
@@ -320,7 +321,7 @@ public class NetworkSimulationApp extends Application {
         btn.setOnMouseClicked(e -> updateSpeedButtonStyles());
 
 
-        if(!text.equals("⏸")) {
+        if (!text.equals("⏸")) {
             btn.setOnAction(e -> setSimDelay(delay));
         }
 
@@ -345,7 +346,6 @@ public class NetworkSimulationApp extends Application {
             }
         }
     }
-
 
 
     private void createLeftPanel() {
@@ -575,8 +575,6 @@ public class NetworkSimulationApp extends Application {
     }
 
 
-
-
     private String getMobilityName(int type) {
         return switch (type) {
             case 0 -> "Static";
@@ -619,7 +617,7 @@ public class NetworkSimulationApp extends Application {
         }
 
         // Setup ground based on simulation mode
-        switch(Constants.SIMULATION_MODE) {
+        switch (Constants.SIMULATION_MODE) {
             case 1:
                 ground.setupRandom_Standard(Constants.SIMULATION_NR_NODES);
                 break;
@@ -695,8 +693,8 @@ public class NetworkSimulationApp extends Application {
         drawGrid();
 
         // Draw clusters first (so they appear behind nodes)
-        if(ground.getProtocol().equals("CBRP"));
-            drawClusters();
+        if (ground.getProtocol().equals("CBRP")) ;
+        drawClusters();
 
         // Draw connections between neighbors
         drawNeighbours();
@@ -752,7 +750,7 @@ public class NetworkSimulationApp extends Application {
         String statusText = "";
 
         // Determine node appearance based on status
-        switch(ground.getProtocol()) {
+        switch (ground.getProtocol()) {
             case "CBRP":
                 switch (status) {
                     case 1: // C_HEAD
@@ -783,7 +781,7 @@ public class NetworkSimulationApp extends Application {
         Polygon hexagon = createHexagon(x, y, NODE_SIZE);
 
         // Apply gradient fill
-        Stop[] stops = new Stop[] {
+        Stop[] stops = new Stop[]{
                 new Stop(0, nodeColor.brighter()),
                 new Stop(1, nodeColor.darker())
         };
@@ -984,6 +982,7 @@ public class NetworkSimulationApp extends Application {
 
     private void drawConnections() {
         List<Message> messages = new ArrayList<>(ground.getMessageRouter().getMessages());
+        currentlyVisibleMessages.clear(); // Clear previous frame's messages
 
         for (Message message : messages) {
             Node source = ground.getNodes().get(message.getSource());
@@ -998,6 +997,7 @@ public class NetworkSimulationApp extends Application {
                 Line line = new Line(x1, y1, x2, y2);
 
                 if (classifyMessageType(message) >= Constants.LOG_LEVEL && message.getNumberFramesShown() != 0) {
+                    currentlyVisibleMessages.add(message); // Track this message as visible
                     Color messageColor = message.isSuccessful() ? MESSAGE_COLORS[0] : MESSAGE_COLORS[1];
                     drawConnectionWithLabel(line, messageColor, message.getMessageType().toString());
                     message.decreaseNumberFramesShown();
@@ -1067,8 +1067,8 @@ public class NetworkSimulationApp extends Application {
 
             // Create rounded background with padding
             Rectangle textBg = new Rectangle(
-                    midX - textWidth/2 - 6,
-                    midY - textHeight/2 - 4,
+                    midX - textWidth / 2 - 6,
+                    midY - textHeight / 2 - 4,
                     textWidth + 12,
                     textHeight + 8
             );
@@ -1089,8 +1089,8 @@ public class NetworkSimulationApp extends Application {
             textBg.setEffect(labelShadow);
 
             // Adjust text position to center it properly in the background
-            labelText.setX(midX - textWidth/2);
-            labelText.setY(midY + textHeight/4);
+            labelText.setX(midX - textWidth / 2);
+            labelText.setY(midY + textHeight / 4);
 
             simulationCanvas.getChildren().addAll(textBg, labelText);
         }
@@ -1106,37 +1106,6 @@ public class NetworkSimulationApp extends Application {
         }
     }
 
-//    private void updateMessageInfo() {
-//        if (selectedMessage != null) {
-//            StringBuilder info = new StringBuilder();
-//            info.append("=== MESSAGE INFORMATION ===\n\n");
-//            info.append("Type: ").append(selectedMessage.getMessageType()).append("\n");
-//            info.append("Source: Node ").append(selectedMessage.getSource()).append("\n");
-//            info.append("Destination: Node ").append(selectedMessage.getDestination()).append("\n");
-//            info.append("Status: ").append(selectedMessage.isSuccessful() ? "Successful" : "Failed").append("\n");
-//            info.append("Multicast: ").append(selectedMessage.isMulticast() ? "Yes" : "No").append("\n");
-//            info.append("Frames Shown: ").append(selectedMessage.getNumberFramesShown()).append("\n");
-//
-//            // Add message content if available
-//            if (selectedMessage.getInfo() != null) {
-//                info.append("Content: ").append(selectedMessage.getInfo()).append("\n");
-//            }
-//
-//            // Add source and destination node details
-//            Node sourceNode = ground.getNodes().get(selectedMessage.getSource());
-//            Node destNode = ground.getNodeFromId(selectedMessage.getDestination());
-//
-//            info.append("\n=== SOURCE NODE ===\n");
-//            info.append("Position: (").append(sourceNode.getX()).append(", ").append(sourceNode.getY()).append(")\n");
-//            info.append("Active: ").append(sourceNode.isActive() ? "Yes" : "No").append("\n");
-//
-//            info.append("\n=== DESTINATION NODE ===\n");
-//            info.append("Position: (").append(destNode.getX()).append(", ").append(destNode.getY()).append(")\n");
-//            info.append("Active: ").append(destNode.isActive() ? "Yes" : "No").append("\n");
-//
-//            nodeInfoText.setText(info.toString());
-//        }
-//    }
     private void updateMessageInfo() {
         if (selectedMessage != null) {
             StringBuilder info = new StringBuilder();
@@ -1212,29 +1181,22 @@ public class NetworkSimulationApp extends Application {
         double clickX = event.getX();
         double clickY = event.getY();
 
-        // First check for message clicks (higher priority since they're smaller targets)
-        List<Message> messages = new ArrayList<>(ground.getMessageRouter().getMessages());
-        for (Message message : messages) {
-            if (message.getNumberFramesShown() > 0 &&
-                    classifyMessageType(message) >= Constants.LOG_LEVEL) {
+        // Check only currently visible messages
+        for (Message message : currentlyVisibleMessages) {
+            Node source = ground.getNodes().get(message.getSource());
+            Node destination = ground.getNodeFromId(message.getDestination());
 
-                Node source = ground.getNodes().get(message.getSource());
-                Node destination = ground.getNodeFromId(message.getDestination());
+            if (source != null && destination != null) {
+                double x1 = source.getX() * (simulationCanvas.getWidth() / (double) ground.getSizeX());
+                double y1 = simulationCanvas.getHeight() - (source.getY() * (simulationCanvas.getHeight() / (double) ground.getSizeY()));
+                double x2 = destination.getX() * (simulationCanvas.getWidth() / (double) ground.getSizeX());
+                double y2 = simulationCanvas.getHeight() - (destination.getY() * (simulationCanvas.getHeight() / (double) ground.getSizeY()));
 
-                if (source != null && destination != null) {
-                    double x1 = source.getX() * (simulationCanvas.getWidth() / (double) ground.getSizeX());
-                    double y1 = simulationCanvas.getHeight() - (source.getY() * (simulationCanvas.getHeight() / (double) ground.getSizeY()));
-                    double x2 = destination.getX() * (simulationCanvas.getWidth() / (double) ground.getSizeX());
-                    double y2 = simulationCanvas.getHeight() - (destination.getY() * (simulationCanvas.getHeight() / (double) ground.getSizeY()));
+                double distanceToLine = distanceFromPointToLine(clickX, clickY, x1, y1, x2, y2);
 
-//                    // Calculate distance from click to message line
-                    double distanceToLine = distanceFromPointToLine(clickX, clickY, x1, y1, x2, y2);
-
-                    if (distanceToLine < 15) { // 15 pixel threshold for message selection
-                        selectMessage(message);
-                        return; // Exit early if message is selected
-                    }
-
+                if (distanceToLine < 15) {
+                    selectMessage(message);
+                    return;
                 }
             }
         }

@@ -3,10 +3,6 @@ package org.example.licentafromzero.Domain;
 public final class Constants {
     private Constants(){};
 
-    //TODO: Fix message line hitbox - it's possible that it's calculatiing last frames's messsages
-    //TODO: Handle when more messages have same path (so they don;t overlap visually: helps with blocking
-    //TODO: create config files where this info is stored
-
     //General values
     public static final int SIMULATION_TIME = 30; //seconds
     public static final int SIMULATION_MODE = 12; // 1 = normal | 3 = DSR | 5 = AODV | 7 = SAODV | 9 = CBRP | 11 = OLSR | even = file

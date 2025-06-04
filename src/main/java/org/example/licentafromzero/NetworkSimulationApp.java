@@ -24,7 +24,7 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import javafx.stage.Stage;
-import org.example.licentafromzero.CBRP_Paper.CBRP_Node;
+import org.example.licentafromzero.CBRP.CBRP_Node;
 import org.example.licentafromzero.Domain.*;
 
 import java.io.*;

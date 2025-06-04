@@ -1,4 +1,4 @@
-package org.example.licentafromzero.CBRP_Paper;
+package org.example.licentafromzero.CBRP;
 
 import javafx.util.Pair;
 

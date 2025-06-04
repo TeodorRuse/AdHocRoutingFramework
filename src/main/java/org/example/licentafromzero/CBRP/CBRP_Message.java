@@ -1,4 +1,4 @@
-package org.example.licentafromzero.CBRP_Paper;
+package org.example.licentafromzero.CBRP;
 
 import org.example.licentafromzero.Domain.Message;
 import org.example.licentafromzero.Domain.MessageType;

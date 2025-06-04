@@ -2,12 +2,10 @@ package org.example.licentafromzero.Domain;
 
 import javafx.application.Platform;
 import org.example.licentafromzero.AODV.AODV_Node;
-import org.example.licentafromzero.AODV.AODV_RoutingTableEntry;
-import org.example.licentafromzero.CBRP_Paper.CBRP_Node;
+import org.example.licentafromzero.CBRP.CBRP_Node;
 import org.example.licentafromzero.DSR.DSR_Node;
 import org.example.licentafromzero.OLSR.OLSR_Node;
 import org.example.licentafromzero.SAODV.SAODV_Node;
-import org.example.licentafromzero.SAODV.SAODV_RoutingTableEntry;
 
 import java.io.IOException;
 import java.nio.file.Files;

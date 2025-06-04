@@ -470,46 +470,6 @@ public class NetworkSimulationApp extends Application {
         );
     }
 
-//    private String getSimulationStatsText() {
-//        StringBuilder sb = new StringBuilder();
-//
-//        sb.append("Protocol: ").append(getProtocolName()).append("\n");
-//        sb.append("Nodes: ").append(Constants.SIMULATION_NR_NODES).append("\n");
-//        sb.append("Duration: ").append(Constants.SIMULATION_TIME).append(" s\n");
-//        sb.append("Size: ").append(Constants.SIMULATION_SIZE_X).append(" x ")
-//                .append(Constants.SIMULATION_SIZE_Y).append("\n");
-//        sb.append("Frame Delay: ").append(Constants.SIMULATION_DELAY_BETWEEN_FRAMES).append(" ms\n");
-//        sb.append("Node Turn-Off %: ").append(Constants.SIMULATION_PROBABILITY_NODE_TURN_OFF / 10.0).append("%\n");
-//        sb.append("Node Turn-On %: ").append(Constants.SIMULATION_PROBABILITY_NODE_TURN_ON / 10.0).append("%\n");
-//        sb.append("Mobility: ").append(getMobilityName(Constants.NODE_MOBILITY_TYPE)).append("\n");
-//        sb.append("Comm Range: ").append(Constants.NODE_COMM_RANGE_MIN_VAL)
-//                .append("–").append(Constants.NODE_COMM_RANGE_BOUND).append("\n");
-//        sb.append("Node Speed: ").append(Constants.NODE_SPEED_MIN_VAL)
-//                .append("–").append(Constants.NODE_SPEED_BOUND).append("\n");
-//        sb.append("Pause Time: ").append(Constants.SIMULATION_PAUSE_TIME).append(" ms\n");
-//        sb.append("Log Level: ").append(Constants.LOG_LEVEL).append("\n");
-//
-//
-//        // Protocol-specific additions
-//        if (getProtocolName().equals("AODV") || getProtocolName().equals("SAODV") ) { // AODV/SAODV
-//            sb.append("Stale Route Timeout: ").append(Constants.NODE_AODV_STALE_ROUTE_PERIOD).append(" ms\n");
-//            if (getProtocolName().equals("SAODV")) {
-//                sb.append("SAODV Key Size: ").append(Constants.SIMULATION_RSA_KEY_SIZE).append(" bits\n");
-//                sb.append("SAODV Fwd Buffer Size: ").append(Constants.NODE_SAODV_FORWARD_BUFFER_SIZE).append("\n");
-//            }
-//        } else if (getProtocolName().equals("CBRP")) { // CBRP
-//            sb.append("Hello Interval: ").append(Constants.NODE_CBRP_HELLO_INTERVAL).append(" ms\n");
-//            sb.append("Contention Period: ").append(Constants.NODE_CBRP_CONTENTION_PERIOD).append(" ms\n");
-//            sb.append("Undecided Period: ").append(Constants.NODE_CBRP_UNDECIDED_PD).append(" ms\n");
-//        } else if (getProtocolName().equals("OLSR")) { // OLSR
-//            sb.append("Hello Interval: ").append(Constants.OLSR_HELLO_INTERVAL).append(" ms\n");
-//            sb.append("TC Interval: ").append(Constants.OLSR_TC_INTERVAL).append(" ms\n");
-//            sb.append("Neighbor Expiration: ").append(Constants.OLSR_NEIGHBOR_EXPIRATION_TIME).append(" ms\n");
-//        }
-//
-//        return sb.toString();
-//    }
-
     private TextFlow getSimulationStatsText() {
         TextFlow textFlow = new TextFlow();
         textFlow.setLineSpacing(5);
@@ -980,14 +940,69 @@ public class NetworkSimulationApp extends Application {
         }
     }
 
+//    private void drawConnections() {
+//        List<Message> messages = new ArrayList<>(ground.getMessageRouter().getMessages());
+//        currentlyVisibleMessages.clear(); // Clear previous frame's messages
+//
+//        for (Message message : messages) {
+//            Node source = ground.getNodes().get(message.getSource());
+//            if (source == ground.getNodes().get(ground.getFocusedNodeIndex())) {
+//                Node destination = ground.getNodeFromId(message.getDestination());
+//
+//                double x1 = source.getX() * (simulationCanvas.getWidth() / (double) ground.getSizeX());
+//                double y1 = simulationCanvas.getHeight() - (source.getY() * (simulationCanvas.getHeight() / (double) ground.getSizeY()));
+//                double x2 = destination.getX() * (simulationCanvas.getWidth() / (double) ground.getSizeX());
+//                double y2 = simulationCanvas.getHeight() - (destination.getY() * (simulationCanvas.getHeight() / (double) ground.getSizeY()));
+//
+//                Line line = new Line(x1, y1, x2, y2);
+//
+//                if (classifyMessageType(message) >= Constants.LOG_LEVEL && message.getNumberFramesShown() != 0) {
+//                    currentlyVisibleMessages.add(message); // Track this message as visible
+//                    Color messageColor = message.isSuccessful() ? MESSAGE_COLORS[0] : MESSAGE_COLORS[1];
+//                    drawConnectionWithLabel(line, messageColor, message.getMessageType().toString());
+//                    message.decreaseNumberFramesShown();
+//                }
+//            }
+//        }
+//    }
     private void drawConnections() {
         List<Message> messages = new ArrayList<>(ground.getMessageRouter().getMessages());
         currentlyVisibleMessages.clear(); // Clear previous frame's messages
+
+        // Group messages by source-destination pairs
+        Map<String, List<Message>> groupedMessages = new HashMap<>();
 
         for (Message message : messages) {
             Node source = ground.getNodes().get(message.getSource());
             if (source == ground.getNodes().get(ground.getFocusedNodeIndex())) {
                 Node destination = ground.getNodeFromId(message.getDestination());
+
+                if (classifyMessageType(message) >= Constants.LOG_LEVEL && message.getNumberFramesShown() != 0) {
+                    // Create a key for this source-destination pair
+                    String key = message.getSource() + "-" + message.getDestination();
+
+                    // Add message to the appropriate group
+                    if (!groupedMessages.containsKey(key)) {
+                        groupedMessages.put(key, new ArrayList<>());
+                    }
+                    groupedMessages.get(key).add(message);
+
+                    // Track this message as visible
+                    currentlyVisibleMessages.add(message);
+
+                    // Decrease frames shown
+                    message.decreaseNumberFramesShown();
+                }
+            }
+        }
+
+        // Draw each group of messages
+        for (Map.Entry<String, List<Message>> entry : groupedMessages.entrySet()) {
+            List<Message> messageGroup = entry.getValue();
+            if (!messageGroup.isEmpty()) {
+                Message firstMessage = messageGroup.get(0);
+                Node source = ground.getNodes().get(firstMessage.getSource());
+                Node destination = ground.getNodeFromId(firstMessage.getDestination());
 
                 double x1 = source.getX() * (simulationCanvas.getWidth() / (double) ground.getSizeX());
                 double y1 = simulationCanvas.getHeight() - (source.getY() * (simulationCanvas.getHeight() / (double) ground.getSizeY()));
@@ -996,15 +1011,183 @@ public class NetworkSimulationApp extends Application {
 
                 Line line = new Line(x1, y1, x2, y2);
 
-                if (classifyMessageType(message) >= Constants.LOG_LEVEL && message.getNumberFramesShown() != 0) {
-                    currentlyVisibleMessages.add(message); // Track this message as visible
-                    Color messageColor = message.isSuccessful() ? MESSAGE_COLORS[0] : MESSAGE_COLORS[1];
-                    drawConnectionWithLabel(line, messageColor, message.getMessageType().toString());
-                    message.decreaseNumberFramesShown();
-                }
+                // Determine color based on success status (use success if any message is successful)
+                boolean anySuccessful = messageGroup.stream().anyMatch(Message::isSuccessful);
+                Color messageColor = anySuccessful ? MESSAGE_COLORS[0] : MESSAGE_COLORS[1];
+
+                // Draw the connection with multiple labels
+                drawConnectionWithMultipleLabels(line, messageColor, messageGroup);
             }
         }
     }
+
+    private void drawConnectionWithMultipleLabels(Line line, Color color, List<Message> messages) {
+        // Make the line more prominent
+        line.setStroke(color);
+        line.setStrokeWidth(3);
+        line.getStrokeDashArray().clear(); // Remove dashes for cleaner look
+
+        // Add subtle shadow effect to the line
+        DropShadow lineShadow = new DropShadow();
+        lineShadow.setRadius(2.0);
+        lineShadow.setOffsetX(1.0);
+        lineShadow.setOffsetY(1.0);
+        lineShadow.setColor(Color.rgb(0, 0, 0, 0.2));
+        line.setEffect(lineShadow);
+
+        // Calculate line properties
+        double dx = line.getEndX() - line.getStartX();
+        double dy = line.getEndY() - line.getStartY();
+        double length = Math.sqrt(dx * dx + dy * dy);
+
+        if (length < 20) return;
+
+        // Create more prominent arrow head
+        double arrowLength = 15;
+        double arrowWidth = 8;
+        double endRatio = 0.85;
+        double arrowX = line.getStartX() + dx * endRatio;
+        double arrowY = line.getStartY() + dy * endRatio;
+
+        dx = dx / length;
+        dy = dy / length;
+
+        double perpX = -dy;
+        double perpY = dx;
+
+        Polygon arrowHead = new Polygon();
+        arrowHead.getPoints().addAll(
+                arrowX + dx * arrowLength, arrowY + dy * arrowLength,
+                arrowX + perpX * arrowWidth, arrowY + perpY * arrowWidth,
+                arrowX - perpX * arrowWidth, arrowY - perpY * arrowWidth
+        );
+        arrowHead.setFill(color);
+        arrowHead.setEffect(lineShadow); // Same shadow as line
+
+        simulationCanvas.getChildren().addAll(line, arrowHead);
+
+        // Calculate midpoint of the line
+        double midX = (line.getStartX() + line.getEndX()) / 2;
+        double midY = (line.getStartY() + line.getEndY()) / 2;
+
+        // Calculate perpendicular offset for stacking labels
+        double offsetX = perpX * 15; // Offset in perpendicular direction
+        double offsetY = perpY * 15;
+
+        // Cap the number of labels to 20
+        int maxLabels = Constants.SIMULATION_MAXIM_DISPLAYED_LABELS;
+        int totalMessages = messages.size();
+        boolean hasMoreMessages = totalMessages > maxLabels;
+        int labelsToShow = Math.min(totalMessages, maxLabels);
+
+        // Draw labels in a stack formation
+        for (int i = 0; i < labelsToShow; i++) {
+            Message message = messages.get(i);
+            String label = message.getMessageType().toString();
+
+            // Calculate position for this label
+            double labelOffsetFactor;
+            if (labelsToShow <= 1) {
+                labelOffsetFactor = 0; // Center the single label
+            } else {
+                // Distribute labels evenly
+                labelOffsetFactor = (i - (labelsToShow - 1) / 2.0) * 1.2;
+            }
+
+            double labelX = midX + offsetX * labelOffsetFactor;
+            double labelY = midY + offsetY * labelOffsetFactor;
+
+            // Create label text with better font
+            Text labelText = new Text(labelX, labelY, label);
+            labelText.setFill(Color.WHITE);
+            labelText.setFont(Font.font("Arial", FontWeight.BOLD, 11));
+
+            // Calculate text bounds for proper background sizing
+            double textWidth = labelText.getBoundsInLocal().getWidth();
+            double textHeight = labelText.getBoundsInLocal().getHeight();
+
+            // Create rounded background with padding
+            Rectangle textBg = new Rectangle(
+                    labelX - textWidth/2 - 6,
+                    labelY - textHeight/2 - 4,
+                    textWidth + 12,
+                    textHeight + 8
+            );
+
+            // Use the message color for background with good opacity
+            Color msgColor = message.isSuccessful() ? MESSAGE_COLORS[0] : MESSAGE_COLORS[1];
+            textBg.setFill(msgColor.deriveColor(0, 0.8, 0.9, 0.9));
+            textBg.setStroke(msgColor.deriveColor(0, 1.2, 0.7, 1.0));
+            textBg.setStrokeWidth(1.5);
+            textBg.setArcWidth(8);
+            textBg.setArcHeight(8);
+
+            // Add subtle shadow to the label background
+            DropShadow labelShadow = new DropShadow();
+            labelShadow.setRadius(3.0);
+            labelShadow.setOffsetX(1.5);
+            labelShadow.setOffsetY(1.5);
+            labelShadow.setColor(Color.rgb(0, 0, 0, 0.3));
+            textBg.setEffect(labelShadow);
+
+            // Adjust text position to center it properly in the background
+            labelText.setX(labelX - textWidth/2);
+            labelText.setY(labelY + textHeight/4);
+
+            simulationCanvas.getChildren().addAll(textBg, labelText);
+        }
+
+        // Add "more messages" indicator if there are additional messages
+        if (hasMoreMessages) {
+            int remainingMessages = totalMessages - maxLabels;
+            String moreLabel = "+" + remainingMessages + " more";
+
+            // Position the "more" indicator at the end of the label stack
+            double moreOffsetFactor = (labelsToShow - 1) / 2.0 + 1.5; // Position it after the last label
+            double moreLabelX = midX + offsetX * moreOffsetFactor;
+            double moreLabelY = midY + offsetY * moreOffsetFactor;
+
+            // Create "more" label text
+            Text moreLabelText = new Text(moreLabelX, moreLabelY, moreLabel);
+            moreLabelText.setFill(Color.WHITE);
+            moreLabelText.setFont(Font.font("Arial", FontWeight.BOLD, 10)); // Slightly smaller font
+
+            // Calculate text bounds for proper background sizing
+            double moreTextWidth = moreLabelText.getBoundsInLocal().getWidth();
+            double moreTextHeight = moreLabelText.getBoundsInLocal().getHeight();
+
+            // Create rounded background with padding
+            Rectangle moreTextBg = new Rectangle(
+                    moreLabelX - moreTextWidth/2 - 6,
+                    moreLabelY - moreTextHeight/2 - 4,
+                    moreTextWidth + 12,
+                    moreTextHeight + 8
+            );
+
+            // Use a different color for the "more" indicator (gray/neutral)
+            Color moreColor = Color.rgb(100, 100, 100);
+            moreTextBg.setFill(moreColor.deriveColor(0, 0.8, 0.9, 0.9));
+            moreTextBg.setStroke(moreColor.deriveColor(0, 1.2, 0.7, 1.0));
+            moreTextBg.setStrokeWidth(1.5);
+            moreTextBg.setArcWidth(8);
+            moreTextBg.setArcHeight(8);
+
+            // Add subtle shadow to the label background
+            DropShadow moreLabelShadow = new DropShadow();
+            moreLabelShadow.setRadius(3.0);
+            moreLabelShadow.setOffsetX(1.5);
+            moreLabelShadow.setOffsetY(1.5);
+            moreLabelShadow.setColor(Color.rgb(0, 0, 0, 0.3));
+            moreTextBg.setEffect(moreLabelShadow);
+
+            // Adjust text position to center it properly in the background
+            moreLabelText.setX(moreLabelX - moreTextWidth/2);
+            moreLabelText.setY(moreLabelY + moreTextHeight/4);
+
+            simulationCanvas.getChildren().addAll(moreTextBg, moreLabelText);
+        }
+    }
+
 
     private void drawConnectionWithLabel(Line line, Color color, String label) {
         // Make the line more prominent
@@ -1181,22 +1364,76 @@ public class NetworkSimulationApp extends Application {
         double clickX = event.getX();
         double clickY = event.getY();
 
-        // Check only currently visible messages
+        // Group visible messages by source-destination pairs
+        Map<String, List<Message>> groupedMessages = new HashMap<>();
         for (Message message : currentlyVisibleMessages) {
-            Node source = ground.getNodes().get(message.getSource());
-            Node destination = ground.getNodeFromId(message.getDestination());
+            String key = message.getSource() + "-" + message.getDestination();
+            if (!groupedMessages.containsKey(key)) {
+                groupedMessages.put(key, new ArrayList<>());
+            }
+            groupedMessages.get(key).add(message);
+        }
 
-            if (source != null && destination != null) {
+        // Check for clicks on message lines
+        for (Map.Entry<String, List<Message>> entry : groupedMessages.entrySet()) {
+            List<Message> messageGroup = entry.getValue();
+            if (!messageGroup.isEmpty()) {
+                Message firstMessage = messageGroup.get(0);
+                Node source = ground.getNodes().get(firstMessage.getSource());
+                Node destination = ground.getNodeFromId(firstMessage.getDestination());
+
                 double x1 = source.getX() * (simulationCanvas.getWidth() / (double) ground.getSizeX());
                 double y1 = simulationCanvas.getHeight() - (source.getY() * (simulationCanvas.getHeight() / (double) ground.getSizeY()));
                 double x2 = destination.getX() * (simulationCanvas.getWidth() / (double) ground.getSizeX());
                 double y2 = simulationCanvas.getHeight() - (destination.getY() * (simulationCanvas.getHeight() / (double) ground.getSizeY()));
 
+                // Calculate distance from click to message line
                 double distanceToLine = distanceFromPointToLine(clickX, clickY, x1, y1, x2, y2);
 
-                if (distanceToLine < 15) {
-                    selectMessage(message);
+                if (distanceToLine < 15) { // 15 pixel threshold for message selection
+                    // If multiple messages, select the first one or implement a popup menu to choose
+                    selectMessage(messageGroup.get(0));
                     return;
+                }
+
+                // Check for clicks on individual message labels
+                double midX = (x1 + x2) / 2;
+                double midY = (y1 + y2) / 2;
+
+                // Calculate perpendicular vector for label positioning
+                double dx = x2 - x1;
+                double dy = y2 - y1;
+                double length = Math.sqrt(dx * dx + dy * dy);
+                dx = dx / length;
+                dy = dy / length;
+                double perpX = -dy;
+                double perpY = dx;
+
+                for (int i = 0; i < messageGroup.size(); i++) {
+                    Message message = messageGroup.get(i);
+
+                    // Calculate position for this label (same logic as in drawConnectionWithMultipleLabels)
+                    double labelOffsetFactor;
+                    if (messageGroup.size() <= 1) {
+                        labelOffsetFactor = 0;
+                    } else {
+                        labelOffsetFactor = (i - (messageGroup.size() - 1) / 2.0) * 1.2;
+                    }
+
+                    double labelX = midX + perpX * 15 * labelOffsetFactor;
+                    double labelY = midY + perpY * 15 * labelOffsetFactor;
+
+                    // Get text bounds for hitbox calculation
+                    Text tempText = new Text(message.getMessageType().toString());
+                    double textWidth = tempText.getBoundsInLocal().getWidth() + 12;
+                    double textHeight = tempText.getBoundsInLocal().getHeight() + 8;
+
+                    // Check if click is within label bounds
+                    if (clickX >= labelX - textWidth/2 && clickX <= labelX + textWidth/2 &&
+                            clickY >= labelY - textHeight/2 && clickY <= labelY + textHeight/2) {
+                        selectMessage(message);
+                        return;
+                    }
                 }
             }
         }

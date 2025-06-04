@@ -52,12 +52,12 @@ public class OLSR_Node extends Node {
                 move();
 
 //          TODO: attack
-//            if(id == 7 && routingTable.containsKey(5)){
-//                log(3,"Overflowing node 5, sending 100 random messages");
-//                OLSR_Message_TEXT overflowMessage = new OLSR_Message_TEXT(id, 5, "Denial Of Service", 5);
-//                for(int i=0;i<100;i++)
-//                    sendMessage(overflowMessage);
-//            }
+            if(id == 7 && routingTable.containsKey(5)){
+                log(3,"Overflowing node 5, sending 100 random messages");
+                OLSR_Message_TEXT overflowMessage = new OLSR_Message_TEXT(id, 5, "Denial Of Service", 5);
+                for(int i=0;i<200;i++)
+                    sendMessage(overflowMessage);
+            }
 
 
             try {

@@ -55,6 +55,11 @@ public class CBRP_Node extends Node {
     public void turnOn(int runtTime) {
         long startTime = System.currentTimeMillis();
 
+        //TODO: Attack
+//        if(id == 3){
+//            return;
+//        }
+
         // If this is the first time turning on, schedule undecided timer
         if (totalRunTime == -1 && nodeStatus == C_UNDECIDED) {
             scheduleUTimer();
@@ -771,6 +776,7 @@ public class CBRP_Node extends Node {
 
     @Override
     public void sendMessage(Message message) {
+
         if (message instanceof CBRP_Message) {
             CBRP_Message cbrpMessage = (CBRP_Message) message;
             cbrpMessage.setSource(id);

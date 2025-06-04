@@ -313,7 +313,7 @@ public class Ground {
         //
         // Final update
         Platform.runLater(uiCallback);
-        Util.log("=========================================================");
+        Util.log("========================================================");
         Util.log("Simulation finished");
         Util.log("Messages sent: " + messageRouter.getMessages().size());
         Util.log("Text messages sent: " + messageRouter.getNumberTextsSent());
@@ -346,6 +346,7 @@ public class Ground {
             }
             if(node instanceof OLSR_Node olsrNode){
                 Util.log("[" + node.getId() +"] Undelivered text messages (" + olsrNode.getWaitingMessages().size() + ")");
+                Util.log("[" + node.getId() +"] Unprocessed messages (" + olsrNode.getMessages().size() + ")");
                 Util.log(olsrNode.prettyPrintNodeState(), true);
             }
         }

@@ -427,10 +427,10 @@ public class SAODV_Node extends Node {
     }
 
     public void prettyPrintRoutingTable() {
-        Util.log("\n Routing Table for Node " + this.getId(), false);
-        Util.log("+------------+----------+---------------+----------+---------------------+", false);
-        Util.log("| Dest Addr  | Next Hop | Dest Seq Num  | Hop Count| Last Received Time  |", false);
-        Util.log("+------------+----------+---------------+----------+---------------------+", false);
+        Util.log("\n Routing Table for Node " + this.getId(), true);
+        Util.log("+------------+----------+---------------+----------+---------------------+", true);
+        Util.log("| Dest Addr  | Next Hop | Dest Seq Num  | Hop Count| Last Received Time  |", true);
+        Util.log("+------------+----------+---------------+----------+---------------------+", true);
 
         String table = "+------------+----------+---------------+----------+---------------------+\n" +
                 String.format("| %-10s | %-8s | %-13s | %-8s | %-19s |%n",
@@ -446,7 +446,7 @@ public class SAODV_Node extends Node {
                         .collect(Collectors.joining()) +
                 "+------------+----------+---------------+----------+---------------------+";
 
-        Util.log(table, false);
+        Util.log(table, true);
     }
 
     public ArrayList<Message> getWaitingControlMessages() {

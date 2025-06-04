@@ -636,7 +636,7 @@ public class NetworkSimulationApp extends Application {
                 ground.setupRandom_AODVNode(Constants.SIMULATION_NR_NODES);
                 break;
             case 6:
-                ground.setupFromFile_AODVNode("src/main/java/org/example/licentafromzero/Config/configuration2.txt");
+                ground.setupFromFile_AODVNode("src/main/java/org/example/licentafromzero/Config/configuration1.txt");
                 break;
             case 7:
                 ground.setupRandom_SAODVNode(Constants.SIMULATION_NR_NODES);

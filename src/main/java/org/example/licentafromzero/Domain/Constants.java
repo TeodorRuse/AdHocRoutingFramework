@@ -4,12 +4,12 @@ public final class Constants {
     private Constants(){};
 
     //TODO: Fix message line hitbox
-    //TODO: Handle when more messages have same path (so they don;t overlap visually
+    //TODO: Handle when more messages have same path (so they don;t overlap visually: helps with blocking
     //TODO: create config files where this info is stored
 
     //General values
     public static final int SIMULATION_TIME = 30; //seconds
-    public static final int SIMULATION_MODE = 10; // 1 = normal | 3 = DSR | 5 = AODV | 7 = SAODV | 9 = CBRP | 11 = OLSR | even = file
+    public static final int SIMULATION_MODE = 6; // 1 = normal | 3 = DSR | 5 = AODV | 7 = SAODV | 9 = CBRP | 11 = OLSR | even = file
     public static final int SIMULATION_NR_NODES = 10;
     public static final int SIMULATION_SIZE_X = 900;
     public static final int SIMULATION_SIZE_Y = 900;
@@ -32,7 +32,7 @@ public final class Constants {
     public static final int NODE_DELAY = 10; // NO modify
     public static final int NODE_SPEED_BOUND = 10;
     public static final int NODE_SPEED_MIN_VAL = -NODE_SPEED_BOUND;
-    public static final int NODE_MOBILITY_TYPE = 2; // 0 = static | 1 = randomDirection | 2 = randomWaypoint
+    public static final int NODE_MOBILITY_TYPE = 0; // 0 = static | 1 = randomDirection | 2 = randomWaypoint
     public static final int NODE_MOBILITY_WAYPOINT_PAUSE = 2000; //ms to pause after reached waypoint
 
     public static final int NODE_MESSAGE_DELAY_BOUND = 1000;

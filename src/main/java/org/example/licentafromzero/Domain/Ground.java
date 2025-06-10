@@ -4,8 +4,10 @@ import javafx.application.Platform;
 import org.example.licentafromzero.AODV.AODV_Node;
 import org.example.licentafromzero.AODV.AODV_Node_Wormhole;
 import org.example.licentafromzero.CBRP.CBRP_Node;
+import org.example.licentafromzero.CBRP.CBRP_Node_Blackhole;
 import org.example.licentafromzero.DSR.DSR_Node;
 import org.example.licentafromzero.OLSR.OLSR_Node;
+import org.example.licentafromzero.OLSR.OLSR_Node_Overflow;
 import org.example.licentafromzero.SAODV.SAODV_Node;
 
 import java.io.IOException;
@@ -275,8 +277,8 @@ public class Ground {
         }
     }
 
-    public void setupFromFile_OLSRNode(String filePath){
-        this.protocol = "OLSR";
+    public void setupFromFile_CBRPNode_Blackhole(String filePath){
+        this.protocol = "CBRP - Blackhole (3)";
         try {
             List<String> lines = Files.readAllLines(Paths.get(filePath));
             Map<Integer, PublicKey> keyChain = new HashMap<>();
@@ -290,7 +292,56 @@ public class Ground {
                 int y = Integer.parseInt(parts[1]);
                 int commRadius = Integer.parseInt(parts[2]);
 
+                Node node = new CBRP_Node_Blackhole(x, y, i, commRadius);
+                node.setMessageRouter(messageRouter);
+                messageRouter.addNode(node);
+                nodes.add(node);
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace(); // Or handle more gracefully
+        }
+    }
+
+    public void setupFromFile_OLSRNode(String filePath){
+        this.protocol = "OLSR";
+        try {
+            List<String> lines = Files.readAllLines(Paths.get(filePath));
+            numberNodes = lines.size();
+
+            for (int i = 0; i < lines.size(); i++) {
+                String[] parts = lines.get(i).trim().split("\\s+"); // split by space(s)
+                if (parts.length < 3) continue; // skip if not enough data
+
+                int x = Integer.parseInt(parts[0]);
+                int y = Integer.parseInt(parts[1]);
+                int commRadius = Integer.parseInt(parts[2]);
+
                 Node node = new OLSR_Node(x, y, i, commRadius);
+                node.setMessageRouter(messageRouter);
+                messageRouter.addNode(node);
+                nodes.add(node);
+            }
+        } catch (IOException e) {
+            e.printStackTrace(); // Or handle more gracefully
+        }
+    }
+
+    public void setupFromFile_OLSRNode_Overflow(String filePath){
+        this.protocol = "OLSR Overflow";
+        try {
+            List<String> lines = Files.readAllLines(Paths.get(filePath));
+            numberNodes = lines.size();
+
+            for (int i = 0; i < lines.size(); i++) {
+                String[] parts = lines.get(i).trim().split("\\s+"); // split by space(s)
+                if (parts.length < 3) continue; // skip if not enough data
+
+                int x = Integer.parseInt(parts[0]);
+                int y = Integer.parseInt(parts[1]);
+                int commRadius = Integer.parseInt(parts[2]);
+
+                Node node = new OLSR_Node_Overflow(x, y, i, commRadius);
                 node.setMessageRouter(messageRouter);
                 messageRouter.addNode(node);
                 nodes.add(node);
@@ -335,7 +386,8 @@ public class Ground {
             }
         }
 
-        //
+        focusedNodeIndex = -1;
+
         // Final update
         Platform.runLater(uiCallback);
         Util.log("========================================================");

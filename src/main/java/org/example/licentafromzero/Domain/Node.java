@@ -131,7 +131,7 @@ public class Node {
             sendMessage(message);
             lastNeighbourDiscovery = totalRunTime;
             updatingNeighbours = true;
-            log(1,  " discovering neighbours");
+            log(0,  " discovering neighbours");
         }
 
         if(totalRunTime - lastNeighbourDiscovery >= Constants.NODE_NEIGHBOUR_DISCOVERY_DURATION && updatingNeighbours){

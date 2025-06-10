@@ -304,7 +304,6 @@ public class NetworkSimulationApp extends Application {
         }
     }
 
-
     private Button createControlButton(String text, int textSize, int delay) {
         Button btn = new Button(text);
         btn.setPrefSize(40, 40);
@@ -612,6 +611,13 @@ public class NetworkSimulationApp extends Application {
                 break;
             case 13:
                 ground.setupFromFile_AODVNode_Wormhole("src/main/java/org/example/licentafromzero/Config/configuration3.txt");
+                break;
+            case 14:
+                ground.setupFromFile_CBRPNode_Blackhole("src/main/java/org/example/licentafromzero/Config/configuration2.txt");
+                break;
+            case 15:
+                ground.setupFromFile_OLSRNode_Overflow("src/main/java/org/example/licentafromzero/Config/configuration2.txt");
+                break;
         }
     }
 
@@ -651,7 +657,7 @@ public class NetworkSimulationApp extends Application {
         drawGrid();
 
         // Draw clusters first (so they appear behind nodes)
-        if (ground.getProtocol().equals("CBRP")) ;
+        if (ground.getProtocol().contains("CBRP")) ;
         drawClusters();
 
         // Draw connections between neighbors
@@ -709,7 +715,7 @@ public class NetworkSimulationApp extends Application {
 
         // Determine node appearance based on status
         switch (ground.getProtocol()) {
-            case "CBRP":
+            case "CBRP", "CBRP - Blackhole (3)":
                 switch (status) {
                     case 1: // C_HEAD
                         nodeColor = Color.DARKRED;
@@ -774,7 +780,7 @@ public class NetworkSimulationApp extends Application {
         simulationCanvas.getChildren().addAll(hexagon, idLabel);
 
         // Add status indicator for CBRP
-        if (ground.getProtocol().equals("CBRP") && !statusText.isEmpty()) {
+        if (ground.getProtocol().contains("CBRP") && !statusText.isEmpty()) {
             Circle statusIndicator = new Circle(x + NODE_SIZE, y - NODE_SIZE, 8);
             statusIndicator.setFill(Color.WHITE);
             statusIndicator.setStroke(nodeColor);
@@ -938,37 +944,15 @@ public class NetworkSimulationApp extends Application {
         }
     }
 
-//    private void drawConnections() {
-//        List<Message> messages = new ArrayList<>(ground.getMessageRouter().getMessages());
-//        currentlyVisibleMessages.clear(); // Clear previous frame's messages
-//
-//        for (Message message : messages) {
-//            Node source = ground.getNodes().get(message.getSource());
-//            if (source == ground.getNodes().get(ground.getFocusedNodeIndex())) {
-//                Node destination = ground.getNodeFromId(message.getDestination());
-//
-//                double x1 = source.getX() * (simulationCanvas.getWidth() / (double) ground.getSizeX());
-//                double y1 = simulationCanvas.getHeight() - (source.getY() * (simulationCanvas.getHeight() / (double) ground.getSizeY()));
-//                double x2 = destination.getX() * (simulationCanvas.getWidth() / (double) ground.getSizeX());
-//                double y2 = simulationCanvas.getHeight() - (destination.getY() * (simulationCanvas.getHeight() / (double) ground.getSizeY()));
-//
-//                Line line = new Line(x1, y1, x2, y2);
-//
-//                if (classifyMessageType(message) >= Constants.LOG_LEVEL && message.getNumberFramesShown() != 0) {
-//                    currentlyVisibleMessages.add(message); // Track this message as visible
-//                    Color messageColor = message.isSuccessful() ? MESSAGE_COLORS[0] : MESSAGE_COLORS[1];
-//                    drawConnectionWithLabel(line, messageColor, message.getMessageType().toString());
-//                    message.decreaseNumberFramesShown();
-//                }
-//            }
-//        }
-//    }
     private void drawConnections() {
         List<Message> messages = new ArrayList<>(ground.getMessageRouter().getMessages());
         currentlyVisibleMessages.clear(); // Clear previous frame's messages
 
         // Group messages by source-destination pairs
         Map<String, List<Message>> groupedMessages = new HashMap<>();
+
+        if(ground.getFocusedNodeIndex() == -1)
+            return;
 
         for (Message message : messages) {
             Node source = ground.getNodes().get(message.getSource());
@@ -1305,8 +1289,7 @@ public class NetworkSimulationApp extends Application {
                 info.append("Multicast: ").append(selectedMessage.isMulticast() ? "Yes" : "No").append("\n");
             }
 
-            // Always show runtime display info
-            info.append("Frames Shown: ").append(selectedMessage.getNumberFramesShown()).append("\n");
+//            info.append("Frames Shown: ").append(selectedMessage.getNumberFramesShown()).append("\n");
 
             // Add source node info
             Node sourceNode = ground.getNodes().get(selectedMessage.getSource());
@@ -1476,6 +1459,10 @@ public class NetworkSimulationApp extends Application {
         if (startTime > 0) {
             long elapsed = System.currentTimeMillis() - startTime - Constants.SIMULATION_PAUSE_TIME;
             long totalDuration = Constants.SIMULATION_TIME * 1000;
+
+            if(elapsed > totalDuration){
+                elapsed = totalDuration;
+            }
 
             double progress = Math.min(1.0, (double) elapsed / totalDuration);
             timeProgressBar.setProgress(progress);

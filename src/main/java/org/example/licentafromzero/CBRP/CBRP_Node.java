@@ -55,11 +55,6 @@ public class CBRP_Node extends Node {
     public void turnOn(int runtTime) {
         long startTime = System.currentTimeMillis();
 
-        //TODO: Black Hole Attack
-        if(id == 3){
-            return;
-        }
-
         // If this is the first time turning on, schedule undecided timer
         if (totalRunTime == -1 && nodeStatus == C_UNDECIDED) {
             scheduleUTimer();
@@ -264,7 +259,7 @@ public class CBRP_Node extends Node {
         CBRP_Message helloMessage = new CBRP_Message(id, -1, helloText.toString(), MessageType.CBRP_NEIGHBOUR_HELLO, true);
 
         // Send to all nodes within range (using the base Node's broadcast mechanism)
-        super.sendMessage(helloMessage);
+        sendMessage(helloMessage);
 
         log(1, "sent HELLO message with status " + nodeStatus + ", neighbors: " + neighbours);
     }
@@ -485,7 +480,7 @@ public class CBRP_Node extends Node {
                 forwardedRreq.setSource(id);
                 forwardedRreq.setDestination(rreqInfo.getTargetAddress());
                 forwardedRreq.setMulticast(false);
-                messageRouter.sendMessage(forwardedRreq);
+                sendMessage(forwardedRreq);
                 return;
             }
         }
@@ -499,7 +494,7 @@ public class CBRP_Node extends Node {
                 forwardedRreq.setSource(id);
                 forwardedRreq.setDestination(entry.getKey());
                 forwardedRreq.setMulticast(false);
-                messageRouter.sendMessage(forwardedRreq);
+                sendMessage(forwardedRreq);
                 return;
             }
         }
@@ -554,7 +549,7 @@ public class CBRP_Node extends Node {
                     forwardedRreq.setSource(id);
                     forwardedRreq.setDestination(gateway);
                     forwardedRreq.setMulticast(false);
-                    messageRouter.sendMessage(forwardedRreq);
+                    sendMessage(forwardedRreq);
                     log(2, "forwarded RREQ to gateway " + gateway + " for cluster " + clusterHead);
                 }
             }
@@ -577,7 +572,7 @@ public class CBRP_Node extends Node {
                 forwardedRreq.setSource(id);
                 forwardedRreq.setDestination(targetClusterHead);
                 forwardedRreq.setMulticast(false);
-                messageRouter.sendMessage(forwardedRreq);
+                sendMessage(forwardedRreq);
                 log(2, "forwarded RREQ as gateway to cluster head " + targetClusterHead);
             }
         }
@@ -643,7 +638,7 @@ public class CBRP_Node extends Node {
                 forwardedRrep.setSource(id);
                 forwardedRrep.setDestination(gatewayNode);
                 forwardedRrep.setMulticast(false);
-                messageRouter.sendMessage(forwardedRrep);
+                sendMessage(forwardedRrep);
                 log(2, "forwarded RREP to gateway " + gatewayNode + " for cluster " + nextClusterHead);
             } else {
                 log(2, "no gateway found to next cluster head " + nextClusterHead);
@@ -669,7 +664,7 @@ public class CBRP_Node extends Node {
                 forwardedRrep.setSource(id);
                 forwardedRrep.setDestination(nextClusterHead);
                 forwardedRrep.setMulticast(false);
-                messageRouter.sendMessage(forwardedRrep);
+                sendMessage(forwardedRrep);
                 log(2, "forwarded RREP directly to cluster head " + nextClusterHead);
             } else {
                 log(2, "next cluster head " + nextClusterHead + " is not my neighbor");
@@ -728,7 +723,7 @@ public class CBRP_Node extends Node {
             forwardedRerr.setSource(id);
             forwardedRerr.setDestination(nextHop);
             forwardedRerr.setMulticast(false);
-            messageRouter.sendMessage(forwardedRerr);
+            sendMessage(forwardedRerr);
             log(2, "forwarded RERR to " + nextHop);
         }
     }
@@ -761,7 +756,7 @@ public class CBRP_Node extends Node {
             forwardedMessage.setSource(id);
             forwardedMessage.setDestination(nextHop);
             forwardedMessage.setMulticast(false);
-            messageRouter.sendMessage(forwardedMessage);
+            sendMessage(forwardedMessage);
             log(2, "forwarded text message to " + nextHop);
         } else {
             // Next hop is unreachable, try local repair
@@ -882,7 +877,7 @@ public class CBRP_Node extends Node {
         rrepMessage.setRouteReplyInfo(rrepInfo);
         
         // Send the RREP
-        messageRouter.sendMessage(rrepMessage);
+        sendMessage(rrepMessage);
         log(2, "sent RREP to " + rreqMessage.getSource());
     }
 
@@ -908,7 +903,7 @@ public class CBRP_Node extends Node {
         rerrMessage.setRouteErrorInfo(rerrInfo);
         
         // Send the RERR
-        messageRouter.sendMessage(rerrMessage);
+        sendMessage(rerrMessage);
         log(2, "sent RERR for broken link " + id + " -> " + unreachableNode);
     }
 
@@ -944,7 +939,7 @@ public class CBRP_Node extends Node {
                     repairedMessage.setSource(id);
                     repairedMessage.setDestination(intermediateNode);
                     repairedMessage.setMulticast(false);
-                    messageRouter.sendMessage(repairedMessage);
+                    sendMessage(repairedMessage);
                     log(2, "repaired route using intermediate node " + intermediateNode);
                     
                     return true;
@@ -972,7 +967,7 @@ public class CBRP_Node extends Node {
                 repairedMessage.setSource(id);
                 repairedMessage.setDestination(nodeAfterUnreachable);
                 repairedMessage.setMulticast(false);
-                messageRouter.sendMessage(repairedMessage);
+              sendMessage(repairedMessage);
                 log(2, "repaired route by skipping unreachable node " + unreachableNode);
                 
                 return true;
@@ -1002,7 +997,7 @@ public class CBRP_Node extends Node {
                         repairedMessage.setSource(id);
                         repairedMessage.setDestination(intermediateNode);
                         repairedMessage.setMulticast(false);
-                        messageRouter.sendMessage(repairedMessage);
+                        sendMessage(repairedMessage);
                         log(2, "repaired route by finding alternative path to node after unreachable");
                         
                         return true;
@@ -1034,7 +1029,7 @@ public class CBRP_Node extends Node {
                 textMessage.setSourceRoute(route);
                 
                 // Send the message
-                messageRouter.sendMessage(textMessage);
+               sendMessage(textMessage);
                 log(2, "sent waiting text message to " + message.getDestination());
                 
                 // Mark for removal

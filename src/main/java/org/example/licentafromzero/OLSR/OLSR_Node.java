@@ -9,20 +9,20 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class OLSR_Node extends Node {
-    private ArrayList<OLSR_NeighbourTable_1hop> neighbourTable_oneHop = new ArrayList<>();
-    private HashMap<Integer, OLSR_NeighbourTable_2hop> neighbourTable_twoHop = new HashMap<>();
-    private HashMap<Integer, OLSR_RoutingTableEntry> routingTable = new HashMap<>();
+    protected ArrayList<OLSR_NeighbourTable_1hop> neighbourTable_oneHop = new ArrayList<>();
+    protected HashMap<Integer, OLSR_NeighbourTable_2hop> neighbourTable_twoHop = new HashMap<>();
+    protected HashMap<Integer, OLSR_RoutingTableEntry> routingTable = new HashMap<>();
 
-    private ArrayList<Integer> multipleRelayPoints = new ArrayList<>();
-    private ArrayList<Integer> mrpSelectors = new ArrayList<>();
+    protected ArrayList<Integer> multipleRelayPoints = new ArrayList<>();
+    protected ArrayList<Integer> mrpSelectors = new ArrayList<>();
 
-    private int seqNum = 0;
-    private ArrayList<Pair<Integer, Integer>> knownMessages = new ArrayList<>();
+    protected int seqNum = 0;
+    protected ArrayList<Pair<Integer, Integer>> knownMessages = new ArrayList<>();
 
-    private Timer helloTimer = new Timer(Constants.OLSR_HELLO_INTERVAL);
-    private Timer tcTimer = new Timer(Constants.OLSR_TC_INTERVAL);
-    private Timer resendTimer = new Timer(Constants.OLSR_RESEND_TIME);
-    private Timer randomMessageTimer;
+    protected Timer helloTimer = new Timer(Constants.OLSR_HELLO_INTERVAL);
+    protected Timer tcTimer = new Timer(Constants.OLSR_TC_INTERVAL);
+    protected Timer resendTimer = new Timer(Constants.OLSR_RESEND_TIME);
+    protected Timer randomMessageTimer;
 
     public OLSR_Node(int x, int y, int id) {
         super(x, y, id);
@@ -50,15 +50,6 @@ public class OLSR_Node extends Node {
 
             if(id == 0)
                 move();
-
-//          TODO: attack
-//            if(id == 7 && routingTable.containsKey(5)){
-//                log(3,"Overflowing node 5, sending 100 random messages");
-//                OLSR_Message_TEXT overflowMessage = new OLSR_Message_TEXT(id, 5, "Denial Of Service", 5);
-//                for(int i=0;i<20;i++)
-//                    sendMessage(overflowMessage);
-//            }
-
 
             try {
                 Thread.sleep(Constants.NODE_DELAY);
@@ -322,7 +313,7 @@ public class OLSR_Node extends Node {
         }
     }
 
-    private int getHopCountToNode(int nodeAddr) {
+    protected int getHopCountToNode(int nodeAddr) {
         if (neighbourTable_oneHop.stream().anyMatch(n -> n.getId() == nodeAddr)) {
             return 1;
         }
@@ -334,7 +325,7 @@ public class OLSR_Node extends Node {
         return Integer.MAX_VALUE;
     }
 
-    private int getNextHopToNode(int nodeAddr) {
+    protected int getNextHopToNode(int nodeAddr) {
         if (neighbourTable_oneHop.stream().anyMatch(n -> n.getId() == nodeAddr)) {
             return nodeAddr;
         }

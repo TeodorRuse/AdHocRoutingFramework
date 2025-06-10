@@ -276,7 +276,7 @@ public class AODV_Node extends Node {
     }
 
     public void beginRouteDiscovery(int finalDestination){
-        log(2, " beginning route discovery to " + finalDestination);
+        log(2, "beginning route discovery to " + finalDestination);
         AODV_Message rreq = new AODV_Message(id, MessageType.AODV_RREQ, finalDestination, sequenceNumber, -1, broadcastId);
         this.knownMessageIDs.add(new Pair<>(id, broadcastId));
         messageRouter.sendMessage(rreq, neighbours);

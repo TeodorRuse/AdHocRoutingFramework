@@ -96,7 +96,7 @@ public class AODV_Node_Wormhole extends AODV_Node{
                 }else{
                     waitingMessages.add(message);
 
-                    log(1, "beginning route discovery to " + message.getDestination());
+//                    log(1, "beginning route discovery to " + message.getDestination());
                     beginRouteDiscovery(message.getDestination());
 
                 }
@@ -109,19 +109,21 @@ public class AODV_Node_Wormhole extends AODV_Node{
 
     @Override
     public void handleMessage(Message message) {
-        log(1, "received " + message.getMessageType() + " from " + message.getSource());
 
         switch (message.getMessageType()) {
             case TEXT:
                 break;
             case NEIGHBOUR_SYN:
+                log(0, "received " + message.getMessageType() + " from " + message.getSource());
                 sendMessage(new Message(id, message.getSource(), MessageType.NEIGHBOUR_ACK, false));
                 break;
             case NEIGHBOUR_ACK:
+                log(0, "received " + message.getMessageType() + " from " + message.getSource());
                 newNeighbours.add(message.getSource());
                 break;
 
             case AODV_RREQ:
+                log(1, "received " + message.getMessageType() + " from " + message.getSource());
                 if(message instanceof AODV_Message aodvMessage){
                     //drops it is it knows it
                     //incerase it's hopCount
@@ -146,19 +148,19 @@ public class AODV_Node_Wormhole extends AODV_Node{
                             sendWaitingMessages();
                         }
 
-                        //TODO: Attack!!
-//                        if(id == 6 && aodvMessage.getSource() == 2){
-//                            log(4, "received RREQ to 2, attacking and sending fake RREP");
-//                            AODV_Message rrep = new AODV_Message(id, aodvMessage.getSource(), MessageType.AODV_RREP,
-//                                   9, aodvMessage.getOriginalSource(), 10000);
-//                            sendMessage(rrep);
-//
-//                            AODV_RoutingTableEntry tableEntry = new AODV_RoutingTableEntry(9,
-//                                    7, 0, 6, totalRunTime);
-//                            routingTable.put(aodvMessage.getOriginalSource(), tableEntry);
-//
-//                            break;
-//                        }
+                        // Wormhole  Attack
+                        if(id == 6 && aodvMessage.getSource() == 2){
+                            log(4, "received RREQ to 2, attacking and sending fake RREP");
+                            AODV_Message rrep = new AODV_Message(id, aodvMessage.getSource(), MessageType.AODV_RREP,
+                                   9, aodvMessage.getOriginalSource(), 10000);
+                            sendMessage(rrep);
+
+                            AODV_RoutingTableEntry tableEntry = new AODV_RoutingTableEntry(9,
+                                    7, 0, 6, totalRunTime);
+                            routingTable.put(aodvMessage.getOriginalSource(), tableEntry);
+
+                            break;
+                        }
 
 
                         //check if the node is finalDestination
@@ -187,6 +189,7 @@ public class AODV_Node_Wormhole extends AODV_Node{
                 }
                 break;
             case AODV_RREP:
+                log(2, "received " + message.getMessageType() + " from " + message.getSource());
                 if(message instanceof AODV_Message aodvMessage){
                     //check if  node is the final destinaition
                     //add it to the routing table
@@ -196,6 +199,12 @@ public class AODV_Node_Wormhole extends AODV_Node{
                     aodvMessage.increaseHopCount();
                     if(aodvMessage.getActualSource() != aodvMessage.getOriginalSource()){
                         log(2, "RREP is not from the target node, but a cached one!");
+                    }
+
+
+                    if(id == 6 && aodvMessage.getSource() == 2){
+                        log(3, "received broken route to 9, passing trough itself, ignoring");
+                        break;
                     }
 
 
@@ -223,6 +232,7 @@ public class AODV_Node_Wormhole extends AODV_Node{
                 }
                 break;
             case AODV_TEXT:
+                log(3, "received " + message.getMessageType() + " from " + message.getSource());
                 if(message instanceof AODV_Message aodvMessage){
                     if(aodvMessage.getFinalDestination() == id){
                         log(3, "received text: " + message.getText());
@@ -242,6 +252,7 @@ public class AODV_Node_Wormhole extends AODV_Node{
                 }
                 break;
             case AODV_RERR:
+                log(1, "received " + message.getMessageType() + " from " + message.getSource());
                 if(message instanceof AODV_Message aodvMessage){
                     Pair<Integer, Integer> id = new Pair<>(aodvMessage.getOriginalSource(), aodvMessage.getBroadcastId());
                     if(!knownMessageIDs.contains(id)){

@@ -1,2482 +1,794 @@
-Node 0  discovering neighbours
-Node 1  discovering neighbours
-Node 2 received NEIGHBOUR_SYN from 0
-Node 2  discovering neighbours
-Node 3 received NEIGHBOUR_SYN from 0
-Node 3 received NEIGHBOUR_SYN from 1
-Node 3 received NEIGHBOUR_SYN from 2
-Node 3  discovering neighbours
-Node 4 received NEIGHBOUR_SYN from 0
-Node 4 received NEIGHBOUR_SYN from 2
-Node 4 received NEIGHBOUR_SYN from 3
-Node 4  discovering neighbours
-Node 5  discovering neighbours
-Node 6 received NEIGHBOUR_SYN from 0
-Node 6 received NEIGHBOUR_SYN from 2
-Node 6  discovering neighbours
-Node 7 received NEIGHBOUR_SYN from 5
-Node 7 received NEIGHBOUR_SYN from 6
-Node 7  discovering neighbours
-Node 8 received NEIGHBOUR_SYN from 5
-Node 8  discovering neighbours
-Node 9 received NEIGHBOUR_SYN from 1
-Node 9 received NEIGHBOUR_SYN from 3
-Node 9 received NEIGHBOUR_SYN from 8
-Node 9  discovering neighbours
-Node 0 received NEIGHBOUR_ACK from 2
-Node 0 received NEIGHBOUR_SYN from 2
-Node 0 received NEIGHBOUR_ACK from 3
-Node 0 received NEIGHBOUR_SYN from 3
-Node 0 received NEIGHBOUR_ACK from 6
-Node 0 received NEIGHBOUR_SYN from 6
-Node 1 received NEIGHBOUR_ACK from 3
-Node 1 received NEIGHBOUR_SYN from 3
-Node 1 received NEIGHBOUR_ACK from 9
-Node 1 received NEIGHBOUR_SYN from 9
-Node 2 received NEIGHBOUR_ACK from 3
-Node 2 received NEIGHBOUR_SYN from 3
-Node 2 received NEIGHBOUR_ACK from 6
-Node 2 received NEIGHBOUR_SYN from 6
-Node 2 received NEIGHBOUR_ACK from 0
-Node 3 received NEIGHBOUR_ACK from 4
-Node 3 received NEIGHBOUR_SYN from 4
-Node 3 received NEIGHBOUR_ACK from 9
-Node 3 received NEIGHBOUR_SYN from 9
-Node 3 received NEIGHBOUR_ACK from 0
-Node 3 received NEIGHBOUR_ACK from 1
-Node 3 received NEIGHBOUR_ACK from 2
-Node 3 received OLSR_HELLO from 2
-Node 4 received NEIGHBOUR_SYN from 6
-Node 4 received NEIGHBOUR_ACK from 3
-Node 4 received OLSR_HELLO from 3
-Node 5 received NEIGHBOUR_SYN from 6
-Node 5 received NEIGHBOUR_ACK from 7
-Node 5 received NEIGHBOUR_SYN from 7
-Node 5 received NEIGHBOUR_ACK from 8
-Node 5 received NEIGHBOUR_SYN from 8
-Node 5 received NEIGHBOUR_SYN from 9
-Node 6 received NEIGHBOUR_ACK from 7
-Node 6 received NEIGHBOUR_SYN from 7
-Node 6 received NEIGHBOUR_ACK from 0
-Node 6 received NEIGHBOUR_ACK from 2
-Node 6 received OLSR_HELLO from 2
-Node 7 received NEIGHBOUR_ACK from 5
-Node 7 received NEIGHBOUR_ACK from 6
-Node 8 received NEIGHBOUR_ACK from 9
-Node 8 received NEIGHBOUR_SYN from 9
-Node 8 received NEIGHBOUR_ACK from 5
-Node 9 received NEIGHBOUR_ACK from 1
-Node 9 received NEIGHBOUR_ACK from 3
-Node 9 received OLSR_HELLO from 3
-Node 9 received NEIGHBOUR_ACK from 8
-Node 9 received OLSR_HELLO from 8
-Node 0 received OLSR_HELLO from 2
-Node 0 received OLSR_HELLO from 3
-Node 1 received OLSR_HELLO from 3
-Node 2 received OLSR_HELLO from 0
-Node 3 received OLSR_HELLO from 0
-Node 3 received OLSR_HELLO from 1
-Node 5 received OLSR_HELLO from 7
-Node 5 received OLSR_HELLO from 8
-Node 6 received OLSR_HELLO from 7
-Node 6 received OLSR_HELLO from 0
-Node 7 received OLSR_HELLO from 5
-Node 7 received OLSR_HELLO from 6
-Node 8 received OLSR_HELLO from 5
-Node 9 received OLSR_HELLO from 1
-Node 0 received OLSR_HELLO from 6
-Node 0  discovering neighbours
-Node 1 received OLSR_HELLO from 9
-Node 1  discovering neighbours
-Node 2 received OLSR_HELLO from 6
-Node 2 received NEIGHBOUR_SYN from 0
-Node 2 received OLSR_HELLO from 0
-Node 2  discovering neighbours
-Node 3 received OLSR_HELLO from 4
-Node 3 received OLSR_HELLO from 9
-Node 3 received NEIGHBOUR_SYN from 0
-Node 3 received OLSR_HELLO from 0
-Node 3 received NEIGHBOUR_SYN from 1
-Node 3 received OLSR_HELLO from 1
-Node 3 received NEIGHBOUR_SYN from 2
-Node 3 received OLSR_HELLO from 2
-Node 3  discovering neighbours
-Node 4 received NEIGHBOUR_SYN from 0
-Node 4 received NEIGHBOUR_SYN from 2
-Node 4 received NEIGHBOUR_SYN from 3
-Node 4 received OLSR_HELLO from 3
-Node 4  discovering neighbours
-Node 5  discovering neighbours
-Node 6 received NEIGHBOUR_SYN from 0
-Node 6 received OLSR_HELLO from 0
-Node 6 received NEIGHBOUR_SYN from 2
-Node 6 received OLSR_HELLO from 2
-Node 6  discovering neighbours
-Node 7 received NEIGHBOUR_SYN from 5
-Node 7 received NEIGHBOUR_SYN from 6
-Node 7  discovering neighbours
-Node 8 received OLSR_HELLO from 9
-Node 8 received NEIGHBOUR_SYN from 5
-Node 8  discovering neighbours
-Node 9 received NEIGHBOUR_SYN from 1
-Node 9 received OLSR_HELLO from 1
-Node 9 received NEIGHBOUR_SYN from 3
-Node 9 received OLSR_HELLO from 3
-Node 9 received NEIGHBOUR_SYN from 5
-Node 9 received NEIGHBOUR_SYN from 8
-Node 9 received OLSR_HELLO from 8
-Node 9  discovering neighbours
-Node 0 received NEIGHBOUR_ACK from 2
-Node 0 received NEIGHBOUR_SYN from 2
-Node 0 received OLSR_HELLO from 2
-Node 0 received NEIGHBOUR_ACK from 3
-Node 0 received NEIGHBOUR_SYN from 3
-Node 0 received OLSR_TEXT from 3
-Node 0 received text: Hello from 3
-Node 0 received OLSR_HELLO from 3
-Node 0 received NEIGHBOUR_ACK from 4
-Node 0 received NEIGHBOUR_SYN from 4
-Node 0 received NEIGHBOUR_ACK from 6
-Node 0 received NEIGHBOUR_SYN from 6
-Node 1 received NEIGHBOUR_ACK from 3
-Node 1 received NEIGHBOUR_SYN from 3
-Node 1 received OLSR_HELLO from 3
-Node 1 received NEIGHBOUR_ACK from 9
-Node 1 received OLSR_TEXT from 9
-Node 1 received text: Hello from 9
-Node 1 received NEIGHBOUR_SYN from 9
-Node 1 received OLSR_HELLO from 9
-Node 2 received NEIGHBOUR_ACK from 3
-Node 2 received NEIGHBOUR_SYN from 3
-Node 2 received OLSR_HELLO from 3
-Node 2 received NEIGHBOUR_ACK from 6
-Node 2 received NEIGHBOUR_SYN from 6
-Node 2 received NEIGHBOUR_ACK from 0
-Node 2 received OLSR_TC from 0
-Node 3 received NEIGHBOUR_ACK from 4
-Node 3 received NEIGHBOUR_SYN from 4
-Node 3 received OLSR_TEXT from 4
-Node 3 sending message further to 9 to reach 9
-Node 3 received OLSR_HELLO from 4
-Node 3 received NEIGHBOUR_ACK from 9
-Node 3 received NEIGHBOUR_SYN from 9
-Node 3 received OLSR_HELLO from 9
-Node 3 received NEIGHBOUR_ACK from 0
-Node 3 received OLSR_TC from 0
-Node 3 received NEIGHBOUR_ACK from 1
-Node 3 received NEIGHBOUR_ACK from 2
-Node 4 received NEIGHBOUR_SYN from 6
-Node 4 received NEIGHBOUR_SYN from 9
-Node 4 received NEIGHBOUR_ACK from 0
-Node 4 received NEIGHBOUR_ACK from 3
-Node 4 received OLSR_TC from 3
-Node 4 received OLSR_TC from 3
-Node 5 received NEIGHBOUR_SYN from 6
-Node 5 received NEIGHBOUR_ACK from 7
-Node 5 received NEIGHBOUR_SYN from 7
-Node 5 received OLSR_HELLO from 7
-Node 5 received NEIGHBOUR_ACK from 8
-Node 5 received NEIGHBOUR_SYN from 8
-Node 5 received OLSR_HELLO from 8
-Node 5 received NEIGHBOUR_ACK from 9
-Node 5 received NEIGHBOUR_SYN from 9
-Node 6 received NEIGHBOUR_ACK from 7
-Node 6 received NEIGHBOUR_SYN from 7
-Node 6 received OLSR_HELLO from 7
-Node 6 received NEIGHBOUR_ACK from 0
-Node 6 received OLSR_TC from 0
-Node 6 received NEIGHBOUR_ACK from 2
-Node 7 received NEIGHBOUR_ACK from 5
-Node 7 received OLSR_HELLO from 5
-Node 7 received OLSR_TC from 5
-Node 7 received NEIGHBOUR_ACK from 6
-Node 7 received OLSR_TC from 6
-Node 7 received OLSR_HELLO from 6
-Node 7 received OLSR_TC from 6
-Node 8 received NEIGHBOUR_ACK from 9
-Node 8 received NEIGHBOUR_SYN from 9
-Node 8 received OLSR_HELLO from 9
-Node 8 received NEIGHBOUR_ACK from 5
-Node 8 received OLSR_HELLO from 5
-Node 8 received OLSR_TC from 5
-Node 9 received NEIGHBOUR_ACK from 1
-Node 9 received OLSR_TEXT from 3
-Node 9 received text: Hello from 4
-Node 9 received NEIGHBOUR_ACK from 3
-Node 9 received OLSR_TC from 3
-Node 9 received OLSR_TC from 3
-Node 9 received NEIGHBOUR_ACK from 5
-Node 9 received NEIGHBOUR_ACK from 8
-Node 9 received OLSR_TC from 8
-Node 9 received OLSR_TC from 8
-Node 0 received OLSR_TC from 3
-Node 0 received OLSR_TC from 3
-Node 0 received OLSR_TC from 6
-Node 0 received OLSR_HELLO from 6
-Node 0 received OLSR_TC from 6
-Node 1 received OLSR_TC from 3
-Node 1 received OLSR_TC from 3
-Node 1 received OLSR_TC from 9
-Node 1 received OLSR_TC from 9
-Node 1 received OLSR_TC from 9
-Node 1 received OLSR_TC from 9
-Node 1 received OLSR_TC from 9
-Node 2 received OLSR_TC from 3
-Node 2 received OLSR_TC from 3
-Node 2 received OLSR_TC from 6
-Node 2 received OLSR_HELLO from 6
-Node 2 received OLSR_TC from 6
-Node 2 received OLSR_TC from 0
-Node 2 received OLSR_TC from 0
-Node 2 received OLSR_TC from 0
-Node 2 received OLSR_HELLO from 0
-Node 3 received OLSR_TC from 9
-Node 3 received OLSR_TC from 9
-Node 3 received OLSR_TC from 9
-Node 3 received OLSR_TC from 9
-Node 3 received OLSR_TC from 9
-Node 3 received OLSR_TC from 0
-Node 3 received OLSR_TC from 0
-Node 3 received OLSR_TC from 0
-Node 3 received OLSR_HELLO from 0
-Node 3 received OLSR_HELLO from 1
-Node 3 received OLSR_HELLO from 2
-Node 4 received OLSR_TC from 0
-Node 4 received OLSR_TC from 0
-Node 4 received OLSR_TC from 0
-Node 4 received OLSR_HELLO from 0
-Node 4 received OLSR_TC from 3
-Node 4 received OLSR_TC from 3
-Node 4 received OLSR_TC from 3
-Node 4 received OLSR_TC from 3
-Node 4 received OLSR_TC from 3
-Node 4 received OLSR_HELLO from 3
-Node 5 received OLSR_TC from 7
-Node 5 received OLSR_TC from 7
-Node 5 received OLSR_TC from 7
-Node 5 received OLSR_TC from 7
-Node 5 received OLSR_TC from 8
-Node 5 received OLSR_TC from 8
-Node 6 received OLSR_TC from 7
-Node 6 received OLSR_TC from 7
-Node 6 received OLSR_TC from 7
-Node 6 received OLSR_TC from 7
-Node 6 received OLSR_TC from 0
-Node 6 received OLSR_TC from 0
-Node 6 received OLSR_TC from 0
-Node 6 received OLSR_HELLO from 0
-Node 6 received OLSR_TEXT from 2
-Node 6 received text: Hello from 2
-Node 6 received OLSR_HELLO from 2
-Node 7 received OLSR_TC from 5
-Node 7 received OLSR_TC from 5
-Node 7 received OLSR_TC from 5
-Node 7 received OLSR_TC from 5
-Node 7 received OLSR_TC from 5
-Node 7 received OLSR_TC from 6
-Node 7 received OLSR_TC from 6
-Node 7 received OLSR_TC from 6
-Node 7 received OLSR_TC from 6
-Node 7 received OLSR_HELLO from 6
-Node 8 received OLSR_TC from 9
-Node 8 received OLSR_TC from 9
-Node 8 received OLSR_TC from 9
-Node 8 received OLSR_TC from 9
-Node 8 received OLSR_TC from 9
-Node 8 received OLSR_TC from 5
-Node 8 received OLSR_TC from 5
-Node 8 received OLSR_TC from 5
-Node 8 received OLSR_TC from 5
-Node 8 received OLSR_TC from 5
-Node 8 received OLSR_HELLO from 5
-Node 9 received OLSR_TEXT from 1
-Node 9 received text: Hello from 1
-Node 9 received OLSR_HELLO from 1
-Node 9 received OLSR_TC from 3
-Node 9 received OLSR_TC from 3
-Node 9 received OLSR_TC from 3
-Node 9 received OLSR_TC from 3
-Node 9 received OLSR_TC from 3
-Node 9 received OLSR_HELLO from 3
-Node 9 received OLSR_HELLO from 5
-Node 9 received OLSR_TC from 8
-Node 9 received OLSR_TC from 8
-Node 9 received OLSR_TC from 8
-Node 9 received OLSR_TC from 8
-Node 9 received OLSR_TC from 8
-Node 9 received OLSR_TC from 8
-Node 9 received OLSR_HELLO from 8
-Node 0 received OLSR_HELLO from 2
-Node 0 received OLSR_TC from 3
-Node 0 received OLSR_TC from 3
-Node 0 received OLSR_TC from 3
-Node 0 received OLSR_TC from 3
-Node 0 received OLSR_TC from 3
-Node 0 received OLSR_HELLO from 3
-Node 0 received OLSR_HELLO from 4
-Node 0 received OLSR_TC from 6
-Node 0 received OLSR_TC from 6
-Node 0 received OLSR_TC from 6
-Node 0 received OLSR_TC from 6
-Node 0 received OLSR_HELLO from 6
-Node 1 received OLSR_TC from 3
-Node 1 received OLSR_TC from 3
-Node 1 received OLSR_TC from 3
-Node 1 received OLSR_TC from 3
-Node 1 received OLSR_TC from 3
-Node 1 received OLSR_HELLO from 3
-Node 1 received OLSR_TC from 9
-Node 1 received OLSR_TC from 9
-Node 1 received OLSR_TC from 9
-Node 1 received OLSR_HELLO from 9
-Node 2 received OLSR_TC from 3
-Node 2 received OLSR_TC from 3
-Node 2 received OLSR_TC from 3
-Node 2 received OLSR_TC from 3
-Node 2 received OLSR_TC from 3
-Node 2 received OLSR_HELLO from 3
-Node 2 received OLSR_TC from 6
-Node 2 received OLSR_TC from 6
-Node 2 received OLSR_TC from 6
-Node 2 received OLSR_TC from 6
-Node 2 received OLSR_HELLO from 6
-Node 2 received OLSR_TC from 0
-Node 2 received OLSR_TC from 0
-Node 2 received OLSR_TC from 0
-Node 2 received OLSR_TC from 0
-Node 3 received OLSR_HELLO from 4
-Node 3 received OLSR_TC from 9
-Node 3 received OLSR_TC from 9
-Node 3 received OLSR_TC from 9
-Node 3 received OLSR_HELLO from 9
-Node 3 received OLSR_TC from 0
-Node 3 received OLSR_TC from 0
-Node 3 received OLSR_TC from 0
-Node 3 received OLSR_TC from 0
-Node 4 received OLSR_TC from 0
-Node 4 received OLSR_TC from 0
-Node 4 received OLSR_TC from 0
-Node 4 received OLSR_TC from 0
-Node 4 received OLSR_TC from 3
-Node 5 received OLSR_TC from 7
-Node 5 received OLSR_TC from 7
-Node 5 received OLSR_TC from 7
-Node 5 received OLSR_HELLO from 7
-Node 5 received OLSR_TC from 8
-Node 5 received OLSR_TC from 8
-Node 5 received OLSR_TC from 8
-Node 5 received OLSR_TC from 8
-Node 5 received OLSR_TC from 8
-Node 5 received OLSR_TC from 8
-Node 5 received OLSR_HELLO from 8
-Node 5 received OLSR_HELLO from 9
-Node 6 received OLSR_TC from 7
-Node 6 received OLSR_TC from 7
-Node 6 received OLSR_TC from 7
-Node 6 received OLSR_HELLO from 7
-Node 6 received OLSR_TC from 0
-Node 6 received OLSR_TC from 0
-Node 6 received OLSR_TC from 0
-Node 6 received OLSR_TC from 0
-Node 7 received OLSR_TC from 6
-Node 7 received OLSR_TC from 6
-Node 8 received OLSR_TC from 9
-Node 8 received OLSR_TC from 9
-Node 8 received OLSR_TC from 9
-Node 8 received OLSR_HELLO from 9
-Node 8 received OLSR_TC from 5
-Node 8 received OLSR_TC from 5
-Node 8 received OLSR_TEXT from 5
-Node 8 received text: Hello from 5
-Node 9 received OLSR_TC from 3
-Node 9 received OLSR_TC from 5
-Node 9 received OLSR_TC from 5
-Node 0 received OLSR_TC from 3
-Node 0 received OLSR_TC from 6
-Node 0 received OLSR_TC from 6
-Node 0  discovering neighbours
-Node 1 received OLSR_TC from 3
-Node 1  discovering neighbours
-Node 2 received OLSR_TC from 3
-Node 2 received OLSR_TEXT from 3
-Node 2 sending message further to 6 to reach 7
-Node 2 received OLSR_TC from 6
-Node 2 received OLSR_TC from 6
-Node 2 received NEIGHBOUR_SYN from 0
-Node 2 received OLSR_HELLO from 0
-Node 2  discovering neighbours
-Node 3 received OLSR_TEXT from 9
-Node 3 sending message further to 0 to reach 0
-Node 3 received NEIGHBOUR_SYN from 0
-Node 3 received OLSR_HELLO from 0
-Node 3 received NEIGHBOUR_SYN from 1
-Node 3 received OLSR_HELLO from 1
-Node 3 received NEIGHBOUR_SYN from 2
-Node 3 received OLSR_HELLO from 2
-Node 3  discovering neighbours
-Node 4 received NEIGHBOUR_SYN from 0
-Node 4 received OLSR_HELLO from 0
-Node 4 received NEIGHBOUR_SYN from 1
-Node 4 received NEIGHBOUR_SYN from 2
-Node 4 received NEIGHBOUR_SYN from 3
-Node 4 received OLSR_HELLO from 3
-Node 4  discovering neighbours
-Node 5 received OLSR_TEXT from 8
-Node 5 received text: Hello from 8
-Node 5 received NEIGHBOUR_SYN from 1
-Node 5 received NEIGHBOUR_SYN from 3
-Node 5  discovering neighbours
-Node 6 received OLSR_TC from 7
-Node 6 received NEIGHBOUR_SYN from 0
-Node 6 received OLSR_TEXT from 0
-Node 6 sending message further to 7 to reach 5
-Node 6 received OLSR_HELLO from 0
-Node 6 received OLSR_TEXT from 2
-Node 6 sending message further to 7 to reach 7
-Node 6 received NEIGHBOUR_SYN from 2
-Node 6 received OLSR_HELLO from 2
-Node 6  discovering neighbours
-Node 7 received OLSR_TEXT from 6
-Node 7 sending message further to 5 to reach 5
-Node 7 received OLSR_TEXT from 6
-Node 7 received text: Hello from 3
-Node 7 received NEIGHBOUR_SYN from 6
-Node 7 received OLSR_HELLO from 6
-Node 7  discovering neighbours
-Node 8 received NEIGHBOUR_SYN from 1
-Node 8 received NEIGHBOUR_SYN from 3
-Node 8 received NEIGHBOUR_SYN from 5
-Node 8 received OLSR_HELLO from 5
-Node 8 received NEIGHBOUR_SYN from 6
-Node 8  discovering neighbours
-Node 9 received NEIGHBOUR_SYN from 1
-Node 9 received OLSR_HELLO from 1
-Node 9 received NEIGHBOUR_SYN from 3
-Node 9 received OLSR_HELLO from 3
-Node 9 received OLSR_TEXT from 3
-Node 9 sending message further to 8 to reach 8
-Node 9 received NEIGHBOUR_SYN from 5
-Node 9 received OLSR_HELLO from 5
-Node 9 received NEIGHBOUR_SYN from 6
-Node 9 received NEIGHBOUR_SYN from 8
-Node 9 received OLSR_HELLO from 8
-Node 9  discovering neighbours
-Node 0 received NEIGHBOUR_ACK from 2
-Node 0 received NEIGHBOUR_SYN from 2
-Node 0 received OLSR_HELLO from 2
-Node 0 received OLSR_TEXT from 3
-Node 0 received text: Hello from 9
-Node 0 received NEIGHBOUR_ACK from 3
-Node 0 received NEIGHBOUR_SYN from 3
-Node 0 received OLSR_HELLO from 3
-Node 0 received NEIGHBOUR_ACK from 4
-Node 0 received NEIGHBOUR_SYN from 4
-Node 0 received OLSR_HELLO from 4
-Node 0 received NEIGHBOUR_ACK from 6
-Node 0 received OLSR_TEXT from 6
-Node 0 received text: Hello from 6
-Node 0 received NEIGHBOUR_SYN from 6
-Node 0 received OLSR_HELLO from 6
-Node 0 received NEIGHBOUR_SYN from 9
-Node 1 received NEIGHBOUR_ACK from 3
-Node 1 received NEIGHBOUR_SYN from 3
-Node 1 received OLSR_HELLO from 3
-Node 1 received NEIGHBOUR_ACK from 8
-Node 1 received NEIGHBOUR_SYN from 8
-Node 1 received NEIGHBOUR_ACK from 9
-Node 1 received NEIGHBOUR_SYN from 9
-Node 1 received OLSR_HELLO from 9
-Node 2 received NEIGHBOUR_ACK from 3
-Node 2 received NEIGHBOUR_SYN from 3
-Node 2 received OLSR_HELLO from 3
-Node 2 received NEIGHBOUR_ACK from 6
-Node 2 received NEIGHBOUR_SYN from 6
-Node 2 received OLSR_HELLO from 6
-Node 2 received NEIGHBOUR_ACK from 0
-Node 3 received NEIGHBOUR_ACK from 4
-Node 3 received NEIGHBOUR_SYN from 4
-Node 3 received OLSR_TEXT from 4
-Node 3 sending message further to 1 to reach 1
-Node 3 received OLSR_HELLO from 4
-Node 3 received NEIGHBOUR_SYN from 6
-Node 3 received NEIGHBOUR_ACK from 8
-Node 3 received NEIGHBOUR_SYN from 8
-Node 3 received NEIGHBOUR_ACK from 9
-Node 3 received NEIGHBOUR_SYN from 9
-Node 3 received OLSR_HELLO from 9
-Node 3 received NEIGHBOUR_ACK from 0
-Node 3 received NEIGHBOUR_ACK from 1
-Node 3 received NEIGHBOUR_ACK from 2
-Node 3 received OLSR_TEXT from 2
-Node 3 sending message further to 1 to reach 1
-Node 4 received NEIGHBOUR_SYN from 6
-Node 4 received NEIGHBOUR_SYN from 9
-Node 4 received NEIGHBOUR_ACK from 0
-Node 4 received NEIGHBOUR_ACK from 3
-Node 5 received NEIGHBOUR_SYN from 6
-Node 5 received NEIGHBOUR_ACK from 8
-Node 5 received NEIGHBOUR_SYN from 8
-Node 5 received OLSR_HELLO from 8
-Node 5 received NEIGHBOUR_ACK from 9
-Node 5 received NEIGHBOUR_SYN from 9
-Node 5 received OLSR_HELLO from 9
-Node 6 received NEIGHBOUR_ACK from 7
-Node 6 received NEIGHBOUR_SYN from 7
-Node 6 received OLSR_HELLO from 7
-Node 6 received NEIGHBOUR_ACK from 9
-Node 6 received NEIGHBOUR_SYN from 9
-Node 6 received NEIGHBOUR_ACK from 0
-Node 6 received NEIGHBOUR_ACK from 2
-Node 7 received NEIGHBOUR_ACK from 6
-Node 8 received OLSR_TEXT from 9
-Node 8 received text: Hello from 3
-Node 8 received NEIGHBOUR_ACK from 9
-Node 8 received NEIGHBOUR_SYN from 9
-Node 8 received OLSR_HELLO from 9
-Node 8 received NEIGHBOUR_ACK from 1
-Node 8 received NEIGHBOUR_ACK from 3
-Node 8 received NEIGHBOUR_ACK from 5
-Node 9 received NEIGHBOUR_ACK from 1
-Node 9 received OLSR_TEXT from 1
-Node 9 sending message further to 5 to reach 5
-Node 9 received NEIGHBOUR_ACK from 3
-Node 9 received NEIGHBOUR_ACK from 5
-Node 9 received NEIGHBOUR_ACK from 6
-Node 9 received NEIGHBOUR_ACK from 8
-Node 1 received OLSR_TEXT from 3
-Node 1 received text: Hello from 4
-Node 1 received OLSR_TEXT from 3
-Node 1 received text: Hello from 2
-Node 1 sending waiting message to 8
-Node 1 sending message further to 9 to reach 8
-Node 2 received OLSR_TC from 0
-Node 2 received OLSR_HELLO from 0
-Node 2 sending waiting message to 9
-Node 2 sending message further to 3 to reach 9
-Node 3 received OLSR_TC from 0
-Node 3 received OLSR_HELLO from 0
-Node 3 received OLSR_HELLO from 1
-Node 3 received OLSR_TEXT from 2
-Node 3 sending message further to 9 to reach 9
-Node 3 received OLSR_HELLO from 2
-Node 4 received OLSR_TC from 0
-Node 4 received OLSR_HELLO from 0
-Node 4 received OLSR_TC from 3
-Node 4 received OLSR_TC from 3
-Node 4 received OLSR_HELLO from 3
-Node 5 received OLSR_TEXT from 9
-Node 5 received text: Hello from 1
-Node 6 received OLSR_TC from 0
-Node 6 received OLSR_HELLO from 0
-Node 6 received OLSR_HELLO from 2
-Node 7 received OLSR_TC from 6
-Node 7 received OLSR_TC from 6
-Node 7 received OLSR_HELLO from 6
-Node 8 received OLSR_HELLO from 1
-Node 8 received OLSR_TC from 3
-Node 8 received OLSR_TC from 3
-Node 8 received OLSR_HELLO from 3
-Node 8 received OLSR_TC from 5
-Node 8 received OLSR_HELLO from 5
-Node 8 sending waiting message to 2
-Node 8 sending message further to 3 to reach 2
-Node 9 received OLSR_TEXT from 1
-Node 9 sending message further to 8 to reach 8
-Node 9 received OLSR_HELLO from 1
-Node 9 received OLSR_TC from 3
-Node 9 received OLSR_TEXT from 3
-Node 9 received text: Hello from 2
-Node 9 received OLSR_TC from 3
-Node 9 received OLSR_HELLO from 3
-Node 9 received OLSR_TEXT from 3
-Node 9 sending message further to 5 to reach 5
-Node 9 received OLSR_TC from 5
-Node 9 received OLSR_HELLO from 5
-Node 9 received OLSR_TC from 6
-Node 9 received OLSR_HELLO from 6
-Node 9 received OLSR_HELLO from 8
-Node 0 received OLSR_HELLO from 2
-Node 0 received OLSR_TC from 3
-Node 0 received OLSR_TC from 3
-Node 0 received OLSR_HELLO from 3
-Node 0 received OLSR_HELLO from 4
-Node 0 received OLSR_TC from 6
-Node 0 received OLSR_TC from 6
-Node 0 received OLSR_HELLO from 6
-Node 1 received OLSR_TC from 3
-Node 1 received OLSR_TC from 3
-Node 1 received OLSR_HELLO from 3
-Node 1 received OLSR_HELLO from 8
-Node 1 received OLSR_TC from 9
-Node 1 received OLSR_TC from 9
-Node 1 received OLSR_TC from 9
-Node 1 received OLSR_TC from 9
-Node 1 received OLSR_TC from 9
-Node 1 received OLSR_HELLO from 9
-Node 2 received OLSR_TC from 3
-Node 2 received OLSR_TC from 3
-Node 2 received OLSR_HELLO from 3
-Node 2 received OLSR_TC from 6
-Node 2 received OLSR_TC from 6
-Node 2 received OLSR_TEXT from 6
-Node 2 received text: Hello from 6
-Node 2 received OLSR_HELLO from 6
-Node 2 received OLSR_TC from 0
-Node 2 received OLSR_TC from 0
-Node 2 received OLSR_TC from 0
-Node 3 received OLSR_HELLO from 4
-Node 3 received OLSR_TEXT from 8
-Node 3 received text: Hello from 8
-Node 3 received OLSR_TEXT from 8
-Node 3 sending message further to 2 to reach 2
-Node 3 received OLSR_HELLO from 8
-Node 3 received OLSR_TC from 9
-Node 3 received OLSR_TC from 9
-Node 3 received OLSR_TC from 9
-Node 3 received OLSR_TC from 9
-Node 3 received OLSR_TC from 9
-Node 3 received OLSR_HELLO from 9
-Node 3 received OLSR_TEXT from 9
-Node 3 sending message further to 0 to reach 0
-Node 3 received OLSR_TC from 0
-Node 3 received OLSR_TC from 0
-Node 3 received OLSR_TC from 0
-Node 3  discovering neighbours
-Node 4 received OLSR_TC from 0
-Node 4 received OLSR_TC from 0
-Node 4 received OLSR_TC from 0
-Node 4 received OLSR_TC from 3
-Node 4 received OLSR_TC from 3
-Node 4 received OLSR_TC from 3
-Node 4 received OLSR_TC from 3
-Node 4 received NEIGHBOUR_SYN from 3
-Node 4  discovering neighbours
-Node 5 received OLSR_HELLO from 8
-Node 5 received OLSR_TC from 9
-Node 5 received OLSR_TC from 9
-Node 5 received OLSR_TEXT from 9
-Node 5 received text: Hello from 3
-Node 5 received OLSR_TC from 9
-Node 5 received OLSR_TC from 9
-Node 5 received OLSR_TC from 9
-Node 5 received OLSR_HELLO from 9
-Node 5 received NEIGHBOUR_SYN from 3
-Node 6 received OLSR_TC from 7
-Node 6 received OLSR_TC from 7
-Node 6 received OLSR_TC from 7
-Node 6 received OLSR_HELLO from 7
-Node 6 received OLSR_TEXT from 7
-Node 6 sending message further to 9 to reach 9
-Node 6 received OLSR_TC from 9
-Node 6 received OLSR_TC from 9
-Node 6 received OLSR_TC from 9
-Node 6 received OLSR_TC from 9
-Node 6 received OLSR_TC from 9
-Node 6 received OLSR_HELLO from 9
-Node 6 received OLSR_TC from 0
-Node 6 received OLSR_TC from 0
-Node 6 received OLSR_TC from 0
-Node 7 received OLSR_TC from 6
-Node 7 received OLSR_TC from 6
-Node 7 received OLSR_TC from 6
-Node 7 received OLSR_TC from 6
-Node 7 received OLSR_TC from 6
-Node 7  discovering neighbours
-Node 8 received OLSR_TEXT from 9
-Node 8 received text: Hello from 1
-Node 8 received OLSR_TC from 9
-Node 8 received OLSR_TC from 9
-Node 8 received OLSR_TC from 9
-Node 8 received OLSR_TC from 9
-Node 8 received OLSR_TC from 9
-Node 8 received OLSR_HELLO from 9
-Node 8 received OLSR_TC from 3
-Node 8 received OLSR_TC from 3
-Node 8 received OLSR_TC from 3
-Node 8 received OLSR_TC from 3
-Node 8 received NEIGHBOUR_SYN from 3
-Node 8 received OLSR_TC from 5
-Node 8 received OLSR_TC from 5
-Node 8 received OLSR_TC from 5
-Node 8 received OLSR_TC from 5
-Node 8 received OLSR_TC from 5
-Node 9 received OLSR_TC from 3
-Node 9 received OLSR_TC from 3
-Node 9 received OLSR_TC from 3
-Node 9 received OLSR_TC from 3
-Node 9 received NEIGHBOUR_SYN from 3
-Node 9 received OLSR_TC from 5
-Node 9 received OLSR_TC from 5
-Node 9 received OLSR_TC from 5
-Node 9 received OLSR_TC from 5
-Node 9 received OLSR_TC from 5
-Node 9 received OLSR_TC from 6
-Node 9 received OLSR_TC from 6
-Node 9 received OLSR_TEXT from 6
-Node 9 received text: Hello from 7
-Node 9 received OLSR_TC from 6
-Node 9 received OLSR_TC from 6
-Node 9 received OLSR_TC from 6
-Node 0 received OLSR_TC from 3
-Node 0 received OLSR_TC from 3
-Node 0 received OLSR_TC from 3
-Node 0 received OLSR_TC from 3
-Node 0 received OLSR_TEXT from 3
-Node 0 received text: Hello from 9
-Node 0 received NEIGHBOUR_SYN from 3
-Node 0 received OLSR_TEXT from 4
-Node 0 received text: Hello from 4
-Node 0 received NEIGHBOUR_SYN from 4
-Node 0 received OLSR_TC from 6
-Node 0 received OLSR_TC from 6
-Node 0 received OLSR_TC from 6
-Node 0 received OLSR_TC from 6
-Node 0 received OLSR_TC from 6
-Node 0  discovering neighbours
-Node 1 received OLSR_TC from 3
-Node 1 received OLSR_TC from 3
-Node 1 received OLSR_TC from 3
-Node 1 received OLSR_TC from 3
-Node 1 received NEIGHBOUR_SYN from 3
-Node 1 received OLSR_TC from 9
-Node 1 received OLSR_TC from 9
-Node 1  discovering neighbours
-Node 2 received OLSR_TEXT from 3
-Node 2 received text: Hello from 8
-Node 2 received OLSR_TC from 3
-Node 2 received OLSR_TC from 3
-Node 2 received OLSR_TC from 3
-Node 2 received OLSR_TC from 3
-Node 2 received NEIGHBOUR_SYN from 3
-Node 2 received OLSR_TC from 6
-Node 2 received OLSR_TC from 6
-Node 2 received OLSR_TC from 6
-Node 2 received OLSR_TC from 6
-Node 2 received OLSR_TC from 6
-Node 2 received OLSR_TC from 0
-Node 2 received OLSR_TC from 0
-Node 2 received OLSR_TC from 0
-Node 2 received NEIGHBOUR_SYN from 0
-Node 2 received OLSR_HELLO from 0
-Node 2  discovering neighbours
-Node 3 received NEIGHBOUR_ACK from 4
-Node 3 received NEIGHBOUR_SYN from 4
-Node 3 received NEIGHBOUR_ACK from 5
-Node 3 received NEIGHBOUR_ACK from 8
-Node 3 received OLSR_TC from 9
-Node 3 received NEIGHBOUR_ACK from 9
-Node 3 received OLSR_TC from 9
-Node 3 received OLSR_TC from 0
-Node 3 received OLSR_TC from 0
-Node 3 received NEIGHBOUR_ACK from 0
-Node 3 received OLSR_TC from 0
-Node 3 received NEIGHBOUR_SYN from 0
-Node 3 received OLSR_HELLO from 0
-Node 3 received NEIGHBOUR_ACK from 1
-Node 3 received NEIGHBOUR_SYN from 1
-Node 3 received OLSR_HELLO from 1
-Node 3 received NEIGHBOUR_ACK from 2
-Node 3 received OLSR_TEXT from 2
-Node 3 sending message further to 9 to reach 5
-Node 3 received NEIGHBOUR_SYN from 2
-Node 3 received OLSR_HELLO from 2
-Node 4 received OLSR_TC from 0
-Node 4 received OLSR_TC from 0
-Node 4 received NEIGHBOUR_ACK from 0
-Node 4 received OLSR_TC from 0
-Node 4 received NEIGHBOUR_SYN from 0
-Node 4 received OLSR_TEXT from 0
-Node 4 received text: Hello from 0
-Node 4 received OLSR_HELLO from 0
-Node 4 received NEIGHBOUR_SYN from 1
-Node 4 received NEIGHBOUR_SYN from 2
-Node 4 received NEIGHBOUR_ACK from 3
-Node 4 received OLSR_TC from 3
-Node 4 received OLSR_HELLO from 3
-Node 5 received OLSR_TC from 9
-Node 5 received OLSR_TC from 9
-Node 5 received NEIGHBOUR_SYN from 1
-Node 5 received NEIGHBOUR_SYN from 2
-Node 5  discovering neighbours
-Node 6 received OLSR_TC from 7
-Node 6 received OLSR_TC from 7
-Node 6 received OLSR_TC from 7
-Node 6 received OLSR_TC from 7
-Node 6 received NEIGHBOUR_SYN from 7
-Node 6 received OLSR_TC from 9
-Node 6 received OLSR_TC from 9
-Node 6 received OLSR_TC from 0
-Node 6 received OLSR_TC from 0
-Node 6 received OLSR_TC from 0
-Node 6 received NEIGHBOUR_SYN from 0
-Node 6 received OLSR_HELLO from 0
-Node 6 received NEIGHBOUR_SYN from 2
-Node 6 received OLSR_HELLO from 2
-Node 6  discovering neighbours
-Node 7 received NEIGHBOUR_ACK from 6
-Node 7 received NEIGHBOUR_SYN from 6
-Node 7 received OLSR_HELLO from 6
-Node 8 received OLSR_TC from 9
-Node 8 received OLSR_TC from 9
-Node 8 received NEIGHBOUR_SYN from 1
-Node 8 received OLSR_TEXT from 1
-Node 8  no route known to reach 7
-Node 8 received OLSR_HELLO from 1
-Node 8 received NEIGHBOUR_SYN from 2
-Node 8 received OLSR_TC from 3
-Node 8 received OLSR_HELLO from 3
-Node 8 received OLSR_TC from 5
-Node 8 received NEIGHBOUR_SYN from 5
-Node 8 received OLSR_HELLO from 5
-Node 8 received NEIGHBOUR_SYN from 6
-Node 8  discovering neighbours
-Node 9 received NEIGHBOUR_SYN from 1
-Node 9 received OLSR_HELLO from 1
-Node 9 received NEIGHBOUR_SYN from 2
-Node 9 received OLSR_TC from 3
-Node 9 received OLSR_TEXT from 3
-Node 9 sending message further to 5 to reach 5
-Node 9 received OLSR_HELLO from 3
-Node 9 received OLSR_TEXT from 3
-Node 9 sending message further to 5 to reach 5
-Node 9 received OLSR_TC from 5
-Node 9 received NEIGHBOUR_SYN from 5
-Node 9 received OLSR_HELLO from 5
-Node 9 received NEIGHBOUR_SYN from 6
-Node 9 received OLSR_HELLO from 6
-Node 9 received NEIGHBOUR_SYN from 8
-Node 9 received OLSR_HELLO from 8
-Node 9  discovering neighbours
-Node 0 received NEIGHBOUR_ACK from 2
-Node 0 received NEIGHBOUR_SYN from 2
-Node 0 received OLSR_HELLO from 2
-Node 0 received OLSR_TC from 3
-Node 0 received NEIGHBOUR_ACK from 3
-Node 0 received OLSR_HELLO from 3
-Node 0 received NEIGHBOUR_ACK from 4
-Node 0 received OLSR_HELLO from 4
-Node 0 received NEIGHBOUR_ACK from 6
-Node 0 received NEIGHBOUR_SYN from 6
-Node 0 received OLSR_HELLO from 6
-Node 0 received NEIGHBOUR_SYN from 9
-Node 1 received OLSR_TC from 3
-Node 1 received NEIGHBOUR_ACK from 3
-Node 1 received OLSR_HELLO from 3
-Node 1 received NEIGHBOUR_ACK from 5
-Node 1 received NEIGHBOUR_SYN from 5
-Node 1 received NEIGHBOUR_ACK from 8
-Node 1 received NEIGHBOUR_SYN from 8
-Node 1 received OLSR_HELLO from 8
-Node 1 received NEIGHBOUR_ACK from 9
-Node 1 received NEIGHBOUR_SYN from 9
-Node 1 received OLSR_HELLO from 9
-Node 2 received OLSR_TC from 3
-Node 2 received NEIGHBOUR_ACK from 3
-Node 2 received OLSR_HELLO from 3
-Node 2 received NEIGHBOUR_ACK from 6
-Node 2 received NEIGHBOUR_SYN from 6
-Node 2 received OLSR_HELLO from 6
-Node 2 received NEIGHBOUR_ACK from 9
-Node 2 received NEIGHBOUR_SYN from 9
-Node 2 received NEIGHBOUR_ACK from 0
-Node 3 received OLSR_HELLO from 4
-Node 3 received NEIGHBOUR_SYN from 5
-Node 3 received NEIGHBOUR_SYN from 6
-Node 3 received NEIGHBOUR_SYN from 8
-Node 3 received OLSR_HELLO from 8
-Node 3 received NEIGHBOUR_SYN from 9
-Node 3 received OLSR_HELLO from 9
-Node 3 received OLSR_HELLO from 1
-Node 4 received NEIGHBOUR_SYN from 6
-Node 4 received NEIGHBOUR_SYN from 9
-Node 5 received NEIGHBOUR_SYN from 6
-Node 5 received NEIGHBOUR_ACK from 8
-Node 5 received NEIGHBOUR_SYN from 8
-Node 5 received OLSR_HELLO from 8
-Node 5 received OLSR_TEXT from 9
-Node 5 received text: Hello from 2
-Node 5 received OLSR_TEXT from 9
-Node 5 received text: Hello from 3
-Node 5 received NEIGHBOUR_ACK from 9
-Node 5 received NEIGHBOUR_SYN from 9
-Node 5 received OLSR_HELLO from 9
-Node 5 received NEIGHBOUR_ACK from 1
-Node 5 received OLSR_HELLO from 1
-Node 5 received NEIGHBOUR_ACK from 3
-Node 6 received NEIGHBOUR_ACK from 7
-Node 6 received OLSR_HELLO from 7
-Node 6 received NEIGHBOUR_ACK from 9
-Node 6 received NEIGHBOUR_SYN from 9
-Node 6 received OLSR_HELLO from 9
-Node 6 received NEIGHBOUR_ACK from 0
-Node 6 received NEIGHBOUR_ACK from 2
-Node 8 received NEIGHBOUR_ACK from 9
-Node 8 received NEIGHBOUR_SYN from 9
-Node 8 received OLSR_HELLO from 9
-Node 8 received NEIGHBOUR_ACK from 1
-Node 8 received OLSR_HELLO from 1
-Node 8 received NEIGHBOUR_ACK from 3
-Node 8 received NEIGHBOUR_ACK from 5
-Node 9 received NEIGHBOUR_ACK from 1
-Node 9 received OLSR_HELLO from 1
-Node 9 received NEIGHBOUR_ACK from 2
-Node 9 received NEIGHBOUR_ACK from 3
-Node 9 received NEIGHBOUR_ACK from 5
-Node 9 received NEIGHBOUR_ACK from 6
-Node 9 received OLSR_TEXT from 6
-Node 9 sending message further to 3 to reach 3
-Node 9 received NEIGHBOUR_ACK from 8
-Node 1 received OLSR_TEXT from 5
-Node 1 received text: Hello from 5
-Node 1 received OLSR_HELLO from 9
-Node 2 received OLSR_HELLO from 9
-Node 2 received OLSR_HELLO from 0
-Node 2 received OLSR_TC from 0
-Node 3 received OLSR_HELLO from 4
-Node 3 received OLSR_TEXT from 8
-Node 3 sending message further to 2 to reach 2
-Node 3 received OLSR_TEXT from 9
-Node 3 received text: Hello from 6
-Node 3 received OLSR_HELLO from 9
-Node 3 received OLSR_HELLO from 0
-Node 3 received OLSR_TC from 0
-Node 3 received OLSR_HELLO from 2
-Node 4 received OLSR_HELLO from 0
-Node 4 received OLSR_TC from 0
-Node 4 received OLSR_TC from 3
-Node 4 received OLSR_HELLO from 3
-Node 4 received OLSR_TC from 3
-Node 5 received OLSR_HELLO from 9
-Node 5 received OLSR_TC from 3
-Node 5 received OLSR_HELLO from 3
-Node 5 received OLSR_TC from 3
-Node 6 received OLSR_TEXT from 7
-Node 6 sending message further to 0 to reach 0
-Node 6 received OLSR_HELLO from 9
-Node 6 received OLSR_HELLO from 0
-Node 6 received OLSR_TC from 0
-Node 6 received OLSR_HELLO from 2
-Node 7 received OLSR_TC from 6
-Node 7 received OLSR_HELLO from 6
-Node 8 received OLSR_HELLO from 9
-Node 8 received OLSR_TEXT from 1
-Node 8 received text: Hello from 1
-Node 8 received OLSR_TC from 3
-Node 8 received OLSR_HELLO from 3
-Node 8 received OLSR_TC from 3
-Node 8 received OLSR_TC from 5
-Node 8 received OLSR_TC from 5
-Node 8 received OLSR_HELLO from 5
-Node 9 received OLSR_HELLO from 2
-Node 9 received OLSR_TC from 3
-Node 9 received OLSR_HELLO from 3
-Node 9 received OLSR_TC from 3
-Node 9 received OLSR_TC from 5
-Node 9 received OLSR_TC from 5
-Node 9 received OLSR_HELLO from 5
-Node 9 received OLSR_TC from 6
-Node 9 received OLSR_HELLO from 6
-Node 9 received OLSR_HELLO from 8
-Node 0 received OLSR_HELLO from 2
-Node 0 received OLSR_TC from 3
-Node 0 received OLSR_HELLO from 3
-Node 0 received OLSR_TEXT from 3
-Node 0 received text: Hello from 3
-Node 0 received OLSR_TC from 3
-Node 0 received OLSR_TEXT from 6
-Node 0 received text: Hello from 7
-Node 0 received OLSR_TC from 6
-Node 0 received OLSR_HELLO from 6
-Node 0  discovering neighbours
-Node 1 received OLSR_TC from 3
-Node 1 received OLSR_HELLO from 3
-Node 1 received OLSR_TC from 3
-Node 1 received OLSR_HELLO from 5
-Node 1 received OLSR_HELLO from 8
-Node 1 received OLSR_TC from 9
-Node 1 received OLSR_TC from 9
-Node 1 received OLSR_TC from 9
-Node 1  discovering neighbours
-Node 2 received OLSR_TEXT from 3
-Node 2 received text: Hello from 8
-Node 2 received OLSR_TC from 3
-Node 2 received OLSR_HELLO from 3
-Node 2 received OLSR_TC from 3
-Node 2 received OLSR_TC from 6
-Node 2 received OLSR_HELLO from 6
-Node 2 received OLSR_TC from 9
-Node 2 received OLSR_TC from 9
-Node 2 received OLSR_TEXT from 9
-Node 2 received text: Hello from 9
-Node 2 received OLSR_TC from 9
-Node 2 received OLSR_TC from 0
-Node 2 received OLSR_TC from 0
-Node 2 received NEIGHBOUR_SYN from 0
-Node 2 received OLSR_HELLO from 0
-Node 3 received OLSR_HELLO from 5
-Node 3 received OLSR_HELLO from 8
-Node 3 received OLSR_TC from 9
-Node 3 received OLSR_TC from 9
-Node 3 received OLSR_TC from 9
-Node 3 received OLSR_TC from 0
-Node 3 received OLSR_TC from 0
-Node 3 received NEIGHBOUR_SYN from 0
-Node 3 received OLSR_HELLO from 0
-Node 3 received NEIGHBOUR_SYN from 1
-Node 3 received OLSR_HELLO from 1
-Node 3  discovering neighbours
-Node 4 received OLSR_TC from 0
-Node 4 received OLSR_TC from 0
-Node 4 received NEIGHBOUR_SYN from 0
-Node 4 received OLSR_HELLO from 0
-Node 4 received NEIGHBOUR_SYN from 1
-Node 4 received OLSR_TC from 3
-Node 4 received OLSR_TC from 3
-Node 4 received NEIGHBOUR_SYN from 3
-Node 4 received OLSR_HELLO from 3
-Node 4  discovering neighbours
-Node 5 received OLSR_HELLO from 8
-Node 5 received OLSR_TC from 9
-Node 5 received OLSR_TC from 9
-Node 5 received OLSR_TC from 9
-Node 5 received NEIGHBOUR_SYN from 1
-Node 5 received OLSR_HELLO from 1
-Node 5 received OLSR_TC from 3
-Node 5 received OLSR_TC from 3
-Node 5 received NEIGHBOUR_SYN from 3
-Node 5 received OLSR_HELLO from 3
-Node 6 received OLSR_TC from 9
-Node 6 received OLSR_TC from 9
-Node 6 received OLSR_TC from 9
-Node 6 received OLSR_TC from 0
-Node 6 received OLSR_TC from 0
-Node 6 received NEIGHBOUR_SYN from 0
-Node 6 received OLSR_TEXT from 0
-Node 6 received text: Hello from 0
-Node 6 received OLSR_HELLO from 0
-Node 6 received NEIGHBOUR_SYN from 3
-Node 7 received OLSR_TC from 6
-Node 7 received OLSR_TC from 6
-Node 7 received OLSR_TC from 6
-Node 7  discovering neighbours
-Node 8 received OLSR_TC from 9
-Node 8 received OLSR_TC from 9
-Node 8 received OLSR_TC from 9
-Node 8 received NEIGHBOUR_SYN from 1
-Node 8 received OLSR_HELLO from 1
-Node 8 received OLSR_TC from 3
-Node 8 received OLSR_TC from 3
-Node 8 received NEIGHBOUR_SYN from 3
-Node 8 received OLSR_HELLO from 3
-Node 8 received OLSR_TC from 5
-Node 8 received OLSR_TC from 5
-Node 8  discovering neighbours
-Node 9 received NEIGHBOUR_SYN from 1
-Node 9 received OLSR_HELLO from 1
-Node 9 received OLSR_TC from 3
-Node 9 received OLSR_TC from 3
-Node 9 received NEIGHBOUR_SYN from 3
-Node 9 received OLSR_HELLO from 3
-Node 9 received OLSR_TC from 5
-Node 9 received OLSR_TC from 5
-Node 9 received OLSR_TC from 6
-Node 9 received OLSR_TC from 6
-Node 9 received OLSR_TC from 6
-Node 9 received NEIGHBOUR_SYN from 8
-Node 9 received OLSR_HELLO from 8
-Node 9  discovering neighbours
-Node 0 received NEIGHBOUR_ACK from 2
-Node 0 received OLSR_TEXT from 2
-Node 0 sending message further to 4 to reach 4
-Node 0 received OLSR_TC from 3
-Node 0 received OLSR_TC from 3
-Node 0 received NEIGHBOUR_ACK from 3
-Node 0 received NEIGHBOUR_SYN from 3
-Node 0 received OLSR_HELLO from 3
-Node 0 received OLSR_TC from 6
-Node 0 received OLSR_TC from 6
-Node 0 received NEIGHBOUR_ACK from 6
-Node 0 received OLSR_TC from 6
-Node 0 received OLSR_TEXT from 6
-Node 0 sending message further to 4 to reach 4
-Node 0 received NEIGHBOUR_SYN from 9
-Node 1 received OLSR_TC from 3
-Node 1 received OLSR_TC from 3
-Node 1 received NEIGHBOUR_ACK from 3
-Node 1 received NEIGHBOUR_SYN from 3
-Node 1 received OLSR_HELLO from 3
-Node 1 received OLSR_TC from 5
-Node 1 received NEIGHBOUR_ACK from 5
-Node 1 received OLSR_TC from 5
-Node 1 received NEIGHBOUR_ACK from 8
-Node 1 received NEIGHBOUR_SYN from 8
-Node 1 received OLSR_HELLO from 8
-Node 1 received NEIGHBOUR_ACK from 9
-Node 1 received OLSR_TC from 9
-Node 1 received OLSR_TC from 9
-Node 1 received OLSR_TC from 9
-Node 1 received NEIGHBOUR_SYN from 9
-Node 1 received OLSR_HELLO from 9
-Node 2 received OLSR_TC from 3
-Node 2 received OLSR_TC from 3
-Node 2 received NEIGHBOUR_SYN from 3
-Node 2 received OLSR_HELLO from 3
-Node 2 received OLSR_TC from 6
-Node 2 received OLSR_TC from 6
-Node 2 received OLSR_TC from 6
-Node 2 received OLSR_TC from 9
-Node 2 received OLSR_TC from 9
-Node 2 received OLSR_TC from 9
-Node 2 received NEIGHBOUR_SYN from 9
-Node 2 received OLSR_HELLO from 9
-Node 2 received OLSR_TC from 0
-Node 2 received OLSR_TC from 0
-Node 2  discovering neighbours
-Node 3 received OLSR_TC from 5
-Node 3 received NEIGHBOUR_ACK from 5
-Node 3 received OLSR_TC from 5
-Node 3 received NEIGHBOUR_ACK from 6
-Node 3 received NEIGHBOUR_ACK from 8
-Node 3 received NEIGHBOUR_SYN from 8
-Node 3 received OLSR_TEXT from 8
-Node 3 sending message further to 2 to reach 2
-Node 3 received OLSR_HELLO from 8
-Node 3 received OLSR_TC from 9
-Node 3 received NEIGHBOUR_ACK from 9
-Node 3 received OLSR_TC from 9
-Node 3 received OLSR_TC from 9
-Node 3 received NEIGHBOUR_SYN from 9
-Node 3 received OLSR_HELLO from 9
-Node 3 received NEIGHBOUR_ACK from 1
-Node 3 received NEIGHBOUR_ACK from 2
-Node 3 received NEIGHBOUR_SYN from 2
-Node 3 received OLSR_HELLO from 2
-Node 4 received NEIGHBOUR_SYN from 8
-Node 4 received NEIGHBOUR_SYN from 9
-Node 4 received OLSR_TEXT from 0
-Node 4 received text: Hello from 2
-Node 4 received OLSR_TC from 0
-Node 4 received OLSR_TC from 0
-Node 4 received OLSR_TEXT from 0
-Node 4 received text: Hello from 6
-Node 4 received NEIGHBOUR_SYN from 2
-Node 4 received OLSR_TC from 3
-Node 4 received OLSR_TC from 3
-Node 5 received NEIGHBOUR_SYN from 8
-Node 5 received OLSR_HELLO from 8
-Node 5 received OLSR_TC from 9
-Node 5 received OLSR_TC from 9
-Node 5 received OLSR_TC from 9
-Node 5 received NEIGHBOUR_SYN from 9
-Node 5 received OLSR_HELLO from 9
-Node 5 received NEIGHBOUR_SYN from 2
-Node 5 received OLSR_TC from 3
-Node 5 received OLSR_TC from 3
-Node 5 received OLSR_TEXT from 3
-Node 5 received text: Hello from 3
-Node 5  discovering neighbours
-Node 6 received OLSR_HELLO from 7
-Node 6 received NEIGHBOUR_SYN from 8
-Node 6 received OLSR_TC from 9
-Node 6 received OLSR_TC from 9
-Node 6 received OLSR_TC from 9
-Node 6 received NEIGHBOUR_SYN from 9
-Node 6 received OLSR_HELLO from 9
-Node 6 received OLSR_TC from 0
-Node 6 received OLSR_TC from 0
-Node 6 received NEIGHBOUR_SYN from 2
-Node 6 received OLSR_HELLO from 2
-Node 6  discovering neighbours
-Node 7 received OLSR_TC from 6
-Node 7 received OLSR_TC from 6
-Node 7 received NEIGHBOUR_SYN from 6
-Node 7 received OLSR_HELLO from 6
-Node 8 received OLSR_TC from 9
-Node 8 received OLSR_TC from 9
-Node 8 received OLSR_TC from 9
-Node 8 received NEIGHBOUR_ACK from 9
-Node 8 received NEIGHBOUR_SYN from 9
-Node 8 received OLSR_HELLO from 9
-Node 8 received NEIGHBOUR_ACK from 1
-Node 8 received NEIGHBOUR_SYN from 2
-Node 8 received OLSR_TC from 3
-Node 8 received NEIGHBOUR_ACK from 3
-Node 8 received OLSR_TC from 3
-Node 8 received NEIGHBOUR_ACK from 5
-Node 8 received OLSR_TC from 5
-Node 8 received OLSR_TC from 5
-Node 8 received NEIGHBOUR_SYN from 5
-Node 8 received OLSR_HELLO from 5
-Node 8 received NEIGHBOUR_ACK from 6
-Node 8 received NEIGHBOUR_SYN from 6
-Node 9 received NEIGHBOUR_ACK from 1
-Node 9 received NEIGHBOUR_ACK from 2
-Node 9 received NEIGHBOUR_SYN from 2
-Node 9 received OLSR_HELLO from 2
-Node 9 received OLSR_TC from 3
-Node 9 received OLSR_TC from 3
-Node 9 received NEIGHBOUR_ACK from 3
-Node 9 received OLSR_TC from 5
-Node 9 received OLSR_TC from 5
-Node 9 received NEIGHBOUR_ACK from 5
-Node 9 received NEIGHBOUR_SYN from 5
-Node 9 received OLSR_HELLO from 5
-Node 9 received OLSR_TC from 6
-Node 9 received OLSR_TC from 6
-Node 9 received NEIGHBOUR_ACK from 6
-Node 9 received NEIGHBOUR_SYN from 6
-Node 9 received OLSR_HELLO from 6
-Node 9 received NEIGHBOUR_ACK from 8
-Node 0 received NEIGHBOUR_SYN from 2
-Node 0 received OLSR_HELLO from 2
-Node 0 received OLSR_TC from 3
-Node 0 received OLSR_TC from 3
-Node 0 received OLSR_TC from 6
-Node 0 received OLSR_TC from 6
-Node 0 received NEIGHBOUR_SYN from 6
-Node 0 received OLSR_HELLO from 6
-Node 1 received OLSR_TC from 3
-Node 1 received OLSR_TC from 3
-Node 1 received OLSR_TC from 5
-Node 1 received OLSR_TC from 5
-Node 1 received NEIGHBOUR_SYN from 5
-Node 1 received OLSR_HELLO from 5
-Node 1 received NEIGHBOUR_SYN from 6
-Node 2 received OLSR_TC from 3
-Node 2 received OLSR_TEXT from 3
-Node 2 received text: Hello from 8
-Node 2 received OLSR_TC from 3
-Node 2 received NEIGHBOUR_ACK from 3
-Node 2 received OLSR_TC from 6
-Node 2 received OLSR_TC from 6
-Node 2 received NEIGHBOUR_ACK from 6
-Node 2 received NEIGHBOUR_SYN from 6
-Node 2 received OLSR_HELLO from 6
-Node 2 received NEIGHBOUR_ACK from 8
-Node 2 received NEIGHBOUR_ACK from 9
-Node 2 received NEIGHBOUR_ACK from 0
-Node 2 received OLSR_TC from 0
-Node 2 received OLSR_HELLO from 0
-Node 3 received OLSR_TC from 5
-Node 3 received OLSR_TC from 5
-Node 3 received OLSR_TEXT from 5
-Node 3 received text: Hello from 5
-Node 3 received NEIGHBOUR_SYN from 5
-Node 3 received OLSR_HELLO from 5
-Node 3 received NEIGHBOUR_SYN from 6
-Node 3 received OLSR_TEXT from 1
-Node 3 received text: Hello from 1
-Node 3 received OLSR_HELLO from 1
-Node 3 received OLSR_TEXT from 2
-Node 3 received text: Hello from 2
-Node 4 received NEIGHBOUR_SYN from 6
-Node 5 received NEIGHBOUR_SYN from 6
-Node 5 received NEIGHBOUR_ACK from 8
-Node 5 received NEIGHBOUR_ACK from 9
-Node 5 received NEIGHBOUR_ACK from 1
-Node 5 received OLSR_HELLO from 1
-Node 5 received NEIGHBOUR_ACK from 3
-Node 5 received OLSR_HELLO from 3
-Node 6 received NEIGHBOUR_ACK from 8
-Node 6 received NEIGHBOUR_ACK from 9
-Node 6 received OLSR_TC from 0
-Node 6 received NEIGHBOUR_ACK from 0
-Node 6 received OLSR_HELLO from 0
-Node 6 received NEIGHBOUR_ACK from 2
-Node 6 received NEIGHBOUR_ACK from 3
-Node 6 received OLSR_HELLO from 3
-Node 6 received NEIGHBOUR_ACK from 5
-Node 8 received OLSR_HELLO from 1
-Node 8 received OLSR_HELLO from 3
-Node 9 received OLSR_HELLO from 1
-Node 9 received OLSR_HELLO from 3
-Node 9 received OLSR_HELLO from 8
-Node 0 sending waiting message to 8
-Node 0 sending message further to 3 to reach 8
-Node 1 received OLSR_HELLO from 3
-Node 1 received OLSR_HELLO from 8
-Node 1 received OLSR_HELLO from 9
-Node 1 sending waiting message to 8
-Node 1 sending message further to 8 to reach 8
-Node 2 received OLSR_HELLO from 3
-Node 2 received OLSR_HELLO from 9
-Node 3 received OLSR_TEXT from 6
-Node 3 sending message further to 8 to reach 8
-Node 3 received OLSR_HELLO from 8
-Node 3 received OLSR_HELLO from 9
-Node 3 received OLSR_HELLO from 2
-Node 3  discovering neighbours
-Node 4 received NEIGHBOUR_SYN from 3
-Node 5 received OLSR_HELLO from 8
-Node 5 received OLSR_HELLO from 9
-Node 5 received OLSR_TEXT from 3
-Node 5 received text: Hello from 3
-Node 5 received OLSR_TC from 3
-Node 5 received NEIGHBOUR_SYN from 3
-Node 6 received OLSR_TEXT from 7
-Node 6 sending message further to 3 to reach 5
-Node 6 received OLSR_HELLO from 8
-Node 6 received OLSR_HELLO from 9
-Node 6 received OLSR_HELLO from 2
-Node 6 received OLSR_TC from 3
-Node 6 received NEIGHBOUR_SYN from 3
-Node 8 received OLSR_TEXT from 9
-Node 8 received text: Hello from 9
-Node 8 received OLSR_HELLO from 9
-Node 8 received OLSR_TEXT from 1
-Node 8 received text: Hello from 1
-Node 8 received OLSR_HELLO from 2
-Node 8 received OLSR_TEXT from 3
-Node 8 received text: Hello from 6
-Node 8 received OLSR_TC from 3
-Node 8 received NEIGHBOUR_SYN from 3
-Node 8 received OLSR_TC from 5
-Node 8 received OLSR_HELLO from 5
-Node 8 received OLSR_TC from 6
-Node 8 received OLSR_HELLO from 6
-Node 8 sending waiting message to 2
-Node 8 sending message further to 2 to reach 2
-Node 9 received OLSR_HELLO from 2
-Node 9 received OLSR_TC from 3
-Node 9 received NEIGHBOUR_SYN from 3
-Node 9 received OLSR_TC from 5
-Node 9 received OLSR_HELLO from 5
-Node 9 received OLSR_TC from 6
-Node 9 received OLSR_HELLO from 6
-Node 0 received OLSR_HELLO from 2
-Node 0 received OLSR_TC from 6
-Node 0 received OLSR_HELLO from 6
-Node 0  discovering neighbours
-Node 1 received OLSR_TC from 3
-Node 1 received NEIGHBOUR_SYN from 3
-Node 1 received OLSR_TC from 5
-Node 1 received OLSR_HELLO from 5
-Node 1 received OLSR_TEXT from 8
-Node 1 received text: Hello from 8
-Node 1 received OLSR_TC from 9
-Node 1  discovering neighbours
-Node 2 received OLSR_TC from 3
-Node 2 received NEIGHBOUR_SYN from 3
-Node 2 received OLSR_TC from 6
-Node 2 received OLSR_HELLO from 6
-Node 2 received OLSR_TEXT from 8
-Node 2 received text: Hello from 8
-Node 2 received OLSR_TC from 9
-Node 2 received OLSR_TC from 0
-Node 2 received NEIGHBOUR_SYN from 0
-Node 2 received OLSR_TC from 0
-Node 2 received OLSR_HELLO from 0
-Node 2  discovering neighbours
-Node 2 sending waiting message to 9
-Node 2 sending message further to 9 to reach 9
-Node 3 received OLSR_TC from 5
-Node 3 received NEIGHBOUR_ACK from 5
-Node 3 received OLSR_HELLO from 5
-Node 3 received OLSR_TEXT from 6
-Node 3 sending message further to 5 to reach 5
-Node 3 received OLSR_TC from 6
-Node 3 received NEIGHBOUR_ACK from 6
-Node 3 received OLSR_HELLO from 6
-Node 3 received NEIGHBOUR_ACK from 8
-Node 3 received OLSR_TC from 9
-Node 3 received NEIGHBOUR_ACK from 9
-Node 3 received NEIGHBOUR_ACK from 1
-Node 3 received NEIGHBOUR_SYN from 1
-Node 3 received OLSR_HELLO from 1
-Node 3 received NEIGHBOUR_ACK from 2
-Node 3 received NEIGHBOUR_SYN from 2
-Node 4 received NEIGHBOUR_SYN from 1
-Node 4 received NEIGHBOUR_SYN from 2
-Node 4  discovering neighbours
-Node 5 received OLSR_TC from 6
-Node 5 received OLSR_HELLO from 6
-Node 5 received OLSR_TC from 9
-Node 5 received NEIGHBOUR_SYN from 1
-Node 5 received OLSR_HELLO from 1
-Node 5 received NEIGHBOUR_SYN from 2
-Node 5 received OLSR_TC from 3
-Node 5 received OLSR_TEXT from 3
-Node 5 received text: Hello from 7
-Node 5 received OLSR_HELLO from 3
-Node 5 received OLSR_TEXT from 3
-Node 5 received text: Hello from 3
-Node 5 sending waiting message to 2
-Node 5 sending message further to 3 to reach 2
-Node 5  discovering neighbours
-Node 6 received OLSR_TC from 9
-Node 6 received OLSR_TC from 0
-Node 6 received NEIGHBOUR_SYN from 0
-Node 6 received OLSR_TC from 0
-Node 6 received OLSR_HELLO from 0
-Node 6 received NEIGHBOUR_SYN from 2
-Node 6 received OLSR_TC from 3
-Node 6 received OLSR_HELLO from 3
-Node 6 received NEIGHBOUR_SYN from 5
-Node 6 sending waiting message to 8
-Node 6 sending message further to 8 to reach 8
-Node 6  discovering neighbours
-Node 7 received NEIGHBOUR_SYN from 6
-Node 7  discovering neighbours
-Node 8 received OLSR_TC from 9
-Node 8 received NEIGHBOUR_SYN from 1
-Node 8 received OLSR_HELLO from 1
-Node 8 received NEIGHBOUR_SYN from 2
-Node 8 received OLSR_TC from 3
-Node 8 received OLSR_HELLO from 3
-Node 8 received OLSR_TC from 5
-Node 8 received NEIGHBOUR_SYN from 5
-Node 8 received OLSR_TC from 6
-Node 8 received OLSR_TEXT from 6
-Node 8 received text: Hello from 6
-Node 8 received NEIGHBOUR_SYN from 6
-Node 8 received OLSR_TC from 6
-Node 8 received OLSR_HELLO from 6
-Node 8  discovering neighbours
-Node 9 received NEIGHBOUR_SYN from 1
-Node 9 received OLSR_HELLO from 1
-Node 9 received NEIGHBOUR_SYN from 2
-Node 9 received OLSR_TEXT from 2
-Node 9 received text: Hello from 2
-Node 9 received OLSR_TC from 3
-Node 9 received OLSR_HELLO from 3
-Node 9 received OLSR_TC from 5
-Node 9 received NEIGHBOUR_SYN from 5
-Node 9 received OLSR_TC from 6
-Node 9 received NEIGHBOUR_SYN from 6
-Node 9 received OLSR_TC from 6
-Node 9 received OLSR_HELLO from 6
-Node 9 received NEIGHBOUR_SYN from 8
-Node 9 received OLSR_HELLO from 8
-Node 9  discovering neighbours
-Node 0 received NEIGHBOUR_ACK from 2
-Node 0 received NEIGHBOUR_SYN from 2
-Node 0 received NEIGHBOUR_ACK from 6
-Node 0 received OLSR_TC from 6
-Node 0 received NEIGHBOUR_SYN from 6
-Node 0 received OLSR_TC from 6
-Node 0 received OLSR_HELLO from 6
-Node 0 received NEIGHBOUR_SYN from 9
-Node 1 received NEIGHBOUR_SYN from 2
-Node 1 received OLSR_TC from 3
-Node 1 received NEIGHBOUR_ACK from 3
-Node 1 received OLSR_HELLO from 3
-Node 1 received NEIGHBOUR_ACK from 5
-Node 1 received OLSR_TC from 5
-Node 1 received NEIGHBOUR_SYN from 5
-Node 1 received NEIGHBOUR_SYN from 6
-Node 1 received NEIGHBOUR_ACK from 8
-Node 1 received NEIGHBOUR_SYN from 8
-Node 1 received OLSR_HELLO from 8
-Node 1 received NEIGHBOUR_ACK from 9
-Node 1 received NEIGHBOUR_SYN from 9
-Node 1 received OLSR_HELLO from 9
-Node 2 received OLSR_TC from 3
-Node 2 received NEIGHBOUR_ACK from 3
-Node 2 received OLSR_HELLO from 3
-Node 2 received OLSR_TC from 6
-Node 2 received NEIGHBOUR_ACK from 6
-Node 2 received NEIGHBOUR_SYN from 6
-Node 2 received OLSR_TC from 6
-Node 2 received OLSR_HELLO from 6
-Node 2 received NEIGHBOUR_ACK from 8
-Node 2 received NEIGHBOUR_SYN from 8
-Node 2 received NEIGHBOUR_ACK from 9
-Node 2 received NEIGHBOUR_SYN from 9
-Node 2 received OLSR_HELLO from 9
-Node 2 received NEIGHBOUR_ACK from 0
-Node 2 received OLSR_TC from 0
-Node 2 received OLSR_TC from 0
-Node 3 received OLSR_TEXT from 5
-Node 3  no route known to reach 4
-Node 3 received OLSR_TC from 5
-Node 3 received OLSR_TEXT from 5
-Node 3 sending message further to 2 to reach 2
-Node 3 received NEIGHBOUR_SYN from 5
-Node 3 received OLSR_TC from 6
-Node 3 received NEIGHBOUR_SYN from 6
-Node 3 received OLSR_TC from 6
-Node 3 received OLSR_TEXT from 6
-Node 3 received text: Hello from 6
-Node 3 received OLSR_HELLO from 6
-Node 3 received NEIGHBOUR_SYN from 8
-Node 3 received OLSR_HELLO from 8
-Node 3 received NEIGHBOUR_SYN from 9
-Node 3 received OLSR_HELLO from 9
-Node 3 received OLSR_TEXT from 1
-Node 3 sending message further to 2 to reach 2
-Node 3 received OLSR_TC from 2
-Node 3 received OLSR_HELLO from 2
-Node 4 received NEIGHBOUR_SYN from 6
-Node 4 received NEIGHBOUR_SYN from 8
-Node 4 received NEIGHBOUR_SYN from 9
-Node 5 received OLSR_TC from 6
-Node 5 received NEIGHBOUR_ACK from 6
-Node 5 received NEIGHBOUR_SYN from 6
-Node 5 received OLSR_TC from 6
-Node 5 received OLSR_HELLO from 6
-Node 5 received NEIGHBOUR_ACK from 8
-Node 5 received NEIGHBOUR_SYN from 8
-Node 5 received OLSR_HELLO from 8
-Node 5 received NEIGHBOUR_ACK from 9
-Node 5 received NEIGHBOUR_SYN from 9
-Node 5 received OLSR_HELLO from 9
-Node 5 received NEIGHBOUR_ACK from 1
-Node 5 received OLSR_TC from 3
-Node 5 received NEIGHBOUR_ACK from 3
-Node 5 received OLSR_TC from 3
-Node 5 received OLSR_TC from 3
-Node 6 received NEIGHBOUR_ACK from 7
-Node 6 received NEIGHBOUR_SYN from 7
-Node 6 received NEIGHBOUR_ACK from 8
-Node 6 received NEIGHBOUR_SYN from 8
-Node 6 received OLSR_HELLO from 8
-Node 6 received NEIGHBOUR_ACK from 9
-Node 6 received NEIGHBOUR_SYN from 9
-Node 6 received OLSR_HELLO from 9
-Node 6 received OLSR_TC from 0
-Node 6 received NEIGHBOUR_ACK from 0
-Node 6 received OLSR_TC from 0
-Node 6 received NEIGHBOUR_ACK from 2
-Node 6 received OLSR_TC from 2
-Node 6 received OLSR_HELLO from 2
-Node 6 received OLSR_TEXT from 2
-Node 6  no route known to reach 7
-Node 6 received OLSR_TC from 3
-Node 6 received OLSR_TC from 3
-Node 6 received NEIGHBOUR_ACK from 3
-Node 6 received OLSR_TC from 3
-Node 6 received NEIGHBOUR_ACK from 5
-Node 7 received NEIGHBOUR_SYN from 9
-Node 7 received NEIGHBOUR_ACK from 6
-Node 8 received NEIGHBOUR_ACK from 9
-Node 8 received NEIGHBOUR_SYN from 9
-Node 8 received OLSR_HELLO from 9
-Node 8 received NEIGHBOUR_ACK from 1
-Node 8 received OLSR_TC from 2
-Node 8 received NEIGHBOUR_ACK from 2
-Node 8 received OLSR_HELLO from 2
-Node 8 received OLSR_TC from 3
-Node 8 received OLSR_TC from 3
-Node 8 received OLSR_TC from 3
-Node 8 received NEIGHBOUR_ACK from 3
-Node 8 received OLSR_TC from 5
-Node 8 received OLSR_TC from 5
-Node 8 received NEIGHBOUR_ACK from 5
-Node 8 received OLSR_TC from 5
-Node 8 received OLSR_HELLO from 5
-Node 8 received NEIGHBOUR_ACK from 6
-Node 8 received OLSR_TC from 6
-Node 8 received OLSR_TC from 6
-Node 9 received NEIGHBOUR_ACK from 1
-Node 9 received OLSR_TC from 2
-Node 9 received NEIGHBOUR_ACK from 2
-Node 9 received OLSR_HELLO from 2
-Node 9 received OLSR_TC from 3
-Node 9 received OLSR_TC from 3
-Node 9 received OLSR_TC from 3
-Node 9 received NEIGHBOUR_ACK from 3
-Node 9 received OLSR_TC from 5
-Node 9 received OLSR_TC from 5
-Node 9 received NEIGHBOUR_ACK from 5
-Node 9 received OLSR_TC from 5
-Node 9 received OLSR_HELLO from 5
-Node 9 received NEIGHBOUR_ACK from 6
-Node 9 received OLSR_TC from 6
-Node 9 received OLSR_TC from 6
-Node 9 received NEIGHBOUR_ACK from 8
-Node 0 received OLSR_TC from 2
-Node 0 received OLSR_HELLO from 2
-Node 0 received OLSR_TC from 6
-Node 0 received OLSR_TC from 6
-Node 1 received OLSR_TC from 3
-Node 1 received OLSR_TC from 3
-Node 1 received OLSR_TC from 3
-Node 1 received OLSR_TC from 5
-Node 1 received OLSR_TC from 5
-Node 1 received OLSR_TC from 5
-Node 1 received OLSR_HELLO from 5
-Node 2 received OLSR_TC from 3
-Node 2 received OLSR_TEXT from 3
-Node 2 received text: Hello from 5
-Node 2 received OLSR_TC from 3
-Node 2 received OLSR_TC from 3
-Node 2 received OLSR_TEXT from 3
-Node 2 received text: Hello from 1
-Node 2 received OLSR_TC from 6
-Node 2 received OLSR_TC from 6
-Node 2 received OLSR_TC from 0
-Node 2 received OLSR_HELLO from 0
-Node 3 received OLSR_TC from 5
-Node 3 received OLSR_TC from 5
-Node 3 received OLSR_TC from 5
-Node 3 received OLSR_HELLO from 5
-Node 3 received OLSR_TC from 6
-Node 3 received OLSR_TC from 6
-Node 3 received OLSR_HELLO from 1
-Node 3 received OLSR_TC from 2
-Node 5 received OLSR_TC from 6
-Node 5 received OLSR_TC from 6
-Node 5 received OLSR_HELLO from 1
-Node 5 received OLSR_HELLO from 3
-Node 6 received OLSR_TEXT from 9
-Node 6 received text: Hello from 9
-Node 6 received OLSR_TC from 0
-Node 6 received OLSR_HELLO from 0
-Node 6 received OLSR_TC from 2
-Node 6 received OLSR_HELLO from 3
-Node 6 received OLSR_HELLO from 5
-Node 7 received OLSR_HELLO from 6
-Node 8 received OLSR_HELLO from 1
-Node 8 received OLSR_TC from 2
-Node 8 received OLSR_HELLO from 3
-Node 8 received OLSR_TEXT from 3
-Node 8 received text: Hello from 3
-Node 8 received OLSR_HELLO from 5
-Node 8 received OLSR_HELLO from 6
-Node 9 received OLSR_HELLO from 1
-Node 9 received OLSR_TC from 2
-Node 9 received OLSR_HELLO from 3
-Node 9 received OLSR_HELLO from 5
-Node 9 received OLSR_HELLO from 6
-Node 9 received OLSR_HELLO from 8
-Node 0 received OLSR_TC from 2
-Node 0 received OLSR_HELLO from 6
-Node 0  discovering neighbours
-Node 1 received OLSR_HELLO from 3
-Node 1 received OLSR_HELLO from 5
-Node 1 received OLSR_HELLO from 8
-Node 1 received OLSR_HELLO from 9
-Node 1  discovering neighbours
-Node 2 received OLSR_HELLO from 3
-Node 2 received OLSR_HELLO from 6
-Node 2 received OLSR_HELLO from 8
-Node 2 received OLSR_HELLO from 9
-Node 2 received NEIGHBOUR_SYN from 0
-Node 2 received NEIGHBOUR_SYN from 1
-Node 3 received OLSR_HELLO from 5
-Node 3 received OLSR_HELLO from 6
-Node 3 received OLSR_HELLO from 8
-Node 3 received OLSR_HELLO from 9
-Node 3 received NEIGHBOUR_SYN from 1
-Node 3 received OLSR_TEXT from 1
-Node 3 sending message further to 6 to reach 0
-Node 3 received OLSR_HELLO from 1
-Node 3 received OLSR_HELLO from 2
-Node 3  discovering neighbours
-Node 4 received NEIGHBOUR_SYN from 1
-Node 4 received NEIGHBOUR_SYN from 3
-Node 4  discovering neighbours
-Node 5 received OLSR_TEXT from 5
-Node 5  no route known to reach 7
-Node 5 received OLSR_HELLO from 6
-Node 5 received OLSR_HELLO from 8
-Node 5 received OLSR_HELLO from 9
-Node 5 received NEIGHBOUR_SYN from 1
-Node 5 received OLSR_HELLO from 1
-Node 5 received NEIGHBOUR_SYN from 3
-Node 5 received OLSR_HELLO from 3
-Node 5 received OLSR_TC from 3
-Node 6 received OLSR_HELLO from 7
-Node 6 received OLSR_HELLO from 8
-Node 6 received OLSR_HELLO from 9
-Node 6 received OLSR_TEXT from 0
-Node 6 sending message further to 3 to reach 3
-Node 6 received NEIGHBOUR_SYN from 0
-Node 6 received NEIGHBOUR_SYN from 1
-Node 6 received OLSR_HELLO from 2
-Node 6 received OLSR_TEXT from 3
-Node 6 sending message further to 0 to reach 0
-Node 6 received NEIGHBOUR_SYN from 3
-Node 6 received OLSR_HELLO from 3
-Node 6 received OLSR_TC from 3
-Node 6 received OLSR_TC from 5
-Node 7 received OLSR_TC from 6
-Node 7  discovering neighbours
-Node 8 received OLSR_HELLO from 9
-Node 8 received NEIGHBOUR_SYN from 1
-Node 8 received OLSR_HELLO from 1
-Node 8 received OLSR_HELLO from 2
-Node 8 received NEIGHBOUR_SYN from 3
-Node 8 received OLSR_HELLO from 3
-Node 8 received OLSR_TC from 3
-Node 8 received NEIGHBOUR_SYN from 4
-Node 8 received OLSR_TC from 5
-Node 8 received OLSR_TC from 6
-Node 8  discovering neighbours
-Node 9 received NEIGHBOUR_SYN from 1
-Node 9 received OLSR_HELLO from 1
-Node 9 received OLSR_HELLO from 2
-Node 9 received NEIGHBOUR_SYN from 3
-Node 9 received OLSR_HELLO from 3
-Node 9 received OLSR_TC from 3
-Node 9 received OLSR_TC from 5
-Node 9 received OLSR_TC from 6
-Node 9 received NEIGHBOUR_SYN from 8
-Node 9  discovering neighbours
-Node 0 received NEIGHBOUR_ACK from 2
-Node 0 received OLSR_HELLO from 2
-Node 0 received NEIGHBOUR_ACK from 6
-Node 0 received OLSR_TEXT from 6
-Node 0 received text: Hello from 1
-Node 0 received OLSR_TC from 6
-Node 0 received OLSR_TEXT from 6
-Node 0 received text: Hello from 6
-Node 0 received NEIGHBOUR_SYN from 9
-Node 1 received NEIGHBOUR_ACK from 2
-Node 1 received NEIGHBOUR_ACK from 3
-Node 1 received NEIGHBOUR_SYN from 3
-Node 1 received OLSR_HELLO from 3
-Node 1 received OLSR_TC from 3
-Node 1 received NEIGHBOUR_ACK from 5
-Node 1 received OLSR_TC from 5
-Node 1 received NEIGHBOUR_ACK from 6
-Node 1 received NEIGHBOUR_ACK from 8
-Node 1 received NEIGHBOUR_SYN from 8
-Node 1 received NEIGHBOUR_ACK from 9
-Node 1 received NEIGHBOUR_SYN from 9
-Node 1 received OLSR_HELLO from 9
-Node 2 received NEIGHBOUR_SYN from 3
-Node 2 received OLSR_HELLO from 3
-Node 2 received OLSR_TC from 3
-Node 2 received OLSR_TC from 6
-Node 2 received NEIGHBOUR_SYN from 8
-Node 2 received NEIGHBOUR_SYN from 9
-Node 2 received OLSR_HELLO from 9
-Node 2 received OLSR_TC from 0
-Node 2 received OLSR_HELLO from 0
-Node 2 received OLSR_TC from 0
-Node 2  discovering neighbours
-Node 3 received NEIGHBOUR_ACK from 5
-Node 3 received OLSR_TC from 5
-Node 3 received OLSR_TEXT from 6
-Node 3 received text: Hello from 0
-Node 3 received NEIGHBOUR_ACK from 6
-Node 3 received OLSR_TC from 6
-Node 3 received NEIGHBOUR_ACK from 8
-Node 3 received OLSR_TEXT from 8
-Node 3  no route known to reach 4
-Node 3 received NEIGHBOUR_SYN from 8
-Node 3 received NEIGHBOUR_ACK from 9
-Node 3 received NEIGHBOUR_SYN from 9
-Node 3 received OLSR_HELLO from 9
-Node 3 received NEIGHBOUR_ACK from 1
-Node 3 received NEIGHBOUR_ACK from 2
-Node 3 received OLSR_TC from 2
-Node 3 received NEIGHBOUR_SYN from 2
-Node 4 received NEIGHBOUR_ACK from 8
-Node 4 received NEIGHBOUR_SYN from 8
-Node 4 received NEIGHBOUR_SYN from 9
-Node 4 received NEIGHBOUR_SYN from 2
-Node 5 received OLSR_TC from 6
-Node 5 received NEIGHBOUR_SYN from 8
-Node 5 received NEIGHBOUR_SYN from 9
-Node 5 received OLSR_HELLO from 9
-Node 5 received NEIGHBOUR_SYN from 2
-Node 5 received OLSR_TC from 3
-Node 5  discovering neighbours
-Node 6 received OLSR_TC from 7
-Node 6 received OLSR_TEXT from 7
-Node 6 sending message further to 3 to reach 3
-Node 6 received NEIGHBOUR_SYN from 7
-Node 6 received NEIGHBOUR_SYN from 8
-Node 6 received NEIGHBOUR_SYN from 9
-Node 6 received OLSR_HELLO from 9
-Node 6 received OLSR_TC from 0
-Node 6 received OLSR_HELLO from 0
-Node 6 received OLSR_TC from 0
-Node 6 received OLSR_TC from 2
-Node 6 received NEIGHBOUR_SYN from 2
-Node 6 received OLSR_TC from 3
-Node 6 received NEIGHBOUR_SYN from 5
-Node 6 received OLSR_HELLO from 5
-Node 6  discovering neighbours
-Node 7 received NEIGHBOUR_SYN from 9
-Node 7 received NEIGHBOUR_SYN from 2
-Node 7 received NEIGHBOUR_ACK from 6
-Node 7 received OLSR_TC from 6
-Node 7 received NEIGHBOUR_SYN from 6
-Node 7 received OLSR_HELLO from 6
-Node 8 received NEIGHBOUR_ACK from 9
-Node 8 received NEIGHBOUR_SYN from 9
-Node 8 received OLSR_HELLO from 9
-Node 8 received NEIGHBOUR_ACK from 1
-Node 8 received OLSR_TC from 2
-Node 8 received NEIGHBOUR_ACK from 2
-Node 8 received NEIGHBOUR_SYN from 2
-Node 8 received OLSR_TC from 3
-Node 8 received NEIGHBOUR_ACK from 3
-Node 8 received NEIGHBOUR_ACK from 4
-Node 8 received NEIGHBOUR_ACK from 5
-Node 8 received NEIGHBOUR_SYN from 5
-Node 8 received OLSR_HELLO from 5
-Node 8 received NEIGHBOUR_ACK from 6
-Node 8 received OLSR_TC from 6
-Node 8 received NEIGHBOUR_SYN from 6
-Node 8 received OLSR_HELLO from 6
-Node 9 received NEIGHBOUR_ACK from 1
-Node 9 received OLSR_TC from 2
-Node 9 received NEIGHBOUR_ACK from 2
-Node 9 received NEIGHBOUR_SYN from 2
-Node 9 received OLSR_TC from 3
-Node 9 received NEIGHBOUR_ACK from 3
-Node 9 received OLSR_TEXT from 3
-Node 9 received text: Hello from 3
-Node 9 received NEIGHBOUR_ACK from 5
-Node 9 received NEIGHBOUR_SYN from 5
-Node 9 received OLSR_HELLO from 5
-Node 9 received NEIGHBOUR_ACK from 6
-Node 9 received OLSR_TC from 6
-Node 9 received NEIGHBOUR_SYN from 6
-Node 9 received OLSR_HELLO from 6
-Node 9 received NEIGHBOUR_ACK from 8
-Node 9 received OLSR_HELLO from 8
-Node 0 received OLSR_TC from 2
-Node 0 received OLSR_TEXT from 2
-Node 0 received text: Hello from 2
-Node 0 received NEIGHBOUR_SYN from 2
-Node 0 received OLSR_TC from 6
-Node 0 received NEIGHBOUR_SYN from 6
-Node 0 received OLSR_HELLO from 6
-Node 1 received NEIGHBOUR_SYN from 2
-Node 1 received OLSR_TC from 3
-Node 1 received NEIGHBOUR_SYN from 5
-Node 1 received OLSR_HELLO from 5
-Node 1 received NEIGHBOUR_SYN from 6
-Node 1 received OLSR_HELLO from 8
-Node 2 received OLSR_TC from 3
-Node 2 received NEIGHBOUR_ACK from 3
-Node 2 received NEIGHBOUR_ACK from 5
-Node 2 received NEIGHBOUR_SYN from 5
-Node 2 received OLSR_TC from 6
-Node 2 received NEIGHBOUR_ACK from 6
-Node 2 received NEIGHBOUR_SYN from 6
-Node 2 received OLSR_HELLO from 6
-Node 2 received NEIGHBOUR_ACK from 8
-Node 2 received OLSR_HELLO from 8
-Node 2 received NEIGHBOUR_ACK from 9
-Node 2 received NEIGHBOUR_ACK from 0
-Node 2 received OLSR_TC from 0
-Node 2 received NEIGHBOUR_ACK from 1
-Node 2 received OLSR_HELLO from 1
-Node 3 received NEIGHBOUR_SYN from 5
-Node 3 received OLSR_HELLO from 5
-Node 3 received OLSR_TEXT from 6
-Node 3 received text: Hello from 7
-Node 3 received OLSR_TC from 6
-Node 3 received NEIGHBOUR_SYN from 6
-Node 3 received OLSR_HELLO from 6
-Node 3 received OLSR_HELLO from 8
-Node 3 received OLSR_TEXT from 9
-Node 3  no route known to reach 4
-Node 3 received OLSR_HELLO from 1
-Node 3 received OLSR_HELLO from 2
-Node 4 received NEIGHBOUR_SYN from 5
-Node 4 received NEIGHBOUR_SYN from 6
-Node 5 received OLSR_TC from 6
-Node 5 received NEIGHBOUR_ACK from 6
-Node 5 received NEIGHBOUR_SYN from 6
-Node 5 received OLSR_HELLO from 6
-Node 5 received NEIGHBOUR_ACK from 8
-Node 5 received OLSR_HELLO from 8
-Node 5 received NEIGHBOUR_ACK from 9
-Node 5 received NEIGHBOUR_ACK from 1
-Node 5 received OLSR_HELLO from 1
-Node 5 received NEIGHBOUR_ACK from 2
-Node 5 received NEIGHBOUR_ACK from 3
-Node 5 received OLSR_TC from 3
-Node 5 received OLSR_HELLO from 3
-Node 6 received OLSR_TC from 7
-Node 6 received NEIGHBOUR_ACK from 7
-Node 6 received OLSR_HELLO from 7
-Node 6 received OLSR_TC from 7
-Node 6 received NEIGHBOUR_ACK from 8
-Node 6 received OLSR_HELLO from 8
-Node 6 received NEIGHBOUR_ACK from 9
-Node 6 received OLSR_TC from 0
-Node 6 received NEIGHBOUR_ACK from 0
-Node 6 received NEIGHBOUR_ACK from 1
-Node 6 received OLSR_HELLO from 1
-Node 6 received NEIGHBOUR_ACK from 2
-Node 6 received OLSR_HELLO from 2
-Node 6 received OLSR_TC from 3
-Node 6 received NEIGHBOUR_ACK from 3
-Node 6 received OLSR_HELLO from 3
-Node 6 received OLSR_TC from 5
-Node 6 received NEIGHBOUR_ACK from 5
-Node 6 received OLSR_TC from 5
-Node 7 received OLSR_TC from 6
-Node 7 received OLSR_TC from 6
-Node 7 received OLSR_TC from 6
-Node 8 received OLSR_HELLO from 1
-Node 8 received OLSR_HELLO from 2
-Node 8 received OLSR_TC from 3
-Node 8 received OLSR_HELLO from 3
-Node 8 received OLSR_HELLO from 4
-Node 8 received OLSR_TC from 5
-Node 8 received OLSR_TC from 5
-Node 8 received OLSR_TC from 6
-Node 8 received OLSR_TC from 6
-Node 8 received OLSR_TC from 6
-Node 9 received OLSR_HELLO from 1
-Node 9 received OLSR_HELLO from 2
-Node 9 received OLSR_TC from 3
-Node 9 received OLSR_HELLO from 3
-Node 9 received OLSR_TC from 5
-Node 9 received OLSR_TC from 5
-Node 9 received OLSR_TC from 6
-Node 9 received OLSR_TC from 6
-Node 9 received OLSR_TC from 6
-Node 9 received OLSR_HELLO from 8
-Node 0 received OLSR_HELLO from 2
-Node 0 received OLSR_TC from 6
-Node 0 received OLSR_TC from 6
-Node 0 received OLSR_TC from 6
-Node 0 received OLSR_TEXT from 6
-Node 0 received text: Hello from 6
-Node 1 received OLSR_TC from 3
-Node 1 received OLSR_HELLO from 3
-Node 1 received OLSR_TC from 5
-Node 1 received OLSR_TC from 5
-Node 1 received OLSR_TEXT from 5
-Node 1 received text: Hello from 5
-Node 1 received OLSR_HELLO from 8
-Node 1 received OLSR_HELLO from 9
-Node 2 received OLSR_TC from 3
-Node 2 received OLSR_HELLO from 3
-Node 2 received OLSR_TC from 6
-Node 2 received OLSR_TC from 6
-Node 2 received OLSR_TC from 6
-Node 2 received OLSR_HELLO from 8
-Node 2 received OLSR_HELLO from 9
-Node 2 received OLSR_TC from 0
-Node 2 received OLSR_TC from 0
-Node 2 received OLSR_TC from 0
-Node 2 received OLSR_HELLO from 0
-Node 3 received OLSR_TC from 5
-Node 3 received OLSR_TC from 5
-Node 3 received OLSR_TC from 6
-Node 3 received OLSR_TC from 6
-Node 3 received OLSR_TC from 6
-Node 3 received OLSR_HELLO from 8
-Node 3 received OLSR_HELLO from 9
-Node 3  discovering neighbours
-Node 4 received OLSR_HELLO from 8
-Node 4 received NEIGHBOUR_SYN from 3
-Node 5 received OLSR_TC from 6
-Node 5 received OLSR_TC from 6
-Node 5 received OLSR_TC from 6
-Node 5 received OLSR_HELLO from 8
-Node 5 received OLSR_HELLO from 9
-Node 5 received OLSR_TC from 3
-Node 5 received OLSR_TC from 3
-Node 5 received OLSR_TC from 3
-Node 5 received NEIGHBOUR_SYN from 3
-Node 6 received OLSR_TC from 7
-Node 6 received OLSR_TC from 7
-Node 6 received OLSR_TC from 7
-Node 6 received OLSR_TEXT from 8
-Node 6 received text: Hello from 8
-Node 6 received OLSR_HELLO from 8
-Node 6 received OLSR_HELLO from 9
-Node 6 received OLSR_TC from 0
-Node 6 received OLSR_TC from 0
-Node 6 received OLSR_TC from 0
-Node 6 received OLSR_HELLO from 0
-Node 6 received OLSR_TC from 3
-Node 6 received OLSR_TC from 3
-Node 6 received OLSR_TC from 3
-Node 6 received OLSR_TEXT from 3
-Node 6 received text: Hello from 3
-Node 6 received NEIGHBOUR_SYN from 3
-Node 6 received OLSR_TC from 5
-Node 6 received OLSR_TC from 5
-Node 6 received OLSR_TC from 5
-Node 6 received OLSR_HELLO from 5
-Node 7 received OLSR_TC from 6
-Node 7 received OLSR_HELLO from 6
-Node 8 received OLSR_HELLO from 9
-Node 8 received OLSR_TC from 3
-Node 8 received OLSR_TC from 3
-Node 8 received OLSR_TC from 3
-Node 8 received NEIGHBOUR_SYN from 3
-Node 8 received OLSR_TC from 5
-Node 8 received OLSR_TC from 5
-Node 8 received OLSR_TC from 5
-Node 8 received OLSR_HELLO from 5
-Node 8 received OLSR_TC from 6
-Node 8 received OLSR_HELLO from 6
-Node 9 received OLSR_TC from 3
-Node 9 received OLSR_TC from 3
-Node 9 received OLSR_TC from 3
-Node 9 received NEIGHBOUR_SYN from 3
-Node 9 received OLSR_TC from 5
-Node 9 received OLSR_TC from 5
-Node 9 received OLSR_TC from 5
-Node 9 received OLSR_HELLO from 5
-Node 9 received OLSR_TC from 6
-Node 9 received OLSR_HELLO from 6
-Node 0 received OLSR_TC from 6
-Node 0 received OLSR_HELLO from 6
-Node 0  discovering neighbours
-Node 1 received OLSR_TC from 3
-Node 1 received OLSR_TC from 3
-Node 1 received OLSR_TC from 3
-Node 1 received NEIGHBOUR_SYN from 3
-Node 1 received OLSR_TC from 5
-Node 1 received OLSR_TC from 5
-Node 1 received OLSR_TC from 5
-Node 1 received OLSR_HELLO from 5
-Node 1 received OLSR_TC from 6
-Node 1 received OLSR_HELLO from 6
-Node 1  discovering neighbours
-Node 2 received OLSR_TC from 3
-Node 2 received OLSR_TC from 3
-Node 2 received OLSR_TC from 3
-Node 2 received NEIGHBOUR_SYN from 3
-Node 2 received OLSR_TC from 5
-Node 2 received OLSR_TC from 5
-Node 2 received OLSR_TC from 5
-Node 2 received OLSR_HELLO from 5
-Node 2 received OLSR_TC from 6
-Node 2 received OLSR_HELLO from 6
-Node 2 received NEIGHBOUR_SYN from 0
-Node 2 received NEIGHBOUR_SYN from 1
-Node 2 received OLSR_HELLO from 1
-Node 3 received OLSR_TC from 5
-Node 3 received OLSR_TC from 5
-Node 3 received OLSR_TC from 5
-Node 3 received NEIGHBOUR_ACK from 5
-Node 3 received OLSR_HELLO from 5
-Node 3 received OLSR_TC from 6
-Node 3 received NEIGHBOUR_ACK from 6
-Node 3 received OLSR_HELLO from 6
-Node 3 received NEIGHBOUR_ACK from 8
-Node 3 received NEIGHBOUR_ACK from 9
-Node 3 received NEIGHBOUR_ACK from 1
-Node 3 received NEIGHBOUR_SYN from 1
-Node 3 received OLSR_HELLO from 1
-Node 3 received NEIGHBOUR_ACK from 2
-Node 3 received OLSR_HELLO from 2
-Node 4 received NEIGHBOUR_SYN from 1
-Node 4  discovering neighbours
-Node 5 received OLSR_TC from 6
-Node 5 received OLSR_HELLO from 6
-Node 5 received NEIGHBOUR_SYN from 1
-Node 5 received OLSR_HELLO from 1
-Node 5 received OLSR_HELLO from 2
-Node 5 received OLSR_HELLO from 3
-Node 5 received NEIGHBOUR_SYN from 4
-Node 6 received OLSR_TEXT from 7
-Node 6 sending message further to 0 to reach 0
-Node 6 received OLSR_HELLO from 7
-Node 6 received OLSR_TEXT from 0
-Node 6 sending message further to 7 to reach 7
-Node 6 received NEIGHBOUR_SYN from 0
-Node 6 received NEIGHBOUR_SYN from 1
-Node 6 received OLSR_HELLO from 1
-Node 6 received OLSR_HELLO from 2
-Node 6 received OLSR_HELLO from 3
-Node 6  discovering neighbours
-Node 7 received OLSR_TEXT from 6
-Node 7 received text: Hello from 0
-Node 7 received NEIGHBOUR_SYN from 6
-Node 7  discovering neighbours
-Node 8 received NEIGHBOUR_SYN from 1
-Node 8 received OLSR_HELLO from 1
-Node 8 received OLSR_HELLO from 2
-Node 8 received OLSR_TEXT from 2
-Node 8 sending message further to 4 to reach 4
-Node 8 received OLSR_HELLO from 3
-Node 8 received NEIGHBOUR_SYN from 4
-Node 8 received OLSR_HELLO from 4
-Node 8 received NEIGHBOUR_SYN from 6
-Node 8  discovering neighbours
-Node 9 received NEIGHBOUR_SYN from 1
-Node 9 received OLSR_HELLO from 1
-Node 9 received OLSR_HELLO from 2
-Node 9 received OLSR_HELLO from 3
-Node 9 received OLSR_TEXT from 6
-Node 9 received text: Hello from 6
-Node 9 received NEIGHBOUR_SYN from 6
-Node 9 received NEIGHBOUR_SYN from 7
-Node 9 received NEIGHBOUR_SYN from 8
-Node 9 received OLSR_HELLO from 8
-Node 9  discovering neighbours
+Node 2 elected self as cluster head
+Node 2 sent HELLO message with status 1, neighbors: []
+Node 4 received HELLO from 2 with status 1
+Node 4 elected self as cluster head
+Node 4 sent HELLO message with status 1, neighbors: []
+Node 5 elected self as cluster head
+Node 5 sent HELLO message with status 1, neighbors: []
+Node 6 received HELLO from 2 with status 1
+Node 7 received HELLO from 5 with status 1
+Node 7 elected self as cluster head
+Node 7 sent HELLO message with status 1, neighbors: []
+Node 8 received HELLO from 5 with status 1
+Node 8 elected self as cluster head
+Node 8 sent HELLO message with status 1, neighbors: []
+Node 9 received HELLO from 8 with status 1
+Node 0 received HELLO from 2 with status 1
+Node 0 elected self as cluster head
+Node 0 sent HELLO message with status 1, neighbors: []
+Node 1 elected self as cluster head
+Node 1 sent HELLO message with status 1, neighbors: []
+Node 2 received HELLO from 0 with status 1
+Node 2 added 0 to neighbours set
+Node 2 started contention with cluster head 0
+Node 2 sent HELLO message with status 1, neighbors: [0]
+Node 4 received HELLO from 0 with status 1
+Node 4 received HELLO from 2 with status 1
+Node 4 sent HELLO message with status 1, neighbors: []
+Node 4 no route to 1, initiating route discovery
+Node 4 sent RREQ to all neighbors
+Node 5 received HELLO from 7 with status 1
+Node 5 added 7 to neighbours set
+Node 5 started contention with cluster head 7
+Node 5 received HELLO from 8 with status 1
+Node 5 added 8 to neighbours set
+Node 5 sent HELLO message with status 1, neighbors: [7, 8]
+Node 6 received HELLO from 7 with status 1
+Node 6 received HELLO from 0 with status 1
+Node 6 received HELLO from 2 with status 1
+Node 6 elected self as cluster head
+Node 6 sent HELLO message with status 1, neighbors: []
+Node 7 received HELLO from 5 with status 1
+Node 7 added 5 to neighbours set
+Node 7 started contention with cluster head 5
+Node 7 received HELLO from 6 with status 1
+Node 7 added 6 to neighbours set
+Node 7 sent HELLO message with status 1, neighbors: [5, 6]
+Node 7 no route to 4, initiating route discovery
+Node 7 sent RREQ to all neighbors
+Node 8 received HELLO from 5 with status 1
+Node 8 added 5 to neighbours set
+Node 8 started contention with cluster head 5
+Node 8 sent HELLO message with status 1, neighbors: [5]
+Node 8 no route to 4, initiating route discovery
+Node 8 sent RREQ to all neighbors
+Node 9 received HELLO from 1 with status 1
+Node 9 received HELLO from 8 with status 1
+Node 9 elected self as cluster head
+Node 9 sent HELLO message with status 1, neighbors: []
+Node 0 received HELLO from 2 with status 1
+Node 0 added 2 to neighbours set
+Node 0 started contention with cluster head 2
+Node 0 received HELLO from 6 with status 1
+Node 0 added 6 to neighbours set
+Node 0 sent HELLO message with status 1, neighbors: [2, 6]
+Node 0 no route to 4, initiating route discovery
+Node 0 sent RREQ to all neighbors
+Node 1 received HELLO from 9 with status 1
+Node 1 added 9 to neighbours set
+Node 1 started contention with cluster head 9
+Node 1 sent HELLO message with status 1, neighbors: [9]
+Node 1 no route to 4, initiating route discovery
+Node 1 sent RREQ to all neighbors
+Node 2 received HELLO from 6 with status 1
+Node 2 added 6 to neighbours set
+Node 2 received HELLO from 0 with status 1
+Node 2 no route to 8, initiating route discovery
+Node 2 sent RREQ to all neighbors
+Node 4 received HELLO from 6 with status 1
+Node 4 received HELLO from 0 with status 1
+Node 5 received HELLO from 6 with status 1
+Node 5 received HELLO from 7 with status 1
+Node 5 received HELLO from 8 with status 1
+Node 5 received HELLO from 9 with status 1
+Node 5 no route to 6, initiating route discovery
+Node 5 sent RREQ to all neighbors
+Node 6 received HELLO from 7 with status 1
+Node 6 added 7 to neighbours set
+Node 6 started contention with cluster head 7
+Node 6 received HELLO from 0 with status 1
+Node 6 added 0 to neighbours set
+Node 6 sent HELLO message with status 1, neighbors: [0, 7]
+Node 6 no route to 5, initiating route discovery
+Node 6 sent RREQ to all neighbors
+Node 7 target is my neighbor, forwarding RREQ
+Node 7 received HELLO from 6 with status 1
+Node 7 target is my neighbor, forwarding RREQ
+Node 8 received HELLO from 9 with status 1
+Node 8 added 9 to neighbours set
+Node 8 contention timer expired
+Node 8 giving up cluster head role to 5
+Node 8 sent HELLO message with status 2, neighbors: [5, 9]
+Node 9 received HELLO from 1 with status 1
+Node 9 added 1 to neighbours set
+Node 9 started contention with cluster head 1
+Node 9 received HELLO from 8 with status 2
+Node 9 added 8 to neighbours set
+Node 9 sent HELLO message with status 1, neighbors: [1, 8]
+Node 9 no route to 0, initiating route discovery
+Node 9 sent RREQ to all neighbors
+Node 0 received HELLO from 6 with status 1
+Node 1 received HELLO from 9 with status 1
+Node 2 received HELLO from 6 with status 1
+Node 2 contention timer expired
+Node 2 giving up cluster head role to 0
+Node 2 sent HELLO message with status 2, neighbors: [0, 6]
+Node 4 received HELLO from 6 with status 1
+Node 4 received HELLO from 2 with status 2
+Node 5 received HELLO from 6 with status 1
+Node 5 I am the target for RREQ from 6
+Node 5 sent RREP to 7
+Node 5 received HELLO from 8 with status 2
+Node 5 received HELLO from 9 with status 1
+Node 5 contention timer expired
+Node 5 won contention with 7, remaining cluster head
+Node 6 I am the target for RREQ from 5
+Node 6 sent RREP to 7
+Node 6 received HELLO from 2 with status 2
+Node 6 added 2 to neighbours set
+Node 6 contention timer expired
+Node 6 giving up cluster head role to 0
+Node 6 sent HELLO message with status 2, neighbors: [0, 2, 7]
+Node 7 RREP has empty cluster address list, cannot forward
+Node 7 RREP has empty cluster address list, cannot forward
+Node 7 received HELLO from 6 with status 2
+Node 7 contention timer expired
+Node 7 giving up cluster head role to 5
+Node 7 sent HELLO message with status 2, neighbors: [5, 6]
+Node 8 received HELLO from 9 with status 1
+Node 0 received HELLO from 2 with status 2
+Node 0 received HELLO from 6 with status 2
+Node 0 contention timer expired
+Node 0 no route to 8, initiating route discovery
+Node 0 sent RREQ to all neighbors
+Node 1 contention timer expired
+Node 1 won contention with 9, remaining cluster head
+Node 1 sent HELLO message with status 1, neighbors: [9]
+Node 1 no route to 7, initiating route discovery
+Node 1 sent RREQ to all neighbors
+Node 2 received HELLO from 6 with status 2
+Node 2 sent HELLO message with status 2, neighbors: [0, 6]
+Node 4 received HELLO from 6 with status 2
+Node 4 received HELLO from 2 with status 2
+Node 4 sent HELLO message with status 1, neighbors: []
+Node 4 no route to 1, initiating route discovery
+Node 4 sent RREQ to all neighbors
+Node 5 received HELLO from 6 with status 2
+Node 5 received HELLO from 7 with status 2
+Node 5 sent HELLO message with status 1, neighbors: [7, 8]
+Node 6 received HELLO from 7 with status 2
+Node 6 received HELLO from 2 with status 2
+Node 6 sent HELLO message with status 2, neighbors: [0, 2, 7]
+Node 7 received HELLO from 5 with status 1
+Node 7 received HELLO from 6 with status 2
+Node 7 no route to 2, initiating route discovery
+Node 7 sent RREQ to all neighbors
+Node 7 sent HELLO message with status 2, neighbors: [5, 6]
+Node 8 received HELLO from 5 with status 1
+Node 8 no route to 7, initiating route discovery
+Node 8 sent RREQ to all neighbors
+Node 8 sent HELLO message with status 2, neighbors: [5, 9]
+Node 9 received HELLO from 1 with status 1
+Node 9 received HELLO from 8 with status 2
+Node 9 contention timer expired
+Node 9 giving up cluster head role to 1
+Node 9 sent HELLO message with status 2, neighbors: [1, 8]
+Node 9 no route to 3, initiating route discovery
+Node 9 sent RREQ to all neighbors
+Node 0 received HELLO from 2 with status 2
+Node 0 received HELLO from 6 with status 2
+Node 0 sent HELLO message with status 1, neighbors: [2, 6]
+Node 1 received HELLO from 9 with status 2
+Node 2 received HELLO from 6 with status 2
+Node 2 received HELLO from 0 with status 1
+Node 2 no route to 1, initiating route discovery
+Node 2 sent RREQ to all neighbors
+Node 4 received HELLO from 6 with status 2
+Node 4 received HELLO from 0 with status 1
+Node 5 received HELLO from 6 with status 2
+Node 5 target is 2 hops away through 6
+Node 5 received HELLO from 7 with status 2
+Node 5 target is my neighbor, forwarding RREQ
+Node 5 received HELLO from 8 with status 2
+Node 5 received HELLO from 9 with status 2
+Node 6 target is my neighbor, forwarding RREQ
+Node 6 received HELLO from 7 with status 2
+Node 6 received HELLO from 0 with status 1
+Node 7 I am the target for RREQ from 8
+Node 7 sent RREP to 5
+Node 8 received HELLO from 9 with status 2
+Node 9 sent HELLO message with status 2, neighbors: [1, 8]
+Node 1 received HELLO from 9 with status 2
+Node 2 I am the target for RREQ from 7
+Node 2 sent RREP to 6
+Node 5 RREP has empty cluster address list, cannot forward
+Node 5 received HELLO from 9 with status 2
+Node 5 no route to 9, initiating route discovery
+Node 5 sent RREQ to all neighbors
+Node 6 RREP has empty cluster address list, cannot forward
+Node 6 no route to 2, initiating route discovery
+Node 6 sent RREQ to all neighbors
+Node 7 target is 2 hops away through 6
+Node 7 no route to 3, initiating route discovery
+Node 7 sent RREQ to all neighbors
+Node 8 received HELLO from 9 with status 2
+Node 8 target is my neighbor, forwarding RREQ
+Node 9 I am the target for RREQ from 5
+Node 9 sent RREP to 8
+Node 0 target is my neighbor, forwarding RREQ
+Node 0 no route to 9, initiating route discovery
+Node 0 sent RREQ to all neighbors
+Node 0 sent HELLO message with status 1, neighbors: [2, 6]
+Node 1 sent HELLO message with status 1, neighbors: [9]
+Node 1 no route to 4, initiating route discovery
+Node 1 sent RREQ to all neighbors
+Node 2 I am the target for RREQ from 6
+Node 2 sent RREP to 6
+Node 2 discarding duplicate RREQ 6:1
+Node 2 received HELLO from 0 with status 1
+Node 2 sent HELLO message with status 2, neighbors: [0, 6]
+Node 2 no route to 9, initiating route discovery
+Node 2 sent RREQ to all neighbors
+Node 4 received HELLO from 0 with status 1
+Node 4 received HELLO from 2 with status 2
+Node 4 sent HELLO message with status 1, neighbors: []
+Node 4 no route to 5, initiating route discovery
+Node 4 sent RREQ to all neighbors
+Node 6 discarding duplicate RREQ 6:1
+Node 6 received HELLO from 0 with status 1
+Node 6 received RREP for route to 2
+Node 6 sent waiting text message to 2
+Node 6 received HELLO from 2 with status 2
+Node 7 sent HELLO message with status 2, neighbors: [5, 6]
+Node 8 RREP has empty cluster address list, cannot forward
+Node 8 no route to 5, initiating route discovery
+Node 8 sent RREQ to all neighbors
+Node 8 sent HELLO message with status 2, neighbors: [5, 9]
+Node 9 received HELLO from 1 with status 1
+Node 9 target is 2 hops away through 8
+Node 9 received HELLO from 8 with status 2
+Node 9 no route to 6, initiating route discovery
+Node 9 sent RREQ to all neighbors
+Node 9 sent HELLO message with status 2, neighbors: [1, 8]
+Node 0 received HELLO from 2 with status 2
+Node 1 received HELLO from 9 with status 2
+Node 2 received text message: Hello from 6
+Node 5 received HELLO from 7 with status 2
+Node 5 I am the target for RREQ from 8
+Node 5 sent RREP to 8
+Node 5 received HELLO from 8 with status 2
+Node 5 received HELLO from 9 with status 2
+Node 5 sent HELLO message with status 1, neighbors: [7, 8]
+Node 6 received HELLO from 7 with status 2
+Node 6 sent HELLO message with status 2, neighbors: [0, 2, 7]
+Node 7 received HELLO from 5 with status 1
+Node 7 received HELLO from 6 with status 2
+Node 7 no route to 0, initiating route discovery
+Node 7 sent RREQ to all neighbors
+Node 8 discarding duplicate RREQ 8:2
+Node 8 received HELLO from 9 with status 2
+Node 8 received RREP for route to 5
+Node 8 sent waiting text message to 5
+Node 8 received HELLO from 5 with status 1
+Node 0 received HELLO from 6 with status 2
+Node 2 received HELLO from 6 with status 2
+Node 4 received HELLO from 6 with status 2
+Node 5 received HELLO from 6 with status 2
+Node 5 target is 2 hops away through 6
+Node 5 received text message: Hello from 8
+Node 5 no route to 3, initiating route discovery
+Node 5 sent RREQ to all neighbors
+Node 6 target is my neighbor, forwarding RREQ
+Node 6 no route to 0, initiating route discovery
+Node 6 sent RREQ to all neighbors
+Node 7 target is 2 hops away through 6
+Node 8 no route to 1, initiating route discovery
+Node 8 sent RREQ to all neighbors
+Node 9 target is my neighbor, forwarding RREQ
+Node 9 no route to 1, initiating route discovery
+Node 9 sent RREQ to all neighbors
+Node 0 I am the target for RREQ from 7
+Node 0 sent RREP to 6
+Node 0 I am the target for RREQ from 6
+Node 0 sent RREP to 6
+Node 0 no route to 4, initiating route discovery
+Node 0 sent RREQ to all neighbors
+Node 0 sent HELLO message with status 1, neighbors: [2, 6]
+Node 1 I am the target for RREQ from 8
+Node 1 sent RREP to 9
+Node 1 I am the target for RREQ from 9
+Node 1 sent RREP to 9
+Node 1 no route to 5, initiating route discovery
+Node 1 sent RREQ to all neighbors
+Node 1 sent HELLO message with status 1, neighbors: [9]
+Node 2 target is my neighbor, forwarding RREQ
+Node 2 received HELLO from 0 with status 1
+Node 2 sent HELLO message with status 2, neighbors: [0, 6]
+Node 2 no route to 0, initiating route discovery
+Node 2 sent RREQ to all neighbors
+Node 4 received HELLO from 0 with status 1
+Node 4 received HELLO from 2 with status 2
+Node 4 sent HELLO message with status 1, neighbors: []
+Node 4 no route to 3, initiating route discovery
+Node 4 sent RREQ to all neighbors
+Node 5 target is 2 hops away through 9
+Node 6 discarding duplicate RREQ 6:2
+Node 6 RREP has empty cluster address list, cannot forward
+Node 6 received RREP for route to 0
+Node 6 sent waiting text message to 0
+Node 6 received HELLO from 0 with status 1
+Node 6 received HELLO from 2 with status 2
+Node 6 target is my neighbor, forwarding RREQ
+Node 7 sent HELLO message with status 2, neighbors: [5, 6]
+Node 7 no route to 6, initiating route discovery
+Node 7 sent RREQ to all neighbors
+Node 8 target is 2 hops away through 9
+Node 8 sent HELLO message with status 2, neighbors: [5, 9]
+Node 9 RREP has empty cluster address list, cannot forward
+Node 9 received RREP for route to 1
+Node 9 sent waiting text message to 1
+Node 9 target is 2 hops away through 8
+Node 9 received HELLO from 1 with status 1
+Node 9 discarding duplicate RREQ 9:3
+Node 9 received HELLO from 8 with status 2
+Node 9 sent HELLO message with status 2, neighbors: [1, 8]
+Node 0 discarding duplicate RREQ 6:2
+Node 0 received HELLO from 2 with status 2
+Node 0 I am the target for RREQ from 2
+Node 0 sent RREP to 2
+Node 0 received text message: Hello from 6
+Node 0 discarding duplicate RREQ 2:3
+Node 1 received text message: Hello from 9
+Node 1 received HELLO from 9 with status 2
+Node 2 received RREP for route to 0
+Node 2 sent waiting text message to 0
+Node 5 received HELLO from 7 with status 2
+Node 5 target is my neighbor, forwarding RREQ
+Node 5 received HELLO from 8 with status 2
+Node 5 received HELLO from 9 with status 2
+Node 5 sent HELLO message with status 1, neighbors: [7, 8]
+Node 6 received HELLO from 7 with status 2
+Node 6 I am the target for RREQ from 7
+Node 6 sent RREP to 7
+Node 6 sent HELLO message with status 2, neighbors: [0, 2, 7]
+Node 7 received HELLO from 5 with status 1
+Node 7 received RREP for route to 6
+Node 7 sent waiting text message to 6
+Node 7 received HELLO from 6 with status 2
+Node 8 target is my neighbor, forwarding RREQ
+Node 8 received HELLO from 9 with status 2
+Node 8 received HELLO from 5 with status 1
+Node 0 received text message: Hello from 2
+Node 0 received HELLO from 6 with status 2
+Node 2 received HELLO from 6 with status 2
+Node 4 received HELLO from 6 with status 2
+Node 5 received HELLO from 6 with status 2
+Node 5 I am the target for RREQ from 1
+Node 5 sent RREP to 8
+Node 5 no route to 9, initiating route discovery
+Node 5 sent RREQ to all neighbors
+Node 6 received text message: Hello from 7
+Node 8 RREP has empty cluster address list, cannot forward
+Node 8 target is my neighbor, forwarding RREQ
+Node 8 no route to 3, initiating route discovery
+Node 8 sent RREQ to all neighbors
+Node 9 I am the target for RREQ from 5
+Node 9 sent RREP to 8
+Node 9 no route to 8, initiating route discovery
+Node 9 sent RREQ to all neighbors
+Node 0 no route to 9, initiating route discovery
+Node 0 sent RREQ to all neighbors
+Node 1 target is 2 hops away through 9
+Node 2 sent HELLO message with status 2, neighbors: [0, 6]
+Node 4 received HELLO from 2 with status 2
+Node 4 sent HELLO message with status 1, neighbors: []
+Node 4 no route to 5, initiating route discovery
+Node 4 sent RREQ to all neighbors
+Node 6 received HELLO from 2 with status 2
+Node 6 no route to 9, initiating route discovery
+Node 6 sent RREQ to all neighbors
+Node 7 sent HELLO message with status 2, neighbors: [5, 6]
+Node 8 RREP has empty cluster address list, cannot forward
+Node 8 I am the target for RREQ from 9
+Node 8 sent RREP to 9
+Node 8 sent HELLO message with status 2, neighbors: [5, 9]
+Node 9 discarding duplicate RREQ 9:4
+Node 9 received RREP for route to 8
+Node 9 sent waiting text message to 8
+Node 9 received HELLO from 8 with status 2
+Node 9 sent HELLO message with status 2, neighbors: [1, 8]
+Node 0 received HELLO from 2 with status 2
+Node 0 sent HELLO message with status 1, neighbors: [2, 6]
+Node 1 received HELLO from 9 with status 2
+Node 1 no route to 0, initiating route discovery
+Node 1 sent RREQ to all neighbors
+Node 1 sent HELLO message with status 1, neighbors: [9]
+Node 2 received HELLO from 0 with status 1
+Node 2 no route to 5, initiating route discovery
+Node 2 sent RREQ to all neighbors
+Node 4 received HELLO from 0 with status 1
+Node 5 received HELLO from 7 with status 2
+Node 5 received HELLO from 8 with status 2
+Node 5 received HELLO from 9 with status 2
+Node 5 sent HELLO message with status 1, neighbors: [7, 8]
+Node 6 received HELLO from 7 with status 2
+Node 6 received HELLO from 0 with status 1
+Node 6 target is 2 hops away through 7
+Node 6 sent HELLO message with status 2, neighbors: [0, 2, 7]
+Node 7 received HELLO from 5 with status 1
+Node 7 target is my neighbor, forwarding RREQ
+Node 7 received HELLO from 6 with status 2
+Node 7 no route to 8, initiating route discovery
+Node 7 sent RREQ to all neighbors
+Node 8 received text message: Hello from 9
+Node 8 received HELLO from 9 with status 2
+Node 8 received HELLO from 5 with status 1
+Node 9 received HELLO from 1 with status 1
+Node 0 received HELLO from 6 with status 2
+Node 2 received HELLO from 6 with status 2
+Node 4 received HELLO from 6 with status 2
+Node 5 received HELLO from 6 with status 2
+Node 5 I am the target for RREQ from 2
+Node 5 sent RREP to 7
+Node 5 target is my neighbor, forwarding RREQ
+Node 5 no route to 0, initiating route discovery
+Node 5 sent RREQ to all neighbors
+Node 7 RREP has empty cluster address list, cannot forward
+Node 7 target is 2 hops away through 6
+Node 8 I am the target for RREQ from 7
+Node 8 sent RREP to 5
+Node 8 no route to 1, initiating route discovery
+Node 8 sent RREQ to all neighbors
+Node 9 target is my neighbor, forwarding RREQ
+Node 9 no route to 5, initiating route discovery
+Node 9 sent RREQ to all neighbors
+Node 0 no route to 4, initiating route discovery
+Node 0 sent RREQ to all neighbors
+Node 0 sent HELLO message with status 1, neighbors: [2, 6]
+Node 1 I am the target for RREQ from 8
+Node 1 sent RREP to 9
+Node 2 received HELLO from 0 with status 1
+Node 2 sent HELLO message with status 2, neighbors: [0, 6]
+Node 4 received HELLO from 0 with status 1
+Node 4 received HELLO from 2 with status 2
+Node 4 sent HELLO message with status 1, neighbors: []
+Node 5 RREP has empty cluster address list, cannot forward
+Node 5 target is 2 hops away through 9
+Node 6 target is my neighbor, forwarding RREQ
+Node 6 received HELLO from 0 with status 1
+Node 6 received HELLO from 2 with status 2
+Node 6 no route to 8, initiating route discovery
+Node 6 sent RREQ to all neighbors
+Node 7 target is 2 hops away through 5
+Node 7 no route to 1, initiating route discovery
+Node 7 sent RREQ to all neighbors
+Node 7 sent HELLO message with status 2, neighbors: [5, 6]
+Node 8 target is my neighbor, forwarding RREQ
+Node 8 sent HELLO message with status 2, neighbors: [5, 9]
+Node 9 RREP has empty cluster address list, cannot forward
+Node 9 received HELLO from 8 with status 2
+Node 9 sent HELLO message with status 2, neighbors: [1, 8]
+Node 0 received HELLO from 2 with status 2
+Node 0 I am the target for RREQ from 5
+Node 0 sent RREP to 6
+Node 1 received HELLO from 9 with status 2
+Node 1 no route to 7, initiating route discovery
+Node 1 sent RREQ to all neighbors
+Node 1 sent HELLO message with status 1, neighbors: [9]
+Node 2 no route to 1, initiating route discovery
+Node 2 sent RREQ to all neighbors
+Node 4 no route to 5, initiating route discovery
+Node 4 sent RREQ to all neighbors
+Node 5 target is my neighbor, forwarding RREQ
+Node 5 target is 2 hops away through 9
+Node 5 received HELLO from 7 with status 2
+Node 5 I am the target for RREQ from 9
+Node 5 sent RREP to 8
+Node 5 received HELLO from 8 with status 2
+Node 5 received HELLO from 9 with status 2
+Node 5 sent HELLO message with status 1, neighbors: [7, 8]
+Node 6 received HELLO from 7 with status 2
+Node 6 RREP has empty cluster address list, cannot forward
+Node 6 sent HELLO message with status 2, neighbors: [0, 2, 7]
+Node 7 received HELLO from 5 with status 1
+Node 7 received HELLO from 6 with status 2
+Node 8 received HELLO from 9 with status 2
+Node 8 I am the target for RREQ from 6
+Node 8 sent RREP to 5
+Node 8 RREP has empty cluster address list, cannot forward
+Node 8 received HELLO from 5 with status 1
+Node 8 no route to 6, initiating route discovery
+Node 8 sent RREQ to all neighbors
+Node 9 received HELLO from 1 with status 1
+Node 9 sent text message to 8 using cached route
+Node 0 received HELLO from 6 with status 2
+Node 0 no route to 5, initiating route discovery
+Node 0 sent RREQ to all neighbors
+Node 2 received HELLO from 6 with status 2
+Node 4 received HELLO from 6 with status 2
+Node 5 received HELLO from 6 with status 2
+Node 5 RREP has empty cluster address list, cannot forward
+Node 5 target is my neighbor, forwarding RREQ
+Node 5 no route to 9, initiating route discovery
+Node 5 sent RREQ to all neighbors
+Node 6 target is 2 hops away through 7
+Node 7 target is my neighbor, forwarding RREQ
+Node 7 no route to 5, initiating route discovery
+Node 7 sent RREQ to all neighbors
+Node 8 received text message: Hello from 9
+Node 8 target is my neighbor, forwarding RREQ
+Node 9 I am the target for RREQ from 5
+Node 9 sent RREP to 8
+Node 0 sent HELLO message with status 1, neighbors: [2, 6]
+Node 1 no route to 4, initiating route discovery
+Node 1 sent RREQ to all neighbors
+Node 2 received HELLO from 0 with status 1
+Node 2 sent HELLO message with status 2, neighbors: [0, 6]
+Node 4 received HELLO from 0 with status 1
+Node 4 received HELLO from 2 with status 2
+Node 4 sent HELLO message with status 1, neighbors: []
+Node 4 no route to 8, initiating route discovery
+Node 4 sent RREQ to all neighbors
+Node 5 I am the target for RREQ from 0
+Node 5 sent RREP to 7
+Node 5 I am the target for RREQ from 7
+Node 5 sent RREP to 7
+Node 6 target is 2 hops away through 7
+Node 6 received HELLO from 0 with status 1
+Node 6 received HELLO from 2 with status 2
+Node 6 no route to 9, initiating route discovery
+Node 6 sent RREQ to all neighbors
+Node 6 sent HELLO message with status 2, neighbors: [0, 2, 7]
+Node 7 RREP has empty cluster address list, cannot forward
+Node 7 received RREP for route to 5
+Node 7 sent waiting text message to 5
+Node 7 discarding duplicate RREQ 7:7
+Node 7 received HELLO from 6 with status 2
+Node 7 sent HELLO message with status 2, neighbors: [5, 6]
+Node 8 RREP has empty cluster address list, cannot forward
+Node 8 sent HELLO message with status 2, neighbors: [5, 9]
+Node 8 no route to 2, initiating route discovery
+Node 8 sent RREQ to all neighbors
+Node 9 received HELLO from 8 with status 2
+Node 9 sent HELLO message with status 2, neighbors: [1, 8]
+Node 0 received HELLO from 2 with status 2
+Node 0 received HELLO from 6 with status 2
+Node 1 received HELLO from 9 with status 2
+Node 1 sent HELLO message with status 1, neighbors: [9]
+Node 2 received HELLO from 6 with status 2
+Node 2 no route to 8, initiating route discovery
+Node 2 sent RREQ to all neighbors
+Node 4 received HELLO from 6 with status 2
+Node 5 received HELLO from 6 with status 2
+Node 5 received text message: Hello from 7
+Node 5 received HELLO from 7 with status 2
+Node 5 received HELLO from 8 with status 2
+Node 5 target is 2 hops away through 6
+Node 5 received HELLO from 9 with status 2
+Node 5 sent HELLO message with status 1, neighbors: [7, 8]
+Node 6 received HELLO from 7 with status 2
+Node 7 received HELLO from 5 with status 1
+Node 8 received HELLO from 9 with status 2
+Node 8 received HELLO from 5 with status 1
+Node 9 received HELLO from 1 with status 1
+Node 9 no route to 5, initiating route discovery
+Node 9 sent RREQ to all neighbors
+Node 0 no route to 4, initiating route discovery
+Node 0 sent RREQ to all neighbors
+Node 5 no route to 2, initiating route discovery
+Node 5 sent RREQ to all neighbors
+Node 7 target is 2 hops away through 6
+Node 7 sent text message to 6 using cached route
+Node 8 target is my neighbor, forwarding RREQ
+Node 8 sent HELLO message with status 2, neighbors: [5, 9]
+Node 9 received HELLO from 8 with status 2
+Node 0 sent HELLO message with status 1, neighbors: [2, 6]
+Node 1 no route to 9, initiating route discovery
+Node 1 sent RREQ to all neighbors
+Node 1 sent HELLO message with status 1, neighbors: [9]
+Node 2 received HELLO from 0 with status 1
+Node 2 sent HELLO message with status 2, neighbors: [0, 6]
+Node 2 no route to 7, initiating route discovery
+Node 2 sent RREQ to all neighbors
+Node 4 received HELLO from 0 with status 1
+Node 4 received HELLO from 2 with status 2
+Node 4 sent HELLO message with status 1, neighbors: []
+Node 4 no route to 0, initiating route discovery
+Node 4 sent RREQ to all neighbors
+Node 5 I am the target for RREQ from 9
+Node 5 sent RREP to 8
+Node 5 received HELLO from 8 with status 2
+Node 6 target is my neighbor, forwarding RREQ
+Node 6 received text message: Hello from 7
+Node 6 received HELLO from 0 with status 1
+Node 6 received HELLO from 2 with status 2
+Node 6 target is my neighbor, forwarding RREQ
+Node 6 sent HELLO message with status 2, neighbors: [0, 2, 7]
+Node 6 no route to 1, initiating route discovery
+Node 6 sent RREQ to all neighbors
+Node 7 I am the target for RREQ from 2
+Node 7 sent RREP to 6
+Node 7 received HELLO from 6 with status 2
+Node 7 sent HELLO message with status 2, neighbors: [5, 6]
+Node 8 RREP has empty cluster address list, cannot forward
+Node 8 no route to 4, initiating route discovery
+Node 8 sent RREQ to all neighbors
+Node 9 I am the target for RREQ from 1
+Node 9 sent RREP to 1
+Node 9 received HELLO from 1 with status 1
+Node 9 sent HELLO message with status 2, neighbors: [1, 8]
+Node 9 no route to 0, initiating route discovery
+Node 9 sent RREQ to all neighbors
+Node 0 received HELLO from 2 with status 2
+Node 0 target is 2 hops away through 6
+Node 0 received HELLO from 6 with status 2
+Node 1 received RREP for route to 9
+Node 1 sent waiting text message to 9
+Node 1 received HELLO from 9 with status 2
+Node 2 I am the target for RREQ from 5
+Node 2 sent RREP to 6
+Node 2 received HELLO from 6 with status 2
+Node 4 received HELLO from 6 with status 2
+Node 5 received HELLO from 6 with status 2
+Node 5 received HELLO from 7 with status 2
+Node 5 received HELLO from 9 with status 2
+Node 5 sent HELLO message with status 1, neighbors: [7, 8]
+Node 6 RREP has empty cluster address list, cannot forward
+Node 6 received HELLO from 7 with status 2
+Node 6 discarding duplicate RREQ 2:7
+Node 6 RREP has empty cluster address list, cannot forward
+Node 7 received HELLO from 5 with status 1
+Node 7 no route to 1, initiating route discovery
+Node 7 sent RREQ to all neighbors
+Node 8 received HELLO from 9 with status 2
+Node 8 received HELLO from 5 with status 1
+Node 9 received text message: Hello from 1
+Node 0 no route to 4, initiating route discovery
+Node 0 sent RREQ to all neighbors
+Node 1 no route to 3, initiating route discovery
+Node 1 sent RREQ to all neighbors
+Node 2 sent HELLO message with status 2, neighbors: [0, 6]
+Node 4 received HELLO from 2 with status 2
+Node 4 sent HELLO message with status 1, neighbors: []
+Node 5 target is 2 hops away through 9
+Node 5 no route to 2, initiating route discovery
+Node 5 sent RREQ to all neighbors
+Node 6 received HELLO from 2 with status 2
+Node 7 target is 2 hops away through 6
+Node 8 sent HELLO message with status 2, neighbors: [5, 9]
+Node 8 sent text message to 5 using cached route
+Node 9 received HELLO from 8 with status 2
+Node 9 sent HELLO message with status 2, neighbors: [1, 8]
+Node 9 sent text message to 8 using cached route
+Node 0 received HELLO from 2 with status 2
+Node 0 sent HELLO message with status 1, neighbors: [2, 6]
+Node 1 received HELLO from 9 with status 2
+Node 1 sent HELLO message with status 1, neighbors: [9]
+Node 2 received HELLO from 0 with status 1
+Node 2 no route to 6, initiating route discovery
+Node 2 sent RREQ to all neighbors
+Node 4 received HELLO from 0 with status 1
+Node 4 no route to 6, initiating route discovery
+Node 4 sent RREQ to all neighbors
+Node 5 received HELLO from 8 with status 2
+Node 5 received text message: Hello from 8
+Node 5 received HELLO from 9 with status 2
+Node 6 target is my neighbor, forwarding RREQ
+Node 6 received HELLO from 0 with status 1
+Node 6 I am the target for RREQ from 2
+Node 6 sent RREP to 2
+Node 6 sent HELLO message with status 2, neighbors: [0, 2, 7]
+Node 7 received HELLO from 6 with status 2
+Node 7 sent HELLO message with status 2, neighbors: [5, 6]
+Node 7 no route to 1, initiating route discovery
+Node 7 sent RREQ to all neighbors
+Node 8 received HELLO from 9 with status 2
+Node 8 received text message: Hello from 9
+Node 9 received HELLO from 1 with status 1
+Node 0 target is my neighbor, forwarding RREQ
+Node 0 received HELLO from 6 with status 2
+Node 2 I am the target for RREQ from 5
+Node 2 sent RREP to 6
+Node 2 received RREP for route to 6
+Node 2 sent waiting text message to 6
+Node 2 received HELLO from 6 with status 2
+Node 4 received HELLO from 6 with status 2
+Node 5 received HELLO from 6 with status 2
+Node 5 received HELLO from 7 with status 2
+Node 5 target is 2 hops away through 9
+Node 5 sent HELLO message with status 1, neighbors: [7, 8]
+Node 6 received HELLO from 7 with status 2
+Node 6 discarding duplicate RREQ 2:8
+Node 6 RREP has empty cluster address list, cannot forward
+Node 6 received text message: Hello from 2
+Node 6 no route to 8, initiating route discovery
+Node 6 sent RREQ to all neighbors
+Node 7 received HELLO from 5 with status 1
+Node 7 target is 2 hops away through 5
+Node 8 received HELLO from 5 with status 1
 ========================================================
 Simulation finished
-Messages sent: 2385
-Text messages sent: 112
-Text message success rate: 92.56198347107438%
+Messages sent: 1087
+Text messages sent: 14
+Text message success rate: 100.0%
 More information can be found in log.txt
-[0] Undelivered text messages (2)
-[0] Unprocessed messages (6)
+[0] Undelivered text messages (9)
+ Message { source=0, destination=4, text='Hello from 0', messageType=TEXT }
+  Message { source=0, destination=8, text='Hello from 0', messageType=TEXT }
+  Message { source=0, destination=9, text='Hello from 0', messageType=TEXT }
+  Message { source=0, destination=4, text='Hello from 0', messageType=TEXT }
+  Message { source=0, destination=9, text='Hello from 0', messageType=TEXT }
+  Message { source=0, destination=4, text='Hello from 0', messageType=TEXT }
+  Message { source=0, destination=5, text='Hello from 0', messageType=TEXT }
+  Message { source=0, destination=4, text='Hello from 0', messageType=TEXT }
+  Message { source=0, destination=4, text='Hello from 0', messageType=TEXT }
+[1] Undelivered text messages (8)
+ Message { source=1, destination=4, text='Hello from 1', messageType=TEXT }
+  Message { source=1, destination=7, text='Hello from 1', messageType=TEXT }
+  Message { source=1, destination=4, text='Hello from 1', messageType=TEXT }
+  Message { source=1, destination=5, text='Hello from 1', messageType=TEXT }
+  Message { source=1, destination=0, text='Hello from 1', messageType=TEXT }
+  Message { source=1, destination=7, text='Hello from 1', messageType=TEXT }
+  Message { source=1, destination=4, text='Hello from 1', messageType=TEXT }
+  Message { source=1, destination=3, text='Hello from 1', messageType=TEXT }
+[2] Undelivered text messages (7)
+ Message { source=2, destination=8, text='Hello from 2', messageType=TEXT }
+  Message { source=2, destination=1, text='Hello from 2', messageType=TEXT }
+  Message { source=2, destination=9, text='Hello from 2', messageType=TEXT }
+  Message { source=2, destination=5, text='Hello from 2', messageType=TEXT }
+  Message { source=2, destination=1, text='Hello from 2', messageType=TEXT }
+  Message { source=2, destination=8, text='Hello from 2', messageType=TEXT }
+  Message { source=2, destination=7, text='Hello from 2', messageType=TEXT }
+[3] Undelivered text messages (0)
  
- ===== WAITING MESSAGES =====
- Message { source=0, destination=3, text='Hello from 0', messageType=OLSR_TEXT }
-  Message { source=0, destination=-1, text='Hello from 0', messageType=OLSR_TEXT }
- 
- ===== ONE-HOP NEIGHBORS =====
- Node ID: 0 | Last Updated: 1749071695004 | Expired: No
- Node ID: 2 | Last Updated: 1749071695004 | Expired: No
- Node ID: 6 | Last Updated: 1749071695004 | Expired: No
- 
- ===== TWO-HOP NEIGHBORS =====
- Two-Hop Node ID: 1 | Reachable through: 2, 6 | Expired: No
- Two-Hop Node ID: 3 | Reachable through: 2, 6 | Expired: No
- Two-Hop Node ID: 5 | Reachable through: 2, 6 | Expired: No
- Two-Hop Node ID: 7 | Reachable through: 6 | Expired: No
- Two-Hop Node ID: 8 | Reachable through: 2, 6 | Expired: No
- Two-Hop Node ID: 9 | Reachable through: 2, 6 | Expired: No
- 
- ===== ROUTING TABLE =====
- Destination: 0 | Next Hop: 0 | Hop Count: 1 | Last Updated: 1749071694915 | Expired: No
- Destination: 1 | Next Hop: 6 | Hop Count: 2 | Last Updated: 1749071694915 | Expired: No
- Destination: 2 | Next Hop: 2 | Hop Count: 1 | Last Updated: 1749071694915 | Expired: No
- Destination: 3 | Next Hop: 6 | Hop Count: 2 | Last Updated: 1749071694915 | Expired: No
- Destination: 5 | Next Hop: 6 | Hop Count: 2 | Last Updated: 1749071694915 | Expired: No
- Destination: 6 | Next Hop: 6 | Hop Count: 1 | Last Updated: 1749071694915 | Expired: No
- Destination: 7 | Next Hop: 6 | Hop Count: 2 | Last Updated: 1749071694915 | Expired: No
- Destination: 8 | Next Hop: 6 | Hop Count: 2 | Last Updated: 1749071694915 | Expired: No
- Destination: 9 | Next Hop: 6 | Hop Count: 2 | Last Updated: 1749071694915 | Expired: No
- 
- ===== MULTIPLE RELAY POINTS (MPRs) =====
- MPRs: 2, 6
- 
- ===== MPR SELECTORS =====
- Selectors: 4, 3
-[1] Undelivered text messages (2)
-[1] Unprocessed messages (13)
- 
- ===== WAITING MESSAGES =====
- Message { source=1, destination=8, text='Hello from 1', messageType=OLSR_TEXT }
-  Message { source=1, destination=-1, text='Hello from 1', messageType=OLSR_TEXT }
- 
- ===== ONE-HOP NEIGHBORS =====
- Node ID: 1 | Last Updated: 1749071695124 | Expired: No
- Node ID: 2 | Last Updated: 1749071695124 | Expired: No
- Node ID: 3 | Last Updated: 1749071695124 | Expired: No
- Node ID: 5 | Last Updated: 1749071695124 | Expired: No
- Node ID: 6 | Last Updated: 1749071695124 | Expired: No
- Node ID: 8 | Last Updated: 1749071695124 | Expired: No
- Node ID: 9 | Last Updated: 1749071695124 | Expired: No
- 
- ===== TWO-HOP NEIGHBORS =====
- Two-Hop Node ID: 0 | Reachable through: 6 | Expired: No
- Two-Hop Node ID: 4 | Reachable through: 8 | Expired: No
- Two-Hop Node ID: 7 | Reachable through: 6 | Expired: No
- 
- ===== ROUTING TABLE =====
- Destination: 0 | Next Hop: 6 | Hop Count: 2 | Last Updated: 1749071695025 | Expired: No
- Destination: 1 | Next Hop: 1 | Hop Count: 1 | Last Updated: 1749071695025 | Expired: No
- Destination: 2 | Next Hop: 2 | Hop Count: 1 | Last Updated: 1749071695025 | Expired: No
- Destination: 3 | Next Hop: 3 | Hop Count: 1 | Last Updated: 1749071695025 | Expired: No
- Destination: 4 | Next Hop: 8 | Hop Count: 2 | Last Updated: 1749071695025 | Expired: No
- Destination: 5 | Next Hop: 5 | Hop Count: 1 | Last Updated: 1749071695025 | Expired: No
- Destination: 6 | Next Hop: 6 | Hop Count: 1 | Last Updated: 1749071695025 | Expired: No
- Destination: 7 | Next Hop: 6 | Hop Count: 2 | Last Updated: 1749071695025 | Expired: No
- Destination: 8 | Next Hop: 8 | Hop Count: 1 | Last Updated: 1749071695025 | Expired: No
- Destination: 9 | Next Hop: 9 | Hop Count: 1 | Last Updated: 1749071695025 | Expired: No
- 
- ===== MULTIPLE RELAY POINTS (MPRs) =====
- MPRs: 6, 8
- 
- ===== MPR SELECTORS =====
- No nodes have selected this node as MPR
-[2] Undelivered text messages (1)
-[2] Unprocessed messages (8)
- 
- ===== WAITING MESSAGES =====
- Message { source=2, destination=9, text='Hello from 2', messageType=OLSR_TEXT }
- 
- ===== ONE-HOP NEIGHBORS =====
- Node ID: 0 | Last Updated: 1749071695242 | Expired: No
- Node ID: 1 | Last Updated: 1749071695242 | Expired: No
- Node ID: 2 | Last Updated: 1749071695242 | Expired: No
- Node ID: 3 | Last Updated: 1749071695242 | Expired: No
- Node ID: 5 | Last Updated: 1749071695242 | Expired: No
- Node ID: 6 | Last Updated: 1749071695242 | Expired: No
- Node ID: 8 | Last Updated: 1749071695242 | Expired: No
- Node ID: 9 | Last Updated: 1749071695242 | Expired: No
- 
- ===== TWO-HOP NEIGHBORS =====
- Two-Hop Node ID: 4 | Reachable through: 8 | Expired: No
- Two-Hop Node ID: 7 | Reachable through: 6 | Expired: No
- 
- ===== ROUTING TABLE =====
- Destination: 0 | Next Hop: 0 | Hop Count: 1 | Last Updated: 1749071695146 | Expired: No
- Destination: 1 | Next Hop: 1 | Hop Count: 1 | Last Updated: 1749071695146 | Expired: No
- Destination: 2 | Next Hop: 2 | Hop Count: 1 | Last Updated: 1749071695146 | Expired: No
- Destination: 3 | Next Hop: 3 | Hop Count: 1 | Last Updated: 1749071695146 | Expired: No
- Destination: 4 | Next Hop: 8 | Hop Count: 2 | Last Updated: 1749071695146 | Expired: No
- Destination: 5 | Next Hop: 5 | Hop Count: 1 | Last Updated: 1749071695146 | Expired: No
- Destination: 6 | Next Hop: 6 | Hop Count: 1 | Last Updated: 1749071695146 | Expired: No
- Destination: 7 | Next Hop: 6 | Hop Count: 2 | Last Updated: 1749071695146 | Expired: No
- Destination: 8 | Next Hop: 8 | Hop Count: 1 | Last Updated: 1749071695146 | Expired: No
- Destination: 9 | Next Hop: 9 | Hop Count: 1 | Last Updated: 1749071695146 | Expired: No
- 
- ===== MULTIPLE RELAY POINTS (MPRs) =====
- MPRs: 8, 6
- 
- ===== MPR SELECTORS =====
- Selectors: 0
-[3] Undelivered text messages (3)
-[3] Unprocessed messages (5)
- 
- ===== WAITING MESSAGES =====
- Message { source=3, destination=3, text='Hello from 5', messageType=OLSR_TEXT }
-  Message { source=3, destination=3, text='Hello from 8', messageType=OLSR_TEXT }
-  Message { source=3, destination=3, text='Hello from 9', messageType=OLSR_TEXT }
- 
- ===== ONE-HOP NEIGHBORS =====
- Node ID: 1 | Last Updated: 1749071695352 | Expired: No
- Node ID: 2 | Last Updated: 1749071695352 | Expired: No
- Node ID: 3 | Last Updated: 1749071695352 | Expired: No
- Node ID: 5 | Last Updated: 1749071695352 | Expired: No
- Node ID: 6 | Last Updated: 1749071695352 | Expired: No
- Node ID: 8 | Last Updated: 1749071695352 | Expired: No
- Node ID: 9 | Last Updated: 1749071695352 | Expired: No
- 
- ===== TWO-HOP NEIGHBORS =====
- Two-Hop Node ID: 0 | Reachable through: 2, 6 | Expired: No
- Two-Hop Node ID: 4 | Reachable through: 8 | Expired: No
- Two-Hop Node ID: 7 | Reachable through: 6 | Expired: No
- 
- ===== ROUTING TABLE =====
- Destination: 0 | Next Hop: 2 | Hop Count: 2 | Last Updated: 1749071695263 | Expired: No
- Destination: 1 | Next Hop: 1 | Hop Count: 1 | Last Updated: 1749071695263 | Expired: No
- Destination: 2 | Next Hop: 2 | Hop Count: 1 | Last Updated: 1749071695263 | Expired: No
- Destination: 3 | Next Hop: 3 | Hop Count: 1 | Last Updated: 1749071695263 | Expired: No
- Destination: 4 | Next Hop: 8 | Hop Count: 2 | Last Updated: 1749071695263 | Expired: No
- Destination: 5 | Next Hop: 5 | Hop Count: 1 | Last Updated: 1749071695263 | Expired: No
- Destination: 6 | Next Hop: 6 | Hop Count: 1 | Last Updated: 1749071695263 | Expired: No
- Destination: 7 | Next Hop: 6 | Hop Count: 2 | Last Updated: 1749071695263 | Expired: No
- Destination: 8 | Next Hop: 8 | Hop Count: 1 | Last Updated: 1749071695263 | Expired: No
- Destination: 9 | Next Hop: 9 | Hop Count: 1 | Last Updated: 1749071695263 | Expired: No
- 
- ===== MULTIPLE RELAY POINTS (MPRs) =====
- MPRs: 8, 6
- 
- ===== MPR SELECTORS =====
- Selectors: 0, 4
-[4] Undelivered text messages (1)
-[4] Unprocessed messages (7)
- 
- ===== WAITING MESSAGES =====
- Message { source=4, destination=-1, text='Hello from 4', messageType=OLSR_TEXT }
- 
- ===== ONE-HOP NEIGHBORS =====
- Node ID: 4 | Last Updated: 1749071695470 | Expired: No
- Node ID: 8 | Last Updated: 1749071695470 | Expired: No
- 
- ===== TWO-HOP NEIGHBORS =====
- Two-Hop Node ID: 1 | Reachable through: 8 | Expired: No
- Two-Hop Node ID: 2 | Reachable through: 8 | Expired: No
- Two-Hop Node ID: 3 | Reachable through: 8 | Expired: No
- Two-Hop Node ID: 5 | Reachable through: 8 | Expired: No
- Two-Hop Node ID: 6 | Reachable through: 8 | Expired: No
- Two-Hop Node ID: 9 | Reachable through: 8 | Expired: No
- 
- ===== ROUTING TABLE =====
- Destination: 1 | Next Hop: 8 | Hop Count: 2 | Last Updated: 1749071694214 | Expired: No
- Destination: 2 | Next Hop: 8 | Hop Count: 2 | Last Updated: 1749071694214 | Expired: No
- Destination: 3 | Next Hop: 8 | Hop Count: 2 | Last Updated: 1749071694214 | Expired: No
- Destination: 4 | Next Hop: 4 | Hop Count: 1 | Last Updated: 1749071694214 | Expired: No
- Destination: 5 | Next Hop: 8 | Hop Count: 2 | Last Updated: 1749071694214 | Expired: No
- Destination: 6 | Next Hop: 8 | Hop Count: 2 | Last Updated: 1749071694214 | Expired: No
- Destination: 8 | Next Hop: 8 | Hop Count: 1 | Last Updated: 1749071694214 | Expired: No
- Destination: 9 | Next Hop: 8 | Hop Count: 2 | Last Updated: 1749071694214 | Expired: No
- 
- ===== MULTIPLE RELAY POINTS (MPRs) =====
- MPRs: 8
- 
- ===== MPR SELECTORS =====
- No nodes have selected this node as MPR
-[5] Undelivered text messages (2)
-[5] Unprocessed messages (5)
- 
- ===== WAITING MESSAGES =====
- Message { source=3, destination=2, text='Hello from 5', messageType=OLSR_TEXT }
-  Message { source=5, destination=5, text='Hello from 5', messageType=OLSR_TEXT }
- 
- ===== ONE-HOP NEIGHBORS =====
- Node ID: 1 | Last Updated: 1749071695579 | Expired: No
- Node ID: 2 | Last Updated: 1749071695579 | Expired: No
- Node ID: 3 | Last Updated: 1749071695579 | Expired: No
- Node ID: 5 | Last Updated: 1749071695579 | Expired: No
- Node ID: 6 | Last Updated: 1749071695579 | Expired: No
- Node ID: 8 | Last Updated: 1749071695579 | Expired: No
- Node ID: 9 | Last Updated: 1749071695579 | Expired: No
- 
- ===== TWO-HOP NEIGHBORS =====
- Two-Hop Node ID: 0 | Reachable through: 2, 6 | Expired: No
- Two-Hop Node ID: 4 | Reachable through: 8 | Expired: No
- Two-Hop Node ID: 7 | Reachable through: 6 | Expired: No
- 
- ===== ROUTING TABLE =====
- Destination: 0 | Next Hop: 2 | Hop Count: 2 | Last Updated: 1749071695491 | Expired: No
- Destination: 1 | Next Hop: 1 | Hop Count: 1 | Last Updated: 1749071695491 | Expired: No
- Destination: 2 | Next Hop: 2 | Hop Count: 1 | Last Updated: 1749071695491 | Expired: No
- Destination: 3 | Next Hop: 3 | Hop Count: 1 | Last Updated: 1749071695491 | Expired: No
- Destination: 4 | Next Hop: 8 | Hop Count: 2 | Last Updated: 1749071695491 | Expired: No
- Destination: 5 | Next Hop: 5 | Hop Count: 1 | Last Updated: 1749071695491 | Expired: No
- Destination: 6 | Next Hop: 6 | Hop Count: 1 | Last Updated: 1749071695491 | Expired: No
- Destination: 7 | Next Hop: 6 | Hop Count: 2 | Last Updated: 1749071695491 | Expired: No
- Destination: 8 | Next Hop: 8 | Hop Count: 1 | Last Updated: 1749071695491 | Expired: No
- Destination: 9 | Next Hop: 9 | Hop Count: 1 | Last Updated: 1749071695491 | Expired: No
- 
- ===== MULTIPLE RELAY POINTS (MPRs) =====
- MPRs: 6, 8
- 
- ===== MPR SELECTORS =====
- Selectors: 7
-[6] Undelivered text messages (2)
-[6] Unprocessed messages (9)
- 
- ===== WAITING MESSAGES =====
- Message { source=6, destination=8, text='Hello from 6', messageType=OLSR_TEXT }
-  Message { source=6, destination=6, text='Hello from 2', messageType=OLSR_TEXT }
- 
- ===== ONE-HOP NEIGHBORS =====
- Node ID: 0 | Last Updated: 1749071695690 | Expired: No
- Node ID: 1 | Last Updated: 1749071695690 | Expired: No
- Node ID: 2 | Last Updated: 1749071695690 | Expired: No
- Node ID: 3 | Last Updated: 1749071695690 | Expired: No
- Node ID: 5 | Last Updated: 1749071695690 | Expired: No
- Node ID: 6 | Last Updated: 1749071695690 | Expired: No
- Node ID: 7 | Last Updated: 1749071695690 | Expired: No
- Node ID: 8 | Last Updated: 1749071695690 | Expired: No
- Node ID: 9 | Last Updated: 1749071695690 | Expired: No
- 
- ===== TWO-HOP NEIGHBORS =====
- Two-Hop Node ID: 4 | Reachable through: 8 | Expired: No
- 
- ===== ROUTING TABLE =====
- Destination: 0 | Next Hop: 0 | Hop Count: 1 | Last Updated: 1749071695601 | Expired: No
- Destination: 1 | Next Hop: 1 | Hop Count: 1 | Last Updated: 1749071695601 | Expired: No
- Destination: 2 | Next Hop: 2 | Hop Count: 1 | Last Updated: 1749071695601 | Expired: No
- Destination: 3 | Next Hop: 3 | Hop Count: 1 | Last Updated: 1749071695601 | Expired: No
- Destination: 4 | Next Hop: 8 | Hop Count: 2 | Last Updated: 1749071695601 | Expired: No
- Destination: 5 | Next Hop: 5 | Hop Count: 1 | Last Updated: 1749071695601 | Expired: No
- Destination: 6 | Next Hop: 6 | Hop Count: 1 | Last Updated: 1749071695601 | Expired: No
- Destination: 7 | Next Hop: 7 | Hop Count: 1 | Last Updated: 1749071695601 | Expired: No
- Destination: 8 | Next Hop: 8 | Hop Count: 1 | Last Updated: 1749071695601 | Expired: No
- Destination: 9 | Next Hop: 9 | Hop Count: 1 | Last Updated: 1749071695601 | Expired: No
- 
- ===== MULTIPLE RELAY POINTS (MPRs) =====
- MPRs: 8
- 
- ===== MPR SELECTORS =====
- Selectors: 0, 7, 8, 5, 9, 2, 3, 1
-[7] Undelivered text messages (3)
-[7] Unprocessed messages (2)
- 
- ===== WAITING MESSAGES =====
- Message { source=7, destination=-1, text='Hello from 7', messageType=OLSR_TEXT }
-  Message { source=7, destination=-1, text='Hello from 7', messageType=OLSR_TEXT }
-  Message { source=7, destination=-1, text='Hello from 7', messageType=OLSR_TEXT }
- 
- ===== ONE-HOP NEIGHBORS =====
- Node ID: 6 | Last Updated: 1749071695808 | Expired: No
- Node ID: 7 | Last Updated: 1749071695808 | Expired: No
- 
- ===== TWO-HOP NEIGHBORS =====
- Two-Hop Node ID: 0 | Reachable through: 6 | Expired: No
- Two-Hop Node ID: 1 | Reachable through: 6 | Expired: No
- Two-Hop Node ID: 2 | Reachable through: 6 | Expired: No
- Two-Hop Node ID: 3 | Reachable through: 6 | Expired: No
- Two-Hop Node ID: 5 | Reachable through: 6 | Expired: No
- Two-Hop Node ID: 8 | Reachable through: 6 | Expired: No
- Two-Hop Node ID: 9 | Reachable through: 6 | Expired: No
- 
- ===== ROUTING TABLE =====
- Destination: 0 | Next Hop: 6 | Hop Count: 2 | Last Updated: 1749071694572 | Expired: No
- Destination: 1 | Next Hop: 6 | Hop Count: 2 | Last Updated: 1749071694572 | Expired: No
- Destination: 2 | Next Hop: 6 | Hop Count: 2 | Last Updated: 1749071694572 | Expired: No
- Destination: 3 | Next Hop: 6 | Hop Count: 2 | Last Updated: 1749071694572 | Expired: No
- Destination: 5 | Next Hop: 6 | Hop Count: 2 | Last Updated: 1749071694572 | Expired: No
- Destination: 6 | Next Hop: 6 | Hop Count: 1 | Last Updated: 1749071694572 | Expired: No
- Destination: 7 | Next Hop: 7 | Hop Count: 1 | Last Updated: 1749071694572 | Expired: No
- Destination: 8 | Next Hop: 6 | Hop Count: 2 | Last Updated: 1749071694572 | Expired: No
- Destination: 9 | Next Hop: 6 | Hop Count: 2 | Last Updated: 1749071694572 | Expired: No
- 
- ===== MULTIPLE RELAY POINTS (MPRs) =====
- MPRs: 6
- 
- ===== MPR SELECTORS =====
- Selectors: 5
-[8] Undelivered text messages (2)
-[8] Unprocessed messages (3)
- 
- ===== WAITING MESSAGES =====
- Message { source=8, destination=2, text='Hello from 8', messageType=OLSR_TEXT }
-  Message { source=8, destination=8, text='Hello from 1', messageType=OLSR_TEXT }
- 
- ===== ONE-HOP NEIGHBORS =====
- Node ID: 1 | Last Updated: 1749071695927 | Expired: No
- Node ID: 2 | Last Updated: 1749071695927 | Expired: No
- Node ID: 3 | Last Updated: 1749071695927 | Expired: No
- Node ID: 4 | Last Updated: 1749071695927 | Expired: No
- Node ID: 5 | Last Updated: 1749071695927 | Expired: No
- Node ID: 6 | Last Updated: 1749071695927 | Expired: No
- Node ID: 8 | Last Updated: 1749071695927 | Expired: No
- Node ID: 9 | Last Updated: 1749071695927 | Expired: No
- 
- ===== TWO-HOP NEIGHBORS =====
- Two-Hop Node ID: 0 | Reachable through: 2, 6 | Expired: No
- Two-Hop Node ID: 7 | Reachable through: 6 | Expired: No
- 
- ===== ROUTING TABLE =====
- Destination: 0 | Next Hop: 2 | Hop Count: 2 | Last Updated: 1749071695831 | Expired: No
- Destination: 1 | Next Hop: 1 | Hop Count: 1 | Last Updated: 1749071695831 | Expired: No
- Destination: 2 | Next Hop: 2 | Hop Count: 1 | Last Updated: 1749071695831 | Expired: No
- Destination: 3 | Next Hop: 3 | Hop Count: 1 | Last Updated: 1749071695831 | Expired: No
- Destination: 4 | Next Hop: 4 | Hop Count: 1 | Last Updated: 1749071695831 | Expired: No
- Destination: 5 | Next Hop: 5 | Hop Count: 1 | Last Updated: 1749071695831 | Expired: No
- Destination: 6 | Next Hop: 6 | Hop Count: 1 | Last Updated: 1749071695831 | Expired: No
- Destination: 7 | Next Hop: 6 | Hop Count: 2 | Last Updated: 1749071695831 | Expired: No
- Destination: 8 | Next Hop: 8 | Hop Count: 1 | Last Updated: 1749071695831 | Expired: No
- Destination: 9 | Next Hop: 9 | Hop Count: 1 | Last Updated: 1749071695831 | Expired: No
- 
- ===== MULTIPLE RELAY POINTS (MPRs) =====
- MPRs: 6
- 
- ===== MPR SELECTORS =====
- Selectors: 9, 5, 6, 1, 2, 3, 4
-[9] Undelivered text messages (0)
-[9] Unprocessed messages (0)
- 
- ===== WAITING MESSAGES =====
- No waiting messages
- 
- 
- ===== ONE-HOP NEIGHBORS =====
- Node ID: 1 | Last Updated: 1749071696045 | Expired: No
- Node ID: 2 | Last Updated: 1749071696045 | Expired: No
- Node ID: 3 | Last Updated: 1749071696045 | Expired: No
- Node ID: 5 | Last Updated: 1749071696045 | Expired: No
- Node ID: 6 | Last Updated: 1749071696045 | Expired: No
- Node ID: 8 | Last Updated: 1749071696045 | Expired: No
- Node ID: 9 | Last Updated: 1749071696045 | Expired: No
- 
- ===== TWO-HOP NEIGHBORS =====
- Two-Hop Node ID: 0 | Reachable through: 2, 6 | Expired: No
- Two-Hop Node ID: 4 | Reachable through: 8 | Expired: No
- Two-Hop Node ID: 7 | Reachable through: 6 | Expired: No
- 
- ===== ROUTING TABLE =====
- Destination: 0 | Next Hop: 2 | Hop Count: 2 | Last Updated: 1749071695948 | Expired: No
- Destination: 1 | Next Hop: 1 | Hop Count: 1 | Last Updated: 1749071695948 | Expired: No
- Destination: 2 | Next Hop: 2 | Hop Count: 1 | Last Updated: 1749071695948 | Expired: No
- Destination: 3 | Next Hop: 3 | Hop Count: 1 | Last Updated: 1749071695948 | Expired: No
- Destination: 4 | Next Hop: 8 | Hop Count: 2 | Last Updated: 1749071695948 | Expired: No
- Destination: 5 | Next Hop: 5 | Hop Count: 1 | Last Updated: 1749071695948 | Expired: No
- Destination: 6 | Next Hop: 6 | Hop Count: 1 | Last Updated: 1749071695948 | Expired: No
- Destination: 7 | Next Hop: 6 | Hop Count: 2 | Last Updated: 1749071695948 | Expired: No
- Destination: 8 | Next Hop: 8 | Hop Count: 1 | Last Updated: 1749071695948 | Expired: No
- Destination: 9 | Next Hop: 9 | Hop Count: 1 | Last Updated: 1749071695948 | Expired: No
- 
- ===== MULTIPLE RELAY POINTS (MPRs) =====
- MPRs: 8, 6
- 
- ===== MPR SELECTORS =====
- No nodes have selected this node as MPR
+[4] Undelivered text messages (9)
+ Message { source=4, destination=1, text='Hello from 4', messageType=TEXT }
+  Message { source=4, destination=1, text='Hello from 4', messageType=TEXT }
+  Message { source=4, destination=5, text='Hello from 4', messageType=TEXT }
+  Message { source=4, destination=3, text='Hello from 4', messageType=TEXT }
+  Message { source=4, destination=5, text='Hello from 4', messageType=TEXT }
+  Message { source=4, destination=5, text='Hello from 4', messageType=TEXT }
+  Message { source=4, destination=8, text='Hello from 4', messageType=TEXT }
+  Message { source=4, destination=0, text='Hello from 4', messageType=TEXT }
+  Message { source=4, destination=6, text='Hello from 4', messageType=TEXT }
+[5] Undelivered text messages (8)
+ Message { source=5, destination=6, text='Hello from 5', messageType=TEXT }
+  Message { source=5, destination=9, text='Hello from 5', messageType=TEXT }
+  Message { source=5, destination=3, text='Hello from 5', messageType=TEXT }
+  Message { source=5, destination=9, text='Hello from 5', messageType=TEXT }
+  Message { source=5, destination=0, text='Hello from 5', messageType=TEXT }
+  Message { source=5, destination=9, text='Hello from 5', messageType=TEXT }
+  Message { source=5, destination=2, text='Hello from 5', messageType=TEXT }
+  Message { source=5, destination=2, text='Hello from 5', messageType=TEXT }
+[6] Undelivered text messages (6)
+ Message { source=6, destination=5, text='Hello from 6', messageType=TEXT }
+  Message { source=6, destination=9, text='Hello from 6', messageType=TEXT }
+  Message { source=6, destination=8, text='Hello from 6', messageType=TEXT }
+  Message { source=6, destination=9, text='Hello from 6', messageType=TEXT }
+  Message { source=6, destination=1, text='Hello from 6', messageType=TEXT }
+  Message { source=6, destination=8, text='Hello from 6', messageType=TEXT }
+[7] Undelivered text messages (8)
+ Message { source=7, destination=4, text='Hello from 7', messageType=TEXT }
+  Message { source=7, destination=2, text='Hello from 7', messageType=TEXT }
+  Message { source=7, destination=3, text='Hello from 7', messageType=TEXT }
+  Message { source=7, destination=0, text='Hello from 7', messageType=TEXT }
+  Message { source=7, destination=8, text='Hello from 7', messageType=TEXT }
+  Message { source=7, destination=1, text='Hello from 7', messageType=TEXT }
+  Message { source=7, destination=1, text='Hello from 7', messageType=TEXT }
+  Message { source=7, destination=1, text='Hello from 7', messageType=TEXT }
+[8] Undelivered text messages (8)
+ Message { source=8, destination=4, text='Hello from 8', messageType=TEXT }
+  Message { source=8, destination=7, text='Hello from 8', messageType=TEXT }
+  Message { source=8, destination=1, text='Hello from 8', messageType=TEXT }
+  Message { source=8, destination=3, text='Hello from 8', messageType=TEXT }
+  Message { source=8, destination=1, text='Hello from 8', messageType=TEXT }
+  Message { source=8, destination=6, text='Hello from 8', messageType=TEXT }
+  Message { source=8, destination=2, text='Hello from 8', messageType=TEXT }
+  Message { source=8, destination=4, text='Hello from 8', messageType=TEXT }
+[9] Undelivered text messages (6)
+ Message { source=9, destination=0, text='Hello from 9', messageType=TEXT }
+  Message { source=9, destination=3, text='Hello from 9', messageType=TEXT }
+  Message { source=9, destination=6, text='Hello from 9', messageType=TEXT }
+  Message { source=9, destination=5, text='Hello from 9', messageType=TEXT }
+  Message { source=9, destination=5, text='Hello from 9', messageType=TEXT }
+  Message { source=9, destination=0, text='Hello from 9', messageType=TEXT }

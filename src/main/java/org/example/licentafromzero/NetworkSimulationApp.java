@@ -129,6 +129,7 @@ public class NetworkSimulationApp extends Application {
 
         // Initialize the ground simulation
         ground = new Ground(Constants.SIMULATION_SIZE_X, Constants.SIMULATION_SIZE_Y);
+        initializeSimulation();
 
         // Initialize all panels
         createTopPanel();
@@ -139,9 +140,6 @@ public class NetworkSimulationApp extends Application {
 
         // Create the main layout
         createMainLayout();
-
-        // Initialize simulation
-        initializeSimulation();
 
         // Start log reader
         startLogReader();
@@ -203,7 +201,7 @@ public class NetworkSimulationApp extends Application {
         titleLabel.setFont(Font.font("Arial", FontWeight.BOLD, 20));
         titleLabel.setTextFill(Color.rgb(44, 62, 80));
 
-        protocolLabel = new Label("Protocol: " + getProtocolName());
+        protocolLabel = new Label("Protocol: " + ground.getProtocol());
         protocolLabel.setFont(Font.font("Arial", FontWeight.NORMAL, 16));
         protocolLabel.setTextFill(Color.rgb(0, 0, 0));
 
@@ -476,7 +474,7 @@ public class NetworkSimulationApp extends Application {
         textFlow.setPadding(new Insets(10));
         textFlow.setStyle("-fx-font-family: 'Consolas'; -fx-font-size: 13px;");
 
-        addStyledLine(textFlow, "Protocol", getProtocolName());
+        addStyledLine(textFlow, "Protocol", ground.getProtocol());
         addStyledLine(textFlow, "Nodes", String.valueOf(Constants.SIMULATION_NR_NODES));
         addStyledLine(textFlow, "Duration", Constants.SIMULATION_TIME + " s");
         addStyledLine(textFlow, "Size", Constants.SIMULATION_SIZE_X + " x " + Constants.SIMULATION_SIZE_Y);
@@ -490,29 +488,27 @@ public class NetworkSimulationApp extends Application {
         addStyledLine(textFlow, "Log Level", String.valueOf(Constants.LOG_LEVEL));
 
         // Protocol-specific additions
-        switch (getProtocolName()) {
-            case "AODV":
-                addStyledLine(textFlow, "Stale Route Timeout", Constants.NODE_AODV_STALE_ROUTE_PERIOD + " ms");
-                break;
+        String protocol = ground.getProtocol();
 
-            case "SAODV":
-                addStyledLine(textFlow, "Stale Route Timeout", Constants.NODE_AODV_STALE_ROUTE_PERIOD + " ms");
+        if (protocol.contains("AODV")) {
+            addStyledLine(textFlow, "Stale Route Timeout", Constants.NODE_AODV_STALE_ROUTE_PERIOD + " ms");
+
+            if (protocol.contains("SAODV")) {
                 addStyledLine(textFlow, "SAODV Key Size", Constants.SIMULATION_RSA_KEY_SIZE + " bits");
                 addStyledLine(textFlow, "SAODV Fwd Buffer Size", String.valueOf(Constants.NODE_SAODV_FORWARD_BUFFER_SIZE));
-                break;
+            }
 
-            case "CBRP":
-                addStyledLine(textFlow, "Hello Interval", Constants.NODE_CBRP_HELLO_INTERVAL + " ms");
-                addStyledLine(textFlow, "Contention Period", Constants.NODE_CBRP_CONTENTION_PERIOD + " ms");
-                addStyledLine(textFlow, "Undecided Period", Constants.NODE_CBRP_UNDECIDED_PD + " ms");
-                break;
+        } else if (protocol.contains("CBRP")) {
+            addStyledLine(textFlow, "Hello Interval", Constants.NODE_CBRP_HELLO_INTERVAL + " ms");
+            addStyledLine(textFlow, "Contention Period", Constants.NODE_CBRP_CONTENTION_PERIOD + " ms");
+            addStyledLine(textFlow, "Undecided Period", Constants.NODE_CBRP_UNDECIDED_PD + " ms");
 
-            case "OLSR":
-                addStyledLine(textFlow, "Hello Interval", Constants.OLSR_HELLO_INTERVAL + " ms");
-                addStyledLine(textFlow, "TC Interval", Constants.OLSR_TC_INTERVAL + " ms");
-                addStyledLine(textFlow, "Neighbor Expiration", Constants.OLSR_NEIGHBOR_EXPIRATION_TIME + " ms");
-                break;
+        } else if (protocol.contains("OLSR")) {
+            addStyledLine(textFlow, "Hello Interval", Constants.OLSR_HELLO_INTERVAL + " ms");
+            addStyledLine(textFlow, "TC Interval", Constants.OLSR_TC_INTERVAL + " ms");
+            addStyledLine(textFlow, "Neighbor Expiration", Constants.OLSR_NEIGHBOR_EXPIRATION_TIME + " ms");
         }
+
 
         // Extra system information
         addStyledLine(textFlow, "JVM Heap", (Runtime.getRuntime().totalMemory() / 1024 / 1024) + " MB");
@@ -614,6 +610,8 @@ public class NetworkSimulationApp extends Application {
             case 12:
                 ground.setupFromFile_OLSRNode("src/main/java/org/example/licentafromzero/Config/configuration2.txt");
                 break;
+            case 13:
+                ground.setupFromFile_AODVNode_Wormhole("src/main/java/org/example/licentafromzero/Config/configuration3.txt");
         }
     }
 
@@ -1537,18 +1535,6 @@ public class NetworkSimulationApp extends Application {
 
         }
 
-    }
-
-    private String getProtocolName() {
-        return switch (Constants.SIMULATION_MODE) {
-            case 1, 2 -> "Standard";
-            case 3, 4 -> "DSR";
-            case 5, 6 -> "AODV";
-            case 7, 8 -> "SAODV";
-            case 9, 10 -> "CBRP";
-            case 11, 12 -> "OLSR";
-            default -> "Unknown";
-        };
     }
 
     public int classifyMessageType(Message message) {

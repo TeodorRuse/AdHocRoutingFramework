@@ -127,6 +127,7 @@ public class Message {
     public String getInfo() {
         return "Message Info\n" +
                 "------------\n" +
+                "Type: " + messageType + "\n" +
                 "Source: " + source + "\n" +
                 "Destination: " + destination + "\n" +
                 "Text: " + text + "\n" +

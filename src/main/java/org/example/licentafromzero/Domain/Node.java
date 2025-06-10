@@ -336,7 +336,7 @@ public class Node {
                 "Communication Radius: " + communicationRadius + "\n" +
                 "Active: " + active + "\n" +
                 "Neighbours: " + neighbours.size() + "\n" +
-                "Messages In Transit: " + messages.size() + "\n" +
+                "Unprocessed messages: " + messages.size() + "\n" +
                 "Total Runtime: " + totalRunTime + " ms\n" +
                 "Message Delay: " + messageDelay + " ms\n" +
                 "Waiting Messages: " + waitingMessages.size() + "\n";

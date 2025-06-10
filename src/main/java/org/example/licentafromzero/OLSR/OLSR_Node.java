@@ -55,7 +55,7 @@ public class OLSR_Node extends Node {
 //            if(id == 7 && routingTable.containsKey(5)){
 //                log(3,"Overflowing node 5, sending 100 random messages");
 //                OLSR_Message_TEXT overflowMessage = new OLSR_Message_TEXT(id, 5, "Denial Of Service", 5);
-//                for(int i=0;i<10;i++)
+//                for(int i=0;i<20;i++)
 //                    sendMessage(overflowMessage);
 //            }
 

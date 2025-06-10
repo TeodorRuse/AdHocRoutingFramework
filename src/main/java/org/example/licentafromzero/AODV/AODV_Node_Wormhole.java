@@ -1,29 +1,21 @@
 package org.example.licentafromzero.AODV;
 
 import javafx.util.Pair;
-import org.example.licentafromzero.Domain.*;
+import org.example.licentafromzero.Domain.Constants;
+import org.example.licentafromzero.Domain.Message;
+import org.example.licentafromzero.Domain.MessageType;
 
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.ArrayList;
 
-public class AODV_Node extends Node {
-    protected int sequenceNumber = 0;
-    protected int broadcastId = 0;
+public class AODV_Node_Wormhole extends AODV_Node{
 
-    protected ArrayList<Message> waitingMessages = new ArrayList<>();
-    protected Map<Integer, AODV_RoutingTableEntry> routingTable = new HashMap<>();
-    protected Set<Pair<Integer, Integer>> knownMessageIDs = new HashSet<>(); // format: <sourceID,broadcastID>
-
-    public AODV_Node(int x, int y, int id) {
+    protected boolean oneTime = true;
+    public AODV_Node_Wormhole(int x, int y, int id) {
         super(x, y, id);
-        AODV_RoutingTableEntry routeToSelf = new AODV_RoutingTableEntry(id,id,0,0, totalRunTime);
-        routingTable.put(id, routeToSelf);
     }
 
-    public AODV_Node(int x, int y, int id, int communicationRadius) {
+    public AODV_Node_Wormhole(int x, int y, int id, int communicationRadius) {
         super(x, y, id, communicationRadius);
-        AODV_RoutingTableEntry routeToSelf = new AODV_RoutingTableEntry(id,id,0,0, totalRunTime);
-        routingTable.put(id, routeToSelf);
     }
 
     @Override
@@ -37,13 +29,18 @@ public class AODV_Node extends Node {
 
             discoverNeighbours();
 
-            if(totalRunTime > Constants.NODE_STARTUP_TIME && totalRunTime - lastMessageSent >= messageDelay){
-                int destination = random.nextInt(Constants.SIMULATION_NR_NODES);
-                while (destination == id)
-                    destination = random.nextInt(Constants.SIMULATION_NR_NODES);
-                sendMessage(new Message(id, destination, "Hello from " + id));
-                lastMessageSent = totalRunTime;
+            if(id == 2 && totalRunTime > Constants.NODE_STARTUP_TIME && oneTime){
+                oneTime = false;
+                sendMessage(new Message(id, 9, "Hello from " + id));
             }
+
+//            if(totalRunTime > Constants.NODE_STARTUP_TIME && totalRunTime - lastMessageSent >= messageDelay){
+//                int destination = random.nextInt(Constants.SIMULATION_NR_NODES);
+//                while (destination == id)
+//                    destination = random.nextInt(Constants.SIMULATION_NR_NODES);
+//                sendMessage(new Message(id, destination, "Hello from " + id));
+//                lastMessageSent = totalRunTime;
+//            }
 
             if(totalRunTime > Constants.NODE_NEIGHBOUR_DISCOVERY_DURATION + lastNeighbourDiscovery && !updatedPaths){
                 updateRoutes();
@@ -108,40 +105,6 @@ public class AODV_Node extends Node {
                 super.sendMessage(message);
                 break;
         }
-//        if(message instanceof AODV_Message aodvMessage){
-//
-//            if(aodvMessage.getMessageType() == MessageType.AODV_RREQ){
-//                log(2, "sending RREQ" + stringifyId(aodvMessage) + " to all");
-//                broadcastId++;
-//                sequenceNumber++;
-//                messageRouter.sendMessage(aodvMessage, neighbours);
-//            }else if(aodvMessage.getMessageType() == MessageType.AODV_RERR){
-//                log(2, "sending RERR(" + stringifyId(aodvMessage) + ") all neighbours for " + aodvMessage.getUnreachableAddresses());
-//                broadcastId++;
-//                sequenceNumber++;
-//                messageRouter.sendMessage(aodvMessage, neighbours);
-//            }else{
-//                messageRouter.sendMessage(aodvMessage);
-//            }
-//        }else{
-//            if(message.getMessageType() == MessageType.TEXT){
-//                if(routingTable.containsKey(message.getDestination())){
-//                    log(2, "using known route to send to " + message.getDestination());
-//                    AODV_RoutingTableEntry tableEntry = routingTable.get(message.getDestination());
-//
-//                    AODV_Message aodv_message = new AODV_Message(id, tableEntry.nextHop, MessageType.AODV_TEXT,
-//                            message.getDestination(), message.getText());
-//                    messageRouter.sendMessage(aodv_message);
-//                }else{
-//                    waitingMessages.add(message);
-//
-//                    beginRouteDiscovery(message.getDestination());
-//
-//                }
-//            }else{
-//                super.sendMessage(message);
-//            }
-//        }
     }
 
     @Override
@@ -166,6 +129,7 @@ public class AODV_Node extends Node {
                     //check if node knows about finalDestination, if yes, send RREP.
                     //else, forward it to all neighbours
                     //Add info about sourceSeqNum to routing table - increase it
+
                     Pair<Integer, Integer> msgId = new Pair<>(aodvMessage.getOriginalSource(), aodvMessage.getBroadcastId());
                     if(!knownMessageIDs.contains(msgId)){
                         knownMessageIDs.add(msgId);
@@ -181,6 +145,20 @@ public class AODV_Node extends Node {
 
                             sendWaitingMessages();
                         }
+
+                        //TODO: Attack!!
+//                        if(id == 6 && aodvMessage.getSource() == 2){
+//                            log(4, "received RREQ to 2, attacking and sending fake RREP");
+//                            AODV_Message rrep = new AODV_Message(id, aodvMessage.getSource(), MessageType.AODV_RREP,
+//                                   9, aodvMessage.getOriginalSource(), 10000);
+//                            sendMessage(rrep);
+//
+//                            AODV_RoutingTableEntry tableEntry = new AODV_RoutingTableEntry(9,
+//                                    7, 0, 6, totalRunTime);
+//                            routingTable.put(aodvMessage.getOriginalSource(), tableEntry);
+//
+//                            break;
+//                        }
 
 
                         //check if the node is finalDestination
@@ -220,6 +198,7 @@ public class AODV_Node extends Node {
                         log(2, "RREP is not from the target node, but a cached one!");
                     }
 
+
                     if(!routingTable.containsKey(aodvMessage.getOriginalSource()) ||
                             routingTable.get(aodvMessage.getOriginalSource()).getDestSeqNum() < aodvMessage.getSourceSeqNum() ||
                             routingTable.get(aodvMessage.getOriginalSource()).getHopCount() > aodvMessage.getHopCount()){
@@ -240,7 +219,6 @@ public class AODV_Node extends Node {
                         }
                     }else{
                         log(2, "received requested route to " + aodvMessage.getOriginalSource());
-                        //waiting messages have already been sent!
                     }
                 }
                 break;
@@ -254,6 +232,7 @@ public class AODV_Node extends Node {
                         if(routingTable.containsKey(aodvMessage.getFinalDestination())) {
                             AODV_RoutingTableEntry routingTableEntry = routingTable.get(aodvMessage.getFinalDestination());
                             aodvMessage.setDestination(routingTableEntry.nextHop);
+                            log(2, "forwarding message to " + aodvMessage.getDestination() + " to reach " + aodvMessage.getFinalDestination());
                             sendMessage(aodvMessage);
                         }else{
                             log(2, "cannot forward message to " + aodvMessage.getFinalDestination() + " because route is broken, restarting route discovery");
@@ -274,151 +253,4 @@ public class AODV_Node extends Node {
                 break;
         }
     }
-
-    public void beginRouteDiscovery(int finalDestination){
-        log(2, " beginning route discovery to " + finalDestination);
-        AODV_Message rreq = new AODV_Message(id, MessageType.AODV_RREQ, finalDestination, sequenceNumber, -1, broadcastId);
-        this.knownMessageIDs.add(new Pair<>(id, broadcastId));
-        messageRouter.sendMessage(rreq, neighbours);
-    }
-
-    public void sendWaitingMessages(){
-        ArrayList<Message> copyWaitingMessages = new ArrayList<>(waitingMessages);
-        for(Message waitingMessage : copyWaitingMessages) {
-            if (routingTable.containsKey(waitingMessage.getDestination())) {
-                int nextHop = routingTable.get(waitingMessage.getDestination()).getNextHop();
-                if(waitingMessage instanceof AODV_Message aodv_message){
-                    aodv_message.setDestination(nextHop);
-                    sendMessage(aodv_message);
-                }else {
-                    AODV_Message message1 = new AODV_Message(id, nextHop, MessageType.AODV_TEXT,
-                            waitingMessage.getDestination(), waitingMessage.getText());
-                    sendMessage(message1);
-                }
-                waitingMessages.remove(waitingMessage);
-            }
-        }
-    }
-
-    public String stringifyId(AODV_Message aodvMessage){
-        return "[" + aodvMessage.getOriginalSource() + "|" + aodvMessage.getSourceSeqNum() + "]";
-    }
-
-    public Map<Integer, AODV_RoutingTableEntry> getRoutingTable() {
-        return routingTable;
-    }
-
-
-    protected void updateRoutes(){
-        ArrayList<Integer> routesToRemove = new ArrayList<>();
-        for (Map.Entry<Integer, AODV_RoutingTableEntry> entry : routingTable.entrySet()) {
-            AODV_RoutingTableEntry rte = entry.getValue();
-
-            if (!neighbours.contains(rte.nextHop)) {
-                log(2, "route to " + rte.destAddr + " via " + rte.nextHop + " is broken.");
-                routesToRemove.add(entry.getKey());
-            }
-            if(rte.getReceivedTime() + Constants.NODE_AODV_STALE_ROUTE_PERIOD < totalRunTime  && rte.getDestAddr() != id){
-                log(2, "route to " + rte.destAddr + " via " + rte.nextHop + " is stale.");
-                routesToRemove.add(entry.getKey());
-            }
-        }
-
-        if(!routesToRemove.isEmpty()) {
-            AODV_Message rerr = new AODV_Message(id, MessageType.AODV_RERR, sequenceNumber, broadcastId, routesToRemove);
-            sendMessage(rerr);
-        }
-
-        for (Integer key : routesToRemove) {
-            routingTable.remove(key);
-        }
-    }
-
-    //for updating broken routes received by RERR
-    protected void updateRoutes(AODV_Message aodvMessage) {
-        ArrayList<Integer> unreachableAddresses = aodvMessage.getUnreachableAddresses();
-        int rerrSenderId = aodvMessage.getOriginalSource();
-        ArrayList<Integer> routesToRemove = new ArrayList<>();
-
-        for (Integer unreachableDest : unreachableAddresses) {
-            AODV_RoutingTableEntry rte = routingTable.get(unreachableDest);
-            if (rte != null && rte.nextHop == rerrSenderId) {
-                log(2, " removing route to " + unreachableDest + " via broken next hop " + rte.nextHop);
-                routesToRemove.add(unreachableDest);
-            }
-        }
-
-        for (Integer dest : routesToRemove) {
-            routingTable.remove(dest);
-        }
-    }
-
-    public ArrayList<Message> getWaitingMessages() {
-        return waitingMessages;
-    }
-
-    public ArrayList<Message> getWaitingControlMessages() {
-        ArrayList<Message> controlMessages = new ArrayList<>();
-        for (Message message : waitingMessages) {
-            if (message.getMessageType() != MessageType.TEXT &&
-                    message.getMessageType() != MessageType.AODV_TEXT) {
-                controlMessages.add(message);
-            }
-        }
-        return controlMessages;
-    }
-
-    public void prettyPrintRoutingTable() {
-        Util.log("\n Routing Table for Node " + this.getId(), true);
-//        Util.log("+------------+----------+---------------+----------+---------------------+", true);
-//        Util.log("| Dest Addr  | Next Hop | Dest Seq Num  | Hop Count| Last Received Time  |", true);
-//        Util.log("+------------+----------+---------------+----------+---------------------+", true);
-
-        String table = "+------------+----------+---------------+----------+---------------------+\n" +
-                String.format("| %-10s | %-8s | %-13s | %-8s | %-19s |%n",
-                        "DestAddr", "NextHop", "DestSeqNum", "HopCount", "ReceivedTime") +
-                "+------------+----------+---------------+----------+---------------------+\n" +
-                this.getRoutingTable().values().stream()
-                        .map(entry -> String.format("| %-10d | %-8d | %-13d | %-8d | %-19s |%n",
-                                entry.getDestAddr(),
-                                entry.getNextHop(),
-                                entry.getDestSeqNum(),
-                                entry.getHopCount(),
-                                entry.getReceivedTime()))
-                        .collect(Collectors.joining()) +
-                "+------------+----------+---------------+----------+---------------------+";
-
-        Util.log(table, true);
-    }
-
-    @Override
-    public String toInfo() {
-        StringBuilder info = new StringBuilder();
-
-        info.append(super.toInfo())
-                .append("\n\n")
-                .append("AODV Info\n")
-                .append("---------\n")
-                .append("Sequence #: ").append(sequenceNumber).append("\n")
-                .append("Broadcast ID: ").append(broadcastId).append("\n")
-                .append("Known Msg IDs: ").append(knownMessageIDs.size()).append("\n")
-                .append("Routing Table Entries: ").append(routingTable.size());
-
-        if (!routingTable.isEmpty()) {
-            info.append("\n\nRouting Table (Dest → Next Hop):\n");
-
-            for (AODV_RoutingTableEntry entry : routingTable.values()) {
-                info.append("  ")
-                        .append(entry.destAddr)
-                        .append(" → ")
-                        .append(entry.nextHop)
-                        .append("\n");
-            }
-        }
-
-        return info.toString();
-    }
-
-
-
 }

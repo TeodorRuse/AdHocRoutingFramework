@@ -35,7 +35,7 @@ public class CBRP_Node extends Node {
     private Map<Integer, List<CBRP_ClusterAdjacencyEntry>> clusterAdjacencyTable = new HashMap<>();
     private Map<Integer, List<Integer>> twoHopTopology = new HashMap<>(); // Node -> List of its neighbors
     private Map<String, List<Integer>> routeCache = new HashMap<>(); // Destination -> Route
-    private ArrayList<Message> waitingMessages = new ArrayList<>();
+//    private ArrayList<Message> waitingMessages = new ArrayList<>();
 
     public CBRP_Node(int x, int y, int id) {
         super(x, y, id);
@@ -55,10 +55,10 @@ public class CBRP_Node extends Node {
     public void turnOn(int runtTime) {
         long startTime = System.currentTimeMillis();
 
-        //TODO: Attack
-//        if(id == 3){
-//            return;
-//        }
+        //TODO: Black Hole Attack
+        if(id == 3){
+            return;
+        }
 
         // If this is the first time turning on, schedule undecided timer
         if (totalRunTime == -1 && nodeStatus == C_UNDECIDED) {
@@ -1106,22 +1106,43 @@ public class CBRP_Node extends Node {
             default -> "Unknown";
         };
 
-        return super.toInfo() + "\n\n" +
-                "CBRP Info\n" +
-                "---------\n" +
-                "Status: " + status + "\n" +
-                "BroadcastId ID: " + broadcastId + "\n" +
-                "Sequence Number: " + sequenceNumber + "\n" +
-                "Known RREQs: " + knownRREQs.size() + "\n" +
-                "Last Hello Sent: " + lastHelloSent + "\n" +
-                "Undecided Timer: " + (uTimerActive ? "Active, expires at " + uTimer : "Inactive") + "\n" +
-                "Contention Timer: " + (cTimerActive ? "Active, expires at " + cTimer : "Inactive") + "\n" +
-                "Neighbors: " + getNeighborsWithBidirectionalLinks() + "\n" +
-                "Cluster Adjacency Table: " + clusterAdjacencyTable.size() + " entries\n" +
-                "Two-Hop Topology: " + twoHopTopology.size() + " entries\n" +
-                "Route Cache: " + routeCache.size() + " entries\n" +
-                "Waiting Messages: " + waitingMessages.size() + "\n" +
-                "Neighbors: " + neighbours.size() + "\n" +
-                "Neighbor Table: " + neighborTable.size() + " entries";
+        StringBuilder sb = new StringBuilder();
+
+        sb.append(super.toInfo()).append("\n\n")
+                .append("CBRP Info\n")
+                .append("---------\n")
+                .append("Status: ").append(status).append("\n")
+                .append("BroadcastId ID: ").append(broadcastId).append("\n")
+                .append("Sequence Number: ").append(sequenceNumber).append("\n")
+                .append("Known RREQs: ").append(knownRREQs.size()).append("\n")
+                .append("Last Hello Sent: ").append(lastHelloSent).append("\n")
+                .append("Undecided Timer: ").append(uTimerActive ? "Active, expires at " + uTimer : "Inactive").append("\n")
+                .append("Contention Timer: ").append(cTimerActive ? "Active, expires at " + cTimer : "Inactive").append("\n")
+                .append("Neighbors: ").append(getNeighborsWithBidirectionalLinks()).append("\n")
+                .append("Cluster Adjacency Table: ").append(clusterAdjacencyTable.size()).append(" entries\n")
+                .append("Two-Hop Neighbours: ").append(twoHopTopology.size()).append(" entries\n");
+
+        // Dump two-hop topology
+        for (Map.Entry<Integer, List<Integer>> entry : twoHopTopology.entrySet()) {
+            sb.append("  ").append(entry.getKey()).append(" -> ").append(entry.getValue()).append("\n");
+        }
+
+        // Dump neighbor table
+        sb.append("Neighbor Table:\n");
+        for (Map.Entry<Integer, CBRP_NeighborTableEntry> entry : neighborTable.entrySet()) {
+            CBRP_NeighborTableEntry e = entry.getValue();
+            sb.append("  ID: ").append(entry.getKey())
+                    .append(", Role: ").append(e.getRole())
+                    .append("\n");
+        }
+
+        // Dump route cache
+        sb.append("Route Cache:\n");
+        for (Map.Entry<String, List<Integer>> entry : routeCache.entrySet()) {
+            sb.append("  Dest: ").append(entry.getKey()).append(" -> ").append(entry.getValue()).append("\n");
+        }
+
+        return sb.toString();
     }
+
 }

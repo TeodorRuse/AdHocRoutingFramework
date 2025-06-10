@@ -2,6 +2,7 @@ package org.example.licentafromzero.Domain;
 
 import javafx.application.Platform;
 import org.example.licentafromzero.AODV.AODV_Node;
+import org.example.licentafromzero.AODV.AODV_Node_Wormhole;
 import org.example.licentafromzero.CBRP.CBRP_Node;
 import org.example.licentafromzero.DSR.DSR_Node;
 import org.example.licentafromzero.OLSR.OLSR_Node;
@@ -124,6 +125,32 @@ public class Ground {
 
                 //Node node = new Node(x, y, i, commRadius);
                 Node node = new AODV_Node(x, y, i, commRadius);
+                node.setMessageRouter(messageRouter);
+                messageRouter.addNode(node);
+                nodes.add(node);
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace(); // Or handle more gracefully
+        }
+    }
+
+    public void setupFromFile_AODVNode_Wormhole(String filePath){
+        this.protocol = "AODV_WormHole";
+        try {
+            List<String> lines = Files.readAllLines(Paths.get(filePath));
+            numberNodes = lines.size();
+
+            for (int i = 0; i < lines.size(); i++) {
+                String[] parts = lines.get(i).trim().split("\\s+"); // split by space(s)
+                if (parts.length < 3) continue; // skip if not enough data
+
+                int x = Integer.parseInt(parts[0]);
+                int y = Integer.parseInt(parts[1]);
+                int commRadius = Integer.parseInt(parts[2]);
+
+                //Node node = new Node(x, y, i, commRadius);
+                Node node = new AODV_Node_Wormhole(x, y, i, commRadius);
                 node.setMessageRouter(messageRouter);
                 messageRouter.addNode(node);
                 nodes.add(node);

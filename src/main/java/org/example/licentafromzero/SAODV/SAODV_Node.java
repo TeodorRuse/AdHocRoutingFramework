@@ -10,15 +10,15 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class SAODV_Node extends Node {
-    private int sequenceNumber = 0;
-    private int broadcastId = 0;
+    protected int sequenceNumber = 0;
+    protected int broadcastId = 0;
 
-    private ArrayList<Message> waitingMessages = new ArrayList<>();
-    private Map<Integer, SAODV_RoutingTableEntry> routingTable = new HashMap<>();
-    private Set<Pair<Integer, Integer>> knownMessageIDs = new HashSet<>(); // format: <sourceID,broadcastID>
+    protected ArrayList<Message> waitingMessages = new ArrayList<>();
+    protected Map<Integer, SAODV_RoutingTableEntry> routingTable = new HashMap<>();
+    protected Set<Pair<Integer, Integer>> knownMessageIDs = new HashSet<>(); // format: <sourceID,broadcastID>
 
-    private KeyPair keyPair;
-    private Map<Integer, PublicKey> keyChain = new HashMap<>();
+    protected KeyPair keyPair;
+    protected Map<Integer, PublicKey> keyChain = new HashMap<>();
 
     public SAODV_Node(int x, int y, int id, KeyPair keyPair) {
         super(x, y, id);
@@ -113,11 +113,6 @@ public class SAODV_Node extends Node {
                     waitingMessages.add(message);
 
                     beginRouteDiscovery(message.getDestination());
-
-//                    log(2, " beginning route discovery to " + message.getDestination());
-//                    SAODV_Message rreq = new SAODV_Message(id, MessageType.SAODV_RREQ, message.getDestination(), sequenceNumber, -1, broadcastId, generateDoubleSignature());
-//                    this.knownMessageIDs.add(new Pair<>(id, broadcastId));
-//                    sendMessage(rreq);
                 }
             }else{
                 super.sendMessage(message);
@@ -261,26 +256,6 @@ public class SAODV_Node extends Node {
                         }
                     }else{
                         log(2, "received requested route to " + saodvMessage.getOriginalSource());
-                        //loop over all messages in waitingMessages and send them if  there is a destination:
-//                        sendWaitingMessages();
-
-//                        ArrayList<Message> copyWaitingMessages = new ArrayList<>(waitingMessages);
-//                        for(Message waitingMessage : copyWaitingMessages) {
-//                            if (routingTable.containsKey(waitingMessage.getDestination())) {
-//                                int nextHop = routingTable.get(waitingMessage.getDestination()).getNextHop();
-//                                if(waitingMessage instanceof SAODV_Message aodv_message){
-//                                    aodv_message.setDestination(nextHop);
-//                                    sendMessage(saodvMessage);
-//                                }else {
-//                                    SAODV_Message message1 = new SAODV_Message(id, nextHop, MessageType.SAODV_TEXT,
-//                                            waitingMessage.getDestination(), waitingMessage.getText());
-//                                    sendMessage(message1);
-//                                }
-//                                waitingMessages.remove(waitingMessage);
-//
-//                            }
-//                        }
-
                     }
                 }
                 break;
@@ -363,7 +338,7 @@ public class SAODV_Node extends Node {
     }
 
 
-    private void updateRoutes(){
+    protected void updateRoutes(){
         ArrayList<Integer> routesToRemove = new ArrayList<>();
         for (Map.Entry<Integer, SAODV_RoutingTableEntry> entry : routingTable.entrySet()) {
             SAODV_RoutingTableEntry rte = entry.getValue();
@@ -389,7 +364,7 @@ public class SAODV_Node extends Node {
     }
 
     //for updating broken routes received by RERR
-    private void updateRoutes(SAODV_Message saodvMessage) {
+    protected void updateRoutes(SAODV_Message saodvMessage) {
         ArrayList<Integer> unreachableAddresses = saodvMessage.getUnreachableAddresses();
         int rerrSenderId = saodvMessage.getOriginalSource();
         ArrayList<Integer> routesToRemove = new ArrayList<>();
@@ -407,7 +382,7 @@ public class SAODV_Node extends Node {
         }
     }
 
-    private Pair<String, byte[]> generateDoubleSignature(){
+    protected Pair<String, byte[]> generateDoubleSignature(){
         try {
 
             String fakeRREP = new AODV_Message(id, -1, MessageType.SAODV_RREP, id, -1, sequenceNumber).toString();
@@ -468,7 +443,7 @@ public class SAODV_Node extends Node {
         this.keyChain = keyChain;
     }
 
-    private String shortenKey(byte[] keyBytes) {
+    protected String shortenKey(byte[] keyBytes) {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < Math.min(8, keyBytes.length); i++) {
             sb.append(String.format("%02X", keyBytes[i]));
@@ -476,21 +451,47 @@ public class SAODV_Node extends Node {
         return sb.toString() + "...";
     }
 
+
     @Override
     public String toInfo() {
+        StringBuilder info = new StringBuilder();
+
         String publicKeyShort = shortenKey(keyPair.getPublic().getEncoded());
         String privateKeyShort = shortenKey(keyPair.getPrivate().getEncoded());
 
-        return super.toInfo() + "\n\n" +
-                "SAODV Info\n" +
-                "---------------\n" +
-                "ID: " + id + "\n" +
-                "Sequence #: " + sequenceNumber + "\n" +
-                "Broadcast ID: " + broadcastId + "\n" +
-                "Routing Table Entries: " + routingTable.size() + "\n" +
-                "Known Msg IDs: " + knownMessageIDs.size() + "\n" +
-                "Public Key (start): " + publicKeyShort + "\n" +
-                "Private Key (start): " + privateKeyShort + "\n";
+        info.append(super.toInfo())
+                .append("\n\n")
+                .append("SAODV Info\n")
+                .append("---------\n")
+                .append("Sequence #: ").append(sequenceNumber).append("\n")
+                .append("Broadcast ID: ").append(broadcastId).append("\n")
+                .append("Known Msg IDs: ").append(knownMessageIDs.size()).append("\n")
+                .append("Routing Table Entries: ").append(routingTable.size()).append("\n")
+                .append("Public Key: ").append(publicKeyShort).append("\n")
+                .append("Private Key: ").append(privateKeyShort).append("\n");
+
+        if (!routingTable.isEmpty()) {
+            info.append("\n\nRouting Table \n (Dest → Next Hop | DoubleSign):\n");
+
+            for (SAODV_RoutingTableEntry entry : routingTable.values()) {
+                info.append("  ")
+                        .append(entry.destAddr)
+                        .append(" → ")
+                        .append(entry.nextHop)
+                        .append(" | ");
+
+                if (entry.doubleSignature != null) {
+                    info.append("true");
+                }else{
+                    info.append("false");
+                }
+
+                info.append("\n");
+            }
+        }
+
+
+        return info.toString();
     }
 
 }

@@ -3,13 +3,11 @@ package org.example.licentafromzero.Domain;
 public final class Constants {
     private Constants(){};
 
-    //TODO: change all private methods to protected to allow extension;
-
     //General values
-    public static final int SIMULATION_TIME = 30; //seconds
-    public static final int SIMULATION_MODE = 13;
+    public static final int SIMULATION_TIME = 20; //seconds
+    public static final int SIMULATION_MODE = 10;
     // 1 = normal | 3 = DSR | 5 = AODV | 7 = SAODV | 9 = CBRP | 11 = OLSR | even = file ||
-    // 13 = aodv_wormhole, 14 = cbrp_Blackhole, 15 = OLSR_Overflow
+    // 13 = aodv_MiM, 14 = cbrp_Blackhole, 15 = OLSR_Overflow, 16=SAODV_Wormhole
     public static final int SIMULATION_NR_NODES = 10;
     public static final int SIMULATION_SIZE_X = 900;
     public static final int SIMULATION_SIZE_Y = 900;

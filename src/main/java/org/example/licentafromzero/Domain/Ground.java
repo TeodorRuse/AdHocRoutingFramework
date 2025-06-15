@@ -2,13 +2,14 @@ package org.example.licentafromzero.Domain;
 
 import javafx.application.Platform;
 import org.example.licentafromzero.AODV.AODV_Node;
-import org.example.licentafromzero.AODV.AODV_Node_Wormhole;
+import org.example.licentafromzero.AODV.AODV_Node_MiM;
 import org.example.licentafromzero.CBRP.CBRP_Node;
 import org.example.licentafromzero.CBRP.CBRP_Node_Blackhole;
 import org.example.licentafromzero.DSR.DSR_Node;
 import org.example.licentafromzero.OLSR.OLSR_Node;
 import org.example.licentafromzero.OLSR.OLSR_Node_Overflow;
 import org.example.licentafromzero.SAODV.SAODV_Node;
+import org.example.licentafromzero.SAODV.SAODV_Node_Wormhole;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -137,8 +138,8 @@ public class Ground {
         }
     }
 
-    public void setupFromFile_AODVNode_Wormhole(String filePath){
-        this.protocol = "AODV_WormHole";
+    public void setupFromFile_AODVNode_MiM(String filePath){
+        this.protocol = "AODV_MiM";
         try {
             List<String> lines = Files.readAllLines(Paths.get(filePath));
             numberNodes = lines.size();
@@ -152,7 +153,7 @@ public class Ground {
                 int commRadius = Integer.parseInt(parts[2]);
 
                 //Node node = new Node(x, y, i, commRadius);
-                Node node = new AODV_Node_Wormhole(x, y, i, commRadius);
+                Node node = new AODV_Node_MiM(x, y, i, commRadius);
                 node.setMessageRouter(messageRouter);
                 messageRouter.addNode(node);
                 nodes.add(node);
@@ -208,6 +209,43 @@ public class Ground {
             e.printStackTrace(); // Or handle more gracefully
         }
     }
+
+    public void setupFromFile_SAODVNode_Wormhole(String filePath){
+        this.protocol = "SAODV_Wormhole";
+        this.messageRouter = new MessageRouter_Wormhole();
+        try {
+            List<String> lines = Files.readAllLines(Paths.get(filePath));
+            Map<Integer, PublicKey> keyChain = new HashMap<>();
+            numberNodes = lines.size();
+
+            for (int i = 0; i < lines.size(); i++) {
+                String[] parts = lines.get(i).trim().split("\\s+"); // split by space(s)
+                if (parts.length < 3) continue; // skip if not enough data
+
+                int x = Integer.parseInt(parts[0]);
+                int y = Integer.parseInt(parts[1]);
+                int commRadius = Integer.parseInt(parts[2]);
+
+                KeyPair keyPair = generateKeyPair();
+                keyChain.put(i,keyPair.getPublic());
+
+                //Node node = new Node(x, y, i, commRadius);
+                Node node = new SAODV_Node_Wormhole(x, y, i, commRadius, keyPair);
+                node.setMessageRouter(messageRouter);
+                messageRouter.addNode(node);
+                nodes.add(node);
+            }
+
+            for(Node node: nodes){
+                if(node instanceof SAODV_Node saodvNode)
+                    saodvNode.setKeyChain(keyChain);
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace(); // Or handle more gracefully
+        }
+    }
+
 
     public void setupRandom_SAODVNode(int numberNodes){
         this.protocol = "SAODV";

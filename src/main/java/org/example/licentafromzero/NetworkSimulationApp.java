@@ -595,7 +595,7 @@ public class NetworkSimulationApp extends Application {
                 ground.setupRandom_SAODVNode(Constants.SIMULATION_NR_NODES);
                 break;
             case 8:
-                ground.setupFromFile_SAODVNode("src/main/java/org/example/licentafromzero/Config/configuration2.txt");
+                ground.setupFromFile_SAODVNode("src/main/java/org/example/licentafromzero/Config/configuration.txt");
                 break;
             case 9:
                 ground.setupRandom_CBRPNode(Constants.SIMULATION_NR_NODES);
@@ -610,13 +610,16 @@ public class NetworkSimulationApp extends Application {
                 ground.setupFromFile_OLSRNode("src/main/java/org/example/licentafromzero/Config/configuration2.txt");
                 break;
             case 13:
-                ground.setupFromFile_AODVNode_Wormhole("src/main/java/org/example/licentafromzero/Config/configuration3.txt");
+                ground.setupFromFile_AODVNode_MiM("src/main/java/org/example/licentafromzero/Config/configuration3.txt");
                 break;
             case 14:
                 ground.setupFromFile_CBRPNode_Blackhole("src/main/java/org/example/licentafromzero/Config/configuration2.txt");
                 break;
             case 15:
                 ground.setupFromFile_OLSRNode_Overflow("src/main/java/org/example/licentafromzero/Config/configuration2.txt");
+                break;
+            case 16:
+                ground.setupFromFile_SAODVNode_Wormhole("src/main/java/org/example/licentafromzero/Config/configuration4.txt");
                 break;
         }
     }

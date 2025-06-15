@@ -5,16 +5,14 @@ import org.example.licentafromzero.Domain.Constants;
 import org.example.licentafromzero.Domain.Message;
 import org.example.licentafromzero.Domain.MessageType;
 
-import java.util.ArrayList;
-
-public class AODV_Node_Wormhole extends AODV_Node{
+public class AODV_Node_MiM extends AODV_Node{
 
     protected boolean oneTime = true;
-    public AODV_Node_Wormhole(int x, int y, int id) {
+    public AODV_Node_MiM(int x, int y, int id) {
         super(x, y, id);
     }
 
-    public AODV_Node_Wormhole(int x, int y, int id, int communicationRadius) {
+    public AODV_Node_MiM(int x, int y, int id, int communicationRadius) {
         super(x, y, id, communicationRadius);
     }
 

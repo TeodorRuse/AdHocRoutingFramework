@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.HashSet;
 
 public class MessageRouter {
-    private ArrayList<Node> nodes;
-    private ArrayList<Message> messages;
+    protected ArrayList<Node> nodes;
+    protected ArrayList<Message> messages;
 
     public MessageRouter() {
         this.nodes = new ArrayList<>();
